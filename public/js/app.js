@@ -19873,16 +19873,16 @@ module.exports = angular;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/kimbie.light.css":
-/*!******************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/kimbie.light.css ***!
-  \******************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/arduino-light.css":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/arduino-light.css ***!
+  \*******************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/*\n    Name:     Kimbie (light)\n    Author:   Jan T. Sott\n    License:  Creative Commons Attribution-ShareAlike 4.0 Unported License\n    URL:      https://github.com/idleberg/Kimbie-highlight.js\n*/\n/* Kimbie Comment */\n.hljs-comment,\n.hljs-quote {\n  color: #a57a4c; }\n\n/* Kimbie Red */\n.hljs-variable,\n.hljs-template-variable,\n.hljs-tag,\n.hljs-name,\n.hljs-selector-id,\n.hljs-selector-class,\n.hljs-regexp,\n.hljs-meta {\n  color: #dc3958; }\n\n/* Kimbie Orange */\n.hljs-number,\n.hljs-built_in,\n.hljs-builtin-name,\n.hljs-literal,\n.hljs-type,\n.hljs-params,\n.hljs-deletion,\n.hljs-link {\n  color: #f79a32; }\n\n/* Kimbie Yellow */\n.hljs-title,\n.hljs-section,\n.hljs-attribute {\n  color: #f06431; }\n\n/* Kimbie Green */\n.hljs-string,\n.hljs-symbol,\n.hljs-bullet,\n.hljs-addition {\n  color: #889b4a; }\n\n/* Kimbie Purple */\n.hljs-keyword,\n.hljs-selector-tag,\n.hljs-function {\n  color: #98676a; }\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  background: #fbebd4;\n  color: #84613d;\n  padding: 0.5em; }\n\n.hljs-emphasis {\n  font-style: italic; }\n\n.hljs-strong {\n  font-weight: bold; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/*\n\nArduino® Light Theme - Stefania Mellai <s.mellai@arduino.cc>\n\n*/\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  background: #FFFFFF; }\n\n.hljs,\n.hljs-subst {\n  color: #434f54; }\n\n.hljs-keyword,\n.hljs-attribute,\n.hljs-selector-tag,\n.hljs-doctag,\n.hljs-name {\n  color: #00979D; }\n\n.hljs-built_in,\n.hljs-literal,\n.hljs-bullet,\n.hljs-code,\n.hljs-addition {\n  color: #D35400; }\n\n.hljs-regexp,\n.hljs-symbol,\n.hljs-variable,\n.hljs-template-variable,\n.hljs-link,\n.hljs-selector-attr,\n.hljs-selector-pseudo {\n  color: #00979D; }\n\n.hljs-type,\n.hljs-string,\n.hljs-selector-id,\n.hljs-selector-class,\n.hljs-quote,\n.hljs-template-tag,\n.hljs-deletion {\n  color: #005C5F; }\n\n.hljs-title,\n.hljs-section {\n  color: #880000;\n  font-weight: bold; }\n\n.hljs-comment {\n  color: rgba(149, 165, 166, 0.8); }\n\n.hljs-meta-keyword {\n  color: #728E00; }\n\n.hljs-meta {\n  color: #728E00;\n  color: #434f54; }\n\n.hljs-emphasis {\n  font-style: italic; }\n\n.hljs-strong {\n  font-weight: bold; }\n\n.hljs-function {\n  color: #728E00; }\n\n.hljs-number {\n  color: #8A7B52; }\n", ""]);
 
 
 
@@ -19897,7 +19897,7 @@ exports.push([module.i, "/*\n    Name:     Kimbie (light)\n    Author:   Jan T. 
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden; }\n\n.app {\n  display: flex; }\n\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n", ""]);
 
 
 
@@ -19912,7 +19912,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    padding-top: 0;\n    padding-bottom: 0;\n    height: calc(100% - 35px);\n    overflow-y: hidden; }\n  .explorer code {\n    height: 95%; }\n", ""]);
 
 
 
@@ -19955,6 +19955,21 @@ exports.push([module.i, ".sidebar {\n  margin-top: 10px;\n  height: 100%;\n  /* 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".tab {\n  width: 125px;\n  height: 35px;\n  border-bottom: solid 1px yellow;\n  padding-left: 15px;\n  background-color: #e8eeef;\n  cursor: pointer; }\n", ""]);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/terminal/style.scss":
 /*!****************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/terminal/style.scss ***!
@@ -19964,7 +19979,7 @@ exports.push([module.i, ".sidebar {\n  margin-top: 10px;\n  height: 100%;\n  /* 
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".terminal {\n  background-color: white; }\n", ""]);
 
 
 
@@ -34987,15 +35002,15 @@ module.exports = function (hljs) {
 
 /***/ }),
 
-/***/ "./node_modules/highlight.js/styles/kimbie.light.css":
-/*!***********************************************************!*\
-  !*** ./node_modules/highlight.js/styles/kimbie.light.css ***!
-  \***********************************************************/
+/***/ "./node_modules/highlight.js/styles/arduino-light.css":
+/*!************************************************************!*\
+  !*** ./node_modules/highlight.js/styles/arduino-light.css ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!../../sass-loader/lib/loader.js!./kimbie.light.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/kimbie.light.css");
+var content = __webpack_require__(/*! !../../css-loader/dist/cjs.js!../../sass-loader/lib/loader.js!./arduino-light.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/highlight.js/styles/arduino-light.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -35592,7 +35607,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div class=row> <div class=\"col-sm-2 col-md-2 col-lg-2\"> <sidebar project-name=self.projectName /> </div> <div class=\"col-sm-5 col-md-5 col-lg-5\"> <explorer></explorer> </div> <div class=\"col-sm-5 col-md-5 col-lg-5\"> <terminal></terminal> </div> </div> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% project-name=self.projectName></sidebar> <explorer style=width:40%></explorer> <terminal style=width:40%></terminal> </div>";
 
 /***/ }),
 
@@ -35611,8 +35626,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.scss */ "./src/explorer/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var highlight_js_styles_kimbie_light_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highlight.js/styles/kimbie.light.css */ "./node_modules/highlight.js/styles/kimbie.light.css");
-/* harmony import */ var highlight_js_styles_kimbie_light_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(highlight_js_styles_kimbie_light_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var highlight_js_styles_arduino_light_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! highlight.js/styles/arduino-light.css */ "./node_modules/highlight.js/styles/arduino-light.css");
+/* harmony import */ var highlight_js_styles_arduino_light_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(highlight_js_styles_arduino_light_css__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -35677,7 +35692,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=explorer> <div> <code class=\"hljs javascript\" contenteditable=true>asdf</code> </div> </div>";
+module.exports = "<div class=explorer> <tab file-name=\"'sadf'\"></tab> <pre>\n    <code class=\"hljs javascript\" contenteditable=true>asdf</code>\n  </pre> </div>";
 
 /***/ }),
 
@@ -35787,7 +35802,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders /> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders /> </ul> </li>";
+module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders></f-element> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders></f-element> </ul> </li>";
 
 /***/ }),
 
@@ -35826,6 +35841,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
 /* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
+/* harmony import */ var _tab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab */ "./src/tab/index.js");
+
 
 
 
@@ -35835,7 +35852,7 @@ __webpack_require__.r(__webpack_exports__);
 const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tab__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tab__WEBPACK_IMPORTED_MODULE_6__["default"].options);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -35959,7 +35976,84 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[] /> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
+
+/***/ }),
+
+/***/ "./src/tab/index.js":
+/*!**************************!*\
+  !*** ./src/tab/index.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/tab/template.html");
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/tab/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const name = 'tab';
+controller.$inject = [];
+
+function controller() {
+  const self = this;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name,
+  options: {
+    bindings: {
+      fileName: '<'
+    },
+    template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
+    controller,
+    controllerAs: 'self'
+  }
+});
+
+/***/ }),
+
+/***/ "./src/tab/style.scss":
+/*!****************************!*\
+  !*** ./src/tab/style.scss ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/tab/template.html":
+/*!*******************************!*\
+  !*** ./src/tab/template.html ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=tab ng-bind=self.fileName></div>";
 
 /***/ }),
 
@@ -36032,7 +36126,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar></sidebar> </div>";
+module.exports = "<div class=terminal> </div>";
 
 /***/ })
 

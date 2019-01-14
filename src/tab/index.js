@@ -1,25 +1,22 @@
-import hljs from 'highlight.js'
 import template from './template.html'
 import './style.scss'
-import 'highlight.js/styles/arduino-light.css'
 
-const name = 'explorer'
+const name = 'tab'
 
 controller.$inject = []
 function controller() {
   const self = this
 
-  self.$onInit = function () {
-    hljs.initHighlightingOnLoad()
-  }
 }
 
 export default {
   name,
   options: {
-    bindings: {},
+    bindings: {
+      fileName: '<'
+    },
     template,
     controller,
     controllerAs: 'self'
-  }
+}
 }

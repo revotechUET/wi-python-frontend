@@ -5,6 +5,7 @@ import sidebar from './sidebar'
 import fElement from './f-element'
 import terminal from './terminal'
 import explorer from './explorer'
+import tab from './tab'
 
 const moduleName = 'online-editor-client'
 const dependencies = []
@@ -16,6 +17,7 @@ angular.module(moduleName, dependencies)
   .component(fElement.name, fElement.options)
   .component(terminal.name, terminal.options)
   .component(explorer.name, explorer.options)
+  .component(tab.name, tab.options)
 
 
 export default renderComponent

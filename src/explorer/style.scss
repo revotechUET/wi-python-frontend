@@ -1,3 +1,17 @@
-.app {
-  
+$tab-height : 35px;
+
+.explorer {
+  height: 100%;
+
+  pre {
+    // height: 100% - 35px; //heigth of tab
+    padding-top: 0;
+    padding-bottom: 0;
+    height: calc(100% - #{$tab-height});
+    overflow-y: hidden;
+  }
+
+  code {
+    height: 95%;
+  }
 }
