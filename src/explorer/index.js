@@ -1,13 +1,17 @@
+import hljs from 'highlight.js'
 import template from './template.html'
 import './style.scss'
+import 'highlight.js/styles/kimbie.light.css'
 
-const name = 'app'
+const name = 'explorer'
 
 controller.$inject = []
 function controller() {
   const self = this
 
-  self.projectName = 'new-open'
+  self.$onInit = function () {
+    hljs.initHighlightingOnLoad()
+  }
 }
 
 export default {
@@ -17,5 +21,5 @@ export default {
     template,
     controller,
     controllerAs: 'self'
-}
+  }
 }

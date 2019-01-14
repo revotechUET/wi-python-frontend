@@ -1,13 +1,11 @@
 import template from './template.html'
 import './style.scss'
 
-const name = 'app'
+const name = 'terminal'
 
 controller.$inject = []
 function controller() {
-  const self = this
 
-  self.projectName = 'new-open'
 }
 
 export default {

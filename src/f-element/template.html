@@ -1,19 +1,27 @@
-<li>
-  <span
-    class={this.getItemBadge()}
-    ng-click={this.toggleShowChild}
-  >
-  </span>
-  <a ng-click="{e => openItem(
-    path,
-    rootIsFile,
-    [...folders, ...files])}"
-  >
-    <span class=""></span>
-    <span class="node_name"></span>
+<li class="f-element">
+  <span class="{{self.getBadge()}}" ng-click="self.toggleShowChild()"></span>
+  <a ng-click="self.open()">
+    <span class="{{self.getIcon()}}"></span>
+    <span class="node_name" ng-bind="self.rootName"></span>
   </a>
   <ul class="line">
-    <!-- {{listFolder}}
-    {listFile} -->
+
+    <!-- folder -->
+    <f-element 
+      ng-repeat="f in self.files track by $index"
+      root-name="f.rootName"
+      root-is-file="f.rootIsFile"
+      files="f.files"
+      folders="f.folders"
+    />
+
+    <!-- files -->
+    <f-element 
+      ng-repeat="f in self.files track by $index"
+      root-name="f.rootName"
+      root-is-file="f.rootIsFile"
+      files="f.files"
+      folders="f.folders"
+    />
   </ul>
 </li>

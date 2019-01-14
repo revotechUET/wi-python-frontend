@@ -4,11 +4,20 @@
       <tr>
         <td width="260px" align="left" valign="top">
           <ul class="ztree" style="width: 260px; overflow: auto;">
-            <li>
+            <!-- <li>
               <span class="button switch center_close"></span>
-              <a><span class="button ico_close"></span><span class="node_name">/</span></a>
+              <a>
+                <span class="button ico_close"></span>
+                <span class="node_name" ng-bind="self.projectName"></span>
+              </a>
               <ul class="line"></ul>
-            </li>
+            </li> -->
+            <f-element
+              root-name="self.projectName"
+              root-is-file="false"
+              files="[]"
+              folders="[]"
+            />
           </ul>
         </td>
       </tr>
