@@ -1,0 +1,19 @@
+<li>
+  <span
+    class={this.getItemBadge()}
+    ng-click={this.toggleShowChild}
+  >
+  </span>
+  <a ng-click="{e => openItem(
+    path,
+    rootIsFile,
+    [...folders, ...files])}"
+  >
+    <span class=""></span>
+    <span class="node_name"></span>
+  </a>
+  <ul class="line">
+    <!-- {{listFolder}}
+    {listFile} -->
+  </ul>
+</li>
