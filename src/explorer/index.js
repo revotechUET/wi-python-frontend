@@ -1,7 +1,7 @@
 import hljs from 'highlight.js'
 import template from './template.html'
 import './style.scss'
-import 'highlight.js/styles/arduino-light.css'
+import 'highlight.js/styles/solarized-light.css'
 
 const name = 'explorer'
 
