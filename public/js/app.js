@@ -19979,7 +19979,7 @@ exports.push([module.i, ".tab {\n  width: 125px;\n  height: 35px;\n  border-bott
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".terminal {\n  background-color: white; }\n", ""]);
+exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100%; }\n", ""]);
 
 
 
@@ -35556,6 +35556,19 @@ controller.$inject = [];
 function controller() {
   const self = this;
   self.projectName = 'new-open';
+  self.html = `<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+      dsajlkfjd
+      alksdjfl
+  </body>
+  </html>`;
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35607,7 +35620,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% project-name=self.projectName></sidebar> <explorer style=width:40%></explorer> <terminal style=width:40%></terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% project-name=self.projectName></sidebar> <explorer style=width:40%></explorer> <terminal style=width:40% html=self.html></terminal> </div>";
 
 /***/ }),
 
@@ -36073,14 +36086,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = [];
+controller.$inject = ['$sce'];
 
-function controller() {}
+function controller($sce) {
+  const self = this;
+
+  self.$onInit = function () {
+    self.page = $sce.trustAsHtml(self.html);
+  };
+}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name,
   options: {
-    bindings: {},
+    bindings: {
+      html: '<'
+    },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
     controllerAs: 'self'
@@ -36126,7 +36147,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> </div>";
+module.exports = "<div class=terminal ng-bind-html=self.page></div>";
 
 /***/ })
 
