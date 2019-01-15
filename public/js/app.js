@@ -35535,6 +35535,95 @@ module.exports = function (css) {
 
 /***/ }),
 
+/***/ "./src/_config/index.js":
+/*!******************************!*\
+  !*** ./src/_config/index.js ***!
+  \******************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'config';
+function service() {
+  return {
+    HOST: 'http://localhost:3000'
+  };
+}
+
+/***/ }),
+
+/***/ "./src/_project/index.js":
+/*!*******************************!*\
+  !*** ./src/_project/index.js ***!
+  \*******************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'project';
+service.$inject = ['config', 'request'];
+function service(config, request) {
+  const newProject = name => {
+    const url = `${config.HOST}/project/new?name=${name}`;
+    return request(url);
+  };
+
+  const openProject = name => {
+    const url = `${config.HOST}/project/open?name=${name}`;
+    return request(url);
+  };
+
+  const openFile = dir => {
+    const url = `${config.HOST}/project/read-file?dir=${dir}`;
+    return request(url);
+  };
+
+  const openFolder = dir => {
+    const url = `${config.HOST}/project/read-folder?dir=${dir}`;
+    return request(url);
+  };
+
+  return {
+    newProject,
+    openProject,
+    openFile,
+    openFolder
+  };
+}
+
+/***/ }),
+
+/***/ "./src/_request/index.js":
+/*!*******************************!*\
+  !*** ./src/_request/index.js ***!
+  \*******************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'request';
+service.$inject = ['$http', '$q'];
+function service($http, $q) {
+  const get = url => $q((resolve, reject) => {
+    $http.get(url).then(resp => resolve(resp.data.data)).catch(error => reject(error.data.message));
+  });
+
+  return {
+    get
+  };
+}
+
+/***/ }),
+
 /***/ "./src/app/index.js":
 /*!**************************!*\
   !*** ./src/app/index.js ***!
@@ -35551,9 +35640,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = [];
+controller.$inject = ['project'];
 
-function controller() {
+function controller(project) {
   const self = this;
   self.projectName = 'new-open';
   self.html = `<!DOCTYPE html>
@@ -35705,7 +35794,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=explorer> <div class=tabs> <tab file-name=\"'sadf'\"></tab> </div> <pre>\n    <code class=\"hljs javascript\" contenteditable=true>console.log('nah')</code>\n  </pre> </div>";
+module.exports = "<div class=explorer> <pre>\n    <code class=\"hljs javascript\" contenteditable=true>console.log('nah')</code>\n  </pre> </div>";
 
 /***/ }),
 
@@ -35855,6 +35944,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
 /* harmony import */ var _tab__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab */ "./src/tab/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+
+
+
 
 
 
@@ -35865,7 +35960,7 @@ __webpack_require__.r(__webpack_exports__);
 const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tab__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tab__WEBPACK_IMPORTED_MODULE_6__["default"].options);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tab__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tab__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),

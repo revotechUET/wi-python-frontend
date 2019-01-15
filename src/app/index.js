@@ -3,8 +3,8 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = []
-function controller() {
+controller.$inject = ['project']
+function controller(project) {
   const self = this
 
   self.projectName = 'new-open'
