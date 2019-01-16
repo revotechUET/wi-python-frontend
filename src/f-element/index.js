@@ -10,7 +10,6 @@ function controller() {
     initState()
   }
 
-
   self.getBadge = function () {
     if (self.rootIsFile) return 'button switch center_docu'
 

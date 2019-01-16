@@ -7,10 +7,12 @@ import terminal from './terminal'
 import explorer from './explorer'
 import modal from './modal'
 
+
 import * as config from './_config'
 import * as project from './_project'
 import * as request from './_request'
 import * as alertMessage from './_alert-message'
+import * as emptyArray from './_empty-array'
 
 
 const moduleName = 'online-editor-client'
@@ -29,5 +31,6 @@ angular.module(moduleName, dependencies)
   .service(project.name, project.service)
   .service(request.name, request.service)
   .service(alertMessage.name, alertMessage.service)
+  .filter(emptyArray.name, emptyArray.filter)
 
 export default renderComponent

@@ -31025,6 +31025,26 @@ function service() {
 
 /***/ }),
 
+/***/ "./src/_empty-array/index.js":
+/*!***********************************!*\
+  !*** ./src/_empty-array/index.js ***!
+  \***********************************/
+/*! exports provided: name, filter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return filter; });
+const name = 'emptyArray';
+function filter() {
+  return function (input, empty) {
+    return input.filter(i => empty);
+  };
+}
+
+/***/ }),
+
 /***/ "./src/_project/index.js":
 /*!*******************************!*\
   !*** ./src/_project/index.js ***!
@@ -31134,8 +31154,10 @@ function controller(project, alertMessage) {
   };
 
   self.openProject = function (name) {
-    self.currentProject = name;
-    project.openProject(name).then(items => {}).catch(error => {
+    // self.currentProject = name
+    project.openProject(name).then(item => {
+      self.currentProject = item;
+    }).catch(error => {
       alertMessage.error(error);
     });
   };
@@ -31145,7 +31167,12 @@ function controller(project, alertMessage) {
   };
 
   function initState() {
-    self.currentProject = '';
+    self.currentProject = {
+      rootName: '',
+      files: [],
+      folders: [],
+      path: ''
+    };
     self.code = '';
     self.allProjects = [];
   }
@@ -31200,7 +31227,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% project-name=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject> </sidebar> <explorer style=width:40%></explorer> <terminal style=width:40% code=self.code></terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject> </sidebar> <explorer style=width:40%></explorer> <terminal style=width:40% code=self.code></terminal> </div>";
 
 /***/ }),
 
@@ -31409,7 +31436,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders></f-element> <f-element ng-repeat=\"f in self.files track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders></f-element> </ul> </li>";
+module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.folders  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders> </f-element> <f-element ng-repeat=\"f in self.files  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders> </f-element> </ul> </li>";
 
 /***/ }),
 
@@ -31569,6 +31596,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
 /* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
+/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+
 
 
 
@@ -31584,7 +31613,7 @@ const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>'; // const renderComponent = '<modal></modal>'
 
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -31669,7 +31698,7 @@ function controller() {
 
   self.projectOnClick = function (name) {
     self.openProject(name);
-    document.querySelector('.my-modal').style.display = 'none';
+    document.querySelector('.modal').style.display = 'none';
   };
 }
 
@@ -31677,7 +31706,7 @@ function controller() {
   name,
   options: {
     bindings: {
-      projectName: '<',
+      currentProject: '<',
       findAllProjects: '<',
       allProjects: '<',
       openProject: '<'
@@ -31727,7 +31756,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 

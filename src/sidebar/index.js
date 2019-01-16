@@ -19,7 +19,7 @@ function controller() {
 
   self.projectOnClick = function (name) {
     self.openProject(name)
-    document.querySelector('.my-modal').style.display = 'none'
+    document.querySelector('.modal').style.display = 'none'
   }
 }
 
@@ -27,7 +27,7 @@ export default {
   name,
   options: {
     bindings: {
-      projectName: '<',
+      currentProject: '<',
       findAllProjects: '<',
       allProjects: '<',
       openProject: '<'

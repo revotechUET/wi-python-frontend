@@ -22,10 +22,10 @@ function controller(project, alertMessage) {
   }
 
   self.openProject = function (name) {
-    self.currentProject = name
+    // self.currentProject = name
     project.openProject(name)
-      .then(items => {
-
+      .then(item => {
+        self.currentProject = item
       })
       .catch(error => {
         alertMessage.error(error)
@@ -37,7 +37,12 @@ function controller(project, alertMessage) {
   }
 
   function initState() {
-    self.currentProject = ''
+    self.currentProject = {
+      rootName: '',
+      files: [],
+      folders: [],
+      path: ''
+    }
     self.code = ''
     self.allProjects = []
   }

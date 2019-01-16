@@ -7,20 +7,20 @@
   <ul class="line">
     <!-- folder -->
     <f-element 
-      ng-repeat="f in self.files track by $index"
+      ng-repeat="f in self.folders  | emptyArray: self.showChild track by $index"
       root-name="f.rootName"
       root-is-file="f.rootIsFile"
       files="f.files"
-      folders="f.folders"
-    ></f-element>
+      folders="f.folders">
+    </f-element>
 
     <!-- files -->
     <f-element 
-      ng-repeat="f in self.files track by $index"
+      ng-repeat="f in self.files  | emptyArray: self.showChild track by $index"
       root-name="f.rootName"
       root-is-file="f.rootIsFile"
       files="f.files"
-      folders="f.folders"
-      ></f-element>
+      folders="f.folders">
+    </f-element>
   </ul>
 </li>

@@ -22,7 +22,12 @@
       <tr>
         <td width="260px" align="left" valign="top">
           <ul class="ztree" style="width: 260px; overflow: auto;">
-            <f-element root-name="self.projectName" root-is-file="false" files="[]" folders="[]"></f-element>
+            <f-element 
+              root-name="self.currentProject.rootName" 
+              root-is-file="self.currentProject.rootIsFile" 
+              files="self.currentProject.files" 
+              folders="self.currentProject.folders">
+            </f-element>
           </ul>
         </td>
       </tr>
