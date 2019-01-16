@@ -1,4 +1,5 @@
 import angular from 'angular'
+import 'angular-modal-service/dst/angular-modal-service'
 
 import app from './app'
 import sidebar from './sidebar'
@@ -10,9 +11,10 @@ import tab from './tab'
 import * as config from './_config'
 import * as project from './_project'
 import * as request from './_request'
+import * as contenteditable from './contenteditable'
 
 const moduleName = 'online-editor-client'
-const dependencies = []
+const dependencies = ['angularModalService']
 const renderComponent = '<app></app>'
 
 angular.module(moduleName, dependencies)
@@ -22,6 +24,7 @@ angular.module(moduleName, dependencies)
   .component(terminal.name, terminal.options)
   .component(explorer.name, explorer.options)
   .component(tab.name, tab.options)
+  .directive(contenteditable.name, contenteditable.directive)
   .service(config.name, config.service)
   .service(project.name, project.service)
   .service(request.name, request.service)

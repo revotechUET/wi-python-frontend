@@ -8,7 +8,7 @@ function controller($sce) {
   const self = this
 
   self.$onInit = function () {
-    self.page = $sce.trustAsHtml(self.html)
+    self.page = $sce.trustAsHtml(self.code)
   }
 }
 
@@ -16,7 +16,7 @@ export default {
   name,
   options: {
     bindings: {
-      html: '<'
+      code: '<'
     },
     template,
     controller,

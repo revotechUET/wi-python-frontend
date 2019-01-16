@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.7.5",
-    "highlight.js": "^9.13.1"
+    "angular-modal-service": "^0.15.1",
+    "codeflask": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
