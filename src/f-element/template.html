@@ -5,20 +5,6 @@
     <span class="node_name" ng-bind="self.rootName"></span>
   </a>
   <ul class="line">
-    <li class="f-element">
-      <span class="{{self.getBadge()}}" ng-click="self.toggleShowChild()"></span>
-      <a ng-click="self.open()">
-        <span class="{{self.getIcon()}}"></span>
-        <span class="node_name" ng-bind="self.rootName"></span>
-      </a>
-    </li>
-    <li class="f-element">
-      <span class="{{self.getBadge()}}" ng-click="self.toggleShowChild()"></span>
-      <a ng-click="self.open()">
-        <span class="{{self.getIcon()}}"></span>
-        <span class="node_name" ng-bind="self.rootName"></span>
-      </a>
-    </li>
     <!-- folder -->
     <f-element 
       ng-repeat="f in self.files track by $index"
