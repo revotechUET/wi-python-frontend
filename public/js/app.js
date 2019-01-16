@@ -31484,15 +31484,6 @@ function controller() {
     initState();
   };
 
-  self.$onChanges = function ({
-    show
-  }) {
-    if (show && show.currentValue) {
-      self.show = show.currentValue;
-      self.modalStyle.display = show ? 'block' : 'none';
-    }
-  };
-
   self.showModal = function () {
     self.modalStyle.display = 'block';
 
@@ -31521,9 +31512,9 @@ function controller() {
   options: {
     bindings: {
       modalName: '<',
-      onClose: '<',
       icon: '<',
-      iconOnClick: '<'
+      iconOnClick: '<',
+      modalStyle: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -31571,7 +31562,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.showModal()></ng-transclude> </div> </div> </div> </div>";
+module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.close()></ng-transclude> </div> </div> </div> </div>";
 
 /***/ }),
 
@@ -31683,6 +31674,10 @@ controller.$inject = [];
 function controller() {
   const self = this;
 
+  self.$onInit = function () {
+    initState();
+  };
+
   self.$onChanges = function ({
     projectName,
     allProjects
@@ -31698,8 +31693,14 @@ function controller() {
 
   self.projectOnClick = function (name) {
     self.openProject(name);
-    document.querySelector('.modal').style.display = 'none';
+    self.modalStyle.display = 'none';
   };
+
+  function initState() {
+    self.modalStyle = {
+      display: 'none'
+    };
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31756,7 +31757,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" modal-style=self.modalStyle icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 

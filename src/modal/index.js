@@ -11,13 +11,6 @@ function controller() {
     initState()
   }
 
-  self.$onChanges = function ({show}) {
-    if(show && show.currentValue) {
-      self.show = show.currentValue
-      self.modalStyle.display = show ? 'block' : 'none'
-    }
-  }
-
   self.showModal = function () {
     self.modalStyle.display = 'block'
     if(self.iconOnClick && typeof self.iconOnClick === 'function') {
@@ -44,9 +37,9 @@ export default {
   options: {
     bindings: {
       modalName: '<',
-      onClose: '<',
       icon: '<',
-      iconOnClick: '<'     
+      iconOnClick: '<',
+      modalStyle: '<'
     },
     template,
     controller,
