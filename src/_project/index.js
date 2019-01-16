@@ -10,24 +10,30 @@ export function service(config, request) {
 
   const openProject = name => {
     const url = `${config.HOST}/project/open?name=${name}`
-    return request(url)
+    return request.get(url)
   }
 
   const openFile = dir => {
     const url = `${config.HOST}/project/read-file?dir=${dir}`
-    return request(url)
+    return request.get(url)
   }
 
   const openFolder = dir => {
     const url = `${config.HOST}/project/read-folder?dir=${dir}`
-    return request(url)
+    return request.get(url)
+  }
+
+  const listProjects = () => {
+    const url = `${config.HOST}/project/list`
+    return request.get(url)
   }
 
   return {
     newProject,
     openProject,
     openFile,
-    openFolder
+    openFolder,
+    listProjects
   }
 
 }

@@ -11,19 +11,30 @@ function controller() {
     initState()
   }
 
+  self.$onChanges = function ({show}) {
+    if(show && show.currentValue) {
+      self.show = show.currentValue
+      self.modalStyle.display = show ? 'block' : 'none'
+    }
+  }
+
   self.showModal = function () {
     self.modalStyle.display = 'block'
+    if(self.iconOnClick && typeof self.iconOnClick === 'function') {
+      self.iconOnClick()
+    }
   }
 
   self.close = function () {
     self.modalStyle.display = 'none'
-    if(self.onClose && typeof self.onClose === 'function')
+    if(self.onClose && typeof self.onClose === 'function') {
       self.onClose()
+    }
   }
 
   function initState() {
     self.modalStyle = {
-      display: 'none'
+      display: self.show ? 'block' : 'none'
     }
   }
 }
@@ -34,7 +45,8 @@ export default {
     bindings: {
       modalName: '<',
       onClose: '<',
-      icon: '<'
+      icon: '<',
+      iconOnClick: '<'     
     },
     template,
     controller,

@@ -3,16 +3,33 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['project']
-function controller(project) {
+controller.$inject = ['project', 'alertMessage']
+function controller(project, alertMessage) {
   const self = this
 
   self.$onInit = function () {
     initState()
   }
 
-  self.openProject = function () {
+  self.findAllProjects = function () {
+    project.listProjects()
+      .then(projects => {
+        self.allProjects = projects
+      })
+      .catch(error => {
+        alertMessage.error(error)
+      })
+  }
 
+  self.openProject = function (name) {
+    self.currentProject = name
+    project.openProject(name)
+      .then(items => {
+
+      })
+      .catch(error => {
+        alertMessage.error(error)
+      })
   }
 
   self.coding = function (code) {
@@ -20,9 +37,9 @@ function controller(project) {
   }
 
   function initState() {
-    self.projectName = ''
+    self.currentProject = ''
     self.code = ''
-
+    self.allProjects = []
   }
 }
 

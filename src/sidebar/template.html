@@ -3,11 +3,15 @@
     <div class="tools">
 
       <!-- List Project -->
-      <modal modal-name="'Open Project'" icon="'fas fa-box-open'">
+      <modal 
+        modal-name="'Open Project'" 
+        icon="'fas fa-box-open'"
+        icon-on-click="self.findAllProjects">
         <ul class="list-project">
-          <li>
+          <li ng-repeat="project in self.allProjects track by $index"
+            ng-click="self.projectOnClick(project.rootName)">
             <i class="fas fa-briefcase"></i>
-            <span>alsdkj</span>
+            <span ng-bind="project.rootName"></span>
           </li>
         </ul>
       </modal>
