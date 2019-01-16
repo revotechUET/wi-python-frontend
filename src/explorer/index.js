@@ -20,26 +20,15 @@ function controller() {
   }
 
   function same() {
-    let codeArea = new CodeFlask('#codeArea', {
+    const codeArea = new CodeFlask('#codeArea', {
       language: 'js',
       lineNumbers: true
     })
-
-    let code = String.raw`new Array(5)
-      .fill('Option ')
-      .map((e, i) =>
-        e + (10 + i)
-          .toString(36)
-          .toUpperCase()
-      )
-      .join('\n')
     
-    // But you have no choice
-    `
 
-    codeArea.updateCode(code)
+    codeArea.updateCode(self._code)
 
-    codeArea.onUpdate(e => console.log(e))
+    codeArea.onUpdate(e => self._code)
   }
 }
 

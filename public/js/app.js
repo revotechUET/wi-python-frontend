@@ -20735,22 +20735,7 @@ var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ./assets/zTreeS
 var ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! ./assets/loading.gif */ "./src/sidebar/assets/loading.gif"));
 
 // Module
-exports.push([module.i, ".sidebar {\n  margin-top: 10px;\n  height: 100%;\n  background-color: whitesmoke;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 5px;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
-
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Module
-exports.push([module.i, ".tab {\n  width: 125px;\n  height: 35px;\n  border-bottom: solid 1px blue;\n  padding-left: 15px;\n  background-color: #cecbcb;\n  cursor: pointer;\n  padding-top: 6px; }\n", ""]);
+exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: whitesmoke;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 5px;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
 
 
 
@@ -21608,84 +21593,6 @@ module.exports = "<div class=app> <sidebar style=width:20% project-name=self.pro
 
 /***/ }),
 
-/***/ "./src/contenteditable/index.js":
-/*!**************************************!*\
-  !*** ./src/contenteditable/index.js ***!
-  \**************************************/
-/*! exports provided: name, directive */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "directive", function() { return directive; });
-const name = 'contenteditable';
-directive.$inject = ['$sce'];
-function directive($sce) {
-  return {
-    restrict: 'A',
-    // only activate on element attribute
-    require: '?ngModel',
-    // get a hold of NgModelController
-    link: function (scope, element, attrs, ngModel) {
-      if (!ngModel) return; // do nothing if no ng-model
-      // Specify how UI should be updated
-
-      ngModel.$render = function () {
-        element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
-      }; // Listen for change events to enable binding
-
-
-      element.on('blur keyup change', function () {
-        scope.$evalAsync(read);
-      });
-      read(); // initialize
-      // Write data to the model
-
-      function read() {
-        let html = element.html(); // When we clear the content editable the browser leaves a <br> behind
-        // If strip-br attribute is provided then we strip this out
-
-        if (attrs.stripBr && html == '<br>') {
-          html = '';
-        }
-
-        ngModel.$setViewValue(html);
-      }
-    }
-  };
-} // angular.module('customControl', ['ngSanitize']).
-// directive('contenteditable', ['$sce', function($sce) {
-//   return {
-//     restrict: 'A', // only activate on element attribute
-//     require: '?ngModel', // get a hold of NgModelController
-//     link: function(scope, element, attrs, ngModel) {
-//       if (!ngModel) return; // do nothing if no ng-model
-//       // Specify how UI should be updated
-//       ngModel.$render = function() {
-//         element.html($sce.getTrustedHtml(ngModel.$viewValue || ''));
-//       };
-//       // Listen for change events to enable binding
-//       element.on('blur keyup change', function() {
-//         scope.$evalAsync(read);
-//       });
-//       read(); // initialize
-//       // Write data to the model
-//       function read() {
-//         var html = element.html();
-//         // When we clear the content editable the browser leaves a <br> behind
-//         // If strip-br attribute is provided then we strip this out
-//         if ( attrs.stripBr && html == '<br>' ) {
-//           html = '';
-//         }
-//         ngModel.$setViewValue(html);
-//       }
-//     }
-//   };
-// }]);
-
-/***/ }),
-
 /***/ "./src/explorer/index.js":
 /*!*******************************!*\
   !*** ./src/explorer/index.js ***!
@@ -21720,23 +21627,12 @@ function controller() {
   }
 
   function same() {
-    let codeArea = new codeflask__WEBPACK_IMPORTED_MODULE_0__["default"]('#codeArea', {
+    const codeArea = new codeflask__WEBPACK_IMPORTED_MODULE_0__["default"]('#codeArea', {
       language: 'js',
       lineNumbers: true
     });
-    let code = String.raw`new Array(5)
-      .fill('Option ')
-      .map((e, i) =>
-        e + (10 + i)
-          .toString(36)
-          .toUpperCase()
-      )
-      .join('\n')
-    
-    // But you have no choice
-    `;
-    codeArea.updateCode(code);
-    codeArea.onUpdate(e => console.log(e));
+    codeArea.updateCode(self._code);
+    codeArea.onUpdate(e => self._code);
   }
 }
 
@@ -21943,13 +21839,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
 /* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
-/* harmony import */ var _tab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tab */ "./src/tab/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
-/* harmony import */ var _contenteditable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./contenteditable */ "./src/contenteditable/index.js");
-
-
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
 
 
 
@@ -21963,7 +21855,7 @@ __webpack_require__.r(__webpack_exports__);
 const moduleName = 'online-editor-client';
 const dependencies = ['angularModalService'];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_2__["default"].name, _app__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_4__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_5__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_6__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tab__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tab__WEBPACK_IMPORTED_MODULE_7__["default"].options).directive(_contenteditable__WEBPACK_IMPORTED_MODULE_11__["name"], _contenteditable__WEBPACK_IMPORTED_MODULE_11__["directive"]).service(_config__WEBPACK_IMPORTED_MODULE_8__["name"], _config__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_9__["name"], _project__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_10__["name"], _request__WEBPACK_IMPORTED_MODULE_10__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_2__["default"].name, _app__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_4__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_5__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_6__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -22087,84 +21979,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
-
-/***/ }),
-
-/***/ "./src/tab/index.js":
-/*!**************************!*\
-  !*** ./src/tab/index.js ***!
-  \**************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/tab/template.html");
-/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/tab/style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const name = 'tab';
-controller.$inject = [];
-
-function controller() {
-  const self = this;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name,
-  options: {
-    bindings: {
-      fileName: '<'
-    },
-    template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
-    controller,
-    controllerAs: 'self'
-  }
-});
-
-/***/ }),
-
-/***/ "./src/tab/style.scss":
-/*!****************************!*\
-  !*** ./src/tab/style.scss ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/tab/style.scss");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./src/tab/template.html":
-/*!*******************************!*\
-  !*** ./src/tab/template.html ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=tab ng-bind=self.fileName></div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <i class=\"fab fa-acquisitions-incorporated\"></i> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 

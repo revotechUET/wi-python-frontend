@@ -12,7 +12,8 @@
   "dependencies": {
     "angular": "^1.7.5",
     "angular-modal-service": "^0.15.1",
-    "codeflask": "^1.4.0"
+    "codeflask": "^1.4.0",
+    "material-icons": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
