@@ -1,0 +1,18 @@
+<div class="my-modal">
+  <!-- <h2>Animated Modal with Header and Footer</h2>
+  <button ng-click="self.showModal()">Open Modal</button> -->
+  <!-- <ng-transclude ng-click="self.showModal()"></ng-transclude> -->
+  <i class="fas fa-box-open" title="open a project" ng-click="self.showModal()"></i>
+  <!-- The Modal -->
+  <div class="modal" ng-style="self.modalStyle">
+    <div class="modal-content" ng-style="self.modalStyle">
+      <div class="modal-header">
+        <h4 ng-bind="self.modalName"></h4>
+        <span class="close" ng-click="self.close()">&times;</span>
+      </div>
+      <div class="modal-body">
+        <ng-transclude ng-click="self.showModal()"></ng-transclude>
+      </div>
+    </div>
+  </div>
+</div>

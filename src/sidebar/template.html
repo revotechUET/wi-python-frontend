@@ -1,20 +1,23 @@
 <div class="col-sm-2 col-md-2 col-lg-2 sidebar">
   <table class="sidebar">
     <div class="tools">
-      <i class="fas fa-box-open" title="open a project"></i>
+
+      <!-- List Project -->
+      <modal modal-name="'Open Project'" icon="'fas fa-box-open'">
+        <ul class="list-project">
+          <li>
+            <i class="fas fa-briefcase"></i>
+            <span>alsdkj</span>
+          </li>
+        </ul>
+      </modal>
     </div>
+
+
     <tbody>
       <tr>
         <td width="260px" align="left" valign="top">
           <ul class="ztree" style="width: 260px; overflow: auto;">
-            <!-- <li>
-              <span class="button switch center_close"></span>
-              <a>
-                <span class="button ico_close"></span>
-                <span class="node_name" ng-bind="self.projectName"></span>
-              </a>
-              <ul class="line"></ul>
-            </li> -->
             <f-element root-name="self.projectName" root-is-file="false" files="[]" folders="[]"></f-element>
           </ul>
         </td>

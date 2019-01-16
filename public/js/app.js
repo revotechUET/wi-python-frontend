@@ -20719,6 +20719,21 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss ***!
+  \*************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".my-modal {\n  /* Modal Content */\n  /* Add Animation */\n  /* The Close Button */ }\n  .my-modal .modal {\n    display: none;\n    /* Hidden by default */\n    position: fixed;\n    /* Stay in place */\n    z-index: 3;\n    /* Sit on top */\n    padding-top: 100px;\n    /* Location of the box */\n    left: 0;\n    top: 0;\n    width: 100%;\n    /* Full width */\n    height: 100%;\n    /* Full height */\n    overflow: auto;\n    /* Enable scroll if needed */\n    background-color: black;\n    /* Fallback color */\n    background-color: rgba(0, 0, 0, 0.4);\n    /* Black w/ opacity */ }\n    .my-modal .modal::before {\n      height: 0; }\n  .my-modal .modal-content {\n    position: relative;\n    background-color: #fefefe;\n    margin: auto;\n    padding: 0;\n    border: 1px solid #888;\n    width: 50%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n    -webkit-animation-name: animatetop;\n    -webkit-animation-duration: 0.4s;\n    animation-name: animatetop;\n    animation-duration: 0.4s; }\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n  .my-modal .close {\n    color: white;\n    float: right;\n    font-size: 28px;\n    font-weight: bold; }\n  .my-modal .close:hover,\n  .my-modal .close:focus {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer; }\n  .my-modal .modal-header {\n    background-color: #999999;\n    color: white;\n    text-align: left; }\n    .my-modal .modal-header h4 {\n      margin: 0 10px; }\n  .my-modal .modal-body {\n    padding: 2px 16px; }\n", ""]);
+
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sidebar/style.scss":
 /*!***************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/sidebar/style.scss ***!
@@ -20735,7 +20750,7 @@ var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ./assets/zTreeS
 var ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! ./assets/loading.gif */ "./src/sidebar/assets/loading.gif"));
 
 // Module
-exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: whitesmoke;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .tools {\n    margin: 5px 0;\n    display: flex;\n    padding-left: 5px; }\n    .sidebar .tools i {\n      cursor: pointer;\n      font-size: 15px; }\n      .sidebar .tools i:hover {\n        color: black; }\n      .sidebar .tools i:active {\n        color: #999999; }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 5px;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
+exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: whitesmoke;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .tools {\n    margin: 5px 0;\n    display: flex;\n    padding-left: 5px; }\n    .sidebar .tools i {\n      cursor: pointer;\n      font-size: 15px; }\n      .sidebar .tools i:hover {\n        color: black; }\n      .sidebar .tools i:active {\n        color: #999999; }\n  .sidebar .list-project {\n    list-style: none;\n    margin-top: 10px; }\n    .sidebar .list-project li {\n      text-align: left; }\n      .sidebar .list-project li i {\n        margin-right: 10px; }\n      .sidebar .list-project li span {\n        cursor: pointer; }\n        .sidebar .list-project li span:hover {\n          text-decoration: underline; }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 5px;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 0;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
 
 
 
@@ -21821,6 +21836,105 @@ function render(component, element) {
 
 /***/ }),
 
+/***/ "./src/modal/index.js":
+/*!****************************!*\
+  !*** ./src/modal/index.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/modal/template.html");
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/modal/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const name = 'modal';
+controller.$inject = [];
+
+function controller() {
+  const self = this;
+
+  self.$onInit = function () {
+    initState();
+  };
+
+  self.showModal = function () {
+    self.modalStyle.display = 'block';
+  };
+
+  self.close = function () {
+    self.modalStyle.display = 'none';
+    if (self.onClose && typeof self.onClose === 'function') self.onClose();
+  };
+
+  function initState() {
+    self.modalStyle = {
+      display: 'none'
+    };
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name,
+  options: {
+    bindings: {
+      modalName: '<',
+      onClose: '<',
+      icon: '<'
+    },
+    template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
+    controller,
+    controllerAs: 'self',
+    transclude: true
+  }
+});
+
+/***/ }),
+
+/***/ "./src/modal/style.scss":
+/*!******************************!*\
+  !*** ./src/modal/style.scss ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/modal/template.html":
+/*!*********************************!*\
+  !*** ./src/modal/template.html ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.showModal()></ng-transclude> </div> </div> </div> </div>";
+
+/***/ }),
+
 /***/ "./src/module.js":
 /*!***********************!*\
   !*** ./src/module.js ***!
@@ -21839,9 +21953,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
 /* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal */ "./src/modal/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+
 
 
 
@@ -21854,8 +21970,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const moduleName = 'online-editor-client';
 const dependencies = ['angularModalService'];
-const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_2__["default"].name, _app__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_4__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_5__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_6__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]);
+const renderComponent = '<app></app>'; // const renderComponent = '<modal></modal>'
+
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_2__["default"].name, _app__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_4__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_5__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_6__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_7__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_7__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_8__["name"], _config__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_9__["name"], _project__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_10__["name"], _request__WEBPACK_IMPORTED_MODULE_10__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -21979,7 +22096,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <i class=\"fas fa-box-open\" title=\"open a project\"></i> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\"> <ul class=list-project> <li> <i class=\"fas fa-briefcase\"></i> <span>alsdkj</span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.projectName root-is-file=false files=[] folders=[]></f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 
