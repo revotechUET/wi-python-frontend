@@ -1,4 +1,4 @@
-export const name = 'project'
+export const name = 'projectApi'
 
 service.$inject = ['config', 'request']
 export function service(config, request) {

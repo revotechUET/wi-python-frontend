@@ -14,12 +14,12 @@ function controller(mime) {
     initCodeEditor()
   }
 
-  self.$onChanges = function({code, curFile}) {
-    if(code) {
+  self.$onChanges = function ({ code, curFile }) {
+    if (code) {
       self.code = code.currentValue
     }
 
-    if(curFile && curFile.currentValue) {
+    if (curFile && curFile.currentValue) {
       self.curFile = curFile.currentValue
     }
 
@@ -34,10 +34,12 @@ function controller(mime) {
   function initCodeEditor() {
     const fileType = mime.getFileType(self.curFile)
     const codeArea = new CodeFlask('#codeArea', {
-      language: fileType,
-      lineNumbers: true
+      lineNumbers: true,
+      language: fileType === mime.types.html ?  // html display is very ugly, display js instead
+        mime.types.javascript :
+        fileType
     })
-    
+
     codeArea.updateCode(self.code)
     codeArea.onUpdate(code => self.updateCode(code))
 

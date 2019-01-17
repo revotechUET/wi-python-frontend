@@ -3,8 +3,8 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['project', 'alertMessage']
-function controller(project, alertMessage) {
+controller.$inject = ['projectApi', 'alertMessage']
+function controller(projectApi, alertMessage) {
   const self = this
 
   self.$onInit = function () {
@@ -12,7 +12,7 @@ function controller(project, alertMessage) {
   }
 
   self.findAllProjects = function () {
-    project.listProjects()
+    projectApi.listProjects()
       .then(projects => {
         self.allProjects = projects
       })
@@ -23,7 +23,7 @@ function controller(project, alertMessage) {
 
   self.openProject = function (name) {
     // self.currentProject = name
-    project.openProject(name)
+    projectApi.openProject(name)
       .then(item => {
         self.currentProject = item
       })
@@ -40,7 +40,7 @@ function controller(project, alertMessage) {
 
     self.curFile = fileName
 
-    project.openFile(dir)
+    projectApi.openFile(dir)
       .then(code => {
         self.code = code
       })
@@ -50,7 +50,7 @@ function controller(project, alertMessage) {
   }
 
   self.openFolder = function (dir) {
-    project.openFolder(dir)
+    projectApi.openFolder(dir)
       .then(item => {
         const folder = findNodeInTree(self.currentProject, f => f.path === dir)
 

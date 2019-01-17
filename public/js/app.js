@@ -31005,6 +31005,94 @@ function service() {
 
 /***/ }),
 
+/***/ "./src/_browser-code-runner/index.js":
+/*!*******************************************!*\
+  !*** ./src/_browser-code-runner/index.js ***!
+  \*******************************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+/* harmony import */ var _js_runner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js-runner */ "./src/_browser-code-runner/js-runner.js");
+
+const name = 'browserCodeRunner';
+service.$inject = ['mime'];
+function service(mime) {
+  const execute = (fileName, code) => {
+    const type = mime.getFileType(fileName);
+
+    switch (type) {
+      case mime.types.javascript:
+        return Object(_js_runner__WEBPACK_IMPORTED_MODULE_0__["default"])(code);
+
+      case mime.types.html:
+        return code;
+
+      case mime.types.css:
+        return code;
+
+      default:
+        return `do not support ${type}`;
+    }
+  };
+
+  return {
+    execute
+  };
+}
+
+/***/ }),
+
+/***/ "./src/_browser-code-runner/js-runner.js":
+/*!***********************************************!*\
+  !*** ./src/_browser-code-runner/js-runner.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return jsRunner; });
+function jsRunner(code) {
+  // fake all method of console which print value
+  const _console = {};
+
+  for (const attr in console) {
+    _console[attr] = console[attr];
+  } //mocking
+
+
+  let renderVal = '';
+  const execMarker = '<span style="color:green;margin-right: 25px">></span>';
+  const errorMarker = '<span style="color:red;margin-right: 25px">></span>';
+  const br = '<br/>';
+
+  for (const attr in console) {
+    console[attr] = val => renderVal += execMarker + val + br;
+  } //run code
+
+
+  try {
+    eval(code);
+  } catch (error) {
+    renderVal += errorMarker + `<span style="color:red">${error.name}</span>` + br;
+    renderVal += errorMarker + `<span style="color:red">${error.message}</span>` + br;
+    renderVal += execMarker + execMarker;
+  } //restore
+
+
+  for (const attr in _console) {
+    console[attr] = _console[attr];
+  }
+
+  return renderVal;
+}
+
+/***/ }),
+
 /***/ "./src/_config/index.js":
 /*!******************************!*\
   !*** ./src/_config/index.js ***!
@@ -31058,39 +31146,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 const name = 'mime';
 function service() {
+  const types = {
+    javascript: 'javascript',
+    python: 'python',
+    ruby: 'ruby',
+    powershell: 'powershell',
+    bash: 'bash',
+    batch: 'batch',
+    c: 'c',
+    latex: 'latex',
+    html: 'html',
+    css: 'css'
+  };
+
   const getFileType = fileName => {
-    const ext = fileName.split('.').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
+    const ext = fileName.split('.').reduce((_, cur, i, arr) => i === arr.length - 1 ? cur : null);
 
     switch (ext) {
       case 'js':
-        return 'javascript';
+        return types.javascript;
 
       case 'py':
-        return 'python';
+        return types.python;
 
       case 'rb':
-        return 'ruby';
+        return types.ruby;
 
       case 'ps1':
-        return 'powershell';
+        return types.powershell;
 
       case 'psm1':
-        return 'powershell';
+        return types.powershell;
 
       case 'sh':
-        return 'bash';
+        return types.bash;
 
       case 'bat':
-        return 'batch';
+        return types.batch;
 
       case 'h':
-        return 'c';
+        return types.c;
+
+      case 'c':
+        return types.c;
 
       case 'tex':
-        return 'latex';
+        return types.latex;
 
       case 'html':
-        return 'javascript';
+        return types.html;
+
+      case 'css':
+        return types.css;
 
       default:
         return ext;
@@ -31098,16 +31205,17 @@ function service() {
   };
 
   return {
-    getFileType
+    getFileType,
+    types
   };
 }
 
 /***/ }),
 
-/***/ "./src/_project/index.js":
-/*!*******************************!*\
-  !*** ./src/_project/index.js ***!
-  \*******************************/
+/***/ "./src/_project-api/index.js":
+/*!***********************************!*\
+  !*** ./src/_project-api/index.js ***!
+  \***********************************/
 /*! exports provided: name, service */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -31115,7 +31223,7 @@ function service() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
-const name = 'project';
+const name = 'projectApi';
 service.$inject = ['config', 'request'];
 function service(config, request) {
   const newProject = name => {
@@ -31197,9 +31305,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = ['project', 'alertMessage'];
+controller.$inject = ['projectApi', 'alertMessage'];
 
-function controller(project, alertMessage) {
+function controller(projectApi, alertMessage) {
   const self = this;
 
   self.$onInit = function () {
@@ -31207,7 +31315,7 @@ function controller(project, alertMessage) {
   };
 
   self.findAllProjects = function () {
-    project.listProjects().then(projects => {
+    projectApi.listProjects().then(projects => {
       self.allProjects = projects;
     }).catch(error => {
       alertMessage.error(error);
@@ -31216,7 +31324,7 @@ function controller(project, alertMessage) {
 
   self.openProject = function (name) {
     // self.currentProject = name
-    project.openProject(name).then(item => {
+    projectApi.openProject(name).then(item => {
       self.currentProject = item;
     }).catch(error => {
       alertMessage.error(error);
@@ -31226,7 +31334,7 @@ function controller(project, alertMessage) {
   self.openFile = function (dir) {
     const fileName = dir.split('/').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
     self.curFile = fileName;
-    project.openFile(dir).then(code => {
+    projectApi.openFile(dir).then(code => {
       self.code = code;
     }).catch(error => {
       alertMessage.error(error);
@@ -31234,7 +31342,7 @@ function controller(project, alertMessage) {
   };
 
   self.openFolder = function (dir) {
-    project.openFolder(dir).then(item => {
+    projectApi.openFolder(dir).then(item => {
       const folder = findNodeInTree(self.currentProject, f => f.path === dir);
       if (!folder) return alertMessage.error('There are some error, refresh?');
 
@@ -31344,7 +31452,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% code=self.code execute-code=self.executeCode> </terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% code=self.code execute-code=self.executeCode file-name=self.curFile> </terminal> </div>";
 
 /***/ }),
 
@@ -31398,8 +31506,9 @@ function controller(mime) {
   function initCodeEditor() {
     const fileType = mime.getFileType(self.curFile);
     const codeArea = new codeflask__WEBPACK_IMPORTED_MODULE_0__["default"]('#codeArea', {
-      language: fileType,
-      lineNumbers: true
+      lineNumbers: true,
+      language: fileType === mime.types.html ? // html display is very ugly, display js instead
+      mime.types.javascript : fileType
     });
     codeArea.updateCode(self.code);
     codeArea.onUpdate(code => self.updateCode(code)); //style with make width of textarea equal to width of pre
@@ -31735,11 +31844,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal */ "./src/modal/index.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project */ "./src/_project/index.js");
+/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
 /* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
 /* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
 /* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+
 
 
 
@@ -31755,9 +31866,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const moduleName = 'online-editor-client';
 const dependencies = [];
-const renderComponent = '<app></app>'; // const renderComponent = '<modal></modal>'
-
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]);
+const renderComponent = '<app></app>';
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -31932,27 +32042,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = ['$sce', '$document'];
+controller.$inject = ['$sce', 'browserCodeRunner'];
 
-function controller($sce, $document) {
+function controller($sce, browserCodeRunner) {
   const self = this;
 
   self.$onInit = function () {
-    self.page = $sce.trustAsHtml(self.code);
+    self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
   };
 
   self.$onChanges = function ({
-    code
+    code,
+    fileName
   }) {
     if (code) {
       self.code = code.currentValue;
-      self.page = $sce.trustAsHtml(self.code);
+      self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
+    }
+
+    if (fileName) {
+      self.fileName = fileName.currentValue;
     }
   };
 
   self.run = function () {
     self.executeCode(code => {
       self.code = code;
+      self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
     });
   };
 }
@@ -31962,7 +32078,8 @@ function controller($sce, $document) {
   options: {
     bindings: {
       code: '<',
-      executeCode: '<'
+      executeCode: '<',
+      fileName: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32009,7 +32126,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> </div> <div ng-bind-html=self.page></div> </div>";
+module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> </div> <div ng-bind-html=self.render></div> </div>";
 
 /***/ })
 

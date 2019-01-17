@@ -3,26 +3,39 @@ import './style.scss'
 
 const name = 'terminal'
 
-controller.$inject = ['$sce', '$document']
-function controller($sce, $document) {
+controller.$inject = ['$sce', 'browserCodeRunner']
+function controller($sce, browserCodeRunner) {
   const self = this
 
   self.$onInit = function () {
-    self.page = $sce.trustAsHtml(self.code)
+    self.render = $sce.trustAsHtml(
+      browserCodeRunner.execute(self.fileName, self.code)
+    )
   }
 
-  self.$onChanges = function({code}) {
+  self.$onChanges = function({code, fileName}) {
     if(code) {
       self.code = code.currentValue
-      self.page = $sce.trustAsHtml(self.code)
+      self.render = $sce.trustAsHtml(
+        browserCodeRunner.execute(self.fileName, self.code)
+      )
+    }
+
+    if(fileName) {
+      self.fileName = fileName.currentValue
     }
   }
 
   self.run = function() {
     self.executeCode(code => {
       self.code = code
+      self.render = $sce.trustAsHtml(
+        browserCodeRunner.execute(self.fileName, self.code)
+      )
     })
   }
+
+  
 }
 
 export default {
@@ -30,7 +43,8 @@ export default {
   options: {
     bindings: {
       code: '<',
-      executeCode: '<'
+      executeCode: '<',
+      fileName: '<'
     },
     template,
     controller,
