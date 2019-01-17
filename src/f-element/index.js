@@ -21,8 +21,8 @@ function controller() {
       numChildren += self.folders.length
 
     return numChildren && self.showChild ?
-    'button switch roots_open' :
-    'button switch center_close'
+      'button switch roots_open' :
+      'button switch center_close'
   }
 
   self.getIcon = function () {
@@ -45,8 +45,11 @@ function controller() {
   }
 
   self.open = function () {
-    if(self.rootIsFile) self.openFile(self.path)
-    else self.openFolder(self.path)
+    if (self.rootIsFile) self.openFile(self.path)
+    else {
+      self.showChild = true
+      if (!(self.files.length + self.folders.length)) self.openFolder(self.path)
+    }
   }
 
   function initState() {

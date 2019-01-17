@@ -31119,22 +31119,22 @@ const name = 'project';
 service.$inject = ['config', 'request'];
 function service(config, request) {
   const newProject = name => {
-    const url = `${config.HOST}/project/new?name=${name}`;
+    const url = `${config.HOST}/project/new?name=${encodeURIComponent(name)}`;
     return request(url);
   };
 
   const openProject = name => {
-    const url = `${config.HOST}/project/open?name=${name}`;
+    const url = `${config.HOST}/project/open?name=${encodeURIComponent(name)}`;
     return request.get(url);
   };
 
   const openFile = dir => {
-    const url = `${config.HOST}/project/read-file?dir=${dir}`;
+    const url = `${config.HOST}/project/read-file?dir=${encodeURIComponent(dir)}`;
     return request.get(url);
   };
 
   const openFolder = dir => {
-    const url = `${config.HOST}/project/read-folder?dir=${dir}`;
+    const url = `${config.HOST}/project/read-folder?dir=${encodeURIComponent(dir)}`;
     return request.get(url);
   };
 
@@ -31235,7 +31235,25 @@ function controller(project, alertMessage) {
 
   self.openFolder = function (dir) {
     project.openFolder(dir).then(item => {
-      console.log('open folder is not handle yet');
+      const folder = findNodeInTree(self.currentProject, f => f.path === dir);
+      if (!folder) return alertMessage.error('There are some error, refresh?');
+
+      if (!(item.files.length + item.folders.length)) {
+        return alertMessage.error('There is nothing in this folder');
+      }
+
+      for (const f of item.files) {
+        folder.files.push(f);
+      }
+
+      for (const f of item.folders) {
+        folder.folders.push(f);
+      }
+
+      console.log({
+        folder,
+        item
+      });
     }).catch(error => {
       alertMessage.error(error);
     });
@@ -31259,6 +31277,21 @@ function controller(project, alertMessage) {
     self.allProjects = [];
     self.code = 'console.log("example.js")';
     self.curFile = 'example.js';
+  }
+
+  function findNodeInTree(rootNode, predicate) {
+    for (const folder of rootNode.folders) {
+      if (predicate(folder)) {
+        return folder;
+      }
+    }
+
+    for (const folder of rootNode.folders) {
+      const foundNode = findNodeInTree(folder, predicate);
+      if (foundNode) return foundNode;
+    }
+
+    return null;
   }
 }
 
@@ -31479,7 +31512,10 @@ function controller() {
   };
 
   self.open = function () {
-    if (self.rootIsFile) self.openFile(self.path);else self.openFolder(self.path);
+    if (self.rootIsFile) self.openFile(self.path);else {
+      self.showChild = true;
+      if (!(self.files.length + self.folders.length)) self.openFolder(self.path);
+    }
   };
 
   function initState() {
