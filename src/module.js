@@ -15,7 +15,6 @@ import * as alertMessage from './_alert-message'
 import * as emptyArray from './_empty-array'
 import * as mime from './_mime'
 
-
 const moduleName = 'online-editor-client'
 const dependencies = []
 const renderComponent = '<app></app>'

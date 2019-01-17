@@ -1,4 +1,25 @@
 .terminal {
   background-color: white;
   height: 100%;
+  padding-top: 5px;
+
+  .tools{
+    display: flex;
+    flex-direction: row-reverse;
+
+    i {
+      cursor: pointer;
+      font-size: 15px;
+      margin-right: 25px;
+
+
+      &:hover {
+        color: fade-in($color: #000000, $amount: 0)
+      }
+
+      &:active{
+        color: fade-in($color: #999999, $amount: 0)
+      }
+    }    
+  }
 }

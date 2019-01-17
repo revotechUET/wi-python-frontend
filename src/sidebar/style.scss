@@ -6,10 +6,12 @@
     margin: 5px 0;
     display: flex;
     padding-left: 5px;
+    flex-direction: row-reverse;
 
     i {
       cursor: pointer;
       font-size: 15px;
+      margin-right: 25px;
 
       &:hover {
         color: fade-in($color: #000000, $amount: 0)

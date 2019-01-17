@@ -1,1 +1,10 @@
-<div class="terminal" ng-bind-html="self.page"></div>
+<div class="terminal" >
+  <div class="tools">
+    <i 
+      class="fas fa-desktop" 
+      title="run code" 
+      ng-click="self.run()">
+    </i>
+  </div>
+  <div ng-bind-html="self.page"></div>
+</div>

@@ -11,8 +11,6 @@ function controller(project, alertMessage) {
     initState()
   }
 
-  //////////////////////////////////////////////
-  ////////// sidebar //////////////////////////
   self.findAllProjects = function () {
     project.listProjects()
       .then(projects => {
@@ -39,7 +37,7 @@ function controller(project, alertMessage) {
     const fileName = dir
       .split('/')
       .reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null)
-      
+
     self.curFile = fileName
 
     project.openFile(dir)
@@ -61,14 +59,12 @@ function controller(project, alertMessage) {
       })
   }
 
-  //////////////////////////////////////////////
-  ////////// end sidebar //////////////////////////
-
-  //////////////////////////////////////////////
-  ////////// explorer //////////////////////////
-
   self.coding = function (code) {
     self.code = code
+  }
+
+  self.executeCode = function (cb) {
+    cb(self.code)
   }
 
 
