@@ -13,6 +13,7 @@ import * as project from './_project'
 import * as request from './_request'
 import * as alertMessage from './_alert-message'
 import * as emptyArray from './_empty-array'
+import * as mime from './_mime'
 
 
 const moduleName = 'online-editor-client'
@@ -31,6 +32,7 @@ angular.module(moduleName, dependencies)
   .service(project.name, project.service)
   .service(request.name, request.service)
   .service(alertMessage.name, alertMessage.service)
+  .service(mime.name, mime.service)
   .filter(emptyArray.name, emptyArray.filter)
 
 export default renderComponent

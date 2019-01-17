@@ -5,30 +5,45 @@ import './style.scss'
 
 const name = 'explorer'
 
-controller.$inject = []
-function controller() {
+controller.$inject = ['mime']
+function controller(mime) {
   const self = this
 
   self.$onInit = function () {
-    initState()
-    same()
+    // initState()
+    initCodeEditor()
   }
 
-  function initState() {
-    // self._code = self.code || ''
-    self._code = 'console.log("nah")'
+  self.$onChanges = function({code, curFile}) {
+    if(code) {
+      self.code = code.currentValue
+    }
+
+    if(curFile && curFile.currentValue) {
+      self.curFile = curFile.currentValue
+    }
+
+    initCodeEditor()
   }
 
-  function same() {
+  // function initState() {
+  //   // self._code = self.code || ''
+  //   self._code = 'console.log("nah")'
+  // }
+
+  function initCodeEditor() {
+    const fileType = mime.getFileType(self.curFile)
     const codeArea = new CodeFlask('#codeArea', {
-      language: 'js',
+      language: fileType,
       lineNumbers: true
     })
     
+    codeArea.updateCode(self.code)
+    codeArea.onUpdate(code => self.updateCode(code))
 
-    codeArea.updateCode(self._code)
-
-    codeArea.onUpdate(e => self._code)
+    //style with make width of textarea equal to width of pre
+    const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
+    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
   }
 }
 
@@ -36,8 +51,9 @@ export default {
   name,
   options: {
     bindings: {
-      changeCode: '<',
-      code: '<'
+      updateCode: '<',
+      code: '<',
+      curFile: '<'
     },
     template,
     controller,

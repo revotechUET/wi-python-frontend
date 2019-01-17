@@ -20575,7 +20575,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    height: 100%; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    height: 100%;\n    max-width: 472px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      white-space: normal; }\n", ""]);
 
 
 
@@ -31045,6 +31045,65 @@ function filter() {
 
 /***/ }),
 
+/***/ "./src/_mime/index.js":
+/*!****************************!*\
+  !*** ./src/_mime/index.js ***!
+  \****************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'mime';
+function service() {
+  const getFileType = fileName => {
+    const ext = fileName.split('.').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
+
+    switch (ext) {
+      case 'js':
+        return 'javascript';
+
+      case 'py':
+        return 'python';
+
+      case 'rb':
+        return 'ruby';
+
+      case 'ps1':
+        return 'powershell';
+
+      case 'psm1':
+        return 'powershell';
+
+      case 'sh':
+        return 'bash';
+
+      case 'bat':
+        return 'batch';
+
+      case 'h':
+        return 'c';
+
+      case 'tex':
+        return 'latex';
+
+      case 'html':
+        return 'javascript';
+
+      default:
+        return ext;
+    }
+  };
+
+  return {
+    getFileType
+  };
+}
+
+/***/ }),
+
 /***/ "./src/_project/index.js":
 /*!*******************************!*\
   !*** ./src/_project/index.js ***!
@@ -31110,7 +31169,9 @@ const name = 'request';
 service.$inject = ['$http', '$q'];
 function service($http, $q) {
   const get = url => $q((resolve, reject) => {
-    $http.get(url).then(resp => resolve(resp.data.data)).catch(error => reject(error.data.message));
+    $http.get(url).then(resp => resolve(resp.data.data)).catch(error => {
+      if (error.data) reject(error.data.message);else if (error.message) reject(error.message);else if (error.statusText) reject(error.statusText);else reject('Error in connection');
+    });
   });
 
   return {
@@ -31143,7 +31204,9 @@ function controller(project, alertMessage) {
 
   self.$onInit = function () {
     initState();
-  };
+  }; //////////////////////////////////////////////
+  ////////// sidebar //////////////////////////
+
 
   self.findAllProjects = function () {
     project.listProjects().then(projects => {
@@ -31162,6 +31225,28 @@ function controller(project, alertMessage) {
     });
   };
 
+  self.openFile = function (dir) {
+    const fileName = dir.split('/').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
+    self.curFile = fileName;
+    project.openFile(dir).then(code => {
+      self.code = code;
+    }).catch(error => {
+      alertMessage.error(error);
+    });
+  };
+
+  self.openFolder = function (dir) {
+    project.openFolder(dir).then(item => {
+      console.log('open folder is not handle yet');
+    }).catch(error => {
+      alertMessage.error(error);
+    });
+  }; //////////////////////////////////////////////
+  ////////// end sidebar //////////////////////////
+  //////////////////////////////////////////////
+  ////////// explorer //////////////////////////
+
+
   self.coding = function (code) {
     self.code = code;
   };
@@ -31173,8 +31258,9 @@ function controller(project, alertMessage) {
       folders: [],
       path: ''
     };
-    self.code = '';
     self.allProjects = [];
+    self.code = 'console.log("example.js")';
+    self.curFile = 'example.js';
   }
 }
 
@@ -31227,7 +31313,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject> </sidebar> <explorer style=width:40%></explorer> <terminal style=width:40% code=self.code></terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% code=self.code></terminal> </div>";
 
 /***/ }),
 
@@ -31249,28 +31335,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'explorer';
-controller.$inject = [];
+controller.$inject = ['mime'];
 
-function controller() {
+function controller(mime) {
   const self = this;
 
   self.$onInit = function () {
-    initState();
-    same();
+    // initState()
+    initCodeEditor();
   };
 
-  function initState() {
-    // self._code = self.code || ''
-    self._code = 'console.log("nah")';
-  }
+  self.$onChanges = function ({
+    code,
+    curFile
+  }) {
+    if (code) {
+      self.code = code.currentValue;
+    }
 
-  function same() {
+    if (curFile && curFile.currentValue) {
+      self.curFile = curFile.currentValue;
+    }
+
+    initCodeEditor();
+  }; // function initState() {
+  //   // self._code = self.code || ''
+  //   self._code = 'console.log("nah")'
+  // }
+
+
+  function initCodeEditor() {
+    const fileType = mime.getFileType(self.curFile);
     const codeArea = new codeflask__WEBPACK_IMPORTED_MODULE_0__["default"]('#codeArea', {
-      language: 'js',
+      language: fileType,
       lineNumbers: true
     });
-    codeArea.updateCode(self._code);
-    codeArea.onUpdate(e => self._code);
+    codeArea.updateCode(self.code);
+    codeArea.onUpdate(code => self.updateCode(code)); //style with make width of textarea equal to width of pre
+
+    const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
+    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`;
   }
 }
 
@@ -31278,8 +31382,9 @@ function controller() {
   name,
   options: {
     bindings: {
-      changeCode: '<',
-      code: '<'
+      updateCode: '<',
+      code: '<',
+      curFile: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_1___default()),
     controller,
@@ -31375,7 +31480,9 @@ function controller() {
     self.showChild = !self.showChild;
   };
 
-  self.open = function () {};
+  self.open = function () {
+    if (self.rootIsFile) self.openFile(self.path);else self.openFolder(self.path);
+  };
 
   function initState() {
     self.showChild = false;
@@ -31389,7 +31496,10 @@ function controller() {
       rootName: '<',
       rootIsFile: '<',
       files: '<',
-      folders: '<'
+      folders: '<',
+      path: '<',
+      openFile: '<',
+      openFolder: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -31436,7 +31546,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.folders  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders> </f-element> <f-element ng-repeat=\"f in self.files  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile files=f.files folders=f.folders> </f-element> </ul> </li>";
+module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=self.toggleShowChild()></span> <a ng-click=self.open()> <span class={{self.getIcon()}}></span> <span class=node_name ng-bind=self.rootName></span> </a> <ul class=line> <f-element ng-repeat=\"f in self.folders  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile path=f.path files=f.files folders=f.folders open-file=self.openFile open-folder=self.openFolder> </f-element> <f-element ng-repeat=\"f in self.files  | emptyArray: self.showChild track by $index\" root-name=f.rootName root-is-file=f.rootIsFile path=f.path files=f.files folders=f.folders open-file=self.openFile open-folder=self.openFolder> </f-element> </ul> </li>";
 
 /***/ }),
 
@@ -31500,6 +31610,12 @@ function controller() {
     }
   };
 
+  self.closeByClickInChild = function () {
+    if (self.allowCloseAfterClick) {
+      self.close();
+    }
+  };
+
   function initState() {
     self.modalStyle = {
       display: self.show ? 'block' : 'none'
@@ -31514,7 +31630,8 @@ function controller() {
       modalName: '<',
       icon: '<',
       iconOnClick: '<',
-      modalStyle: '<'
+      modalStyle: '<',
+      allowCloseAfterClick: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -31562,7 +31679,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.close()></ng-transclude> </div> </div> </div> </div>";
+module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.closeByClickInChild()></ng-transclude> </div> </div> </div> </div>";
 
 /***/ }),
 
@@ -31588,6 +31705,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
 /* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
 /* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+
 
 
 
@@ -31604,7 +31723,7 @@ const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>'; // const renderComponent = '<modal></modal>'
 
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project__WEBPACK_IMPORTED_MODULE_8__["name"], _project__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -31710,7 +31829,9 @@ function controller() {
       currentProject: '<',
       findAllProjects: '<',
       allProjects: '<',
-      openProject: '<'
+      openProject: '<',
+      openFile: '<',
+      openFolder: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -31757,7 +31878,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" modal-style=self.modalStyle icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=\"col-sm-2 col-md-2 col-lg-2 sidebar\"> <table class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" modal-style=self.modalStyle icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders path=self.currentProject.path open-file=self.openFile open-folder=self.openFolder> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 

@@ -40,7 +40,9 @@ export default {
       currentProject: '<',
       findAllProjects: '<',
       allProjects: '<',
-      openProject: '<'
+      openProject: '<',
+      openFile: '<',
+      openFolder: '<'
     },
     template,
     controller,

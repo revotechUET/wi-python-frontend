@@ -4,30 +4,15 @@ $container-with : 40%;
 .explorer {
   height: 100%;
 
-  // .tabs {
-  //   background-color: #ece6e6;
-  // }
-
-  // pre {
-  //   // height: 100% - 35px; //heigth of tab
-  //   padding-bottom: 0;
-  //   height: calc(100% - #{$tab-height});
-  //   overflow-y: hidden;
-  //   background-color: #fdf6e2;
-  // }
-
-  // code {
-  //   height: 95%;
-  // }
-
   pre {
     background: transparent;
     border-bottom: none;
     height: 100%;
+    max-width: 472px;
+    word-break: break-word;
   }
 
   #codeArea {
-    // width: 400px;
     height: 100%;
     border-radius: 3px;
     box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
@@ -41,9 +26,14 @@ $container-with : 40%;
       &::before, .codeflask__lines{
         background: #FFF
       }
-      
-      
-    // .codeflask__textarea
     }
+
+    textarea{
+      // max-width: 472px;
+      white-space: normal;
+    }
+
+
   }
 }
+

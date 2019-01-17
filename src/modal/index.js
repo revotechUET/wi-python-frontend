@@ -25,6 +25,12 @@ function controller() {
     }
   }
 
+  self.closeByClickInChild = function() {
+    if(self.allowCloseAfterClick) {
+      self.close()
+    }
+  }
+
   function initState() {
     self.modalStyle = {
       display: self.show ? 'block' : 'none'
@@ -39,7 +45,8 @@ export default {
       modalName: '<',
       icon: '<',
       iconOnClick: '<',
-      modalStyle: '<'
+      modalStyle: '<',
+      allowCloseAfterClick: '<'
     },
     template,
     controller,

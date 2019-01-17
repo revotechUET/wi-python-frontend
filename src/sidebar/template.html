@@ -7,7 +7,8 @@
         modal-name="'Open Project'" 
         modal-style="self.modalStyle"
         icon="'fas fa-box-open'"
-        icon-on-click="self.findAllProjects">
+        icon-on-click="self.findAllProjects"
+        allow-close-after-click="'true'">
         <ul class="list-project">
           <li ng-repeat="project in self.allProjects track by $index"
             ng-click="self.projectOnClick(project.rootName)">
@@ -27,7 +28,10 @@
               root-name="self.currentProject.rootName" 
               root-is-file="self.currentProject.rootIsFile" 
               files="self.currentProject.files" 
-              folders="self.currentProject.folders">
+              folders="self.currentProject.folders"
+              path="self.currentProject.path"
+              open-file="self.openFile"
+              open-folder="self.openFolder">
             </f-element>
           </ul>
         </td>

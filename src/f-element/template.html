@@ -10,8 +10,11 @@
       ng-repeat="f in self.folders  | emptyArray: self.showChild track by $index"
       root-name="f.rootName"
       root-is-file="f.rootIsFile"
+      path="f.path"
       files="f.files"
-      folders="f.folders">
+      folders="f.folders"
+      open-file="self.openFile"
+      open-folder="self.openFolder">
     </f-element>
 
     <!-- files -->
@@ -19,8 +22,11 @@
       ng-repeat="f in self.files  | emptyArray: self.showChild track by $index"
       root-name="f.rootName"
       root-is-file="f.rootIsFile"
+      path="f.path"
       files="f.files"
-      folders="f.folders">
+      folders="f.folders"
+      open-file="self.openFile"
+      open-folder="self.openFolder">
     </f-element>
   </ul>
 </li>

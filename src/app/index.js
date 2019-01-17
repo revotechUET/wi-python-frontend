@@ -11,6 +11,8 @@ function controller(project, alertMessage) {
     initState()
   }
 
+  //////////////////////////////////////////////
+  ////////// sidebar //////////////////////////
   self.findAllProjects = function () {
     project.listProjects()
       .then(projects => {
@@ -32,9 +34,43 @@ function controller(project, alertMessage) {
       })
   }
 
+  self.openFile = function (dir) {
+
+    const fileName = dir
+      .split('/')
+      .reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null)
+      
+    self.curFile = fileName
+
+    project.openFile(dir)
+      .then(code => {
+        self.code = code
+      })
+      .catch(error => {
+        alertMessage.error(error)
+      })
+  }
+
+  self.openFolder = function (dir) {
+    project.openFolder(dir)
+      .then(item => {
+        console.log('open folder is not handle yet')
+      })
+      .catch(error => {
+        alertMessage.error(error)
+      })
+  }
+
+  //////////////////////////////////////////////
+  ////////// end sidebar //////////////////////////
+
+  //////////////////////////////////////////////
+  ////////// explorer //////////////////////////
+
   self.coding = function (code) {
     self.code = code
   }
+
 
   function initState() {
     self.currentProject = {
@@ -43,8 +79,11 @@ function controller(project, alertMessage) {
       folders: [],
       path: ''
     }
-    self.code = ''
     self.allProjects = []
+
+
+    self.code = 'console.log("example.js")'
+    self.curFile = 'example.js'
   }
 }
 

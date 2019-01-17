@@ -45,7 +45,8 @@ function controller() {
   }
 
   self.open = function () {
-
+    if(self.rootIsFile) self.openFile(self.path)
+    else self.openFolder(self.path)
   }
 
   function initState() {
@@ -60,7 +61,10 @@ export default {
       rootName: '<',
       rootIsFile: '<',
       files: '<',
-      folders: '<'
+      folders: '<',
+      path: '<',
+      openFile: '<',
+      openFolder: '<'
     },
     template,
     controller,
