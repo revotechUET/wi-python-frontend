@@ -31107,7 +31107,7 @@ __webpack_require__.r(__webpack_exports__);
 const name = 'config';
 function service() {
   return {
-    HOST: 'http://localhost:3000'
+    HOST: 'http://localhost:3001'
   };
 }
 
@@ -31482,6 +31482,7 @@ function controller(mime) {
   self.$onInit = function () {
     // initState()
     initCodeEditor();
+    fixDefaultStyle();
   };
 
   self.$onChanges = function ({
@@ -31509,10 +31510,21 @@ function controller(mime) {
       lineNumbers: true,
       language: fileType === mime.types.html ? // html display is very ugly, display js instead
       mime.types.javascript : fileType
-    });
-    codeArea.updateCode(self.code);
-    codeArea.onUpdate(code => self.updateCode(code)); //style with make width of textarea equal to width of pre
+    }); //change default 
 
+    codeArea.setLineNumber = function () {
+      const LINE_HEIGHT = 20;
+      const codeHeight = document.querySelector('.explorer code').offsetHeight;
+      const lineNumber = parseInt(codeHeight / LINE_HEIGHT);
+      this.lineNumber = lineNumber;
+      this.updateLineNumbersCount();
+    };
+
+    codeArea.updateCode(self.code);
+    codeArea.onUpdate(code => self.updateCode(code));
+  }
+
+  function fixDefaultStyle() {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
     document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`;
   }

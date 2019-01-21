@@ -12,6 +12,7 @@ function controller(mime) {
   self.$onInit = function () {
     // initState()
     initCodeEditor()
+    fixDefaultStyle()
   }
 
   self.$onChanges = function ({ code, curFile }) {
@@ -40,11 +41,23 @@ function controller(mime) {
         fileType
     })
 
+    //change default 
+    codeArea.setLineNumber = function() {
+      const LINE_HEIGHT = 20
+      const codeHeight = document.querySelector('.explorer code').offsetHeight
+      const lineNumber = parseInt(codeHeight / LINE_HEIGHT)
+
+      this.lineNumber = lineNumber
+      this.updateLineNumbersCount()
+    }
+
     codeArea.updateCode(self.code)
     codeArea.onUpdate(code => self.updateCode(code))
+  }
 
-    //style with make width of textarea equal to width of pre
+  function fixDefaultStyle() {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
+
     document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
   }
 }

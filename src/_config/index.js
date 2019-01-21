@@ -3,6 +3,6 @@ export const name = 'config'
 export function service() {
 
   return {
-    HOST: 'http://localhost:3000'
+    HOST: 'http://localhost:3001'
   }
 }
