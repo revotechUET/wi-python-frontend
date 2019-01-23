@@ -31015,69 +31015,9 @@ function service() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return htmlRunner; });
-function htmlRunner(project, code, contentLoader, cb) {
-  const jsPattern = /<script([\w|\W](?!script>))*<\/script>/g;
-  const cssPattern = /<link([\w|\W](?!>))*\/>/g;
-  const cssFiles = extractFileNames(code, cssPattern, 'href');
-  const jsFiles = extractFileNames(code, jsPattern, 'src');
-  contentLoader.multipleLoad(project, [...cssFiles, ...jsFiles]).then(fileContents => {
-    const cssContents = fileContents.slice(0, cssFiles.length);
-    const jsContents = fileContents.slice(cssFiles.length);
-    let render = code;
-
-    for (const css of cssContents) {
-      render = render.replace(cssPattern, `<style>${css}</style>`);
-    }
-
-    for (const js of jsContents) {
-      render = render.replace(jsPattern, `<script>${js}</script>`);
-    }
-
-    cb(null, render);
-  }).catch(error => cb(error));
+function htmlRunner(domain, project, fileName) {
+  return domain + project + fileName;
 }
-
-function extractFileNames(code, pattern, srcAttr) {
-  const tages = code.match(pattern);
-  if (!tages) return [];
-  const files = tages.map(str => {
-    let i = str.indexOf(srcAttr);
-    let fileName = '';
-
-    while (str[i] !== '"') ++i;
-
-    ++i;
-
-    while (str[i] !== '"') fileName += str[i++];
-
-    return fileName;
-  });
-  return files;
-} // function extractJs(code) {
-//   const pattern = /<script([\w|\W](?!script))*<\/script>/g
-//   const scripts = code.match(pattern)
-//   const files = scripts.map(str => {
-//     let i = str.indexOf('src')
-//     let fileName = ''
-//     while (str[i] !== '"')++i
-//     ++i
-//     while (str[i] !== '"') fileName += str[i++]
-//     return fileName
-//   })
-//   return files
-// }
-// function extractCss(code) {
-//   const re = /<link([\w|\W](?!link))*>/g
-//   const scripts = code.match(re)
-//   const files = scripts.map(str => {
-//     let i = str.indexOf('href')
-//     let fileName = ''
-//     while (str[i] !== '"')++i
-//     ++i
-//     while (str[i] !== '"') fileName += str[i++]
-//     return fileName
-//   })
-// }
 
 /***/ }),
 
@@ -31097,23 +31037,32 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'browserCodeRunner';
-service.$inject = ['mime', 'htmlContentLoaderApi'];
-function service(mime, htmlContentLoaderApi) {
-  const execute = (project, fileName, code, cb) => {
+service.$inject = ['mime', 'config'];
+function service(mime, config) {
+  const HOST = config.HOST;
+
+  const execute = (project, fileName, code) => {
     const type = mime.getFileType(fileName);
 
     switch (type) {
       case mime.types.javascript:
-        return cb(null, Object(_js_runner__WEBPACK_IMPORTED_MODULE_0__["default"])(code));
+        return {
+          type,
+          render: Object(_js_runner__WEBPACK_IMPORTED_MODULE_0__["default"])(code)
+        };
 
       case mime.types.html:
-        return Object(_html_runner__WEBPACK_IMPORTED_MODULE_1__["default"])(project, code, htmlContentLoaderApi, cb);
+        return {
+          type,
+          link: Object(_html_runner__WEBPACK_IMPORTED_MODULE_1__["default"])(HOST, project, fileName) // case mime.types.css: return code
 
-      case mime.types.css:
-        return code;
+        };
 
       default:
-        return `do not support ${type}`;
+        return {
+          type,
+          render: `do not support ${type}`
+        };
     }
   };
 
@@ -32166,9 +32115,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = ['$sce', 'browserCodeRunner'];
+controller.$inject = ['$sce', 'browserCodeRunner', 'mime'];
 
-function controller($sce, browserCodeRunner) {
+function controller($sce, browserCodeRunner, mime) {
   const self = this;
 
   self.$onInit = function () {
@@ -32185,19 +32134,21 @@ function controller($sce, browserCodeRunner) {
 
   self.run = function () {
     self.executeCode(code => {
-      // self.render = $sce.trustAsHtml(
-      //   browserCodeRunner.execute(self.project, self.fileName, code)
-      // )
-      browserCodeRunner.execute(self.project, self.fileName, code, (err, render) => {
-        if (err) console.log({
-          err
-        });else self.render = $sce.trustAsHtml(render);
-      });
+      const {
+        type,
+        render,
+        link
+      } = browserCodeRunner.execute(self.project, self.fileName, code);
+      if (render) self.render = $sce.trustAsHtml(render);
+      if (link) self.link = link;
+      self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code';
     });
   };
 
   function initState() {
     self.render = '';
+    self.link = '';
+    self.codeOrIframe = 'code';
   }
 }
 
@@ -32205,7 +32156,6 @@ function controller($sce, browserCodeRunner) {
   name,
   options: {
     bindings: {
-      // code: '<',
       project: '<',
       executeCode: '<',
       fileName: '<'
@@ -32255,7 +32205,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> </div> <div ng-bind-html=self.render></div> </div>";
+module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src=http://localhost:3001/alskdfjldsja/ frameborder=0> </iframe> </div>";
 
 /***/ })
 

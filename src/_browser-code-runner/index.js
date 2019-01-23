@@ -3,17 +3,29 @@ import htmlRunner from './html-runner'
 
 export const name = 'browserCodeRunner'
 
-service.$inject = ['mime', 'htmlContentLoaderApi']
-export function service(mime, htmlContentLoaderApi) {
-  const execute = (project,fileName, code, cb) => {
+service.$inject = ['mime', 'config']
+export function service(mime, config) {
+
+  const HOST = config.HOST
+
+  const execute = (project, fileName, code) => {
     const type = mime.getFileType(fileName)
 
     switch (type) {
-      case mime.types.javascript: return cb(null,jsRunner(code))
-      case mime.types.html: return htmlRunner(project,code, htmlContentLoaderApi, cb)
-      case mime.types.css: return code
+      case mime.types.javascript: return {
+        type,
+        render: jsRunner(code)
+      }
+      case mime.types.html: return {
+        type,
+        link: htmlRunner(HOST, project, fileName)
+      }
+      // case mime.types.css: return code
 
-      default: return `do not support ${type}`
+      default: return {
+        type,
+        render: `do not support ${type}`
+      }
     }
   }
 

@@ -3,9 +3,10 @@ import './style.scss'
 
 const name = 'terminal'
 
-controller.$inject = ['$sce', 'browserCodeRunner']
-function controller($sce, browserCodeRunner) {
+controller.$inject = ['$sce', 'browserCodeRunner', 'mime']
+function controller($sce, browserCodeRunner, mime) {
   const self = this
+
 
   self.$onInit = function () {
     initState()
@@ -19,19 +20,18 @@ function controller($sce, browserCodeRunner) {
 
   self.run = function () {
     self.executeCode(code => {
-      // self.render = $sce.trustAsHtml(
-      //   browserCodeRunner.execute(self.project, self.fileName, code)
-      // )
-
-      browserCodeRunner.execute(self.project, self.fileName, code, (err,render) => {
-        if(err) console.log({err})
-        else self.render = $sce.trustAsHtml(render)
-      })
+      const { type, render, link } = browserCodeRunner.execute(self.project, self.fileName, code)
+      
+      if (render) self.render = $sce.trustAsHtml(render)
+      if (link) self.link = link
+      self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
     })
   }
 
   function initState() {
     self.render = ''
+    self.link = ''
+    self.codeOrIframe = 'code'
   }
 }
 
@@ -39,7 +39,6 @@ export default {
   name,
   options: {
     bindings: {
-      // code: '<',
       project: '<',
       executeCode: '<',
       fileName: '<'
