@@ -10,7 +10,6 @@ function controller(mime) {
   const self = this
 
   self.$onInit = function () {
-    // initState()
     initCodeEditor()
     fixDefaultStyle()
   }
@@ -25,12 +24,14 @@ function controller(mime) {
     }
 
     initCodeEditor()
-  }
 
-  // function initState() {
-  //   // self._code = self.code || ''
-  //   self._code = 'console.log("nah")'
-  // }
+    // if (.explorer .codeflask pre) try again until success
+    try {
+      fixDefaultStyle()
+    } catch (error) {
+      fixDefaultStyle()
+    }
+  }
 
   function initCodeEditor() {
     const fileType = mime.getFileType(self.curFile)

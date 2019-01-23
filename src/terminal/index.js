@@ -8,46 +8,44 @@ function controller($sce, browserCodeRunner) {
   const self = this
 
   self.$onInit = function () {
-    self.render = $sce.trustAsHtml(
-      browserCodeRunner.execute(self.fileName, self.code)
-    )
+    initState()
   }
 
-  self.$onChanges = function({code, fileName}) {
-    if(code) {
-      self.code = code.currentValue
-      self.render = $sce.trustAsHtml(
-        browserCodeRunner.execute(self.fileName, self.code)
-      )
-    }
-
-    if(fileName) {
+  self.$onChanges = function ({ fileName }) {
+    if (fileName) {
       self.fileName = fileName.currentValue
     }
   }
 
-  self.run = function() {
+  self.run = function () {
     self.executeCode(code => {
-      self.code = code
-      self.render = $sce.trustAsHtml(
-        browserCodeRunner.execute(self.fileName, self.code)
-      )
+      // self.render = $sce.trustAsHtml(
+      //   browserCodeRunner.execute(self.project, self.fileName, code)
+      // )
+
+      browserCodeRunner.execute(self.project, self.fileName, code, (err,render) => {
+        if(err) console.log({err})
+        else self.render = $sce.trustAsHtml(render)
+      })
     })
   }
 
-  
+  function initState() {
+    self.render = ''
+  }
 }
 
 export default {
   name,
   options: {
     bindings: {
-      code: '<',
+      // code: '<',
+      project: '<',
       executeCode: '<',
       fileName: '<'
     },
     template,
     controller,
     controllerAs: 'self'
-}
+  }
 }

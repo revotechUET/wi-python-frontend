@@ -93,8 +93,8 @@ function controller(projectApi, alertMessage) {
     self.allProjects = []
 
 
-    self.code = 'console.log("example.js")'
-    self.curFile = 'example.js'
+    self.code = `console.log('nah')`
+    self.curFile = 'sample.js'
   }
 
   function findNodeInTree(rootNode, predicate) {

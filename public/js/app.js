@@ -31005,6 +31005,82 @@ function service() {
 
 /***/ }),
 
+/***/ "./src/_browser-code-runner/html-runner.js":
+/*!*************************************************!*\
+  !*** ./src/_browser-code-runner/html-runner.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return htmlRunner; });
+function htmlRunner(project, code, contentLoader, cb) {
+  const jsPattern = /<script([\w|\W](?!script>))*<\/script>/g;
+  const cssPattern = /<link([\w|\W](?!>))*\/>/g;
+  const cssFiles = extractFileNames(code, cssPattern, 'href');
+  const jsFiles = extractFileNames(code, jsPattern, 'src');
+  contentLoader.multipleLoad(project, [...cssFiles, ...jsFiles]).then(fileContents => {
+    const cssContents = fileContents.slice(0, cssFiles.length);
+    const jsContents = fileContents.slice(cssFiles.length);
+    let render = code;
+
+    for (const css of cssContents) {
+      render = render.replace(cssPattern, `<style>${css}</style>`);
+    }
+
+    for (const js of jsContents) {
+      render = render.replace(jsPattern, `<script>${js}</script>`);
+    }
+
+    cb(null, render);
+  }).catch(error => cb(error));
+}
+
+function extractFileNames(code, pattern, srcAttr) {
+  const tages = code.match(pattern);
+  if (!tages) return [];
+  const files = tages.map(str => {
+    let i = str.indexOf(srcAttr);
+    let fileName = '';
+
+    while (str[i] !== '"') ++i;
+
+    ++i;
+
+    while (str[i] !== '"') fileName += str[i++];
+
+    return fileName;
+  });
+  return files;
+} // function extractJs(code) {
+//   const pattern = /<script([\w|\W](?!script))*<\/script>/g
+//   const scripts = code.match(pattern)
+//   const files = scripts.map(str => {
+//     let i = str.indexOf('src')
+//     let fileName = ''
+//     while (str[i] !== '"')++i
+//     ++i
+//     while (str[i] !== '"') fileName += str[i++]
+//     return fileName
+//   })
+//   return files
+// }
+// function extractCss(code) {
+//   const re = /<link([\w|\W](?!link))*>/g
+//   const scripts = code.match(re)
+//   const files = scripts.map(str => {
+//     let i = str.indexOf('href')
+//     let fileName = ''
+//     while (str[i] !== '"')++i
+//     ++i
+//     while (str[i] !== '"') fileName += str[i++]
+//     return fileName
+//   })
+// }
+
+/***/ }),
+
 /***/ "./src/_browser-code-runner/index.js":
 /*!*******************************************!*\
   !*** ./src/_browser-code-runner/index.js ***!
@@ -31017,19 +31093,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 /* harmony import */ var _js_runner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js-runner */ "./src/_browser-code-runner/js-runner.js");
+/* harmony import */ var _html_runner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./html-runner */ "./src/_browser-code-runner/html-runner.js");
+
 
 const name = 'browserCodeRunner';
-service.$inject = ['mime'];
-function service(mime) {
-  const execute = (fileName, code) => {
+service.$inject = ['mime', 'htmlContentLoaderApi'];
+function service(mime, htmlContentLoaderApi) {
+  const execute = (project, fileName, code, cb) => {
     const type = mime.getFileType(fileName);
 
     switch (type) {
       case mime.types.javascript:
-        return Object(_js_runner__WEBPACK_IMPORTED_MODULE_0__["default"])(code);
+        return cb(null, Object(_js_runner__WEBPACK_IMPORTED_MODULE_0__["default"])(code));
 
       case mime.types.html:
-        return code;
+        return Object(_html_runner__WEBPACK_IMPORTED_MODULE_1__["default"])(project, code, htmlContentLoaderApi, cb);
 
       case mime.types.css:
         return code;
@@ -31128,6 +31206,37 @@ const name = 'emptyArray';
 function filter() {
   return function (input, empty) {
     return input.filter(i => empty);
+  };
+}
+
+/***/ }),
+
+/***/ "./src/_html-content-loader-api/index.js":
+/*!***********************************************!*\
+  !*** ./src/_html-content-loader-api/index.js ***!
+  \***********************************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'htmlContentLoaderApi';
+service.$inject = ['request', 'config', '$q'];
+function service(request, config, $q) {
+  const load = (project, file) => {
+    const url = `${config.HOST}/html-src/load?` + `project=${encodeURIComponent(project)}&` + `file=${encodeURIComponent(file)}`;
+    return request.get(url);
+  };
+
+  const multipleLoad = (project, files) => {
+    return $q.all(files.map(f => load(project, f)));
+  };
+
+  return {
+    load,
+    multipleLoad
   };
 }
 
@@ -31383,8 +31492,8 @@ function controller(projectApi, alertMessage) {
       path: ''
     };
     self.allProjects = [];
-    self.code = 'console.log("example.js")';
-    self.curFile = 'example.js';
+    self.code = `console.log('nah')`;
+    self.curFile = 'sample.js';
   }
 
   function findNodeInTree(rootNode, predicate) {
@@ -31452,7 +31561,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% code=self.code execute-code=self.executeCode file-name=self.curFile> </terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName execute-code=self.executeCode file-name=self.curFile> </terminal> </div>";
 
 /***/ }),
 
@@ -31480,7 +31589,6 @@ function controller(mime) {
   const self = this;
 
   self.$onInit = function () {
-    // initState()
     initCodeEditor();
     fixDefaultStyle();
   };
@@ -31497,12 +31605,14 @@ function controller(mime) {
       self.curFile = curFile.currentValue;
     }
 
-    initCodeEditor();
-  }; // function initState() {
-  //   // self._code = self.code || ''
-  //   self._code = 'console.log("nah")'
-  // }
+    initCodeEditor(); // if (.explorer .codeflask pre) try again until success
 
+    try {
+      fixDefaultStyle();
+    } catch (error) {
+      fixDefaultStyle();
+    }
+  };
 
   function initCodeEditor() {
     const fileType = mime.getFileType(self.curFile);
@@ -31862,6 +31972,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
 /* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
 /* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_html-content-loader-api */ "./src/_html-content-loader-api/index.js");
+
 
 
 
@@ -31879,7 +31991,7 @@ __webpack_require__.r(__webpack_exports__);
 const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__["name"], _html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -32060,18 +32172,12 @@ function controller($sce, browserCodeRunner) {
   const self = this;
 
   self.$onInit = function () {
-    self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
+    initState();
   };
 
   self.$onChanges = function ({
-    code,
     fileName
   }) {
-    if (code) {
-      self.code = code.currentValue;
-      self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
-    }
-
     if (fileName) {
       self.fileName = fileName.currentValue;
     }
@@ -32079,17 +32185,28 @@ function controller($sce, browserCodeRunner) {
 
   self.run = function () {
     self.executeCode(code => {
-      self.code = code;
-      self.render = $sce.trustAsHtml(browserCodeRunner.execute(self.fileName, self.code));
+      // self.render = $sce.trustAsHtml(
+      //   browserCodeRunner.execute(self.project, self.fileName, code)
+      // )
+      browserCodeRunner.execute(self.project, self.fileName, code, (err, render) => {
+        if (err) console.log({
+          err
+        });else self.render = $sce.trustAsHtml(render);
+      });
     });
   };
+
+  function initState() {
+    self.render = '';
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name,
   options: {
     bindings: {
-      code: '<',
+      // code: '<',
+      project: '<',
       executeCode: '<',
       fileName: '<'
     },
