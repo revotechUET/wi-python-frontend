@@ -31160,37 +31160,6 @@ function filter() {
 
 /***/ }),
 
-/***/ "./src/_html-content-loader-api/index.js":
-/*!***********************************************!*\
-  !*** ./src/_html-content-loader-api/index.js ***!
-  \***********************************************/
-/*! exports provided: name, service */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
-const name = 'htmlContentLoaderApi';
-service.$inject = ['request', 'config', '$q'];
-function service(request, config, $q) {
-  const load = (project, file) => {
-    const url = `${config.HOST}/html-src/load?` + `project=${encodeURIComponent(project)}&` + `file=${encodeURIComponent(file)}`;
-    return request.get(url);
-  };
-
-  const multipleLoad = (project, files) => {
-    return $q.all(files.map(f => load(project, f)));
-  };
-
-  return {
-    load,
-    multipleLoad
-  };
-}
-
-/***/ }),
-
 /***/ "./src/_mime/index.js":
 /*!****************************!*\
   !*** ./src/_mime/index.js ***!
@@ -31921,7 +31890,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
 /* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
 /* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
-/* harmony import */ var _html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_html-content-loader-api */ "./src/_html-content-loader-api/index.js");
 
 
 
@@ -31935,12 +31903,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__["name"], _html_content_loader_api__WEBPACK_IMPORTED_MODULE_14__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),

@@ -15,7 +15,7 @@ import * as alertMessage from './_alert-message'
 import * as emptyArray from './_empty-array'
 import * as mime from './_mime'
 import * as browserCodeRunner from './_browser-code-runner'
-import * as htmlContentLoaderApi from './_html-content-loader-api'
+// import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client'
 const dependencies = []
@@ -35,7 +35,6 @@ angular.module(moduleName, dependencies)
   .service(alertMessage.name, alertMessage.service)
   .service(mime.name, mime.service)
   .service(browserCodeRunner.name, browserCodeRunner.service)
-  .service(htmlContentLoaderApi.name, htmlContentLoaderApi.service)
   
 
 export default renderComponent
