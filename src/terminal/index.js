@@ -19,12 +19,12 @@ function controller($sce, browserCodeRunner, mime) {
   }
 
   self.run = function () {
-    self.executeCode(code => {
-      const { type, render, link } = browserCodeRunner.execute(self.project, self.fileName, code)
-      
-      if (render) self.render = $sce.trustAsHtml(render)
-      if (link) self.link = link
-      self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
+    self.getCurrentCode(code => {
+      browserCodeRunner.execute(self.project, self.fileName, ({ type, render, link }) => {
+        if (render) self.render = $sce.trustAsHtml(render)
+        if (link) self.link = $sce.trustAsResourceUrl(link)
+        self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
+      })
     })
   }
 
@@ -40,7 +40,7 @@ export default {
   options: {
     bindings: {
       project: '<',
-      executeCode: '<',
+      getCurrentCode: '<',
       fileName: '<'
     },
     template,

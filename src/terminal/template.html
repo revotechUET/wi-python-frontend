@@ -9,7 +9,7 @@
   <div ng-if="self.codeOrIframe === 'code'" ng-bind-html="self.render"></div>
   <iframe 
     ng-if="self.codeOrIframe === 'iframe'" 
-    src="http://localhost:3001/alskdfjldsja/" 
+    src="{{self.link}}" 
     frameborder="0">
-</iframe>
+  </iframe>
 </div>

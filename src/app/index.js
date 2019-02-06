@@ -78,7 +78,7 @@ function controller(projectApi, alertMessage) {
     self.code = code
   }
 
-  self.executeCode = function (cb) {
+  self.getCurrentCode = function (cb) {
     cb(self.code)
   }
 

@@ -28,12 +28,18 @@ export function service(config, request) {
     return request.get(url)
   }
 
+  const runCode = (fileName, project) => {
+    const url = `${config.HOST}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}`
+    return request.get(url)
+  }
+
   return {
     newProject,
     openProject,
     openFile,
     openFolder,
-    listProjects
+    listProjects,
+    runCode
   }
 
 }
