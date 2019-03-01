@@ -41,7 +41,8 @@ export default {
     bindings: {
       project: '<',
       getCurrentCode: '<',
-      fileName: '<'
+      fileName: '<',
+      saveCode: '<'
     },
     template,
     controller,

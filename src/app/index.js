@@ -58,7 +58,7 @@ function controller(projectApi, alertMessage) {
         if (!(item.files.length + item.folders.length)) {
           return alertMessage.error('There is nothing in this folder')
         }
-        
+
         for (const f of item.files) {
           folder.files.push(f)
         }
@@ -67,11 +67,18 @@ function controller(projectApi, alertMessage) {
           folder.folders.push(f)
         }
 
-        console.log({folder, item})
+        console.log({ folder, item })
       })
       .catch(error => {
         alertMessage.error(error)
       })
+  }
+
+  self.saveCode = function () {
+    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
+      .then(() => alertMessage.success('save success'))
+      .catch(error => alertMessage.error(error))
+    
   }
 
   self.coding = function (code) {
@@ -85,7 +92,7 @@ function controller(projectApi, alertMessage) {
 
   function initState() {
     self.currentProject = {
-      rootName: '',
+      rootName: 'NOT OPEN PROJECT YET!!!',
       files: [],
       folders: [],
       path: ''
@@ -93,7 +100,7 @@ function controller(projectApi, alertMessage) {
     self.allProjects = []
 
 
-    self.code = `console.log('nah')`
+    self.code = `/* some thing here */`
     self.curFile = 'sample.js'
   }
 

@@ -31298,13 +31298,24 @@ function service(config, request) {
     return request.get(url);
   };
 
+  const saveCode = (project, fileName, code) => {
+    const url = `${config.HOST}/code-action/save`;
+    const data = {
+      project,
+      fileName,
+      code
+    };
+    return request.post(url, data);
+  };
+
   return {
     newProject,
     openProject,
     openFile,
     openFolder,
     listProjects,
-    runCode
+    runCode,
+    saveCode
   };
 }
 
@@ -31330,8 +31341,15 @@ function service($http, $q) {
     });
   });
 
+  const post = (url, data) => $q((resolve, reject) => {
+    $http.post(url, data).then(resp => resolve(resp.data.data)).catch(error => {
+      if (error.data) reject(error.data.message);else if (error.message) reject(error.message);else if (error.statusText) reject(error.statusText);else reject('Error in connection');
+    });
+  });
+
   return {
-    get
+    get,
+    post
   };
 }
 
@@ -31415,6 +31433,10 @@ function controller(projectApi, alertMessage) {
     });
   };
 
+  self.saveCode = function () {
+    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => alertMessage.success('save success')).catch(error => alertMessage.error(error));
+  };
+
   self.coding = function (code) {
     self.code = code;
   };
@@ -31425,13 +31447,13 @@ function controller(projectApi, alertMessage) {
 
   function initState() {
     self.currentProject = {
-      rootName: '',
+      rootName: 'NOT OPEN PROJECT YET!!!',
       files: [],
       folders: [],
       path: ''
     };
     self.allProjects = [];
-    self.code = `console.log('nah')`;
+    self.code = `/* some thing here */`;
     self.curFile = 'sample.js';
   }
 
@@ -31500,7 +31522,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile> </terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
 
 /***/ }),
 
@@ -31559,7 +31581,8 @@ function controller(mime) {
       lineNumbers: true,
       language: fileType === mime.types.html ? // html display is very ugly, display js instead
       mime.types.javascript : fileType
-    }); //change default 
+    });
+    addPythonSupport(codeArea);
 
     codeArea.setLineNumber = function () {
       const LINE_HEIGHT = 20;
@@ -31576,6 +31599,22 @@ function controller(mime) {
   function fixDefaultStyle() {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
     document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`;
+  }
+
+  function addPythonSupport(codeArea) {
+    codeArea.addLanguage('python', {
+      comment: {
+        pattern: /(^|[^\\])#.*?(\r?\n|$)/g,
+        lookbehind: !0
+      },
+      string: /("|')(\\?.)*?\1/g,
+      keyword: /\b(as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/g,
+      boolean: /\b(True|False)\b/g,
+      number: /\b-?(0x)?\d*\.?[\da-f]+\b/g,
+      operator: /[-+]{1,2}|=?&lt;|=?&gt;|!|={1,2}|(&){1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|~|\^|%|\b(or|and|not)\b/g,
+      ignore: /&(lt|gt|amp);/gi,
+      punctuation: /[{}[\];(),.:]/g
+    });
   }
 }
 
@@ -32148,7 +32187,8 @@ function controller($sce, browserCodeRunner, mime) {
     bindings: {
       project: '<',
       getCurrentCode: '<',
-      fileName: '<'
+      fileName: '<',
+      saveCode: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32195,7 +32235,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src={{self.link}} frameborder=0> </iframe> </div>";
+module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src={{self.link}} frameborder=0> </iframe> </div>";
 
 /***/ })
 

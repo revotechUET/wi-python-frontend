@@ -33,13 +33,25 @@ export function service(config, request) {
     return request.get(url)
   }
 
+  const saveCode = (project, fileName, code) => {
+    const url = `${config.HOST}/code-action/save`
+    const data = {
+      project,
+      fileName,
+      code
+    }
+
+    return request.post(url, data)
+  }
+
   return {
     newProject,
     openProject,
     openFile,
     openFolder,
     listProjects,
-    runCode
+    runCode,
+    saveCode
   }
 
 }

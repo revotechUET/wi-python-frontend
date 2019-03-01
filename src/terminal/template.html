@@ -5,6 +5,12 @@
       title="run code" 
       ng-click="self.run()">
     </i>
+
+    <i class="fas fa-save"
+      title="save code"
+      ng-click="self.saveCode()">
+    </i>
+
   </div>
   <div ng-if="self.codeOrIframe === 'code'" ng-bind-html="self.render"></div>
   <iframe 

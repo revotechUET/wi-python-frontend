@@ -42,8 +42,10 @@ function controller(mime) {
         fileType
     })
 
-    //change default 
-    codeArea.setLineNumber = function() {
+    addPythonSupport(codeArea)
+
+
+    codeArea.setLineNumber = function () {
       const LINE_HEIGHT = 20
       const codeHeight = document.querySelector('.explorer code').offsetHeight
       const lineNumber = parseInt(codeHeight / LINE_HEIGHT)
@@ -60,6 +62,19 @@ function controller(mime) {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
 
     document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
+  }
+
+  function addPythonSupport(codeArea) {
+    codeArea.addLanguage('python', {
+      comment: {
+        pattern: /(^|[^\\])#.*?(\r?\n|$)/g,
+        lookbehind: !0
+      },
+      string: /("|')(\\?.)*?\1/g,
+      keyword: /\b(as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/g, boolean: /\b(True|False)\b/g, number: /\b-?(0x)?\d*\.?[\da-f]+\b/g, operator: /[-+]{1,2}|=?&lt;|=?&gt;|!|={1,2}|(&){1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|~|\^|%|\b(or|and|not)\b/g,
+      ignore: /&(lt|gt|amp);/gi,
+      punctuation: /[{}[\];(),.:]/g
+    })
   }
 }
 
