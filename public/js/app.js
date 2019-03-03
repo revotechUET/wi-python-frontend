@@ -20642,10 +20642,10 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss":
-/*!*************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss ***!
-  \*************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal-icon/style.scss":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal-icon/style.scss ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31175,6 +31175,53 @@ function filter() {
 
 /***/ }),
 
+/***/ "./src/_func-gen/index.js":
+/*!********************************!*\
+  !*** ./src/_func-gen/index.js ***!
+  \********************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'funcGen';
+service.$inject = ['mime'];
+function service(mime) {
+  function generateForFile(fileName) {
+    const type = mime.getFileType(fileName);
+    if (type === mime.types.javascript) return jsFunc();
+    if (type === mime.types.python) return pyFunc();
+    return `/*doesn't support this type*/`;
+  }
+
+  function jsFunc() {
+    return `
+//auto generate function
+function someFunction(params) {
+  return true
+}
+
+`;
+  }
+
+  function pyFunc() {
+    return `
+#auto generate function
+def someFunction(params):
+  return True
+
+`;
+  }
+
+  return {
+    generateForFile
+  };
+}
+
+/***/ }),
+
 /***/ "./src/_mime/index.js":
 /*!****************************!*\
   !*** ./src/_mime/index.js ***!
@@ -31371,9 +31418,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = ['projectApi', 'alertMessage'];
+controller.$inject = ['projectApi', 'alertMessage', 'funcGen'];
 
-function controller(projectApi, alertMessage) {
+function controller(projectApi, alertMessage, funcGen) {
   const self = this;
 
   self.$onInit = function () {
@@ -31445,6 +31492,11 @@ function controller(projectApi, alertMessage) {
     cb(self.code);
   };
 
+  self.addFunction = function () {
+    const newFuncCode = funcGen.generateForFile(self.curFile);
+    self.code = newFuncCode + self.code;
+  };
+
   function initState() {
     self.currentProject = {
       rootName: 'NOT OPEN PROJECT YET!!!',
@@ -31453,7 +31505,7 @@ function controller(projectApi, alertMessage) {
       path: ''
     };
     self.allProjects = [];
-    self.code = `/* some thing here */`;
+    self.code = `/* your code is here */`;
     self.curFile = 'sample.js';
   }
 
@@ -31522,7 +31574,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
+module.exports = "<div class=app> <sidebar style=width:20% current-project=self.currentProject find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject open-file=self.openFile open-folder=self.openFolder add-func=self.addFunction> </sidebar> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
 
 /***/ }),
 
@@ -31812,22 +31864,22 @@ function render(component, element) {
 
 /***/ }),
 
-/***/ "./src/modal/index.js":
-/*!****************************!*\
-  !*** ./src/modal/index.js ***!
-  \****************************/
+/***/ "./src/modal-icon/index.js":
+/*!*********************************!*\
+  !*** ./src/modal-icon/index.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/modal/template.html");
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/modal-icon/template.html");
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/modal/style.scss");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/modal-icon/style.scss");
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_1__);
 
 
-const name = 'modal';
+const name = 'modalIcon';
 controller.$inject = [];
 
 function controller() {
@@ -31861,7 +31913,7 @@ function controller() {
 
   function initState() {
     self.modalStyle = {
-      display: self.show ? 'block' : 'none'
+      display: 'none'
     };
   }
 }
@@ -31872,8 +31924,9 @@ function controller() {
     bindings: {
       modalName: '<',
       icon: '<',
+      iconTitle: '<',
       iconOnClick: '<',
-      modalStyle: '<',
+      // modalStyle: '<',
       allowCloseAfterClick: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
@@ -31885,15 +31938,15 @@ function controller() {
 
 /***/ }),
 
-/***/ "./src/modal/style.scss":
-/*!******************************!*\
-  !*** ./src/modal/style.scss ***!
-  \******************************/
+/***/ "./src/modal-icon/style.scss":
+/*!***********************************!*\
+  !*** ./src/modal-icon/style.scss ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal/style.scss");
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./style.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/modal-icon/style.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -31915,14 +31968,14 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/modal/template.html":
-/*!*********************************!*\
-  !*** ./src/modal/template.html ***!
-  \*********************************/
+/***/ "./src/modal-icon/template.html":
+/*!**************************************!*\
+  !*** ./src/modal-icon/template.html ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=my-modal> <i class=\"fas fa-box-open\" title=\"open a project\" ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.closeByClickInChild()></ng-transclude> </div> </div> </div> </div>";
+module.exports = "<div class=my-modal> <i class={{self.icon}} title={{self.iconTitle}} ng-click=self.showModal()></i> <div class=modal ng-style=self.modalStyle> <div class=modal-content ng-style=self.modalStyle> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude ng-click=self.closeByClickInChild()></ng-transclude> </div> </div> </div> </div>";
 
 /***/ }),
 
@@ -31942,7 +31995,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
 /* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
 /* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
-/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal */ "./src/modal/index.js");
+/* harmony import */ var _modal_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal-icon */ "./src/modal-icon/index.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
 /* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
 /* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
@@ -31950,6 +32003,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
 /* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
 /* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+
 
 
 
@@ -31968,7 +32023,7 @@ __webpack_require__.r(__webpack_exports__);
 const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_11__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_11__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_7__["name"], _config__WEBPACK_IMPORTED_MODULE_7__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_8__["name"], _project_api__WEBPACK_IMPORTED_MODULE_8__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_9__["name"], _request__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_10__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_12__["name"], _mime__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_14__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_14__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -32036,11 +32091,9 @@ const name = 'sidebar';
 controller.$inject = [];
 
 function controller() {
-  const self = this;
-
-  self.$onInit = function () {
-    initState();
-  };
+  const self = this; // self.$onInit = function() {
+  //   initState()
+  // }
 
   self.$onChanges = function ({
     projectName,
@@ -32056,15 +32109,13 @@ function controller() {
   };
 
   self.projectOnClick = function (name) {
-    self.openProject(name);
-    self.modalStyle.display = 'none';
-  };
+    self.openProject(name); // self.modalStyle.display = 'none'
+  }; // function initState() {
+  //   self.modalStyle = {
+  //     display: 'none'
+  //   }
+  // }
 
-  function initState() {
-    self.modalStyle = {
-      display: 'none'
-    };
-  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32076,7 +32127,8 @@ function controller() {
       allProjects: '<',
       openProject: '<',
       openFile: '<',
-      openFolder: '<'
+      openFolder: '<',
+      addFunc: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32123,7 +32175,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=sidebar> <div class=tools> <modal modal-name=\"'Open Project'\" modal-style=self.modalStyle icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal> </div> <table> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders path=self.currentProject.path open-file=self.openFile open-folder=self.openFolder> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
+module.exports = "<div class=sidebar> <div class=tools> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> <i class=\"fas fa-pencil-alt\" ng-click=self.addFunc()></i> </div> <table> <tbody> <tr> <td width=260px align=left valign=top> <ul class=ztree style=width:260px;overflow:auto> <f-element root-name=self.currentProject.rootName root-is-file=self.currentProject.rootIsFile files=self.currentProject.files folders=self.currentProject.folders path=self.currentProject.path open-file=self.openFile open-folder=self.openFolder> </f-element> </ul> </td> </tr> </tbody> </table> </div>";
 
 /***/ }),
 

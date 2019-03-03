@@ -5,7 +5,7 @@ import sidebar from './sidebar'
 import fElement from './f-element'
 import terminal from './terminal'
 import explorer from './explorer'
-import modal from './modal'
+import modalIcon from './modal-icon'
 
 
 import * as config from './_config'
@@ -15,6 +15,7 @@ import * as alertMessage from './_alert-message'
 import * as emptyArray from './_empty-array'
 import * as mime from './_mime'
 import * as browserCodeRunner from './_browser-code-runner'
+import * as funcGen from './_func-gen'
 // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client'
@@ -27,7 +28,7 @@ angular.module(moduleName, dependencies)
   .component(fElement.name, fElement.options)
   .component(terminal.name, terminal.options)
   .component(explorer.name, explorer.options)
-  .component(modal.name, modal.options)
+  .component(modalIcon.name, modalIcon.options)
   .filter(emptyArray.name, emptyArray.filter)
   .service(config.name, config.service)
   .service(projectApi.name, projectApi.service)
@@ -35,6 +36,7 @@ angular.module(moduleName, dependencies)
   .service(alertMessage.name, alertMessage.service)
   .service(mime.name, mime.service)
   .service(browserCodeRunner.name, browserCodeRunner.service)
+  .service(funcGen.name, funcGen.service)
   
 
 export default renderComponent

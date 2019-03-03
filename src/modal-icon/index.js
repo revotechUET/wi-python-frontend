@@ -1,7 +1,7 @@
 import template from './template.html'
 import './style.scss'
 
-const name = 'modal'
+const name = 'modalIcon'
 
 controller.$inject = []
 function controller() {
@@ -44,6 +44,7 @@ export default {
     bindings: {
       modalName: '<',
       icon: '<',
+      iconTitle: '<',
       iconOnClick: '<',
       // modalStyle: '<',
       allowCloseAfterClick: '<'

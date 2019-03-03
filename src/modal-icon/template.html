@@ -2,7 +2,7 @@
   <!-- <h2>Animated Modal with Header and Footer</h2>
   <button ng-click="self.showModal()">Open Modal</button> -->
   <!-- <ng-transclude ng-click="self.showModal()"></ng-transclude> -->
-  <i class="fas fa-box-open" title="open a project" ng-click="self.showModal()"></i>
+  <i class="{{self.icon}}" title="{{self.iconTitle}}" ng-click="self.showModal()"></i>
   <!-- The Modal -->
   <div class="modal" ng-style="self.modalStyle">
     <div class="modal-content" ng-style="self.modalStyle">

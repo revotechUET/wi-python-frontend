@@ -3,8 +3,8 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['projectApi', 'alertMessage']
-function controller(projectApi, alertMessage) {
+controller.$inject = ['projectApi', 'alertMessage', 'funcGen']
+function controller(projectApi, alertMessage, funcGen) {
   const self = this
 
   self.$onInit = function () {
@@ -78,7 +78,7 @@ function controller(projectApi, alertMessage) {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
       .then(() => alertMessage.success('save success'))
       .catch(error => alertMessage.error(error))
-    
+
   }
 
   self.coding = function (code) {
@@ -87,6 +87,12 @@ function controller(projectApi, alertMessage) {
 
   self.getCurrentCode = function (cb) {
     cb(self.code)
+  }
+
+  self.addFunction = function () {
+
+    const newFuncCode = funcGen.generateForFile(self.curFile)
+    self.code = newFuncCode + self.code
   }
 
 
@@ -100,7 +106,7 @@ function controller(projectApi, alertMessage) {
     self.allProjects = []
 
 
-    self.code = `/* some thing here */`
+    self.code = `/* your code is here */`
     self.curFile = 'sample.js'
   }
 

@@ -7,9 +7,9 @@ controller.$inject = []
 function controller() {
   const self = this
 
-  self.$onInit = function() {
-    initState()
-  }
+  // self.$onInit = function() {
+  //   initState()
+  // }
 
   self.$onChanges = function ({ projectName, allProjects }) {
     if (projectName && projectName.currentValue) {
@@ -23,14 +23,14 @@ function controller() {
 
   self.projectOnClick = function (name) {
     self.openProject(name)
-    self.modalStyle.display = 'none'
+    // self.modalStyle.display = 'none'
   }
 
-  function initState() {
-    self.modalStyle = {
-      display: 'none'
-    }
-  }
+  // function initState() {
+  //   self.modalStyle = {
+  //     display: 'none'
+  //   }
+  // }
 }
 
 export default {
@@ -42,7 +42,8 @@ export default {
       allProjects: '<',
       openProject: '<',
       openFile: '<',
-      openFolder: '<'
+      openFolder: '<',
+      addFunc: '<'
     },
     template,
     controller,
