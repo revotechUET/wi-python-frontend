@@ -33,7 +33,7 @@ function controller() {
 
   function initState() {
     self.modalStyle = {
-      display: self.show ? 'block' : 'none'
+      display: 'none'
     }
   }
 }
@@ -45,7 +45,7 @@ export default {
       modalName: '<',
       icon: '<',
       iconOnClick: '<',
-      modalStyle: '<',
+      // modalStyle: '<',
       allowCloseAfterClick: '<'
     },
     template,
