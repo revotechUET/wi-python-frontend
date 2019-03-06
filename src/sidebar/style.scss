@@ -2,26 +2,26 @@
   // margin-top: 10px;
   height: 100%;
   background-color: whitesmoke;
-  .tools{
-    margin: 5px 0;
-    display: flex;
-    padding-left: 5px;
-    flex-direction: row-reverse;
+  // .tools{
+  //   margin: 5px 0;
+  //   display: flex;
+  //   padding-left: 5px;
+  //   flex-direction: row-reverse;
 
-    i {
-      cursor: pointer;
-      font-size: 15px;
-      margin-right: 25px;
+  //   i {
+  //     cursor: pointer;
+  //     font-size: 15px;
+  //     margin-right: 25px;
 
-      &:hover {
-        color: fade-in($color: #000000, $amount: 0)
-      }
+  //     &:hover {
+  //       color: fade-in($color: #000000, $amount: 0)
+  //     }
 
-      &:active{
-        color: fade-in($color: #999999, $amount: 0)
-      }
-    }    
-  }
+  //     &:active{
+  //       color: fade-in($color: #999999, $amount: 0)
+  //     }
+  //   }    
+  // }
 
   .list-project {
     list-style: none;

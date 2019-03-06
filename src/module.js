@@ -6,6 +6,8 @@ import fElement from './f-element'
 import terminal from './terminal'
 import explorer from './explorer'
 import modalIcon from './modal-icon'
+import tooltipIcon from './tooltip-icon'
+import tools from './tools'
 
 
 import * as config from './_config'
@@ -21,6 +23,7 @@ import * as funcGen from './_func-gen'
 const moduleName = 'online-editor-client'
 const dependencies = []
 const renderComponent = '<app></app>'
+// const renderComponent = '<toolbar></toolbar>'
 
 angular.module(moduleName, dependencies)
   .component(app.name, app.options)
@@ -29,6 +32,8 @@ angular.module(moduleName, dependencies)
   .component(terminal.name, terminal.options)
   .component(explorer.name, explorer.options)
   .component(modalIcon.name, modalIcon.options)
+  .component(tooltipIcon.name, tooltipIcon.options)
+  .component(tools.name, tools.options)
   .filter(emptyArray.name, emptyArray.filter)
   .service(config.name, config.service)
   .service(projectApi.name, projectApi.service)

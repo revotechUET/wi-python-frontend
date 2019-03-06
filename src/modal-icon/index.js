@@ -3,6 +3,11 @@ import './style.scss'
 
 const name = 'modalIcon'
 
+///////////////////////////////////////
+
+// A Icon when is clicked show up a modal
+
+/////////////////////////////////////
 controller.$inject = []
 function controller() {
   const self = this

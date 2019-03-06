@@ -1,5 +1,21 @@
 <div class="app">
-  <sidebar 
+
+  <div style="width:20%">
+    
+    <tools></tools>
+
+    <sidebar 
+      current-project="self.currentProject"
+      find-all-projects="self.findAllProjects"
+      all-projects="self.allProjects"
+      open-project="self.openProject"
+      open-file="self.openFile"
+      open-folder="self.openFolder"
+      add-func="self.addFunction">
+    </sidebar>
+  </div>
+
+  <!-- <sidebar 
     style="width:20%" 
     current-project="self.currentProject"
     find-all-projects="self.findAllProjects"
@@ -8,7 +24,7 @@
     open-file="self.openFile"
     open-folder="self.openFolder"
     add-func="self.addFunction">
-  </sidebar>
+  </sidebar> -->
   
   <explorer 
     style="width:40%"
