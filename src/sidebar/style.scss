@@ -23,26 +23,26 @@
   //   }    
   // }
 
-  .list-project {
-    list-style: none;
-    margin-top: 10px;
+  // .list-project {
+  //   list-style: none;
+  //   margin-top: 10px;
     
-    li {
-      text-align: left;
-      margin-bottom: 3px;
+  //   li {
+  //     text-align: left;
+  //     margin-bottom: 3px;
 
-      i {
-        margin-right: 10px;
-      }
+  //     i {
+  //       margin-right: 10px;
+  //     }
 
-      span {
-        cursor: pointer;
-        &:hover{
-          text-decoration: underline;
-        }
-      }
-    }
-  }
+  //     span {
+  //       cursor: pointer;
+  //       &:hover{
+  //         text-decoration: underline;
+  //       }
+  //     }
+  //   }
+  // }
   // overflow-y: auto;
   // position: fixed;
   // overflow-y: hidden;

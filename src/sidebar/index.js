@@ -11,20 +11,20 @@ function controller() {
   //   initState()
   // }
 
-  self.$onChanges = function ({ projectName, allProjects }) {
-    if (projectName && projectName.currentValue) {
-      self.projectName = projectName.currentValue
-    }
+  // self.$onChanges = function ({ projectName, allProjects }) {
+  //   if (projectName && projectName.currentValue) {
+  //     self.projectName = projectName.currentValue
+  //   }
 
-    if (allProjects && allProjects.currentValue) {
-      self.allProjects = allProjects.currentValue
-    }
-  }
+  //   if (allProjects && allProjects.currentValue) {
+  //     self.allProjects = allProjects.currentValue
+  //   }
+  // }
 
-  self.projectOnClick = function (name) {
-    self.openProject(name)
-    // self.modalStyle.display = 'none'
-  }
+  // self.projectOnClick = function (name) {
+  //   self.openProject(name)
+  //   // self.modalStyle.display = 'none'
+  // }
 
   // function initState() {
   //   self.modalStyle = {
@@ -38,9 +38,9 @@ export default {
   options: {
     bindings: {
       currentProject: '<',
-      findAllProjects: '<',
-      allProjects: '<',
-      openProject: '<',
+
+      // allProjects: '<',
+      // openProject: '<',
       openFile: '<',
       openFolder: '<',
       addFunc: '<'

@@ -4,6 +4,27 @@
   padding-left: 5px;
   flex-direction: row-reverse;
 
+  .list-project {
+    list-style: none;
+    margin-top: 10px;
+    
+    li {
+      text-align: left;
+      margin-bottom: 3px;
+
+      i {
+        margin-right: 10px;
+      }
+
+      span {
+        cursor: pointer;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
   i {
     cursor: pointer;
     font-size: 15px;

@@ -19,7 +19,7 @@ function controller(browserCodeRunner) {
   }
 
   function initState() {
-    
+
   }
 }
 
@@ -27,6 +27,9 @@ export default {
   name,
   options: {
     bindings: {
+      openProject: '<',
+      findAllProjects: '<',
+      allProjects: '<',
     },
     template,
     controller,
