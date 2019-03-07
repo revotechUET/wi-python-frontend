@@ -32325,7 +32325,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src={{self.link}} frameborder=0> </iframe> </div>";
+module.exports = "<div class=terminal> <div class=tools> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src={{self.link}} frameborder=0> </iframe> </div>";
 
 /***/ }),
 
@@ -32348,20 +32348,13 @@ __webpack_require__.r(__webpack_exports__);
 /////////////////////////////////////
 
 const name = 'tools';
-controller.$inject = [];
+controller.$inject = ['browserCodeRunner'];
 
-function controller() {
+function controller(browserCodeRunner) {
   const self = this;
-  const $ = window.$;
 
   self.$onInit = function () {
     initState();
-    $('#user-toolbar').toolbar({
-      content: '#user-toolbar-options',
-      position: 'bottom',
-      style: 'dark',
-      event: 'click'
-    });
   };
 
   function initState() {}
@@ -32416,7 +32409,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> <i class=\"fas fa-pencil-alt\" ng-click=self.addFunc()></i> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.projectOnClick(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
@@ -32446,22 +32439,56 @@ function controller() {
   const $ = window.$;
 
   self.$onInit = function () {
-    initState();
-    $('#user-toolbar').toolbar({
-      content: '#user-toolbar-options',
-      position: 'bottom',
-      style: 'dark',
-      event: 'click'
-    });
+    initState(); // $(`.tooltip-icon i`).toolbar({
+    //   content: '#user-toolbar-options',
+    //   position: 'bottom',
+    //   style: 'dark',
+    //   event: 'click'
+    // })
+    // $('#' + self.id).toolbar({
+    //   content: '#user-toolbar-options',
+    //   position: 'bottom',
+    //   style: 'dark',
+    //   event: 'click'
+    // })
+    // console.log($('.tooltip-icon i'))
   };
 
-  function initState() {}
+  self.iconOnClick = function () {
+    if (self.iconFirstClick) {
+      const $icon = $(`#${self.idDomIcon}`);
+      const $bar = $(`#${self.idDomBar}`);
+
+      if ($icon.length && $bar) {
+        $icon.toolbar({
+          content: `#${self.idDomBar}`,
+          position: 'bottom',
+          style: 'dark',
+          event: 'click'
+        });
+        self.iconFirstClick = false;
+      }
+    }
+  };
+
+  function initState() {
+    self.idDomIcon = `${name}-${randInt()}-icon`;
+    self.idDomBar = `${name}-${randInt()}-bar`;
+    self.iconFirstClick = true;
+  }
+
+  function randInt() {
+    return Math.floor(Math.random() * 100 + 1);
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name,
   options: {
-    bindings: {},
+    bindings: {
+      icon: '<',
+      iconTitle: '<'
+    },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
     controllerAs: 'self'
@@ -32507,7 +32534,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<a id=user-toolbar>click</a> <div id=user-toolbar-options style=display:none> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> </div>";
+module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} class=\"fas fa-pencil-alt\" ng-click=self.iconOnClick()></i> <div id={{self.idDomBar}} style=display:none> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> </div> </div>";
 
 /***/ })
 

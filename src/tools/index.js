@@ -10,21 +10,12 @@ import './style.scss'
 
 const name = 'tools'
 
-controller.$inject = []
-function controller() {
+controller.$inject = ['browserCodeRunner']
+function controller(browserCodeRunner) {
   const self = this
-  const $ = window.$
 
   self.$onInit = function () {
     initState()
-    
-    $('#user-toolbar').toolbar({
-      content: '#user-toolbar-options',
-      position: 'bottom',
-      style: 'dark',
-      event: 'click'
-    })
-
   }
 
   function initState() {

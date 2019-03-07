@@ -1,5 +1,27 @@
 <div class="tools">
 
+  
+  <i 
+    class="fas fa-desktop" 
+    title="run code" 
+    ng-click="self.run()">
+  </i>
+
+  <i class="fas fa-save"
+    title="save code"
+    ng-click="self.saveCode()">
+  </i>
+
+  <!-- <i class="fas fa-pencil-alt" ng-click="self.addFunc()"></i> -->
+
+  <tooltip-icon>
+    <!-- <a href="#"><i class="fab fa-500px"></i></a>
+    <a href="#"><i class="fab fa-500px"></i></a>
+    <a href="#"><i class="fab fa-500px"></i></a>
+    <a href="#"><i class="fab fa-500px"></i></a> -->
+  </tooltip-icon>
+  
+  
   <modal-icon
     modal-name="'Open Project'" 
     icon="'fas fa-box-open'"
@@ -14,6 +36,4 @@
       </li>
     </ul>
   </modal-icon>
-
-  <i class="fas fa-pencil-alt" ng-click="self.addFunc()"></i>
 </div>
