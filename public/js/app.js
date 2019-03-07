@@ -31604,7 +31604,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction save-code=self.saveCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile> </terminal> </div>";
 
 /***/ }),
 
@@ -32361,7 +32361,8 @@ function controller(browserCodeRunner) {
       openProject: '<',
       findAllProjects: '<',
       allProjects: '<',
-      addFunc: '<'
+      addFunc: '<',
+      saveCode: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,

@@ -31,7 +31,8 @@ export default {
       findAllProjects: '<',
       allProjects: '<',
 
-      addFunc: '<'
+      addFunc: '<',
+      saveCode: '<'
     },
     template,
     controller,
