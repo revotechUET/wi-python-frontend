@@ -17,23 +17,14 @@ function controller() {
 
   self.$onInit = function () {
     initState()
-
-    // $(`.tooltip-icon i`).toolbar({
-    //   content: '#user-toolbar-options',
-    //   position: 'bottom',
-    //   style: 'dark',
-    //   event: 'click'
-    // })
-
-    // $('#' + self.id).toolbar({
-    //   content: '#user-toolbar-options',
-    //   position: 'bottom',
-    //   style: 'dark',
-    //   event: 'click'
-    // })
-    // console.log($('.tooltip-icon i'))
+    
+    // await autoMountJquery()
   }
 
+
+  // because we set the id dynamicaly
+  // when the component is init, the id hasent not setted yet
+  // so we wait util the user click, if not success click again
   self.iconOnClick = function () {
     if (self.iconFirstClick) {
       const $icon = $(`#${self.idDomIcon}`)
@@ -61,6 +52,20 @@ function controller() {
   function randInt() {
     return Math.floor((Math.random() * 100 ) + 1)
   }
+
+  // because we set the id dynamicaly
+  // when the component is init, the id hasent not setted yet
+  // so we wait util the user click, if not success click again
+  // but we cant depend on user
+  // async function autoMountJquery() {
+  //   if (self.iconFirstClick) return 
+
+  //   const waitTime = 3000
+
+  //   await new Promise(resolve => setTimeout(resolve, waitTime))
+  //   self.iconOnClick()
+  //   await autoMountJquery()
+  // }
 }
 
 export default {
@@ -72,6 +77,7 @@ export default {
     },
     template,
     controller,
-    controllerAs: 'self'
+    controllerAs: 'self',
+    transclude: true,
   }
 }

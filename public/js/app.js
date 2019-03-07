@@ -20703,7 +20703,7 @@ exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100%
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".tools {\n  margin: 5px 0;\n  display: flex;\n  padding-left: 5px;\n  flex-direction: row-reverse; }\n  .tools .list-project {\n    list-style: none;\n    margin-top: 10px; }\n    .tools .list-project li {\n      text-align: left;\n      margin-bottom: 3px; }\n      .tools .list-project li i {\n        margin-right: 10px; }\n      .tools .list-project li span {\n        cursor: pointer; }\n        .tools .list-project li span:hover {\n          text-decoration: underline; }\n  .tools i {\n    cursor: pointer;\n    font-size: 15px;\n    margin-right: 25px; }\n    .tools i:hover {\n      color: black; }\n    .tools i:active {\n      color: #999999; }\n", ""]);
+exports.push([module.i, ".tools {\n  margin: 5px 0;\n  display: flex;\n  padding-left: 5px;\n  flex-direction: row-reverse; }\n  .tools .tooltip-child-icon {\n    color: white; }\n  .tools .list-project {\n    list-style: none;\n    margin-top: 10px; }\n    .tools .list-project li {\n      text-align: left;\n      margin-bottom: 3px; }\n      .tools .list-project li i {\n        margin-right: 10px; }\n      .tools .list-project li span {\n        cursor: pointer; }\n        .tools .list-project li span:hover {\n          text-decoration: underline; }\n  .tools i {\n    cursor: pointer;\n    font-size: 15px;\n    margin-right: 25px; }\n    .tools i:hover {\n      color: black; }\n    .tools i:active {\n      color: #999999; }\n", ""]);
 
 
 
@@ -31604,7 +31604,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder add-func=self.addFunction> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile save-code=self.saveCode> </terminal> </div>";
 
 /***/ }),
 
@@ -32159,8 +32159,8 @@ function controller() {
       // allProjects: '<',
       // openProject: '<',
       openFile: '<',
-      openFolder: '<',
-      addFunc: '<'
+      openFolder: '<' // addFunc: '<'
+
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32360,7 +32360,8 @@ function controller(browserCodeRunner) {
     bindings: {
       openProject: '<',
       findAllProjects: '<',
-      allProjects: '<'
+      allProjects: '<',
+      addFunc: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32407,7 +32408,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
@@ -32437,20 +32438,11 @@ function controller() {
   const $ = window.$;
 
   self.$onInit = function () {
-    initState(); // $(`.tooltip-icon i`).toolbar({
-    //   content: '#user-toolbar-options',
-    //   position: 'bottom',
-    //   style: 'dark',
-    //   event: 'click'
-    // })
-    // $('#' + self.id).toolbar({
-    //   content: '#user-toolbar-options',
-    //   position: 'bottom',
-    //   style: 'dark',
-    //   event: 'click'
-    // })
-    // console.log($('.tooltip-icon i'))
-  };
+    initState(); // await autoMountJquery()
+  }; // because we set the id dynamicaly
+  // when the component is init, the id hasent not setted yet
+  // so we wait util the user click, if not success click again
+
 
   self.iconOnClick = function () {
     if (self.iconFirstClick) {
@@ -32477,7 +32469,18 @@ function controller() {
 
   function randInt() {
     return Math.floor(Math.random() * 100 + 1);
-  }
+  } // because we set the id dynamicaly
+  // when the component is init, the id hasent not setted yet
+  // so we wait util the user click, if not success click again
+  // but we cant depend on user
+  // async function autoMountJquery() {
+  //   if (self.iconFirstClick) return 
+  //   const waitTime = 3000
+  //   await new Promise(resolve => setTimeout(resolve, waitTime))
+  //   self.iconOnClick()
+  //   await autoMountJquery()
+  // }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32489,7 +32492,8 @@ function controller() {
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
-    controllerAs: 'self'
+    controllerAs: 'self',
+    transclude: true
   }
 });
 
@@ -32532,7 +32536,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} class=\"fas fa-pencil-alt\" ng-click=self.iconOnClick()></i> <div id={{self.idDomBar}} style=display:none> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> <a href=#><i class=\"fab fa-500px\"></i></a> </div> </div>";
+module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} class=\"fas fa-pencil-alt\" ng-click=self.iconOnClick()></i> <div id={{self.idDomBar}} style=display:none> <ng-transclude></ng-transclude> </div> </div>";
 
 /***/ })
 

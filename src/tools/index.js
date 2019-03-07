@@ -30,6 +30,8 @@ export default {
       openProject: '<',
       findAllProjects: '<',
       allProjects: '<',
+
+      addFunc: '<'
     },
     template,
     controller,
