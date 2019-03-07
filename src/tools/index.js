@@ -32,7 +32,9 @@ export default {
       allProjects: '<',
 
       addFunc: '<',
-      saveCode: '<'
+      saveCode: '<',
+
+      runCode: '<'
     },
     template,
     controller,

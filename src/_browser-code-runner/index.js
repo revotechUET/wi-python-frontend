@@ -49,17 +49,17 @@ export function service(mime, config, projectApi) {
     const type = mime.getFileType(fileName)
     if (type === mime.types.html) {
       const link = `${HOST}/${project}/${fileName}`
-      return callback({ type, link })
+      return callback(null, { type, link })
     }
 
     if (type === mime.types.python || type === mime.types.javascript) {
       return projectApi.runCode(fileName, project)
         .then(data => render(data))
-        .then(render => callback({ type, render }))
-        .catch(msg => console.error(msg))
+        .then(render => callback(null, { type, render }))
+        .catch(msg => callback(new Error(msg), {}))
     }
 
-    return callback({
+    return callback(null, {
       type,
       render: `file .${type} is not supported `
     })

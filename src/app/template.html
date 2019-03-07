@@ -9,7 +9,8 @@
       
       add-func="self.addFunction"
       
-      save-code="self.saveCode">
+      save-code="self.saveCode"
+      run-code="self.runCode">
     </tools>
 
     <sidebar 
@@ -40,9 +41,9 @@
 
   <terminal 
     style="width:40%" 
-    project="self.currentProject.rootName"
-    get-current-code="self.getCurrentCode"
-    file-name="self.curFile">
+    result-html="self.resultHtml"
+    iframe-html-link="self.iframeHtmlLink"
+    is-result-a-iframe="self.isResultAIframe">
   </terminal>
 
 <!-- 

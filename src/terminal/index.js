@@ -3,8 +3,8 @@ import './style.scss'
 
 const name = 'terminal'
 
-controller.$inject = ['$sce', 'browserCodeRunner', 'mime']
-function controller($sce, browserCodeRunner, mime) {
+controller.$inject = ['$sce']
+function controller($sce) {
   const self = this
 
 
@@ -12,26 +12,33 @@ function controller($sce, browserCodeRunner, mime) {
     initState()
   }
 
-  self.$onChanges = function ({ fileName }) {
-    if (fileName) {
-      self.fileName = fileName.currentValue
+  self.$onChanges = function ({ resultHtml, iframeHtmlLink, isResultAIframe }) {
+    if (resultHtml) {
+      self._resultHtml =  $sce.trustAsHtml(resultHtml.currentValue)
+    }
+
+    if(iframeHtmlLink) {
+      self._iframeHtmlLink = $sce.trustAsResourceUrl(iframeHtmlLink.currentValue)
+    }
+
+    if(isResultAIframe) {
+      self.isResultAIframe = isResultAIframe.currentValue
     }
   }
 
-  self.run = function () {
-    self.getCurrentCode(code => {
-      browserCodeRunner.execute(self.project, self.fileName, ({ type, render, link }) => {
-        if (render) self.render = $sce.trustAsHtml(render)
-        if (link) self.link = $sce.trustAsResourceUrl(link)
-        self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
-      })
-    })
-  }
+  // self.run = function () {
+  //   self.getCurrentCode(code => {
+  //     browserCodeRunner.execute(self.project, self.fileName, ({ type, render, link }) => {
+  //       if (render) self.render = $sce.trustAsHtml(render)
+  //       if (link) self.link = $sce.trustAsResourceUrl(link)
+  //       self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
+  //     })
+  //   })
+  // }
 
   function initState() {
-    self.render = ''
-    self.link = ''
-    self.codeOrIframe = 'code'
+    self._resultHtml = ''
+    self._iframeHtmlLink = ''
   }
 }
 
@@ -39,10 +46,9 @@ export default {
   name,
   options: {
     bindings: {
-      project: '<',
-      getCurrentCode: '<',
-      fileName: '<',
-      saveCode: '<'
+      resultHtml: '<',
+      iframeHtmlLink: '<',
+      isResultAIframe: '<'
     },
     template,
     controller,

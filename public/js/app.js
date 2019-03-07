@@ -31139,20 +31139,20 @@ function service(mime, config, projectApi) {
 
     if (type === mime.types.html) {
       const link = `${HOST}/${project}/${fileName}`;
-      return callback({
+      return callback(null, {
         type,
         link
       });
     }
 
     if (type === mime.types.python || type === mime.types.javascript) {
-      return projectApi.runCode(fileName, project).then(data => render(data)).then(render => callback({
+      return projectApi.runCode(fileName, project).then(data => render(data)).then(render => callback(null, {
         type,
         render
-      })).catch(msg => console.error(msg));
+      })).catch(msg => callback(new Error(msg), {}));
     }
 
-    return callback({
+    return callback(null, {
       type,
       render: `file .${type} is not supported `
     });
@@ -31448,9 +31448,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = ['projectApi', 'alertMessage', 'funcGen'];
+controller.$inject = ['projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime'];
 
-function controller(projectApi, alertMessage, funcGen) {
+function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) {
   const self = this;
 
   self.$onInit = function () {
@@ -31514,6 +31514,22 @@ function controller(projectApi, alertMessage, funcGen) {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => alertMessage.success('save success')).catch(error => alertMessage.error(error));
   };
 
+  self.runCode = function () {
+    browserCodeRunner.execute(self.currentProject.rootName, self.curFile, (error, {
+      type,
+      render,
+      link
+    }) => {
+      if (error) {
+        return alertMessage.error(error.message);
+      }
+
+      if (render) self.resultHtml = render;
+      if (link) self.iframeHtmlLink = link;
+      self.isResultAIframe = type === mime.types.html;
+    });
+  };
+
   self.coding = function (code) {
     self.code = code;
   };
@@ -31534,9 +31550,15 @@ function controller(projectApi, alertMessage, funcGen) {
       folders: [],
       path: ''
     };
-    self.allProjects = [];
+    self.allProjects = []; // pass to explorer
+
     self.code = `/* your code is here */`;
-    self.curFile = 'sample.js';
+    self.curFile = 'sample.js'; // pass to terminal
+
+    self.resultHtml = '';
+    self.iframeHtmlLink = ''; // if code is html, this field will have value
+
+    self.isResultAIframe = false;
   }
 
   function findNodeInTree(rootNode, predicate) {
@@ -31604,7 +31626,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction save-code=self.saveCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% project=self.currentProject.rootName get-current-code=self.getCurrentCode file-name=self.curFile> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
 
 /***/ }),
 
@@ -32227,9 +32249,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = ['$sce', 'browserCodeRunner', 'mime'];
+controller.$inject = ['$sce'];
 
-function controller($sce, browserCodeRunner, mime) {
+function controller($sce) {
   const self = this;
 
   self.$onInit = function () {
@@ -32237,31 +32259,35 @@ function controller($sce, browserCodeRunner, mime) {
   };
 
   self.$onChanges = function ({
-    fileName
+    resultHtml,
+    iframeHtmlLink,
+    isResultAIframe
   }) {
-    if (fileName) {
-      self.fileName = fileName.currentValue;
+    if (resultHtml) {
+      self._resultHtml = $sce.trustAsHtml(resultHtml.currentValue);
     }
-  };
 
-  self.run = function () {
-    self.getCurrentCode(code => {
-      browserCodeRunner.execute(self.project, self.fileName, ({
-        type,
-        render,
-        link
-      }) => {
-        if (render) self.render = $sce.trustAsHtml(render);
-        if (link) self.link = $sce.trustAsResourceUrl(link);
-        self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code';
-      });
-    });
-  };
+    if (iframeHtmlLink) {
+      self._iframeHtmlLink = $sce.trustAsResourceUrl(iframeHtmlLink.currentValue);
+    }
+
+    if (isResultAIframe) {
+      self.isResultAIframe = isResultAIframe.currentValue;
+    }
+  }; // self.run = function () {
+  //   self.getCurrentCode(code => {
+  //     browserCodeRunner.execute(self.project, self.fileName, ({ type, render, link }) => {
+  //       if (render) self.render = $sce.trustAsHtml(render)
+  //       if (link) self.link = $sce.trustAsResourceUrl(link)
+  //       self.codeOrIframe = type === mime.types.html ? 'iframe' : 'code'
+  //     })
+  //   })
+  // }
+
 
   function initState() {
-    self.render = '';
-    self.link = '';
-    self.codeOrIframe = 'code';
+    self._resultHtml = '';
+    self._iframeHtmlLink = '';
   }
 }
 
@@ -32269,10 +32295,9 @@ function controller($sce, browserCodeRunner, mime) {
   name,
   options: {
     bindings: {
-      project: '<',
-      getCurrentCode: '<',
-      fileName: '<',
-      saveCode: '<'
+      resultHtml: '<',
+      iframeHtmlLink: '<',
+      isResultAIframe: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32319,7 +32344,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div class=tools> </div> <div ng-if=\"self.codeOrIframe === 'code'\" ng-bind-html=self.render></div> <iframe ng-if=\"self.codeOrIframe === 'iframe'\" src={{self.link}} frameborder=0> </iframe> </div>";
+module.exports = "<div class=terminal> <div class=tools> </div> <div ng-if=!self.codeOrIframe ng-bind-html=self._resultHtml></div> <iframe ng-if=self.isResultAIframe src={{self._iframeHtmlLink}} frameborder=0> </iframe> </div>";
 
 /***/ }),
 
@@ -32362,7 +32387,8 @@ function controller(browserCodeRunner) {
       findAllProjects: '<',
       allProjects: '<',
       addFunc: '<',
-      saveCode: '<'
+      saveCode: '<',
+      runCode: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -32409,7 +32435,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.run()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 

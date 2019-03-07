@@ -12,10 +12,10 @@
     </i> -->
 
   </div>
-  <div ng-if="self.codeOrIframe === 'code'" ng-bind-html="self.render"></div>
+  <div ng-if="!self.codeOrIframe" ng-bind-html="self._resultHtml"></div>
   <iframe 
-    ng-if="self.codeOrIframe === 'iframe'" 
-    src="{{self.link}}" 
+    ng-if="self.isResultAIframe" 
+    src="{{self._iframeHtmlLink}}" 
     frameborder="0">
   </iframe>
 </div>

@@ -3,8 +3,8 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['projectApi', 'alertMessage', 'funcGen']
-function controller(projectApi, alertMessage, funcGen) {
+controller.$inject = ['projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime']
+function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) {
   const self = this
 
   self.$onInit = function () {
@@ -81,6 +81,19 @@ function controller(projectApi, alertMessage, funcGen) {
 
   }
 
+  self.runCode = function () {
+    browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
+      (error, { type, render, link }) => {
+        if (error) {
+          return alertMessage.error(error.message)
+        }
+
+        if(render) self.resultHtml = render
+        if(link) self.iframeHtmlLink = link
+        self.isResultAIframe = type === mime.types.html
+      })
+  }
+
   self.coding = function (code) {
     self.code = code
   }
@@ -105,9 +118,14 @@ function controller(projectApi, alertMessage, funcGen) {
     }
     self.allProjects = []
 
-
+    // pass to explorer
     self.code = `/* your code is here */`
     self.curFile = 'sample.js'
+
+    // pass to terminal
+    self.resultHtml = ''
+    self.iframeHtmlLink = '' // if code is html, this field will have value
+    self.isResultAIframe = false
   }
 
   function findNodeInTree(rootNode, predicate) {
