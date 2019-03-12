@@ -1,10 +1,11 @@
-export default function template(rootUrl) {
+export function login(rootUrl) {
   return `
   
 def login(username, password):
+  '''Login function via api'''
   import requests
 
-  url = 'https://users.i2g.cloud/login'
+  url = '${rootUrl}/login'
   payload = {
     "username": username,
     "password": password

@@ -1,37 +1,32 @@
+import * as pyGen from './python'
+
 export const name = 'funcGen'
 
-service.$inject = ['mime']
-export function service(mime) {
+service.$inject = ['config']
+export function service(config) {
 
-  function generateForFile(fileName) {
-    const type = mime.getFileType(fileName)
-    if(type === mime.types.javascript) return jsFunc()
-    if(type === mime.types.python) return pyFunc()
-  
-    return `/*doesn't support this type*/`
+
+  const LIST_ACCEPTED_TYPE = {
+    LOGIN: 'login',
+    PROJECT_LIST: 'project/list'
   }
-  
-  function jsFunc() {
-    return `
-//auto generate function
-function someFunction(params) {
-  return true
-}
 
-`
-  }
-  
-  function pyFunc() {
-    return `
-#auto generate function
-def someFunction(params):
-  return True
+  function generateForPy(type) {
 
-`
+    switch (type){
+
+      case LIST_ACCEPTED_TYPE.LOGIN:
+        return pyGen.auth.login(config.USER_RELATED_ROOT_URL)
+
+
+      default: 
+        return '# NOT SUPPORTED'
+    }
+
   }
 
   return {
-    generateForFile
+    generateForPy
   }
   
 }

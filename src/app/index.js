@@ -102,10 +102,18 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     cb(self.code)
   }
 
-  self.addFunction = function () {
+  self.addFunction = function (type) {
 
-    const newFuncCode = funcGen.generateForFile(self.curFile)
-    self.code = newFuncCode + self.code
+    // const newFuncCode = funcGen.generateForFile(self.curFile)
+    // self.code = newFuncCode + self.code
+
+    const fileType = mime.getFileType(self.curFile)
+    if(fileType !== mime.types.python) 
+      return alertMessage.error(`Doesn't support gen function for file ${fileType}`)
+    
+    
+    const generatedFuncCode = funcGen.generateForPy(type)
+    self.code = generatedFuncCode + self.code
   }
 
 

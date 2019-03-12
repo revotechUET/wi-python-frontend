@@ -31097,7 +31097,7 @@ __webpack_require__.r(__webpack_exports__);
 const name = 'browserCodeRunner';
 service.$inject = ['mime', 'config', 'projectApi'];
 function service(mime, config, projectApi) {
-  const HOST = config.HOST;
+  const HOST = config.ONLINE_EDITOR_URL;
 
   const render = code => {
     console.log({
@@ -31179,7 +31179,9 @@ __webpack_require__.r(__webpack_exports__);
 const name = 'config';
 function service() {
   return {
-    HOST: 'http://localhost:3001'
+    ONLINE_EDITOR_URL: 'http://localhost:3001',
+    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud',
+    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   };
 }
 
@@ -31216,38 +31218,102 @@ function filter() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+/* harmony import */ var _python__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./python */ "./src/_func-gen/python/index.js");
+
 const name = 'funcGen';
-service.$inject = ['mime'];
-function service(mime) {
-  function generateForFile(fileName) {
-    const type = mime.getFileType(fileName);
-    if (type === mime.types.javascript) return jsFunc();
-    if (type === mime.types.python) return pyFunc();
-    return `/*doesn't support this type*/`;
-  }
+service.$inject = ['config'];
+function service(config) {
+  const LIST_ACCEPTED_TYPE = {
+    LOGIN: 'login',
+    PROJECT_LIST: 'project/list'
+  };
 
-  function jsFunc() {
-    return `
-//auto generate function
-function someFunction(params) {
-  return true
-}
+  function generateForPy(type) {
+    switch (type) {
+      case LIST_ACCEPTED_TYPE.LOGIN:
+        return _python__WEBPACK_IMPORTED_MODULE_0__["auth"].login(config.USER_RELATED_ROOT_URL);
 
-`;
-  }
-
-  function pyFunc() {
-    return `
-#auto generate function
-def someFunction(params):
-  return True
-
-`;
+      default:
+        return '# NOT SUPPORTED';
+    }
   }
 
   return {
-    generateForFile
+    generateForPy
   };
+}
+
+/***/ }),
+
+/***/ "./src/_func-gen/python/auth.js":
+/*!**************************************!*\
+  !*** ./src/_func-gen/python/auth.js ***!
+  \**************************************/
+/*! exports provided: login */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
+function login(rootUrl) {
+  return `
+  
+def login(username, password):
+  '''Login function via api'''
+  import requests
+
+  url = '${rootUrl}/login'
+  payload = {
+    "username": username,
+    "password": password
+  }
+
+  r = requests.post(url, data=payload, json=True, verify=False)
+  print(r.text)
+`;
+}
+
+/***/ }),
+
+/***/ "./src/_func-gen/python/index.js":
+/*!***************************************!*\
+  !*** ./src/_func-gen/python/index.js ***!
+  \***************************************/
+/*! exports provided: auth, project */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth */ "./src/_func-gen/python/auth.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return _auth__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/_func-gen/python/project.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "project", function() { return _project__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./src/_func-gen/python/project.js":
+/*!*****************************************!*\
+  !*** ./src/_func-gen/python/project.js ***!
+  \*****************************************/
+/*! exports provided: list */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
+function list(rootUrl) {
+  return `
+  
+  def projectList(username, password):
+  '''List project by owner'''
+  import requests
+
+  
+`;
 }
 
 /***/ }),
@@ -31346,37 +31412,37 @@ const name = 'projectApi';
 service.$inject = ['config', 'request'];
 function service(config, request) {
   const newProject = name => {
-    const url = `${config.HOST}/project/new?name=${encodeURIComponent(name)}`;
+    const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}`;
     return request(url);
   };
 
   const openProject = name => {
-    const url = `${config.HOST}/project/open?name=${encodeURIComponent(name)}`;
+    const url = `${config.ONLINE_EDITOR_URL}/project/open?name=${encodeURIComponent(name)}`;
     return request.get(url);
   };
 
   const openFile = dir => {
-    const url = `${config.HOST}/project/read-file?dir=${encodeURIComponent(dir)}`;
+    const url = `${config.ONLINE_EDITOR_URL}/project/read-file?dir=${encodeURIComponent(dir)}`;
     return request.get(url);
   };
 
   const openFolder = dir => {
-    const url = `${config.HOST}/project/read-folder?dir=${encodeURIComponent(dir)}`;
+    const url = `${config.ONLINE_EDITOR_URL}/project/read-folder?dir=${encodeURIComponent(dir)}`;
     return request.get(url);
   };
 
   const listProjects = () => {
-    const url = `${config.HOST}/project/list`;
+    const url = `${config.ONLINE_EDITOR_URL}/project/list`;
     return request.get(url);
   };
 
   const runCode = (fileName, project) => {
-    const url = `${config.HOST}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}`;
+    const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}`;
     return request.get(url);
   };
 
   const saveCode = (project, fileName, code) => {
-    const url = `${config.HOST}/code-action/save`;
+    const url = `${config.ONLINE_EDITOR_URL}/code-action/save`;
     const data = {
       project,
       fileName,
@@ -31538,9 +31604,13 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     cb(self.code);
   };
 
-  self.addFunction = function () {
-    const newFuncCode = funcGen.generateForFile(self.curFile);
-    self.code = newFuncCode + self.code;
+  self.addFunction = function (type) {
+    // const newFuncCode = funcGen.generateForFile(self.curFile)
+    // self.code = newFuncCode + self.code
+    const fileType = mime.getFileType(self.curFile);
+    if (fileType !== mime.types.python) return alertMessage.error(`Doesn't support gen function for file ${fileType}`);
+    const generatedFuncCode = funcGen.generateForPy(type);
+    self.code = generatedFuncCode + self.code;
   };
 
   function initState() {
@@ -32435,7 +32505,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
