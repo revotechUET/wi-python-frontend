@@ -32435,7 +32435,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=self.addFunc()> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
@@ -32563,7 +32563,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} class=\"fas fa-pencil-alt\" ng-click=self.iconOnClick()></i> <div id={{self.idDomBar}} style=display:none> <ng-transclude></ng-transclude> </div> </div>";
+module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} title={{self.iconTitle}} class={{self.icon}} ng-click=self.iconOnClick()> </i> <div id={{self.idDomBar}} style=display:none> <ng-transclude></ng-transclude> </div> </div>";
 
 /***/ })
 

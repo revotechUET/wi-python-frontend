@@ -1,5 +1,9 @@
 <div class="tooltip-icon">
-	<i id="{{self.idDomIcon}}" class="fas fa-pencil-alt" ng-click="self.iconOnClick()"></i>
+	<i id="{{self.idDomIcon}}"
+		title="{{self.iconTitle}}"
+		class="{{self.icon}}"
+		ng-click="self.iconOnClick()">
+	</i>
 
 	<div id="{{self.idDomBar}}" style="display:none;">
 		<!-- <a href="#"><i class="fab fa-500px"></i></a>

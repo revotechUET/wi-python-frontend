@@ -3,6 +3,6 @@ export const name = 'config'
 export function service() {
 
   return {
-    HOST: 'http://localhost:3001'
+    ONLINE_EDITOR_URL: 'http://localhost:3001'
   }
 }

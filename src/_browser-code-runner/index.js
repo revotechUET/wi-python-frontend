@@ -6,7 +6,7 @@ export const name = 'browserCodeRunner'
 service.$inject = ['mime', 'config', 'projectApi']
 export function service(mime, config, projectApi) {
 
-  const HOST = config.HOST
+  const HOST = config.ONLINE_EDITOR_URL
 
   const render = code => {
     console.log({code})
