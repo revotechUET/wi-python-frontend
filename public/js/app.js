@@ -31358,6 +31358,36 @@ function service(config) {
 
 /***/ }),
 
+/***/ "./src/_key-bind/index.js":
+/*!********************************!*\
+  !*** ./src/_key-bind/index.js ***!
+  \********************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'keyBind';
+service.$inject = ['$window'];
+function service($window) {
+  const ENTER_CODE = 13;
+
+  function onEnterPress(cb) {
+    $window.addEventListener('keyup', function (e) {
+      e.preventDefault();
+      if (e.keyCode === ENTER_CODE) cb();
+    });
+  }
+
+  return {
+    onEnterPress
+  };
+}
+
+/***/ }),
+
 /***/ "./src/_mime/index.js":
 /*!****************************!*\
   !*** ./src/_mime/index.js ***!
@@ -32108,14 +32138,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
 
 const name = 'loginPage';
-controller.$inject = ['auth', 'alertMessage'];
+controller.$inject = ['auth', 'alertMessage', 'keyBind'];
 
-function controller(auth, alertMessage) {
+function controller(auth, alertMessage, keyBind) {
   const self = this;
 
   self.$onInit = function () {
-    // auth.login('hoang', '1')
     initState();
+    keyBind.onEnterPress(() => self.submitForm());
   };
 
   self.submitForm = function () {
@@ -32299,6 +32329,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
 /* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
+/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
+
 
 
 
@@ -32324,7 +32356,7 @@ const moduleName = 'online-editor-client';
 const dependencies = []; // const renderComponent = '<app></app>'
 
 const renderComponent = '<browser></browser>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_19__["name"], _auth__WEBPACK_IMPORTED_MODULE_19__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_19__["name"], _auth__WEBPACK_IMPORTED_MODULE_19__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_20__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_20__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),

@@ -2,14 +2,14 @@ import template from './template.html'
 
 const name = 'loginPage'
 
-controller.$inject = ['auth', 'alertMessage']
-function controller(auth, alertMessage) {
+controller.$inject = ['auth', 'alertMessage', 'keyBind']
+function controller(auth, alertMessage, keyBind) {
   const self = this
 
   self.$onInit = function () {
-    // auth.login('hoang', '1')
-
     initState()
+
+    keyBind.onEnterPress(() => self.submitForm())
   }
 
   self.submitForm = function() {

@@ -20,6 +20,7 @@ import * as mime from './_mime'
 import * as browserCodeRunner from './_browser-code-runner'
 import * as funcGen from './_func-gen'
 import * as auth from './_auth'
+import * as keyBind from './_key-bind'
 // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client'
@@ -47,6 +48,7 @@ angular.module(moduleName, dependencies)
   .service(browserCodeRunner.name, browserCodeRunner.service)
   .service(funcGen.name, funcGen.service)
   .service(auth.name, auth.service)
+  .service(keyBind.name, keyBind.service)
   
 
 export default renderComponent
