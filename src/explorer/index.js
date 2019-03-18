@@ -62,6 +62,15 @@ function controller(mime) {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
 
     document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
+
+    // //fix sync scroll between <pre> and <textarea>
+    // const $pre = document.querySelector('.explorer pre')
+    // const $textarea = document.querySelector('.explorer textarea')
+
+    // $textarea.addEventListener('scroll', e => {
+    //   $pre.scrollTop = $textarea.scrollTop
+    // })
+    
   }
 
   function addPythonSupport(codeArea) {

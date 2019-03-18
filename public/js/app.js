@@ -31180,8 +31180,10 @@ const name = 'config';
 function service() {
   return {
     ONLINE_EDITOR_URL: 'http://localhost:3001',
-    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud',
-    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
+    // USER_RELATED_ROOT_URL: 'https://users.i2g.cloud',
+    USER_RELATED_ROOT_URL: 'http://localhost:3000',
+    // PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
+    PROJECT_RELATED_ROOT_URL: 'http://localhost:3000'
   };
 }
 
@@ -31207,6 +31209,41 @@ function filter() {
 
 /***/ }),
 
+/***/ "./src/_func-gen/gen-py-api.js":
+/*!*************************************!*\
+  !*** ./src/_func-gen/gen-py-api.js ***!
+  \*************************************/
+/*! exports provided: generateTemplateApi */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateTemplateApi", function() { return generateTemplateApi; });
+/**
+ * 
+ * @param {String} funcName 
+ * @param {Array<String>} paramNames 
+ * @param {String} url
+ * @returns {String}
+ */
+function generateTemplateApi(funcName, paramNames, url) {
+  const listParamsInFunc = paramNames.join(', ');
+  const dataForPayLoad = paramNames.map(param => `"${param}": str(${param})`).join(',\n    ');
+  return `
+
+def ${funcName}(${listParamsInFunc}):
+  import requests
+  
+  url = '${url}'
+  payload = {
+    ${dataForPayLoad}
+  }
+  r = requests.post(url, json=payload, verify=False)
+  return r.json()`;
+}
+
+/***/ }),
+
 /***/ "./src/_func-gen/index.js":
 /*!********************************!*\
   !*** ./src/_func-gen/index.js ***!
@@ -31218,102 +31255,42 @@ function filter() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
-/* harmony import */ var _python__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./python */ "./src/_func-gen/python/index.js");
+/* harmony import */ var _gen_py_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gen-py-api */ "./src/_func-gen/gen-py-api.js");
 
 const name = 'funcGen';
 service.$inject = ['config'];
 function service(config) {
-  const LIST_ACCEPTED_TYPE = {
-    LOGIN: 'login',
-    PROJECT_LIST: 'project/list'
-  };
+  const listFuncs = [{
+    funcName: 'login',
+    paramNames: ['username', 'password'],
+    url: config.USER_RELATED_ROOT_URL + '/user/login'
+  }, {
+    funcName: 'list_project',
+    paramNames: [],
+    url: config.PROJECT_RELATED_ROOT_URL + '/project/list'
+  }, {
+    funcName: 'list_well_of_project',
+    paramNames: ['idProject', 'start', 'limit', 'forward', 'match'],
+    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/list'
+  }, {
+    funcName: 'list_reference_curve',
+    paramNames: [],
+    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/reference-curve/list'
+  }, {
+    funcName: 'get_curve_info',
+    paramNames: ['idReferenceCurve'],
+    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/reference-curve/info'
+  }];
 
-  function generateForPy(type) {
-    switch (type) {
-      case LIST_ACCEPTED_TYPE.LOGIN:
-        return _python__WEBPACK_IMPORTED_MODULE_0__["auth"].login(config.USER_RELATED_ROOT_URL);
-
-      default:
-        return '# NOT SUPPORTED';
-    }
+  function generateForPy(funcName) {
+    const fnData = listFuncs.filter(fn => fn.funcName === funcName)[0];
+    if (!fnData) return 'function name is not founded';
+    return Object(_gen_py_api__WEBPACK_IMPORTED_MODULE_0__["generateTemplateApi"])(fnData.funcName, fnData.paramNames, fnData.url);
   }
 
   return {
     generateForPy
   };
-}
-
-/***/ }),
-
-/***/ "./src/_func-gen/python/auth.js":
-/*!**************************************!*\
-  !*** ./src/_func-gen/python/auth.js ***!
-  \**************************************/
-/*! exports provided: login */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
-function login(rootUrl) {
-  return `
-  
-def login(username, password):
-  '''Login function via api'''
-  import requests
-
-  url = '${rootUrl}/login'
-  payload = {
-    "username": username,
-    "password": password
-  }
-
-  r = requests.post(url, data=payload, json=True, verify=False)
-  print(r.text)
-`;
-}
-
-/***/ }),
-
-/***/ "./src/_func-gen/python/index.js":
-/*!***************************************!*\
-  !*** ./src/_func-gen/python/index.js ***!
-  \***************************************/
-/*! exports provided: auth, project */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./auth */ "./src/_func-gen/python/auth.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return _auth__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-/* harmony import */ var _project__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./project */ "./src/_func-gen/python/project.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "project", function() { return _project__WEBPACK_IMPORTED_MODULE_1__["default"]; });
-
-
-
-
-/***/ }),
-
-/***/ "./src/_func-gen/python/project.js":
-/*!*****************************************!*\
-  !*** ./src/_func-gen/python/project.js ***!
-  \*****************************************/
-/*! exports provided: list */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "list", function() { return list; });
-function list(rootUrl) {
-  return `
-  
-  def projectList(username, password):
-  '''List project by owner'''
-  import requests
-
-  
-`;
 }
 
 /***/ }),
@@ -31700,6 +31677,48 @@ module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects
 
 /***/ }),
 
+/***/ "./src/browser/index.js":
+/*!******************************!*\
+  !*** ./src/browser/index.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/browser/template.html");
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
+
+const name = 'browser';
+controller.$inject = [];
+
+function controller() {
+  const self = this;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name,
+  options: {
+    bindings: {},
+    template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
+    controller,
+    controllerAs: 'self'
+  }
+});
+
+/***/ }),
+
+/***/ "./src/browser/template.html":
+/*!***********************************!*\
+  !*** ./src/browser/template.html ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "";
+
+/***/ }),
+
 /***/ "./src/explorer/index.js":
 /*!*******************************!*\
   !*** ./src/explorer/index.js ***!
@@ -31772,7 +31791,12 @@ function controller(mime) {
 
   function fixDefaultStyle() {
     const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
-    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`;
+    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`; // //fix sync scroll between <pre> and <textarea>
+    // const $pre = document.querySelector('.explorer pre')
+    // const $textarea = document.querySelector('.explorer textarea')
+    // $textarea.addEventListener('scroll', e => {
+    //   $pre.scrollTop = $textarea.scrollTop
+    // })
   }
 
   function addPythonSupport(codeArea) {
@@ -31986,6 +32010,48 @@ function render(component, element) {
 
 /***/ }),
 
+/***/ "./src/login-page/index.js":
+/*!*********************************!*\
+  !*** ./src/login-page/index.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./template.html */ "./src/login-page/template.html");
+/* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
+
+const name = 'loginPage';
+controller.$inject = [];
+
+function controller() {
+  const self = this;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name,
+  options: {
+    bindings: {},
+    template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
+    controller,
+    controllerAs: 'self'
+  }
+});
+
+/***/ }),
+
+/***/ "./src/login-page/template.html":
+/*!**************************************!*\
+  !*** ./src/login-page/template.html ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "";
+
+/***/ }),
+
 /***/ "./src/modal-icon/index.js":
 /*!*********************************!*\
   !*** ./src/modal-icon/index.js ***!
@@ -32123,14 +32189,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal-icon */ "./src/modal-icon/index.js");
 /* harmony import */ var _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tooltip-icon */ "./src/tooltip-icon/index.js");
 /* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tools */ "./src/tools/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
-/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
-/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
-/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
-/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
-/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+/* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./browser */ "./src/browser/index.js");
+/* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./login-page */ "./src/login-page/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
+/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
+/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+
+
 
 
 
@@ -32153,7 +32223,7 @@ const moduleName = 'online-editor-client';
 const dependencies = [];
 const renderComponent = '<app></app>'; // const renderComponent = '<toolbar></toolbar>'
 
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_13__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_13__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_9__["name"], _config__WEBPACK_IMPORTED_MODULE_9__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_10__["name"], _project_api__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_11__["name"], _request__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_12__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_14__["name"], _mime__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_16__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_16__["service"]);
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -32505,7 +32575,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fab fa-500px\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fab fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fab fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fab fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fab fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fab fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
