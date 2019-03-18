@@ -1,13 +1,14 @@
 export const name = 'keyBind'
 
-service.$inject = ['$window']
-export function service($window) {
+service.$inject = []
+export function service() {
 
   const ENTER_CODE = 13
 
 
-  function onEnterPress(cb) {
-    $window.addEventListener('keyup', function(e) {
+  function onEnterPress(jsSelector,cb) {
+    
+    document.querySelector(jsSelector).addEventListener('keyup', e => {
       e.preventDefault()
 
       if(e.keyCode === ENTER_CODE) cb()

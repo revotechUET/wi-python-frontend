@@ -9,7 +9,7 @@ function controller(auth, alertMessage, keyBind) {
   self.$onInit = function () {
     initState()
 
-    keyBind.onEnterPress(() => self.submitForm())
+    keyBind.onEnterPress('.login-page',() => self.submitForm())
   }
 
   self.submitForm = function() {

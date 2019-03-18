@@ -10,10 +10,10 @@ function controller(auth) {
     initState()
 
     auth.onLogin(err => {
-      if(!err) self.isLogin = true
+      if(!err) self.isLogin = auth.isLogin()
     })
 
-    auth.onLogout(() => self.isLogin = false)
+    auth.onLogout(() => self.isLogin = auth.isLogin())
   }
 
   function initState() {

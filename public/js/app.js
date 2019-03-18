@@ -31242,10 +31242,8 @@ __webpack_require__.r(__webpack_exports__);
 const name = 'config';
 function service() {
   return {
-    ONLINE_EDITOR_URL: 'http://localhost:3001',
-    // USER_RELATED_ROOT_URL: 'https://users.i2g.cloud',
+    ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'http://localhost:3001',
     USER_RELATED_ROOT_URL: 'http://localhost:3000',
-    // PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
     PROJECT_RELATED_ROOT_URL: 'http://localhost:3000'
   };
 }
@@ -31289,20 +31287,23 @@ __webpack_require__.r(__webpack_exports__);
  * @param {String} url
  * @returns {String}
  */
-function generateTemplateApi(funcName, paramNames, url) {
-  const listParamsInFunc = paramNames.join(', ');
-  const dataForPayLoad = paramNames.map(param => `"${param}": str(${param})`).join(',\n    ');
-  return `
+function generateTemplateApi(funcName, paramNames) {
+  const listParamsInFunc = paramNames.join(', '); // const dataForPayLoad = paramNames
+  //   .map(param => `"${param}": str(${param})`)
+  //   .join(',\n    ')
 
-def ${funcName}(${listParamsInFunc}):
-  import requests
-  
-  url = '${url}'
-  payload = {
-    ${dataForPayLoad}
-  }
-  r = requests.post(url, json=payload, verify=False)
-  return r.json()`;
+  return `
+# e.x: ${funcName}(${listParamsInFunc})
+from wilibs import ${funcName}
+`; //   return `
+  // def ${funcName}(${listParamsInFunc}):
+  //   import wili
+  //   url = '${url}'
+  //   payload = {
+  //     ${dataForPayLoad}
+  //   }
+  //   r = requests.post(url, json=payload, verify=False)
+  //   return r.json()`
 }
 
 /***/ }),
@@ -31325,30 +31326,25 @@ service.$inject = ['config'];
 function service(config) {
   const listFuncs = [{
     funcName: 'login',
-    paramNames: ['username', 'password'],
-    url: config.USER_RELATED_ROOT_URL + '/user/login'
+    paramNames: ['username', 'password']
   }, {
     funcName: 'list_project',
-    paramNames: [],
-    url: config.PROJECT_RELATED_ROOT_URL + '/project/list'
+    paramNames: []
   }, {
     funcName: 'list_well_of_project',
-    paramNames: ['idProject', 'start', 'limit', 'forward', 'match'],
-    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/list'
+    paramNames: ['idProject', 'start', 'limit', 'forward', 'match']
   }, {
     funcName: 'list_reference_curve',
-    paramNames: [],
-    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/reference-curve/list'
+    paramNames: []
   }, {
     funcName: 'get_curve_info',
-    paramNames: ['idReferenceCurve'],
-    url: config.PROJECT_RELATED_ROOT_URL + '/project/well/reference-curve/info'
+    paramNames: ['idReferenceCurve']
   }];
 
   function generateForPy(funcName) {
     const fnData = listFuncs.filter(fn => fn.funcName === funcName)[0];
     if (!fnData) return 'function name is not founded';
-    return Object(_gen_py_api__WEBPACK_IMPORTED_MODULE_0__["generateTemplateApi"])(fnData.funcName, fnData.paramNames, fnData.url);
+    return Object(_gen_py_api__WEBPACK_IMPORTED_MODULE_0__["generateTemplateApi"])(fnData.funcName, fnData.paramNames);
   }
 
   return {
@@ -31370,12 +31366,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 const name = 'keyBind';
-service.$inject = ['$window'];
-function service($window) {
+service.$inject = [];
+function service() {
   const ENTER_CODE = 13;
 
-  function onEnterPress(cb) {
-    $window.addEventListener('keyup', function (e) {
+  function onEnterPress(jsSelector, cb) {
+    document.querySelector(jsSelector).addEventListener('keyup', e => {
       e.preventDefault();
       if (e.keyCode === ENTER_CODE) cb();
     });
@@ -31801,9 +31797,9 @@ function controller(auth) {
   self.$onInit = function () {
     initState();
     auth.onLogin(err => {
-      if (!err) self.isLogin = true;
+      if (!err) self.isLogin = auth.isLogin();
     });
-    auth.onLogout(() => self.isLogin = false);
+    auth.onLogout(() => self.isLogin = auth.isLogin());
   };
 
   function initState() {
@@ -32145,7 +32141,7 @@ function controller(auth, alertMessage, keyBind) {
 
   self.$onInit = function () {
     initState();
-    keyBind.onEnterPress(() => self.submitForm());
+    keyBind.onEnterPress('.login-page', () => self.submitForm());
   };
 
   self.submitForm = function () {
@@ -32177,7 +32173,7 @@ function controller(auth, alertMessage, keyBind) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=container> <div id=loginbox style=margin-top:50px class=\"mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2\"> <div class=\"panel panel-info\"> <div class=panel-heading id=login-panel> <div class=panel-title>Sign In</div> </div> <div style=padding-top:30px class=panel-body> <div style=display:none id=login-alert class=\"alert alert-danger col-sm-12\"></div> <form id=loginform class=form-horizontal role=form> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-user\"></i> </span> <input ng-model=self.username id=login-username type=text class=form-control placeholder=Username> </div> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-lock\"></i> </span> <input ng-model=self.password id=login-password type=password class=form-control placeholder=Password> </div> <div style=margin-top:10px class=form-group> <div class=\"col-sm-12 controls right\"> <a ng-click=self.submitForm() id=btn-login class=\"btn btn-primary\">Login </a> <span id=error-login-msg class=text-danger ng-bind=self.errMsg> </span> </div> </div> </form> </div> </div> </div> </div>";
+module.exports = "<div class=login-page> <div class=container> <div id=loginbox style=margin-top:50px class=\"mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2\"> <div class=\"panel panel-info\"> <div class=panel-heading id=login-panel> <div class=panel-title>Sign In</div> </div> <div style=padding-top:30px class=panel-body> <div style=display:none id=login-alert class=\"alert alert-danger col-sm-12\"></div> <form id=loginform class=form-horizontal role=form> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-user\"></i> </span> <input ng-model=self.username id=login-username type=text class=form-control placeholder=Username> </div> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-lock\"></i> </span> <input ng-model=self.password id=login-password type=password class=form-control placeholder=Password> </div> <div style=margin-top:10px class=form-group> <div class=\"col-sm-12 controls right\"> <a ng-click=self.submitForm() id=btn-login class=\"btn btn-primary\">Login </a> <span id=error-login-msg class=text-danger ng-bind=self.errMsg> </span> </div> </div> </form> </div> </div> </div> </div> </div>";
 
 /***/ }),
 
