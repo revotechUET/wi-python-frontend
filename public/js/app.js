@@ -31081,6 +31081,69 @@ function service() {
 
 /***/ }),
 
+/***/ "./src/_auth/index.js":
+/*!****************************!*\
+  !*** ./src/_auth/index.js ***!
+  \****************************/
+/*! exports provided: name, service */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
+const name = 'auth';
+service.$inject = ['projectApi', '$rootScope'];
+function service(projectApi, $rootScope) {
+  const LOGIN_SUCCESS_EVENT = name + '.LOGIN_SUCCESS_EVENT';
+  const LOGIN_FAILED_EVENT = name + '.LOGIN_FAILED_EVENT';
+  const LOGOUT_SUCCESS_ENVENT = name + '.LOGOUT_SUCCESS_ENVENT';
+  const JWT_TOKEN_KEY = 'JWT_TOKEN';
+
+  function login(username, password) {
+    return projectApi.login(username, password).then(resp => {
+      if (resp.code !== 200) throw new Error(resp.reason);
+      const {
+        token
+      } = resp.content;
+      window.localStorage.setItem(JWT_TOKEN_KEY, token);
+      $rootScope.$emit(LOGIN_SUCCESS_EVENT);
+    }).catch(err => {
+      // alertMessage.error(err.message)
+      $rootScope.$emit(LOGIN_FAILED_EVENT, err.message);
+      throw err;
+    });
+  }
+
+  function logout() {
+    window.localStorage.removeItem(JWT_TOKEN_KEY);
+    $rootScope.$emit(LOGOUT_SUCCESS_ENVENT);
+  }
+
+  function onLogin(cb) {
+    $rootScope.$on(LOGIN_SUCCESS_EVENT, (e, data) => cb(null));
+    $rootScope.$on(LOGIN_FAILED_EVENT, (e, message) => cb(message));
+  }
+
+  function onLogout(cb) {
+    $rootScope.$on(LOGOUT_SUCCESS_ENVENT, e => cb());
+  }
+
+  function isLogin() {
+    return !!window.localStorage.getItem(JWT_TOKEN_KEY);
+  }
+
+  return {
+    login,
+    logout,
+    onLogin,
+    onLogout,
+    isLogin
+  };
+}
+
+/***/ }),
+
 /***/ "./src/_browser-code-runner/index.js":
 /*!*******************************************!*\
   !*** ./src/_browser-code-runner/index.js ***!
@@ -31428,6 +31491,15 @@ function service(config, request) {
     return request.post(url, data);
   };
 
+  const login = (username, password) => {
+    const url = `${config.USER_RELATED_ROOT_URL}/user/login`;
+    const data = {
+      username,
+      password
+    };
+    return request.post(url, data);
+  };
+
   return {
     newProject,
     openProject,
@@ -31435,7 +31507,8 @@ function service(config, request) {
     openFolder,
     listProjects,
     runCode,
-    saveCode
+    saveCode,
+    login
   };
 }
 
@@ -31456,13 +31529,13 @@ const name = 'request';
 service.$inject = ['$http', '$q'];
 function service($http, $q) {
   const get = url => $q((resolve, reject) => {
-    $http.get(url).then(resp => resolve(resp.data.data)).catch(error => {
+    $http.get(url).then(resp => resp.data.data ? resolve(resp.data.data) : resolve(resp.data)).catch(error => {
       if (error.data) reject(error.data.message);else if (error.message) reject(error.message);else if (error.statusText) reject(error.statusText);else reject('Error in connection');
     });
   });
 
   const post = (url, data) => $q((resolve, reject) => {
-    $http.post(url, data).then(resp => resolve(resp.data.data)).catch(error => {
+    $http.post(url, data).then(resp => resp.data.data ? resolve(resp.data.data) : resolve(resp.data)).catch(error => {
       if (error.data) reject(error.data.message);else if (error.message) reject(error.message);else if (error.statusText) reject(error.statusText);else reject('Error in connection');
     });
   });
@@ -31690,10 +31763,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
 
 const name = 'browser';
-controller.$inject = [];
+controller.$inject = ['auth'];
 
-function controller() {
+function controller(auth) {
   const self = this;
+
+  self.$onInit = function () {
+    initState();
+    auth.onLogin(err => {
+      if (!err) self.isLogin = true;
+    });
+    auth.onLogout(() => self.isLogin = false);
+  };
+
+  function initState() {
+    self.isLogin = auth.isLogin();
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31715,7 +31800,7 @@ function controller() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "";
+module.exports = "<app ng-if=self.isLogin></app> <login-page ng-if=!self.isLogin></login-page>";
 
 /***/ }),
 
@@ -32023,10 +32108,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _template_html__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_html__WEBPACK_IMPORTED_MODULE_0__);
 
 const name = 'loginPage';
-controller.$inject = [];
+controller.$inject = ['auth', 'alertMessage'];
 
-function controller() {
+function controller(auth, alertMessage) {
   const self = this;
+
+  self.$onInit = function () {
+    // auth.login('hoang', '1')
+    initState();
+  };
+
+  self.submitForm = function () {
+    auth.login(self.username, self.password).then(() => alertMessage.success('Login success')).catch(err => alertMessage.error(err.message));
+  };
+
+  function initState() {
+    self.username = '';
+    self.password = '';
+  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32048,7 +32147,7 @@ function controller() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "";
+module.exports = "<div class=container> <div id=loginbox style=margin-top:50px class=\"mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2\"> <div class=\"panel panel-info\"> <div class=panel-heading id=login-panel> <div class=panel-title>Sign In</div> </div> <div style=padding-top:30px class=panel-body> <div style=display:none id=login-alert class=\"alert alert-danger col-sm-12\"></div> <form id=loginform class=form-horizontal role=form> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-user\"></i> </span> <input ng-model=self.username id=login-username type=text class=form-control placeholder=Username> </div> <div style=margin-bottom:25px class=input-group> <span class=input-group-addon> <i class=\"fas fa-lock\"></i> </span> <input ng-model=self.password id=login-password type=password class=form-control placeholder=Password> </div> <div style=margin-top:10px class=form-group> <div class=\"col-sm-12 controls right\"> <a ng-click=self.submitForm() id=btn-login class=\"btn btn-primary\">Login </a> <span id=error-login-msg class=text-danger ng-bind=self.errMsg> </span> </div> </div> </form> </div> </div> </div> </div>";
 
 /***/ }),
 
@@ -32199,6 +32298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
 /* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
 /* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
+
 
 
 
@@ -32220,10 +32321,10 @@ __webpack_require__.r(__webpack_exports__);
  // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client';
-const dependencies = [];
-const renderComponent = '<app></app>'; // const renderComponent = '<toolbar></toolbar>'
+const dependencies = []; // const renderComponent = '<app></app>'
 
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]);
+const renderComponent = '<browser></browser>';
+angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_19__["name"], _auth__WEBPACK_IMPORTED_MODULE_19__["service"]);
 /* harmony default export */ __webpack_exports__["default"] = (renderComponent);
 
 /***/ }),
@@ -32575,7 +32676,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fab fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fab fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fab fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fab fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fab fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 

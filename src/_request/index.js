@@ -5,22 +5,22 @@ service.$inject = ['$http', '$q']
 export function service($http, $q) {
   const get = url => $q((resolve, reject) => {
     $http.get(url)
-      .then(resp => resolve(resp.data.data))
+      .then(resp => resp.data.data ? resolve(resp.data.data) : resolve(resp.data))
       .catch(error => {
-        if(error.data) reject(error.data.message)
-        else if(error.message) reject(error.message)
-        else if(error.statusText) reject(error.statusText)
+        if (error.data) reject(error.data.message)
+        else if (error.message) reject(error.message)
+        else if (error.statusText) reject(error.statusText)
         else reject('Error in connection')
       })
   })
 
   const post = (url, data) => $q((resolve, reject) => {
     $http.post(url, data)
-      .then(resp => resolve(resp.data.data))
+      .then(resp => resp.data.data ? resolve(resp.data.data) : resolve(resp.data))
       .catch(error => {
-        if(error.data) reject(error.data.message)
-        else if(error.message) reject(error.message)
-        else if(error.statusText) reject(error.statusText)
+        if (error.data) reject(error.data.message)
+        else if (error.message) reject(error.message)
+        else if (error.statusText) reject(error.statusText)
         else reject('Error in connection')
       })
   })

@@ -44,6 +44,16 @@ export function service(config, request) {
     return request.post(url, data)
   }
 
+  const login = (username, password) => {
+    const url = `${config.USER_RELATED_ROOT_URL}/user/login`
+    const data = {
+      username,
+      password
+    }
+
+    return request.post(url, data)
+  }
+
   return {
     newProject,
     openProject,
@@ -51,7 +61,8 @@ export function service(config, request) {
     openFolder,
     listProjects,
     runCode,
-    saveCode
+    saveCode,
+    login
   }
 
 }

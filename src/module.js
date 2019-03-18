@@ -19,12 +19,13 @@ import * as emptyArray from './_empty-array'
 import * as mime from './_mime'
 import * as browserCodeRunner from './_browser-code-runner'
 import * as funcGen from './_func-gen'
+import * as auth from './_auth'
 // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
 const moduleName = 'online-editor-client'
 const dependencies = []
-const renderComponent = '<app></app>'
-// const renderComponent = '<toolbar></toolbar>'
+// const renderComponent = '<app></app>'
+const renderComponent = '<browser></browser>'
 
 angular.module(moduleName, dependencies)
   .component(app.name, app.options)
@@ -45,6 +46,7 @@ angular.module(moduleName, dependencies)
   .service(mime.name, mime.service)
   .service(browserCodeRunner.name, browserCodeRunner.service)
   .service(funcGen.name, funcGen.service)
+  .service(auth.name, auth.service)
   
 
 export default renderComponent
