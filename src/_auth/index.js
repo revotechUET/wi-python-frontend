@@ -3,7 +3,7 @@ export const name = 'auth'
 service.$inject = ['projectApi', '$rootScope']
 export function service(projectApi, $rootScope) {
 
-  
+
   const LOGIN_SUCCESS_EVENT = name + '.LOGIN_SUCCESS_EVENT'
   const LOGIN_FAILED_EVENT = name + '.LOGIN_FAILED_EVENT'
   const LOGOUT_SUCCESS_ENVENT = name + '.LOGOUT_SUCCESS_ENVENT'
@@ -34,7 +34,7 @@ export function service(projectApi, $rootScope) {
 
 
   function onLogin(cb) {
-    $rootScope.$on(LOGIN_SUCCESS_EVENT,(e, data) => cb(null))
+    $rootScope.$on(LOGIN_SUCCESS_EVENT, (e, data) => cb(null))
     $rootScope.$on(LOGIN_FAILED_EVENT, (e, message) => cb(message))
   }
 

@@ -31498,7 +31498,8 @@ function service(config, request) {
   };
 
   const listProjects = () => {
-    const url = `${config.ONLINE_EDITOR_URL}/project/list`;
+    const user = getUsername();
+    const url = `${config.ONLINE_EDITOR_URL}/project/list?user=${user}`;
     return request.get(url);
   };
 
@@ -31525,6 +31526,13 @@ function service(config, request) {
     };
     return request.post(url, data);
   };
+
+  function getUsername() {
+    const token = window.localStorage.getItem('JWT_TOKEN');
+    if (!token) throw new Error('token is emtpy');
+    const decoded = JSON.parse(atob(token.split('.')[1]));
+    return decoded.username;
+  }
 
   return {
     newProject,
