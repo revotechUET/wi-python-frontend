@@ -20621,7 +20621,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    height: 100%;\n    max-width: 472px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      white-space: normal; }\n", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    height: 9999999999999999999999999999999999999px;\n    max-width: 472px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      white-space: normal; }\n", ""]);
 
 
 
