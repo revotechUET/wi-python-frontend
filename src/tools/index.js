@@ -10,16 +10,12 @@ import './style.scss'
 
 const name = 'tools'
 
-controller.$inject = ['browserCodeRunner']
-function controller(browserCodeRunner) {
+controller.$inject = ['auth']
+function controller(auth) {
   const self = this
 
-  self.$onInit = function () {
-    initState()
-  }
-
-  function initState() {
-
+  self.logout = function () {
+    auth.logout()
   }
 }
 

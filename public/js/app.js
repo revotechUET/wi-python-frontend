@@ -32644,16 +32644,14 @@ __webpack_require__.r(__webpack_exports__);
 /////////////////////////////////////
 
 const name = 'tools';
-controller.$inject = ['browserCodeRunner'];
+controller.$inject = ['auth'];
 
-function controller(browserCodeRunner) {
+function controller(auth) {
   const self = this;
 
-  self.$onInit = function () {
-    initState();
+  self.logout = function () {
+    auth.logout();
   };
-
-  function initState() {}
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -32712,7 +32710,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
