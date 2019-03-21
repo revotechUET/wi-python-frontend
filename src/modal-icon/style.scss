@@ -49,6 +49,12 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    top: 50%;
+    margin-top: -.5em;
+    right: 10px;
+    left: auto;
+    position: absolute;
+    background-color: transparent !important;
   }
   
   .close:hover,
@@ -63,11 +69,17 @@
     background-color: #999999;
     color: white;
     text-align: left;
+    padding: 15px;
+    position: relative;
+    border: 0;
 
     h4{
       margin: 0 10px;
     }
   }
   
-  .modal-body {padding: 2px 16px;}
+  .modal-body {
+    padding: 2px 16px;
+    min-height: 90px;
+  }
 }

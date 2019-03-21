@@ -1,4 +1,4 @@
-import angular from 'angular'
+// import angular from 'angular'
 
 import app from './app'
 import sidebar from './sidebar'
@@ -23,32 +23,35 @@ import * as auth from './_auth'
 import * as keyBind from './_key-bind'
 // import * as htmlContentLoaderApi from './_html-content-loader-api'
 
-const moduleName = 'online-editor-client'
-const dependencies = []
-// const renderComponent = '<app></app>'
-const renderComponent = '<browser></browser>'
+// const moduleName = 'online-editor-client'
 
-angular.module(moduleName, dependencies)
-  .component(app.name, app.options)
-  .component(sidebar.name, sidebar.options)
-  .component(fElement.name, fElement.options)
-  .component(terminal.name, terminal.options)
-  .component(explorer.name, explorer.options)
-  .component(modalIcon.name, modalIcon.options)
-  .component(tooltipIcon.name, tooltipIcon.options)
-  .component(tools.name, tools.options)
-  .component(browser.name, browser.options)
-  .component(loginPage.name, loginPage.options)
-  .filter(emptyArray.name, emptyArray.filter)
-  .service(config.name, config.service)
-  .service(projectApi.name, projectApi.service)
-  .service(request.name, request.service)
-  .service(alertMessage.name, alertMessage.service)
-  .service(mime.name, mime.service)
-  .service(browserCodeRunner.name, browserCodeRunner.service)
-  .service(funcGen.name, funcGen.service)
-  .service(auth.name, auth.service)
-  .service(keyBind.name, keyBind.service)
-  
+// // const renderComponent = '<app></app>'
+// const renderComponent = '<browser></browser>'
 
-export default renderComponent
+
+
+export default function assignAppModule(angular, moduleName) {
+  const dependencies = []
+
+  angular.module(moduleName, dependencies)
+    .component(app.name, app.options)
+    .component(sidebar.name, sidebar.options)
+    .component(fElement.name, fElement.options)
+    .component(terminal.name, terminal.options)
+    .component(explorer.name, explorer.options)
+    .component(modalIcon.name, modalIcon.options)
+    .component(tooltipIcon.name, tooltipIcon.options)
+    .component(tools.name, tools.options)
+    .component(browser.name, browser.options)
+    .component(loginPage.name, loginPage.options)
+    .filter(emptyArray.name, emptyArray.filter)
+    .service(config.name, config.service)
+    .service(projectApi.name, projectApi.service)
+    .service(request.name, request.service)
+    .service(alertMessage.name, alertMessage.service)
+    .service(mime.name, mime.service)
+    .service(browserCodeRunner.name, browserCodeRunner.service)
+    .service(funcGen.name, funcGen.service)
+    .service(auth.name, auth.service)
+    .service(keyBind.name, keyBind.service)
+}

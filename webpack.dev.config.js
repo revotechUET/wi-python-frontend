@@ -37,7 +37,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: './assets/' //define the output of the file (relative path to the workdir)
+                        outputPath: '../assets/' //define the output of the file (relative path to the workdir)
                     }
                     // options: {
                     //     name: '[name].[ext]',

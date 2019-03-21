@@ -20621,7 +20621,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    height: 9999999999999999999999999999999999999px;\n    max-width: 472px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      white-space: normal; }\n", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    border-top: none;\n    height: 9999999999999999999999999999999999999px;\n    max-width: 472px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    .explorer #codeArea .codeflask {\n      width: 40%;\n      border-radius: 3px; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      white-space: normal; }\n", ""]);
 
 
 
@@ -20651,7 +20651,7 @@ exports.push([module.i, "", ""]);
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".my-modal {\n  /* Modal Content */\n  /* Add Animation */\n  /* The Close Button */ }\n  .my-modal .modal {\n    display: none;\n    /* Hidden by default */\n    position: fixed;\n    /* Stay in place */\n    padding-top: 100px;\n    /* Location of the box */\n    left: 0;\n    top: 0;\n    width: 100%;\n    /* Full width */\n    height: 100%;\n    /* Full height */\n    overflow: auto;\n    /* Enable scroll if needed */\n    background-color: black;\n    /* Fallback color */\n    background-color: rgba(0, 0, 0, 0.4);\n    /* Black w/ opacity */ }\n    .my-modal .modal::before {\n      height: 0; }\n  .my-modal .modal-content {\n    position: relative;\n    background-color: #fefefe;\n    margin: auto;\n    padding: 0;\n    border: 1px solid #888;\n    width: 30%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n    -webkit-animation-name: animatetop;\n    -webkit-animation-duration: 0.4s;\n    animation-name: animatetop;\n    animation-duration: 0.4s; }\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n  .my-modal .close {\n    color: white;\n    float: right;\n    font-size: 28px;\n    font-weight: bold; }\n  .my-modal .close:hover,\n  .my-modal .close:focus {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer; }\n  .my-modal .modal-header {\n    background-color: #999999;\n    color: white;\n    text-align: left; }\n    .my-modal .modal-header h4 {\n      margin: 0 10px; }\n  .my-modal .modal-body {\n    padding: 2px 16px; }\n", ""]);
+exports.push([module.i, ".my-modal {\n  /* Modal Content */\n  /* Add Animation */\n  /* The Close Button */ }\n  .my-modal .modal {\n    display: none;\n    /* Hidden by default */\n    position: fixed;\n    /* Stay in place */\n    padding-top: 100px;\n    /* Location of the box */\n    left: 0;\n    top: 0;\n    width: 100%;\n    /* Full width */\n    height: 100%;\n    /* Full height */\n    overflow: auto;\n    /* Enable scroll if needed */\n    background-color: black;\n    /* Fallback color */\n    background-color: rgba(0, 0, 0, 0.4);\n    /* Black w/ opacity */ }\n    .my-modal .modal::before {\n      height: 0; }\n  .my-modal .modal-content {\n    position: relative;\n    background-color: #fefefe;\n    margin: auto;\n    padding: 0;\n    border: 1px solid #888;\n    width: 30%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n    -webkit-animation-name: animatetop;\n    -webkit-animation-duration: 0.4s;\n    animation-name: animatetop;\n    animation-duration: 0.4s; }\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n  .my-modal .close {\n    color: white;\n    float: right;\n    font-size: 28px;\n    font-weight: bold;\n    top: 50%;\n    margin-top: -.5em;\n    right: 10px;\n    left: auto;\n    position: absolute;\n    background-color: transparent !important; }\n  .my-modal .close:hover,\n  .my-modal .close:focus {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer; }\n  .my-modal .modal-header {\n    background-color: #999999;\n    color: white;\n    text-align: left;\n    padding: 15px;\n    position: relative;\n    border: 0; }\n    .my-modal .modal-header h4 {\n      margin: 0 10px; }\n  .my-modal .modal-body {\n    padding: 2px 16px;\n    min-height: 90px; }\n", ""]);
 
 
 
@@ -20719,6 +20719,21 @@ exports.push([module.i, ".tools {\n  margin: 5px 0;\n  display: flex;\n  padding
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
 exports.push([module.i, "", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/vendors/toolbar/toolbar.css":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/vendors/toolbar/toolbar.css ***!
+  \************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".tool-container, .tool-item, .btn-toolbar {\n  -webkit-box-sizing: content-box;\n  -moz-box-sizing: content-box;\n  box-sizing: content-box; }\n\n.btn-toolbar {\n  background: #364347;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  padding: 10px;\n  border-radius: 6px;\n  display: block;\n  transition: none; }\n\n.btn-toolbar > i {\n  color: #02baf2;\n  font-size: 16px; }\n\n.btn-toolbar:hover {\n  background: #02baf2;\n  cursor: pointer; }\n\n.btn-toolbar:hover > i {\n  color: white; }\n\n.btn-toolbar-primary {\n  background-color: #009dcd; }\n\n.btn-toolbar-primary.pressed {\n  background-color: #02baf2; }\n\n.btn-toolbar-primary:hover {\n  background-color: #02baf2; }\n\n.btn-toolbar-primary > i {\n  color: white; }\n\n.btn-toolbar-danger {\n  background-color: #cc0000; }\n\n.btn-toolbar-danger.pressed {\n  background-color: #f84545; }\n\n.btn-toolbar-danger:hover {\n  background-color: #f84545; }\n\n.btn-toolbar-danger > i {\n  color: white; }\n\n.btn-toolbar-warning {\n  background-color: #f3bc65; }\n\n.btn-toolbar-warning.pressed {\n  background-color: #fad46b; }\n\n.btn-toolbar-warning:hover {\n  background-color: #fad46b; }\n\n.btn-toolbar-warning > i {\n  color: white; }\n\n.btn-toolbar-info {\n  background-color: #e96300; }\n\n.btn-toolbar-info.pressed {\n  background-color: #f58410; }\n\n.btn-toolbar-info:hover {\n  background-color: #f58410; }\n\n.btn-toolbar-info > i {\n  color: white; }\n\n.btn-toolbar-success {\n  background-color: #28948c; }\n\n.btn-toolbar-success.pressed {\n  background-color: #3eb5ac; }\n\n.btn-toolbar-success:hover {\n  background-color: #3eb5ac; }\n\n.btn-toolbar-success > i {\n  color: white; }\n\n.btn-toolbar-info-o {\n  background-color: #9175bd; }\n\n.btn-toolbar-info-o.pressed {\n  background-color: #a88cd5; }\n\n.btn-toolbar-info-o:hover {\n  background-color: #a88cd5; }\n\n.btn-toolbar-info-o > i {\n  color: white; }\n\n.btn-toolbar-light {\n  background-color: #b2c6cd; }\n\n.btn-toolbar-light.pressed {\n  background-color: #d6e1e5; }\n\n.btn-toolbar-light:hover {\n  background-color: #d6e1e5; }\n\n.btn-toolbar-light > i {\n  color: white; }\n\n.btn-toolbar-dark {\n  background-color: #364347; }\n\n.btn-toolbar-dark.pressed {\n  background-color: #5e696d; }\n\n.btn-toolbar-dark:hover {\n  background-color: #5e696d; }\n\n.btn-toolbar-dark > i {\n  color: white; }\n\n.tool-container {\n  background-color: #5e696d;\n  background-size: 100% 100%;\n  border-radius: 6px;\n  position: absolute; }\n\n.tool-container.tool-top,\n.tool-container.tool-bottom {\n  height: 40px;\n  border-bottom: 0px solid #beb8b8; }\n\n.tool-container.tool-top .tool-item,\n.tool-container.tool-bottom .tool-item {\n  float: left;\n  border-right: 0;\n  border-left: 0; }\n\n.tool-item {\n  height: 100%;\n  display: block;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  padding: 10px;\n  transition: none; }\n\n.tool-item > .fa {\n  color: #b2c6cd; }\n\n.tool-item.selected,\n.tool-item:hover {\n  background: #02baf2; }\n\n.tool-item.selected > .fa,\n.tool-item:hover > .fa {\n  color: white; }\n\n.tool-top .tool-item:first-child:hover,\n.tool-bottom .tool-item:first-child:hover {\n  border-top-left-radius: 6px;\n  border-bottom-left-radius: 6px; }\n\n.tool-top .tool-item:last-child:hover,\n.tool-bottom .tool-item:last-child:hover {\n  border-top-right-radius: 6px;\n  border-bottom-right-radius: 6px; }\n\n.tool-vertical-top .tool-item:first-child:hover,\n.tool-vertical-bottom .tool-item:first-child:hover,\n.tool-right .tool-item:first-child:hover,\n.tool-left .tool-item:first-child:hover {\n  border-top-left-radius: 6px;\n  border-top-right-radius: 6px; }\n\n.tool-vertical-top .tool-item:last-child:hover,\n.tool-vertical-bottom .tool-item:last-child:hover,\n.tool-right .tool-item:last-child:hover,\n.tool-left .tool-item:last-child:hover {\n  border-bottom-left-radius: 6px;\n  border-bottom-right-radius: 6px; }\n\n.tool-container .arrow {\n  width: 0;\n  height: 0;\n  position: absolute;\n  border-width: 7px;\n  border-style: solid; }\n\n.tool-container.tool-top .arrow {\n  border-color: #5e696d transparent transparent;\n  left: 50%;\n  bottom: -14px;\n  margin-left: -7px; }\n\n.tool-container.tool-bottom .arrow {\n  border-color: transparent transparent #5e696d;\n  left: 50%;\n  top: -14px;\n  margin-left: -7px; }\n\n.tool-container.tool-left .arrow {\n  border-color: transparent transparent transparent #5e696d;\n  top: 50%;\n  right: -14px;\n  margin-top: -7px; }\n\n.tool-container.tool-right .arrow {\n  border-color: transparent #5e696d transparent transparent;\n  top: 50%;\n  left: -14px;\n  margin-top: -7px; }\n\n.toolbar-primary {\n  background-color: #02baf2; }\n\n.toolbar-primary.tool-top .arrow {\n  border-color: #02baf2 transparent transparent; }\n\n.toolbar-primary.tool-bottom .arrow {\n  border-color: transparent transparent #02baf2; }\n\n.toolbar-primary.tool-left .arrow {\n  border-color: transparent transparent transparent #02baf2; }\n\n.toolbar-primary.tool-right .arrow {\n  border-color: transparent #02baf2 transparent transparent; }\n\n.toolbar-primary .tool-item > .fa {\n  color: white; }\n\n.toolbar-primary .tool-item.selected,\n.toolbar-primary .tool-item:hover {\n  background: #009dcd;\n  color: white; }\n\n.toolbar-danger {\n  background-color: #f84545; }\n\n.toolbar-danger.tool-top .arrow {\n  border-color: #f84545 transparent transparent; }\n\n.toolbar-danger.tool-bottom .arrow {\n  border-color: transparent transparent #f84545; }\n\n.toolbar-danger.tool-left .arrow {\n  border-color: transparent transparent transparent #f84545; }\n\n.toolbar-danger.tool-right .arrow {\n  border-color: transparent #f84545 transparent transparent; }\n\n.toolbar-danger .tool-item > .fa {\n  color: white; }\n\n.toolbar-danger .tool-item.selected,\n.toolbar-danger .tool-item:hover {\n  background: #cc0000;\n  color: white; }\n\n.toolbar-warning {\n  background-color: #f3bc65; }\n\n.toolbar-warning.tool-top .arrow {\n  border-color: #f3bc65 transparent transparent; }\n\n.toolbar-warning.tool-bottom .arrow {\n  border-color: transparent transparent #f3bc65; }\n\n.toolbar-warning.tool-left .arrow {\n  border-color: transparent transparent transparent #f3bc65; }\n\n.toolbar-warning.tool-right .arrow {\n  border-color: transparent #f3bc65 transparent transparent; }\n\n.toolbar-warning .tool-item > .fa {\n  color: white; }\n\n.toolbar-warning .tool-item.selected,\n.toolbar-warning .tool-item:hover {\n  background: #fad46b;\n  color: white; }\n\n.toolbar-info {\n  background-color: #e96300; }\n\n.toolbar-info.tool-top .arrow {\n  border-color: #e96300 transparent transparent; }\n\n.toolbar-info.tool-bottom .arrow {\n  border-color: transparent transparent #e96300; }\n\n.toolbar-info.tool-left .arrow {\n  border-color: transparent transparent transparent #e96300; }\n\n.toolbar-info.tool-right .arrow {\n  border-color: transparent #e96300 transparent transparent; }\n\n.toolbar-info .tool-item > .fa {\n  color: white; }\n\n.toolbar-info .tool-item.selected,\n.toolbar-info .tool-item:hover {\n  background: #f58410;\n  color: white; }\n\n.toolbar-success {\n  background-color: #28948c; }\n\n.toolbar-success.tool-top .arrow {\n  border-color: #28948c transparent transparent; }\n\n.toolbar-success.tool-bottom .arrow {\n  border-color: transparent transparent #28948c; }\n\n.toolbar-success.tool-left .arrow {\n  border-color: transparent transparent transparent #28948c; }\n\n.toolbar-success.tool-right .arrow {\n  border-color: transparent #28948c transparent transparent; }\n\n.toolbar-success .tool-item > .fa {\n  color: white; }\n\n.toolbar-success .tool-item.selected,\n.toolbar-success .tool-item:hover {\n  background: #3eb5ac;\n  color: white; }\n\n.toolbar-info-o {\n  background-color: #9175bd; }\n\n.toolbar-info-o.tool-top .arrow {\n  border-color: #9175bd transparent transparent; }\n\n.toolbar-info-o.tool-bottom .arrow {\n  border-color: transparent transparent #9175bd; }\n\n.toolbar-info-o.tool-left .arrow {\n  border-color: transparent transparent transparent #9175bd; }\n\n.toolbar-info-o.tool-right .arrow {\n  border-color: transparent #9175bd transparent transparent; }\n\n.toolbar-info-o .tool-item > .fa {\n  color: white; }\n\n.toolbar-info-o .tool-item.selected,\n.toolbar-info-o .tool-item:hover {\n  background: #a88cd5;\n  color: white; }\n\n.toolbar-light {\n  background-color: #b2c6cd; }\n\n.toolbar-light.tool-top .arrow {\n  border-color: #b2c6cd transparent transparent; }\n\n.toolbar-light.tool-bottom .arrow {\n  border-color: transparent transparent #b2c6cd; }\n\n.toolbar-light.tool-left .arrow {\n  border-color: transparent transparent transparent #b2c6cd; }\n\n.toolbar-light.tool-right .arrow {\n  border-color: transparent #b2c6cd transparent transparent; }\n\n.toolbar-light .tool-item > .fa {\n  color: white; }\n\n.toolbar-light .tool-item.selected,\n.toolbar-light .tool-item:hover {\n  background: #d6e1e5;\n  color: white; }\n\n.toolbar-dark {\n  background-color: #364347; }\n\n.toolbar-dark.tool-top .arrow {\n  border-color: #364347 transparent transparent; }\n\n.toolbar-dark.tool-bottom .arrow {\n  border-color: transparent transparent #364347; }\n\n.toolbar-dark.tool-left .arrow {\n  border-color: transparent transparent transparent #364347; }\n\n.toolbar-dark.tool-right .arrow {\n  border-color: transparent #364347 transparent transparent; }\n\n.toolbar-dark .tool-item > .fa {\n  color: white; }\n\n.toolbar-dark .tool-item.selected,\n.toolbar-dark .tool-item:hover {\n  background: #5e696d;\n  color: white; }\n\n.animate-standard {\n  -webkit-animation: standardAnimate 0.3s 1 ease; }\n\n.animate-flyin {\n  -webkit-animation: rotateAnimate 0.5s 1 ease; }\n\n.animate-grow {\n  -webkit-animation: growAnimate 0.4s 1 ease; }\n\n.animate-flip {\n  -webkit-animation: flipAnimate 0.4s 1 ease; }\n\n.animate-bounce {\n  -webkit-animation: bounceAnimate 0.4s 1 ease-out; }\n\n@-webkit-keyframes rotateAnimate {\n  from {\n    transform: rotate(180deg) translate(-120px);\n    opacity: 0; }\n  to {\n    transform: rotate(0deg) translate(0px);\n    opacity: 1; } }\n\n@-webkit-keyframes standardAnimate {\n  from {\n    transform: translateY(20px);\n    opacity: 0; }\n  to {\n    transform: translateY(0px);\n    opacity: 1; } }\n\n@-webkit-keyframes growAnimate {\n  0% {\n    transform: scale(0) translateY(40px);\n    opacity: 0; }\n  70% {\n    transform: scale(1.5) translate(0px); }\n  100% {\n    transform: scale(1) translate(0px);\n    opacity: 1; } }\n\n@-webkit-keyframes rotate2Animate {\n  from {\n    transform: rotate(-90deg);\n    transform-origin: 0% 100%;\n    opacity: 0; }\n  to {\n    transform: rotate(0deg);\n    opacity: 1; } }\n\n@-webkit-keyframes flipAnimate {\n  from {\n    transform: rotate3d(2, 2, 2, 180deg);\n    opacity: 0; }\n  to {\n    transform: rotate3d(0, 0, 0, 0deg);\n    opacity: 1; } }\n\n@-webkit-keyframes bounceAnimate {\n  0% {\n    transform: translateY(40px);\n    opacity: 0; }\n  30% {\n    transform: translateY(-40px); }\n  70% {\n    transform: translateY(20px); }\n  100% {\n    transform: translateY(0px);\n    opacity: 1; } }\n\n.hidden {\n  display: none; }\n", ""]);
 
 
 
@@ -32119,13 +32134,24 @@ module.exports = "<li class=f-element> <span class={{self.getBadge()}} ng-click=
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./module */ "./src/module.js");
+/* harmony import */ var _vendors_toolbar_toolbar_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vendors/toolbar/toolbar.css */ "./src/vendors/toolbar/toolbar.css");
+/* harmony import */ var _vendors_toolbar_toolbar_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendors_toolbar_toolbar_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vendors_toolbar_toolbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vendors/toolbar/toolbar */ "./src/vendors/toolbar/toolbar.js");
+/* harmony import */ var _vendors_toolbar_toolbar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_vendors_toolbar_toolbar__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module */ "./src/module.js");
+// import './vendors/bootstrap/bootstrap.min.css'
 
-render(_module__WEBPACK_IMPORTED_MODULE_0__["default"], document.getElementById('root-app'));
 
-function render(component, element) {
-  element.innerHTML = component;
-}
+
+const moduleName = 'online-editor-client';
+const renderComponent = '<browser></browser>'; // import '../public/css/niffty.min.css'
+
+if (true) {
+  const angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
+
+  Object(_module__WEBPACK_IMPORTED_MODULE_2__["default"])(angular, moduleName);
+  document.getElementById('root-app').innerHTML = renderComponent;
+} else {}
 
 /***/ }),
 
@@ -32312,29 +32338,28 @@ module.exports = "<div class=my-modal> <i class={{self.icon}} title={{self.iconT
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
-/* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app */ "./src/app/index.js");
-/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sidebar */ "./src/sidebar/index.js");
-/* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
-/* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
-/* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
-/* harmony import */ var _modal_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal-icon */ "./src/modal-icon/index.js");
-/* harmony import */ var _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tooltip-icon */ "./src/tooltip-icon/index.js");
-/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tools */ "./src/tools/index.js");
-/* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./browser */ "./src/browser/index.js");
-/* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./login-page */ "./src/login-page/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
-/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
-/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
-/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
-/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
-/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
-/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return assignAppModule; });
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app */ "./src/app/index.js");
+/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebar */ "./src/sidebar/index.js");
+/* harmony import */ var _f_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./f-element */ "./src/f-element/index.js");
+/* harmony import */ var _terminal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./terminal */ "./src/terminal/index.js");
+/* harmony import */ var _explorer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./explorer */ "./src/explorer/index.js");
+/* harmony import */ var _modal_icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modal-icon */ "./src/modal-icon/index.js");
+/* harmony import */ var _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tooltip-icon */ "./src/tooltip-icon/index.js");
+/* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tools */ "./src/tools/index.js");
+/* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./browser */ "./src/browser/index.js");
+/* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login-page */ "./src/login-page/index.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
+/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
+/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
+/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
+// import angular from 'angular'
 
 
 
@@ -32355,13 +32380,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // import * as htmlContentLoaderApi from './_html-content-loader-api'
+// const moduleName = 'online-editor-client'
+// // const renderComponent = '<app></app>'
+// const renderComponent = '<browser></browser>'
 
-const moduleName = 'online-editor-client';
-const dependencies = []; // const renderComponent = '<app></app>'
-
-const renderComponent = '<browser></browser>';
-angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_1__["default"].name, _app__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_3__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_4__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_5__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_8__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_9__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_9__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_10__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_10__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_15__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_15__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_11__["name"], _config__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_12__["name"], _project_api__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_13__["name"], _request__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_14__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_16__["name"], _mime__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_18__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_19__["name"], _auth__WEBPACK_IMPORTED_MODULE_19__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_20__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_20__["service"]);
-/* harmony default export */ __webpack_exports__["default"] = (renderComponent);
+function assignAppModule(angular, moduleName) {
+  const dependencies = [];
+  angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]);
+}
 
 /***/ }),
 
@@ -32372,7 +32398,7 @@ angular__WEBPACK_IMPORTED_MODULE_0___default.a.module(moduleName, dependencies).
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/line_conn.gif";
+module.exports = __webpack_require__.p + "../assets/line_conn.gif";
 
 /***/ }),
 
@@ -32383,7 +32409,7 @@ module.exports = __webpack_require__.p + "assets/line_conn.gif";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/loading.gif";
+module.exports = __webpack_require__.p + "../assets/loading.gif";
 
 /***/ }),
 
@@ -32394,7 +32420,7 @@ module.exports = __webpack_require__.p + "assets/loading.gif";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/zTreeStandard.gif";
+module.exports = __webpack_require__.p + "../assets/zTreeStandard.gif";
 
 /***/ }),
 
@@ -32405,7 +32431,7 @@ module.exports = __webpack_require__.p + "assets/zTreeStandard.gif";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "assets/zTreeStandard.png";
+module.exports = __webpack_require__.p + "../assets/zTreeStandard.png";
 
 /***/ }),
 
@@ -32839,6 +32865,359 @@ if(false) {}
 /***/ (function(module, exports) {
 
 module.exports = "<div class=tooltip-icon> <i id={{self.idDomIcon}} title={{self.iconTitle}} class={{self.icon}} ng-click=self.iconOnClick()> </i> <div id={{self.idDomBar}} style=display:none> <ng-transclude></ng-transclude> </div> </div>";
+
+/***/ }),
+
+/***/ "./src/vendors/toolbar/toolbar.css":
+/*!*****************************************!*\
+  !*** ./src/vendors/toolbar/toolbar.css ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/lib/loader.js!./toolbar.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/vendors/toolbar/toolbar.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/vendors/toolbar/toolbar.js":
+/*!****************************************!*\
+  !*** ./src/vendors/toolbar/toolbar.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Toolbar.js
+ *
+ * @fileoverview  jQuery plugin that creates tooltip style toolbars.
+ * @link          http://paulkinzett.github.com/toolbar/
+ * @author        Paul Kinzett (http://kinzett.co.nz/)
+ * @version       1.1.0
+ * @requires      jQuery 1.7+
+ *
+ * @license jQuery Toolbar Plugin v1.1.0
+ * http://paulkinzett.github.com/toolbar/
+ * Copyright 2013 - 2015 Paul Kinzett (http://kinzett.co.nz/)
+ * Released under the MIT license.
+ * <https://raw.github.com/paulkinzett/toolbar/master/LICENSE.txt>
+ */
+if (typeof Object.create !== 'function') {
+  Object.create = function (obj) {
+    function F() {}
+
+    F.prototype = obj;
+    return new F();
+  };
+}
+
+(function ($, window, document, undefined) {
+  var ToolBar = {
+    init: function (options, elem) {
+      var self = this;
+      self.elem = elem;
+      self.$elem = $(elem);
+      self.options = $.extend({}, $.fn.toolbar.options, options);
+      self.metadata = self.$elem.data();
+      self.overrideOptions();
+      self.toolbar = $('<div class="tool-container" />').addClass('tool-' + self.options.position).addClass('toolbar-' + self.options.style).append('<div class="tool-items" />').append('<div class="arrow" />').appendTo('body').css('opacity', 0).hide();
+      self.toolbar_arrow = self.toolbar.find('.arrow');
+      self.initializeToolbar();
+    },
+    overrideOptions: function () {
+      var self = this;
+      $.each(self.options, function ($option) {
+        if (typeof self.$elem.data('toolbar-' + $option) != "undefined") {
+          self.options[$option] = self.$elem.data('toolbar-' + $option);
+        }
+      });
+    },
+    initializeToolbar: function () {
+      var self = this;
+      self.populateContent();
+      self.setTrigger();
+      self.toolbarWidth = self.toolbar.width();
+    },
+    setTrigger: function () {
+      var self = this;
+
+      if (self.options.event != 'click') {
+        var moveTime;
+
+        function decideTimeout() {
+          if (self.$elem.hasClass('pressed')) {
+            moveTime = setTimeout(function () {
+              self.hide();
+            }, 150);
+          } else {
+            clearTimeout(moveTime);
+          }
+
+          ;
+        }
+
+        ;
+        self.$elem.on({
+          mouseenter: function (event) {
+            if (self.$elem.hasClass('pressed')) {
+              clearTimeout(moveTime);
+            } else {
+              self.show();
+            }
+          }
+        });
+        self.$elem.parent().on({
+          mouseleave: function (event) {
+            decideTimeout();
+          }
+        });
+        $('.tool-container').on({
+          mouseenter: function (event) {
+            clearTimeout(moveTime);
+          },
+          mouseleave: function (event) {
+            decideTimeout();
+          }
+        });
+      }
+
+      if (self.options.event == 'click') {
+        self.$elem.on('click', function (event) {
+          event.preventDefault();
+
+          if (self.$elem.hasClass('pressed')) {
+            self.hide();
+          } else {
+            self.show();
+          }
+        });
+
+        if (self.options.hideOnClick) {
+          $('html').on("click.toolbar", function (event) {
+            if (event.target != self.elem && self.$elem.has(event.target).length === 0 && self.toolbar.has(event.target).length === 0 && self.toolbar.is(":visible")) {
+              self.hide();
+            }
+          });
+        }
+      }
+
+      if (self.options.hover) {
+        var moveTime;
+
+        function decideTimeout() {
+          if (self.$elem.hasClass('pressed')) {
+            moveTime = setTimeout(function () {
+              self.hide();
+            }, 150);
+          } else {
+            clearTimeout(moveTime);
+          }
+
+          ;
+        }
+
+        ;
+        self.$elem.on({
+          mouseenter: function (event) {
+            if (self.$elem.hasClass('pressed')) {
+              clearTimeout(moveTime);
+            } else {
+              self.show();
+            }
+          }
+        });
+        self.$elem.parent().on({
+          mouseleave: function (event) {
+            decideTimeout();
+          }
+        });
+        $('.tool-container').on({
+          mouseenter: function (event) {
+            clearTimeout(moveTime);
+          },
+          mouseleave: function (event) {
+            decideTimeout();
+          }
+        });
+      }
+
+      $(window).resize(function (event) {
+        event.stopPropagation();
+
+        if (self.toolbar.is(":visible")) {
+          self.toolbarCss = self.getCoordinates(self.options.position, 20);
+          self.collisionDetection();
+          self.toolbar.css(self.toolbarCss);
+          self.toolbar_arrow.css(self.arrowCss);
+        }
+      });
+    },
+    populateContent: function () {
+      var self = this;
+      var location = self.toolbar.find('.tool-items');
+      var content = $(self.options.content).clone(true).find('a').addClass('tool-item');
+      location.html(content);
+      location.find('.tool-item').on('click', function (event) {
+        event.preventDefault();
+        self.$elem.trigger('toolbarItemClick', this);
+      });
+    },
+    calculatePosition: function () {
+      var self = this;
+      self.arrowCss = {};
+      self.toolbarCss = self.getCoordinates(self.options.position, self.options.adjustment);
+      self.toolbarCss.position = 'absolute';
+      self.toolbarCss.zIndex = self.options.zIndex;
+      self.collisionDetection();
+      self.toolbar.css(self.toolbarCss);
+      self.toolbar_arrow.css(self.arrowCss);
+    },
+    getCoordinates: function (position, adjustment) {
+      var self = this;
+      self.coordinates = self.$elem.offset();
+
+      if (self.options.adjustment && self.options.adjustment[self.options.position]) {
+        adjustment = self.options.adjustment[self.options.position] + adjustment;
+      }
+
+      switch (self.options.position) {
+        case 'top':
+          return {
+            left: self.coordinates.left - self.toolbar.width() / 2 + self.$elem.outerWidth() / 2,
+            top: self.coordinates.top - self.$elem.outerHeight() - adjustment,
+            right: 'auto'
+          };
+
+        case 'left':
+          return {
+            left: self.coordinates.left - self.toolbar.width() / 2 - self.$elem.outerWidth() / 2 - adjustment,
+            top: self.coordinates.top - self.toolbar.height() / 2 + self.$elem.outerHeight() / 2,
+            right: 'auto'
+          };
+
+        case 'right':
+          return {
+            left: self.coordinates.left + self.toolbar.width() / 2 + self.$elem.outerWidth() / 2 + adjustment,
+            top: self.coordinates.top - self.toolbar.height() / 2 + self.$elem.outerHeight() / 2,
+            right: 'auto'
+          };
+
+        case 'bottom':
+          return {
+            left: self.coordinates.left - self.toolbar.width() / 2 + self.$elem.outerWidth() / 2,
+            top: self.coordinates.top + self.$elem.outerHeight() + adjustment,
+            right: 'auto'
+          };
+      }
+    },
+    collisionDetection: function () {
+      var self = this;
+      var edgeOffset = 20;
+
+      if (self.options.position == 'top' || self.options.position == 'bottom') {
+        self.arrowCss = {
+          left: '50%',
+          right: '50%'
+        };
+
+        if (self.toolbarCss.left < edgeOffset) {
+          self.toolbarCss.left = edgeOffset;
+          self.arrowCss.left = self.$elem.offset().left + self.$elem.width() / 2 - edgeOffset;
+        } else if ($(window).width() - (self.toolbarCss.left + self.toolbarWidth) < edgeOffset) {
+          self.toolbarCss.right = edgeOffset;
+          self.toolbarCss.left = 'auto';
+          self.arrowCss.left = 'auto';
+          self.arrowCss.right = $(window).width() - self.$elem.offset().left - self.$elem.width() / 2 - edgeOffset - 5;
+        }
+      }
+    },
+    show: function () {
+      var self = this;
+      self.$elem.addClass('pressed');
+      self.calculatePosition();
+      self.toolbar.show().css({
+        'opacity': 1
+      }).addClass('animate-' + self.options.animation);
+      self.$elem.trigger('toolbarShown');
+    },
+    hide: function () {
+      var self = this;
+      var animation = {
+        'opacity': 0
+      };
+      self.$elem.removeClass('pressed');
+
+      switch (self.options.position) {
+        case 'top':
+          animation.top = '+=20';
+          break;
+
+        case 'left':
+          animation.left = '+=20';
+          break;
+
+        case 'right':
+          animation.left = '-=20';
+          break;
+
+        case 'bottom':
+          animation.top = '-=20';
+          break;
+      }
+
+      self.toolbar.animate(animation, 200, function () {
+        self.toolbar.hide();
+      });
+      self.$elem.trigger('toolbarHidden');
+    },
+    getToolbarElement: function () {
+      return this.toolbar.find('.tool-items');
+    }
+  };
+
+  $.fn.toolbar = function (options) {
+    if ($.isPlainObject(options)) {
+      return this.each(function () {
+        var toolbarObj = Object.create(ToolBar);
+        toolbarObj.init(options, this);
+        $(this).data('toolbarObj', toolbarObj);
+      });
+    } else if (typeof options === 'string' && options.indexOf('_') !== 0) {
+      var toolbarObj = $(this).data('toolbarObj');
+      var method = toolbarObj[options];
+      return method.apply(toolbarObj, $.makeArray(arguments).slice(1));
+    }
+  };
+
+  $.fn.toolbar.options = {
+    content: '#myContent',
+    position: 'top',
+    hideOnClick: false,
+    zIndex: 120,
+    hover: false,
+    style: 'default',
+    animation: 'standard',
+    adjustment: 10
+  };
+})(jQuery, window, document);
 
 /***/ })
 

@@ -1,7 +1,21 @@
-import app from './module'
+// import './vendors/bootstrap/bootstrap.min.css'
+import './vendors/toolbar/toolbar.css'
+import './vendors/toolbar/toolbar'
+import assignAppModule from './module'
 
-render(app, document.getElementById('root-app'))
+const moduleName = 'online-editor-client'
+const renderComponent = '<browser></browser>'
+// import '../public/css/niffty.min.css'
 
-function render (component, element) {
-    element.innerHTML = component
+if (process.env.NODE_ENV === 'development') {
+    
+    const angular = require('angular')
+    assignAppModule(angular, moduleName)
+    document.getElementById('root-app').innerHTML = renderComponent
+
+} else {
+    const angular = window.angular
+    assignAppModule(angular, moduleName)
 }
+
+
