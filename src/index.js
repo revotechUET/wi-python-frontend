@@ -7,7 +7,7 @@ const moduleName = 'online-editor-client'
 const renderComponent = '<browser></browser>'
 // import '../public/css/niffty.min.css'
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-undef
     
     const angular = require('angular')
     assignAppModule(angular, moduleName)
