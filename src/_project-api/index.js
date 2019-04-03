@@ -5,7 +5,7 @@ export function service(config, request) {
 
   const newProject = name => {
     const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}`
-    return request(url)
+    return request.get(url)
   }
 
   const openProject = name => {

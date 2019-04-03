@@ -47,7 +47,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     const projectName = prompt('Project Name')
     if(!projectName) return
 
-
+    projectApi
+      .newProject(projectName)
+      .then(() => self.openProject(projectName))
+      .catch(error => alertMessage.error(error))
   }
 
   self.deleteProject = function() {
