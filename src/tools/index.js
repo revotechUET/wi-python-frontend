@@ -27,6 +27,8 @@ export default {
       findAllProjects: '<',
       allProjects: '<',
       closeProject: '<',
+      createNewProject: '<',
+      deleteProject: '<',
 
       createNewFile: '<',
       createNewFolder: '<',
@@ -34,7 +36,6 @@ export default {
 
       addFunc: '<',
       saveCode: '<',
-
       runCode: '<'
     },
     template,

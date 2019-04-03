@@ -31649,7 +31649,13 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.$onInit = function () {
     initState();
-  };
+  }; ///////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////
+  //  Project function
+  //
+  ///
+
 
   self.findAllProjects = function () {
     projectApi.listProjects().then(projects => {
@@ -31673,6 +31679,26 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   self.closeProject = function () {
     initState();
   };
+
+  self.createNewProject = function () {
+    const projectName = prompt('Project Name');
+    if (!projectName) return;
+  };
+
+  self.deleteProject = function () {
+    if (!confirm('Are you sure to remove this project')) return;
+    if (!self.currentProject) return alertMessage.error('No project is opened');
+    projectApi.deleteProject(self.currentProject.rootName).then(() => {
+      alertMessage.success('Success remove project ' + self.currentProject.rootName);
+      initState();
+    }).catch(error => alertMessage.error(error));
+  }; ///////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////
+  //  fils system function
+  //
+  ///
+
 
   self.openFile = function (dir) {
     const fileName = dir.split('/').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
@@ -31708,43 +31734,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     }).catch(error => {
       alertMessage.error(error);
     });
-  };
-
-  self.saveCode = function () {
-    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => alertMessage.success('save success')).catch(error => alertMessage.error(error));
-  };
-
-  self.runCode = function () {
-    browserCodeRunner.execute(self.currentProject.rootName, self.curFile, (error, {
-      type,
-      render,
-      link
-    }) => {
-      if (error) {
-        return alertMessage.error(error.message);
-      }
-
-      if (render) self.resultHtml = render;
-      if (link) self.iframeHtmlLink = link;
-      self.isResultAIframe = type === mime.types.html;
-    });
-  };
-
-  self.coding = function (code) {
-    self.code = code;
-  };
-
-  self.getCurrentCode = function (cb) {
-    cb(self.code);
-  };
-
-  self.addFunction = function (type) {
-    // const newFuncCode = funcGen.generateForFile(self.curFile)
-    // self.code = newFuncCode + self.code
-    const fileType = mime.getFileType(self.curFile);
-    if (fileType !== mime.types.python) return alertMessage.error(`Doesn't support gen function for file ${fileType}`);
-    const generatedFuncCode = funcGen.generateForPy(type);
-    self.code = generatedFuncCode + self.code;
   };
 
   self.createNewFile = function () {
@@ -31806,6 +31795,47 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       alertMessage.success('remove success ' + self.selectedNode.rootName);
       self.selectedNode = null;
     }).catch(error => alertMessage.error('Cannot remove item'));
+  }; ///////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+  //  code functions
+  //
+  ///
+
+
+  self.addFunction = function (type) {
+    const fileType = mime.getFileType(self.curFile);
+    if (fileType !== mime.types.python) return alertMessage.error(`Doesn't support gen function for file ${fileType}`);
+    const generatedFuncCode = funcGen.generateForPy(type);
+    self.code = generatedFuncCode + self.code;
+  };
+
+  self.saveCode = function () {
+    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => alertMessage.success('save success')).catch(error => alertMessage.error(error));
+  };
+
+  self.runCode = function () {
+    browserCodeRunner.execute(self.currentProject.rootName, self.curFile, (error, {
+      type,
+      render,
+      link
+    }) => {
+      if (error) {
+        return alertMessage.error(error.message);
+      }
+
+      if (render) self.resultHtml = render;
+      if (link) self.iframeHtmlLink = link;
+      self.isResultAIframe = type === mime.types.html;
+    });
+  };
+
+  self.coding = function (code) {
+    self.code = code;
+  };
+
+  self.getCurrentCode = function (cb) {
+    cb(self.code);
   };
 
   function initState() {
@@ -31904,7 +31934,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
 
 /***/ }),
 
@@ -32815,6 +32845,8 @@ function controller(auth) {
       findAllProjects: '<',
       allProjects: '<',
       closeProject: '<',
+      createNewProject: '<',
+      deleteProject: '<',
       createNewFile: '<',
       createNewFolder: '<',
       deleteItem: '<',
@@ -32867,7 +32899,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder() title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=self.deleteItem() title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder() title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=self.createNewProject() title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=self.deleteItem() title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=self.deleteProject() title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
