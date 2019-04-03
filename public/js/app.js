@@ -20703,7 +20703,7 @@ exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100%
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".tools {\n  margin: 5px 0;\n  display: flex;\n  padding-left: 5px;\n  flex-direction: row-reverse; }\n  .tools .tooltip-child-icon {\n    color: white; }\n  .tools .list-project {\n    list-style: none;\n    margin-top: 10px; }\n    .tools .list-project li {\n      text-align: left;\n      margin-bottom: 3px; }\n      .tools .list-project li i {\n        margin-right: 10px; }\n      .tools .list-project li span {\n        cursor: pointer; }\n        .tools .list-project li span:hover {\n          text-decoration: underline; }\n  .tools i {\n    cursor: pointer;\n    font-size: 15px;\n    margin-right: 25px; }\n    .tools i:hover {\n      color: black; }\n    .tools i:active {\n      color: #999999; }\n", ""]);
+exports.push([module.i, ".tools {\n  margin: 5px 0;\n  display: flex;\n  padding-left: 5px;\n  flex-direction: row-reverse; }\n  .tools .tooltip-child-icon {\n    color: white; }\n  .tools .list-project {\n    list-style: none;\n    margin-top: 10px; }\n    .tools .list-project li {\n      text-align: left;\n      margin-bottom: 3px; }\n      .tools .list-project li i {\n        margin-right: 10px; }\n      .tools .list-project li span {\n        cursor: pointer; }\n        .tools .list-project li span:hover {\n          text-decoration: underline; }\n  .tools i {\n    cursor: pointer;\n    font-size: 15px;\n    margin-right: 15px; }\n    .tools i:hover {\n      color: black; }\n    .tools i:active {\n      color: #999999; }\n", ""]);
 
 
 
@@ -31502,6 +31502,11 @@ function service(config, request) {
     return request.get(url);
   };
 
+  const deleteProject = name => {
+    const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}`;
+    return request.get(url);
+  };
+
   const openFile = dir => {
     const url = `${config.ONLINE_EDITOR_URL}/project/read-file?dir=${encodeURIComponent(dir)}`;
     return request.get(url);
@@ -31542,6 +31547,26 @@ function service(config, request) {
     return request.post(url, data);
   };
 
+  const removeFile = (project, file) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`;
+    return request.get(url);
+  };
+
+  const removeFolder = (project, folder) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}`;
+    return request.get(url);
+  };
+
+  const newFile = (project, file) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/new-file?project=${project}&file=${encodeURIComponent(file)}`;
+    return request.get(url);
+  };
+
+  const newFolder = (project, folder) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/new-folder?project=${project}&folder=${encodeURIComponent(folder)}`;
+    return request.get(url);
+  };
+
   function getUsername() {
     const token = window.localStorage.getItem('JWT_TOKEN');
     if (!token) throw new Error('token is emtpy');
@@ -31552,12 +31577,17 @@ function service(config, request) {
   return {
     newProject,
     openProject,
+    deleteProject,
     openFile,
     openFolder,
     listProjects,
     runCode,
     saveCode,
-    login
+    login,
+    removeFile,
+    removeFolder,
+    newFile,
+    newFolder
   };
 }
 
@@ -31637,6 +31667,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     }).catch(error => {
       alertMessage.error(error);
     });
+  };
+
+  self.closeProject = function () {
+    initState();
   };
 
   self.openFile = function (dir) {
@@ -31731,6 +31765,8 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   function findNodeInTree(rootNode, predicate) {
+    if (predicate(rootNode)) return rootNode;
+
     for (const folder of rootNode.folders) {
       if (predicate(folder)) {
         return folder;
@@ -31795,7 +31831,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
 
 /***/ }),
 
@@ -32030,22 +32066,38 @@ function controller() {
 
   self.$onInit = function () {
     initState();
-  };
+  }; // self.getBadge = function () {
+  //   if (self.rootIsFile) return 'button switch center_docu'
+  //   let numChildren = 0
+  //   if (self.files && self.files.length)
+  //     numChildren += self.files.length
+  //   if (self.folders && self.folders.length)
+  //     numChildren += self.folders.length
+  //   return numChildren && self.showChild ?
+  //     'button switch roots_open' :
+  //     'button switch center_close'
+  // }
+
 
   self.getBadge = function () {
     if (self.rootIsFile) return 'button switch center_docu';
-    let numChildren = 0;
-    if (self.files && self.files.length) numChildren += self.files.length;
-    if (self.folders && self.folders.length) numChildren += self.folders.length;
-    return numChildren && self.showChild ? 'button switch roots_open' : 'button switch center_close';
-  };
+    return self.showChild ? 'button switch roots_open' : 'button switch center_close';
+  }; // self.getIcon = function () {
+  //   if (self.rootIsFile) return 'button ico_docu'
+  //   let numChildren = 0
+  //   if (self.files && self.files.length)
+  //     numChildren += self.files.length
+  //   if (self.folders && self.folders.length)
+  //     numChildren += self.folders.length
+  //   return numChildren && self.showChild ?
+  //     'button ico_open' :
+  //     'button ico_close'
+  // }
+
 
   self.getIcon = function () {
     if (self.rootIsFile) return 'button ico_docu';
-    let numChildren = 0;
-    if (self.files && self.files.length) numChildren += self.files.length;
-    if (self.folders && self.folders.length) numChildren += self.folders.length;
-    return numChildren && self.showChild ? 'button ico_open' : 'button ico_close';
+    return self.showChild ? 'button ico_open' : 'button ico_close';
   };
 
   self.toggleShowChild = function () {
@@ -32054,8 +32106,9 @@ function controller() {
 
   self.open = function () {
     if (self.rootIsFile) self.openFile(self.path);else {
-      self.showChild = true;
-      if (!(self.files.length + self.folders.length)) self.openFolder(self.path);
+      self.showChild = true; // if (!(self.files.length + self.folders.length)) self.openFolder(self.path)
+
+      self.openFolder(self.path);
     }
   };
 
@@ -32147,6 +32200,7 @@ const moduleName = 'online-editor-client';
 const renderComponent = '<browser></browser>'; // import '../public/css/niffty.min.css'
 
 if (true) {
+  // eslint-disable-line no-undef
   const angular = __webpack_require__(/*! angular */ "./node_modules/angular/index.js");
 
   Object(_module__WEBPACK_IMPORTED_MODULE_2__["default"])(angular, moduleName);
@@ -32687,6 +32741,7 @@ function controller(auth) {
       openProject: '<',
       findAllProjects: '<',
       allProjects: '<',
+      closeProject: '<',
       addFunc: '<',
       saveCode: '<',
       runCode: '<'
@@ -32736,7 +32791,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=\"self.addFunc('login')\" title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 

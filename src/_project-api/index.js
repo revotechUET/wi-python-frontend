@@ -13,6 +13,11 @@ export function service(config, request) {
     return request.get(url)
   }
 
+  const deleteProject = name => {
+    const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}`
+    return request.get(url)
+  }
+
   const openFile = dir => {
     const url = `${config.ONLINE_EDITOR_URL}/project/read-file?dir=${encodeURIComponent(dir)}`
     return request.get(url)
@@ -55,6 +60,26 @@ export function service(config, request) {
     return request.post(url, data)
   }
 
+  const removeFile = (project, file) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
+    return request.get(url)
+  }
+
+  const removeFolder = (project, folder) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}`
+    return request.get(url)
+  }
+
+  const newFile = (project, file) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/new-file?project=${project}&file=${encodeURIComponent(file)}`
+    return request.get(url)
+  }
+
+  const newFolder = (project, folder) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/new-folder?project=${project}&folder=${encodeURIComponent(folder)}`
+    return request.get(url)
+  }
+
   function getUsername() {
     const token = window.localStorage.getItem('JWT_TOKEN')
     if (!token) throw new Error('token is emtpy')
@@ -66,12 +91,17 @@ export function service(config, request) {
   return {
     newProject,
     openProject,
+    deleteProject,
     openFile,
     openFolder,
     listProjects,
     runCode,
     saveCode,
-    login
+    login,
+    removeFile,
+    removeFolder,
+    newFile,
+    newFolder
   }
 
 }

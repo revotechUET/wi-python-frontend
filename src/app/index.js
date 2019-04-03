@@ -32,6 +32,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       })
   }
 
+  self.closeProject = function() {
+    initState()
+  }
+
   self.openFile = function (dir) {
 
     const fileName = dir
@@ -50,10 +54,11 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   self.openFolder = function (dir) {
+    
     projectApi.openFolder(dir)
       .then(item => {
         const folder = findNodeInTree(self.currentProject, f => f.path === dir)
-
+        
         if (!folder) return alertMessage.error('There are some error, refresh?')
         if (!(item.files.length + item.folders.length)) {
           return alertMessage.error('There is nothing in this folder')
@@ -73,6 +78,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         alertMessage.error(error)
       })
   }
+
 
   self.saveCode = function () {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
@@ -137,6 +143,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   function findNodeInTree(rootNode, predicate) {
+
+    if(predicate(rootNode)) return rootNode
+
     for (const folder of rootNode.folders) {
       if (predicate(folder)) {
         return folder

@@ -1,7 +1,7 @@
 {
   "name": "online-editor-client",
   "description": "",
-  "main": "src/index.js",
+  "main": "pulic/js/app.js",
   "authors": [
     "bmq928 <bmq928@gmail.com>"
   ],

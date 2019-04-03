@@ -26,6 +26,7 @@ export default {
       openProject: '<',
       findAllProjects: '<',
       allProjects: '<',
+      closeProject: '<',
 
       addFunc: '<',
       saveCode: '<',

@@ -1,13 +1,16 @@
 <div class="tools">
   
-  <i 
-    class="fas fa-sign-out-alt" 
+  <i class="fas fa-sign-out-alt" 
     title="logout" 
     ng-click="self.logout()">
   </i>
 
-  <i 
-    class="fas fa-desktop" 
+  <i class="fas fa-times-circle" 
+    title="close project" 
+    ng-click="self.closeProject()">
+  </i>
+
+  <i class="fas fa-desktop" 
     title="run code" 
     ng-click="self.runCode()">
   </i>
@@ -39,9 +42,29 @@
     <a href="#" ng-click="self.addFunc('get_curve_info')" title="get curve info">
       <i style="color:white" class="fas fa-info"></i>
     </a>
-    
   </tooltip-icon>
   
+  <tooltip-icon icon="'fas fa-project-diagram'" icon-title="'action'">
+    <a href="#" ng-click="self.addFunc('login')" title="new file">
+      <i style="color:white" class="fas fa-file"></i>
+    </a>
+
+    <a href="#" ng-click="self.addFunc('login')" title="new folder">
+      <i style="color:white" class="fas fa-folder-plus"></i>
+    </a>
+
+    <a href="#" ng-click="self.addFunc('login')" title="new project">
+      <i style="color:white" class="fas fa-calendar-plus"></i>
+    </a>
+
+    <a href="#" ng-click="self.addFunc('login')" title="delete item">
+      <i style="color:white" class="fas fa-trash"></i>
+    </a>
+    
+    <a href="#" ng-click="self.addFunc('login')" title="delete project">
+      <i style="color:white" class="fas fa-calendar-times"></i>
+    </a>
+  </tooltip-icon>
   
   <modal-icon
     modal-name="'Open Project'" 
