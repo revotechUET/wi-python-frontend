@@ -4,7 +4,8 @@ service.$inject = ['config', 'request']
 export function service(config, request) {
 
   const newProject = name => {
-    const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}`
+    const user = getUsername()
+    const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}&user=${user}`
     return request.get(url)
   }
 

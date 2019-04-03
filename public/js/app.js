@@ -31493,7 +31493,8 @@ const name = 'projectApi';
 service.$inject = ['config', 'request'];
 function service(config, request) {
   const newProject = name => {
-    const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}`;
+    const user = getUsername();
+    const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}&user=${user}`;
     return request.get(url);
   };
 
@@ -31683,7 +31684,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   self.createNewProject = function () {
     const projectName = prompt('Project Name');
     if (!projectName) return;
-    projectApi.newProject(name).then(() => self.openProject(name)).catch(error => alertMessage.error(error));
+    projectApi.newProject(projectName).then(() => self.openProject(projectName)).catch(error => alertMessage.error(error));
   };
 
   self.deleteProject = function () {
