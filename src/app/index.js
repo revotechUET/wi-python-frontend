@@ -14,6 +14,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   self.findAllProjects = function () {
     projectApi.listProjects()
       .then(projects => {
+        console.log({ tree: self.currentProject })
         self.allProjects = projects
       })
       .catch(error => {
@@ -26,13 +27,14 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     projectApi.openProject(name)
       .then(item => {
         self.currentProject = item
+
       })
       .catch(error => {
         alertMessage.error(error)
       })
   }
 
-  self.closeProject = function() {
+  self.closeProject = function () {
     initState()
   }
 
@@ -55,11 +57,14 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.openFolder = function (dir) {
     
+    const folder = findNodeInTree(self.currentProject, f => f.path === dir)
+    if (!folder) return alertMessage.error('There are some error, refresh?')
+    if (folder.files.length + folder.folders.length)
+      return // already fetch inside item, do not have to fetch any more
+
+    //fetch inside item of folder
     projectApi.openFolder(dir)
       .then(item => {
-        const folder = findNodeInTree(self.currentProject, f => f.path === dir)
-        
-        if (!folder) return alertMessage.error('There are some error, refresh?')
         if (!(item.files.length + item.folders.length)) {
           return alertMessage.error('There is nothing in this folder')
         }
@@ -71,8 +76,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         for (const f of item.folders) {
           folder.folders.push(f)
         }
-
-        console.log({ folder, item })
       })
       .catch(error => {
         alertMessage.error(error)
@@ -94,8 +97,8 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
           return alertMessage.error(error.message)
         }
 
-        if(render) self.resultHtml = render
-        if(link) self.iframeHtmlLink = link
+        if (render) self.resultHtml = render
+        if (link) self.iframeHtmlLink = link
         self.isResultAIframe = type === mime.types.html
       })
   }
@@ -114,14 +117,31 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     // self.code = newFuncCode + self.code
 
     const fileType = mime.getFileType(self.curFile)
-    if(fileType !== mime.types.python) 
+    if (fileType !== mime.types.python)
       return alertMessage.error(`Doesn't support gen function for file ${fileType}`)
-    
-    
+
+
     const generatedFuncCode = funcGen.generateForPy(type)
     self.code = generatedFuncCode + self.code
   }
 
+  self.createNewFile = function () {
+    const name = prompt('Enter the file or path to the file')
+    if (!name) return
+
+
+    projectApi.newFile(self.currentProject.rootName, name)
+      .then(() => alertMessage.success('success'))
+  }
+
+  self.createNewFolder = function () {
+    const name = prompt('Enter the folder or path to the folder')
+    if (!name) return
+
+
+    projectApi.newFolder(self.currentProject.rootName, name)
+      .then(() => alertMessage.success('success'))
+  }
 
   function initState() {
     self.currentProject = {
@@ -144,14 +164,16 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   function findNodeInTree(rootNode, predicate) {
 
-    if(predicate(rootNode)) return rootNode
+    if (predicate(rootNode)) return rootNode
 
+    // find current level
     for (const folder of rootNode.folders) {
       if (predicate(folder)) {
         return folder
       }
     }
 
+    // find deeper level
     for (const folder of rootNode.folders) {
       const foundNode = findNodeInTree(folder, predicate)
       if (foundNode) return foundNode

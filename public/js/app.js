@@ -31654,6 +31654,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.findAllProjects = function () {
     projectApi.listProjects().then(projects => {
+      console.log({
+        tree: self.currentProject
+      });
       self.allProjects = projects;
     }).catch(error => {
       alertMessage.error(error);
@@ -31684,10 +31687,12 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   };
 
   self.openFolder = function (dir) {
-    projectApi.openFolder(dir).then(item => {
-      const folder = findNodeInTree(self.currentProject, f => f.path === dir);
-      if (!folder) return alertMessage.error('There are some error, refresh?');
+    const folder = findNodeInTree(self.currentProject, f => f.path === dir);
+    if (!folder) return alertMessage.error('There are some error, refresh?');
+    if (folder.files.length + folder.folders.length) return; // already fetch inside item, do not have to fetch any more
+    //fetch inside item of folder
 
+    projectApi.openFolder(dir).then(item => {
       if (!(item.files.length + item.folders.length)) {
         return alertMessage.error('There is nothing in this folder');
       }
@@ -31699,11 +31704,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       for (const f of item.folders) {
         folder.folders.push(f);
       }
-
-      console.log({
-        folder,
-        item
-      });
     }).catch(error => {
       alertMessage.error(error);
     });
@@ -31746,6 +31746,18 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     self.code = generatedFuncCode + self.code;
   };
 
+  self.createNewFile = function () {
+    const name = prompt('Enter the file or path to the file');
+    if (!name) return;
+    projectApi.newFile(self.currentProject.rootName, name).then(() => alertMessage.success('success'));
+  };
+
+  self.createNewFolder = function () {
+    const name = prompt('Enter the folder or path to the folder');
+    if (!name) return;
+    projectApi.newFolder(self.currentProject.rootName, name).then(() => alertMessage.success('success'));
+  };
+
   function initState() {
     self.currentProject = {
       rootName: 'NOT OPEN PROJECT YET!!!',
@@ -31765,13 +31777,14 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   function findNodeInTree(rootNode, predicate) {
-    if (predicate(rootNode)) return rootNode;
+    if (predicate(rootNode)) return rootNode; // find current level
 
     for (const folder of rootNode.folders) {
       if (predicate(folder)) {
         return folder;
       }
-    }
+    } // find deeper level
+
 
     for (const folder of rootNode.folders) {
       const foundNode = findNodeInTree(folder, predicate);
@@ -31831,7 +31844,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
 
 /***/ }),
 
@@ -32742,6 +32755,8 @@ function controller(auth) {
       findAllProjects: '<',
       allProjects: '<',
       closeProject: '<',
+      createNewFile: '<',
+      createNewFolder: '<',
       addFunc: '<',
       saveCode: '<',
       runCode: '<'
@@ -32791,7 +32806,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=\"self.addFunc('login')\" title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 

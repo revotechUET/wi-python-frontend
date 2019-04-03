@@ -28,6 +28,9 @@ export default {
       allProjects: '<',
       closeProject: '<',
 
+      createNewFile: '<',
+      createNewFolder: '<',
+
       addFunc: '<',
       saveCode: '<',
 
