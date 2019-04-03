@@ -60,13 +60,13 @@ export function service(config, request) {
     return request.post(url, data)
   }
 
-  const removeFile = (project, file) => {
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
-    return request.get(url)
-  }
+  // const removeFile = (project, file) => {
+  //   const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
+  //   return request.get(url)
+  // }
 
-  const removeFolder = (project, folder) => {
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}`
+  const removeItem = (project, item) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(item)}`
     return request.get(url)
   }
 
@@ -98,8 +98,8 @@ export function service(config, request) {
     runCode,
     saveCode,
     login,
-    removeFile,
-    removeFolder,
+    // removeFile,
+    removeItem,
     newFile,
     newFolder
   }

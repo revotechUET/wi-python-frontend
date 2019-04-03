@@ -43,7 +43,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       .split('/')
       .reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null)
 
+    const fileNode = findNodeInTree(self.currentProject, f => f.path === dir)
+
     self.curFile = fileName
+    self.selectedNode = fileNode
 
     projectApi.openFile(dir)
       .then(code => {
@@ -56,9 +59,12 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.openFolder = function (dir) {
 
-    const folder = findNodeInTree(self.currentProject, f => f.path === dir)
-    if (!folder) return alertMessage.error('There are some error, refresh?')
-    if (folder.files.length + folder.folders.length)
+    const folderNode = findNodeInTree(self.currentProject, f => f.path === dir)
+
+    self.selectedNode = folderNode
+
+    if (!folderNode) return alertMessage.error('There are some error, refresh?')
+    if (folderNode.files.length + folderNode.folders.length)
       return // already fetch inside item, do not have to fetch any more
 
     //fetch inside item of folder
@@ -69,11 +75,11 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         }
 
         for (const f of item.files) {
-          folder.files.push(f)
+          folderNode.files.push(f)
         }
 
         for (const f of item.folders) {
-          folder.folders.push(f)
+          folderNode.folders.push(f)
         }
       })
       .catch(error => {
@@ -137,7 +143,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         const fileName = filePath
           .split('/')
           .reduce((pre, cur, i, arr) => arr[arr.length - 1])
-        console.log({ containerFolderPath, fileName })
+        
         const parrentFolder = findNodeInTree(
           self.currentProject,
           node => node.path === containerFolderPath
@@ -154,7 +160,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         })
 
         alertMessage.success('success create file')
-        console.log({tree: self.currentProject})
+        console.log({ tree: self.currentProject })
       })
       .catch(error => alertMessage.error(error))
   }
@@ -162,7 +168,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   self.createNewFolder = function () {
     const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
     if (!folderPath) return
-    console.log('nah')
+    
 
     projectApi.newFolder(self.currentProject.rootName, folderPath)
       .then(() => {
@@ -170,7 +176,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         const folderName = folderPath
           .split('/')
           .reduce((pre, cur, i, arr) => arr[arr.length - 1])
-        console.log({ containerFolderPath, fileName: folderName })
+    
         const parrentFolder = findNodeInTree(
           self.currentProject,
           node => node.path === containerFolderPath
@@ -187,9 +193,38 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         })
 
         alertMessage.success('success create folder')
-        console.log({tree: self.currentProject})
+        console.log({ tree: self.currentProject })
       })
       .catch(error => alertMessage.error(error))
+  }
+
+  self.deleteItem = function () {
+
+    if(!self.selectedNode) return alertMessage.error('Not choose an item yet')
+
+    projectApi
+      .removeItem(self.currentProject.rootName, self.selectedNode.rootName)
+      .then(() => {
+
+        const nodeContainerOfRmItem = findNodeInTree(
+          self.currentProject,
+          node => node.path === getParrentFolderPath(self.selectedNode.path, true)
+        )
+
+        if(self.selectedNode.rootIsFile){
+          nodeContainerOfRmItem.files = nodeContainerOfRmItem.files.filter(
+            nodeFile => nodeFile.path !== self.selectedNode.path
+          )
+        } else {
+          nodeContainerOfRmItem.folders = nodeContainerOfRmItem.folders.filter(
+            nodeFile => nodeFile.path !== self.selectedNode.path
+          )
+        }
+
+        alertMessage.success('remove success ' + self.selectedNode.rootName)
+        self.selectedNode = null
+      })
+      .catch(error => alertMessage.error('Cannot remove item'))
   }
 
   function initState() {
@@ -203,7 +238,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
     // pass to explorer
     self.code = `/* your code is here */`
-    self.curFile = 'sample.js'
+    self.curFile = 'sample.js'// using with write and runnign code
+
+    // current tree node
+    self.selectedNode = null
 
     // pass to terminal
     self.resultHtml = ''
@@ -216,9 +254,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     if (predicate(rootNode)) return rootNode
 
     // find current level
-    for (const folder of rootNode.folders) {
-      if (predicate(folder)) {
-        return folder
+    for (const f of [...rootNode.files, ...rootNode.folders]) {
+      if (predicate(f)) {
+        return f
       }
     }
 
@@ -231,10 +269,12 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     return null
   }
 
-  function getParrentFolderPath(dir) {
+  function getParrentFolderPath(dir, dirContainProjectName=false) {
     const lastSlashIndex = dir.lastIndexOf('/')
 
+    
     if (lastSlashIndex === -1) return self.currentProject.path
+    if(dirContainProjectName) return dir.substr(0, lastSlashIndex)
     return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex)
   }
 }

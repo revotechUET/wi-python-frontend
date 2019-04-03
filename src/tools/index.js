@@ -30,6 +30,7 @@ export default {
 
       createNewFile: '<',
       createNewFolder: '<',
+      deleteItem: '<',
 
       addFunc: '<',
       saveCode: '<',

@@ -31545,15 +31545,14 @@ function service(config, request) {
       password
     };
     return request.post(url, data);
-  };
+  }; // const removeFile = (project, file) => {
+  //   const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
+  //   return request.get(url)
+  // }
 
-  const removeFile = (project, file) => {
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`;
-    return request.get(url);
-  };
 
-  const removeFolder = (project, folder) => {
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}`;
+  const removeItem = (project, item) => {
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(item)}`;
     return request.get(url);
   };
 
@@ -31584,8 +31583,8 @@ function service(config, request) {
     runCode,
     saveCode,
     login,
-    removeFile,
-    removeFolder,
+    // removeFile,
+    removeItem,
     newFile,
     newFolder
   };
@@ -31677,7 +31676,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.openFile = function (dir) {
     const fileName = dir.split('/').reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null);
+    const fileNode = findNodeInTree(self.currentProject, f => f.path === dir);
     self.curFile = fileName;
+    self.selectedNode = fileNode;
     projectApi.openFile(dir).then(code => {
       self.code = code;
     }).catch(error => {
@@ -31686,9 +31687,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   };
 
   self.openFolder = function (dir) {
-    const folder = findNodeInTree(self.currentProject, f => f.path === dir);
-    if (!folder) return alertMessage.error('There are some error, refresh?');
-    if (folder.files.length + folder.folders.length) return; // already fetch inside item, do not have to fetch any more
+    const folderNode = findNodeInTree(self.currentProject, f => f.path === dir);
+    self.selectedNode = folderNode;
+    if (!folderNode) return alertMessage.error('There are some error, refresh?');
+    if (folderNode.files.length + folderNode.folders.length) return; // already fetch inside item, do not have to fetch any more
     //fetch inside item of folder
 
     projectApi.openFolder(dir).then(item => {
@@ -31697,11 +31699,11 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       }
 
       for (const f of item.files) {
-        folder.files.push(f);
+        folderNode.files.push(f);
       }
 
       for (const f of item.folders) {
-        folder.folders.push(f);
+        folderNode.folders.push(f);
       }
     }).catch(error => {
       alertMessage.error(error);
@@ -31752,10 +31754,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     projectApi.newFile(self.currentProject.rootName, filePath).then(() => {
       const containerFolderPath = getParrentFolderPath(filePath);
       const fileName = filePath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
-      console.log({
-        containerFolderPath,
-        fileName
-      });
       const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
       if (!parrentFolder) return alertMessage.error('Cannot create file');
       parrentFolder.files.push({
@@ -31775,14 +31773,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   self.createNewFolder = function () {
     const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)');
     if (!folderPath) return;
-    console.log('nah');
     projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
       const containerFolderPath = getParrentFolderPath(folderPath);
       const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
-      console.log({
-        containerFolderPath,
-        fileName: folderName
-      });
       const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
       if (!parrentFolder) return alertMessage.error('Cannot create folder');
       parrentFolder.folders.push({
@@ -31799,6 +31792,22 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     }).catch(error => alertMessage.error(error));
   };
 
+  self.deleteItem = function () {
+    if (!self.selectedNode) return alertMessage.error('Not choose an item yet');
+    projectApi.removeItem(self.currentProject.rootName, self.selectedNode.rootName).then(() => {
+      const nodeContainerOfRmItem = findNodeInTree(self.currentProject, node => node.path === getParrentFolderPath(self.selectedNode.path, true));
+
+      if (self.selectedNode.rootIsFile) {
+        nodeContainerOfRmItem.files = nodeContainerOfRmItem.files.filter(nodeFile => nodeFile.path !== self.selectedNode.path);
+      } else {
+        nodeContainerOfRmItem.folders = nodeContainerOfRmItem.folders.filter(nodeFile => nodeFile.path !== self.selectedNode.path);
+      }
+
+      alertMessage.success('remove success ' + self.selectedNode.rootName);
+      self.selectedNode = null;
+    }).catch(error => alertMessage.error('Cannot remove item'));
+  };
+
   function initState() {
     self.currentProject = {
       rootName: 'NOT OPEN PROJECT YET!!!',
@@ -31809,7 +31818,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     self.allProjects = []; // pass to explorer
 
     self.code = `/* your code is here */`;
-    self.curFile = 'sample.js'; // pass to terminal
+    self.curFile = 'sample.js'; // using with write and runnign code
+    // current tree node
+
+    self.selectedNode = null; // pass to terminal
 
     self.resultHtml = '';
     self.iframeHtmlLink = ''; // if code is html, this field will have value
@@ -31820,9 +31832,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   function findNodeInTree(rootNode, predicate) {
     if (predicate(rootNode)) return rootNode; // find current level
 
-    for (const folder of rootNode.folders) {
-      if (predicate(folder)) {
-        return folder;
+    for (const f of [...rootNode.files, ...rootNode.folders]) {
+      if (predicate(f)) {
+        return f;
       }
     } // find deeper level
 
@@ -31835,9 +31847,10 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     return null;
   }
 
-  function getParrentFolderPath(dir) {
+  function getParrentFolderPath(dir, dirContainProjectName = false) {
     const lastSlashIndex = dir.lastIndexOf('/');
     if (lastSlashIndex === -1) return self.currentProject.path;
+    if (dirContainProjectName) return dir.substr(0, lastSlashIndex);
     return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex);
   }
 }
@@ -31891,7 +31904,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
+module.exports = "<div class=app> <div style=width:20%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode> </tools> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <explorer style=width:40% update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <terminal style=width:40% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div>";
 
 /***/ }),
 
@@ -32804,6 +32817,7 @@ function controller(auth) {
       closeProject: '<',
       createNewFile: '<',
       createNewFolder: '<',
+      deleteItem: '<',
       addFunc: '<',
       saveCode: '<',
       runCode: '<'
@@ -32853,7 +32867,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder() title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder() title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=self.deleteItem() title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
