@@ -23,7 +23,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   self.openProject = function (name) {
-    // self.currentProject = name
     projectApi.openProject(name)
       .then(item => {
         self.currentProject = item
@@ -56,7 +55,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   self.openFolder = function (dir) {
-    
+
     const folder = findNodeInTree(self.currentProject, f => f.path === dir)
     if (!folder) return alertMessage.error('There are some error, refresh?')
     if (folder.files.length + folder.folders.length)
@@ -126,21 +125,71 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   }
 
   self.createNewFile = function () {
-    const name = prompt('Enter the file or path to the file')
-    if (!name) return
+
+    //filePath is not include project name in init
+    const filePath = prompt('Enter the file or path to the file (start without / and not include project name)')
+    if (!filePath) return
 
 
-    projectApi.newFile(self.currentProject.rootName, name)
-      .then(() => alertMessage.success('success'))
+    projectApi.newFile(self.currentProject.rootName, filePath)
+      .then(() => {
+        const containerFolderPath = getParrentFolderPath(filePath)
+        const fileName = filePath
+          .split('/')
+          .reduce((pre, cur, i, arr) => arr[arr.length - 1])
+        console.log({ containerFolderPath, fileName })
+        const parrentFolder = findNodeInTree(
+          self.currentProject,
+          node => node.path === containerFolderPath
+        )
+
+        if (!parrentFolder) return alertMessage.error('Cannot create file')
+
+        parrentFolder.files.push({
+          rootName: fileName,
+          files: [],
+          folders: [],
+          path: containerFolderPath + '/' + fileName,
+          rootIsFile: true
+        })
+
+        alertMessage.success('success create file')
+        console.log({tree: self.currentProject})
+      })
+      .catch(error => alertMessage.error(error))
   }
 
   self.createNewFolder = function () {
-    const name = prompt('Enter the folder or path to the folder')
-    if (!name) return
+    const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
+    if (!folderPath) return
+    console.log('nah')
 
+    projectApi.newFolder(self.currentProject.rootName, folderPath)
+      .then(() => {
+        const containerFolderPath = getParrentFolderPath(folderPath)
+        const folderName = folderPath
+          .split('/')
+          .reduce((pre, cur, i, arr) => arr[arr.length - 1])
+        console.log({ containerFolderPath, fileName: folderName })
+        const parrentFolder = findNodeInTree(
+          self.currentProject,
+          node => node.path === containerFolderPath
+        )
 
-    projectApi.newFolder(self.currentProject.rootName, name)
-      .then(() => alertMessage.success('success'))
+        if (!parrentFolder) return alertMessage.error('Cannot create folder')
+
+        parrentFolder.folders.push({
+          rootName: folderName,
+          files: [],
+          folders: [],
+          path: containerFolderPath + '/' + folderName,
+          rootIsFile: false
+        })
+
+        alertMessage.success('success create folder')
+        console.log({tree: self.currentProject})
+      })
+      .catch(error => alertMessage.error(error))
   }
 
   function initState() {
@@ -180,6 +229,13 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     }
 
     return null
+  }
+
+  function getParrentFolderPath(dir) {
+    const lastSlashIndex = dir.lastIndexOf('/')
+
+    if (lastSlashIndex === -1) return self.currentProject.path
+    return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex)
   }
 }
 

@@ -31664,7 +31664,6 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   };
 
   self.openProject = function (name) {
-    // self.currentProject = name
     projectApi.openProject(name).then(item => {
       self.currentProject = item;
     }).catch(error => {
@@ -31747,15 +31746,57 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
   };
 
   self.createNewFile = function () {
-    const name = prompt('Enter the file or path to the file');
-    if (!name) return;
-    projectApi.newFile(self.currentProject.rootName, name).then(() => alertMessage.success('success'));
+    //filePath is not include project name in init
+    const filePath = prompt('Enter the file or path to the file (start without / and not include project name)');
+    if (!filePath) return;
+    projectApi.newFile(self.currentProject.rootName, filePath).then(() => {
+      const containerFolderPath = getParrentFolderPath(filePath);
+      const fileName = filePath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+      console.log({
+        containerFolderPath,
+        fileName
+      });
+      const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+      if (!parrentFolder) return alertMessage.error('Cannot create file');
+      parrentFolder.files.push({
+        rootName: fileName,
+        files: [],
+        folders: [],
+        path: containerFolderPath + '/' + fileName,
+        rootIsFile: true
+      });
+      alertMessage.success('success create file');
+      console.log({
+        tree: self.currentProject
+      });
+    }).catch(error => alertMessage.error(error));
   };
 
   self.createNewFolder = function () {
-    const name = prompt('Enter the folder or path to the folder');
-    if (!name) return;
-    projectApi.newFolder(self.currentProject.rootName, name).then(() => alertMessage.success('success'));
+    const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)');
+    if (!folderPath) return;
+    console.log('nah');
+    projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
+      const containerFolderPath = getParrentFolderPath(folderPath);
+      const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+      console.log({
+        containerFolderPath,
+        fileName: folderName
+      });
+      const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+      if (!parrentFolder) return alertMessage.error('Cannot create folder');
+      parrentFolder.folders.push({
+        rootName: folderName,
+        files: [],
+        folders: [],
+        path: containerFolderPath + '/' + folderName,
+        rootIsFile: false
+      });
+      alertMessage.success('success create folder');
+      console.log({
+        tree: self.currentProject
+      });
+    }).catch(error => alertMessage.error(error));
   };
 
   function initState() {
@@ -31792,6 +31833,12 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     }
 
     return null;
+  }
+
+  function getParrentFolderPath(dir) {
+    const lastSlashIndex = dir.lastIndexOf('/');
+    if (lastSlashIndex === -1) return self.currentProject.path;
+    return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex);
   }
 }
 
@@ -32806,7 +32853,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
+module.exports = "<div class=tools> <i class=\"fas fa-sign-out-alt\" title=logout ng-click=self.logout()> </i> <i class=\"fas fa-times-circle\" title=\"close project\" ng-click=self.closeProject()> </i> <i class=\"fas fa-desktop\" title=\"run code\" ng-click=self.runCode()> </i> <i class=\"fas fa-save\" title=\"save code\" ng-click=self.saveCode()> </i> <tooltip-icon icon=\"'fas fa-pencil-alt'\" icon-title=\"'create function'\"> <a href=# ng-click=\"self.addFunc('login')\" title=login> <i style=color:#fff class=\"fas fa-unlock\"></i> </a> <a href=# ng-click=\"self.addFunc('list_project')\" title=\"list project\"> <i style=color:#fff class=\"fas fa-briefcase\"></i> </a> <a href=# ng-click=\"self.addFunc('list_well_of_project')\" title=\"list well of project\"> <i style=color:#fff class=\"fas fa-database\"></i> </a> <a href=# ng-click=\"self.addFunc('list_reference_curve')\" title=\"list reference curve\"> <i style=color:#fff class=\"fas fa-chart-line\"></i> </a> <a href=# ng-click=\"self.addFunc('get_curve_info')\" title=\"get curve info\"> <i style=color:#fff class=\"fas fa-info\"></i> </a> </tooltip-icon> <tooltip-icon icon=\"'fas fa-project-diagram'\" icon-title=\"'action'\"> <a href=# ng-click=self.createNewFile() title=\"new file\"> <i style=color:#fff class=\"fas fa-file\"></i> </a> <a href=# ng-click=self.createNewFolder() title=\"new folder\"> <i style=color:#fff class=\"fas fa-folder-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"new project\"> <i style=color:#fff class=\"fas fa-calendar-plus\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete item\"> <i style=color:#fff class=\"fas fa-trash\"></i> </a> <a href=# ng-click=\"self.addFunc('login')\" title=\"delete project\"> <i style=color:#fff class=\"fas fa-calendar-times\"></i> </a> </tooltip-icon> <modal-icon modal-name=\"'Open Project'\" icon=\"'fas fa-box-open'\" icon-on-click=self.findAllProjects icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project.rootName)> <i class=\"fas fa-briefcase\"></i> <span ng-bind=project.rootName></span> </li> </ul> </modal-icon> </div>";
 
 /***/ }),
 
