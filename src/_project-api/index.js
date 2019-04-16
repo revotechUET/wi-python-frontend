@@ -52,7 +52,8 @@ export function service(config, request) {
   }
 
   const login = (username, password) => {
-    const url = `${config.USER_RELATED_ROOT_URL}/user/login`
+    //const url = `${config.USER_RELATED_ROOT_URL}/user/login`
+    const url = `${config.USER_RELATED_ROOT_URL}/login`
     const data = {
       username,
       password

@@ -74,9 +74,9 @@
     allow-close-after-click="'true'">
     <ul class="list-project">
       <li ng-repeat="project in self.allProjects track by $index"
-        ng-click="self.openProject(project.rootName)">
+        ng-click="self.openProject(project)">
         <i class="fas fa-briefcase"></i>
-        <span ng-bind="project.rootName"></span>
+        <span ng-bind="project"></span>
       </li>
     </ul>
   </modal-icon>
