@@ -3,31 +3,47 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime']
-function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) {
+controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout']
+
+function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout) {
   const self = this
-
   self.$onInit = function () {
-    initState()
+    initState();
   }
+  $scope.onClickNodeTreeview = function (index, $event, node) {
+    if ($event.metaKey) {
+      let element = $event.metaKey;
+      doSomething(element);
 
+    } else if ($event.ctrlKey) {
+      let element = $event.ctrlKey;
+      doSomething(element);
+    }
+  }
   ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////
   //  Project function
   //
   ///
+
+  self.getProjectWellDatasetCurve = getProjectWellDatasetCurve;
+  
+  self.removeTreeConfig = function () {
+    $scope.treeConfig = [];
+  }
   self.findAllProjects = function () {
     projectApi.listProjects()
       .then(projects => {
-        console.log({ tree: self.currentProject })
+        console.log({
+          tree: self.currentProject
+        })
         self.allProjects = projects
       })
       .catch(error => {
         alertMessage.error(error)
-      })
+      });
   }
-
   self.openProject = function (name) {
     projectApi.openProject(name)
       .then(item => {
@@ -45,7 +61,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.createNewProject = function () {
     const projectName = prompt('Project Name')
-    if(!projectName) return
+    if (!projectName) return
 
     projectApi
       .newProject(projectName)
@@ -53,9 +69,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       .catch(error => alertMessage.error(error))
   }
 
-  self.deleteProject = function() {
-    if(!confirm('Are you sure to remove this project')) return
-    if(!self.currentProject) return alertMessage.error('No project is opened')
+  self.deleteProject = function () {
+    if (!confirm('Are you sure to remove this project')) return
+    if (!self.currentProject) return alertMessage.error('No project is opened')
 
     projectApi.deleteProject(self.currentProject.rootName)
       .then(() => {
@@ -120,7 +136,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
       .catch(error => {
         alertMessage.error(error)
       })
-  }  
+  }
 
   self.createNewFile = function () {
 
@@ -152,7 +168,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         })
 
         alertMessage.success('success create file')
-        console.log({ tree: self.currentProject })
+        console.log({
+          tree: self.currentProject
+        })
       })
       .catch(error => alertMessage.error(error))
   }
@@ -185,7 +203,9 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
         })
 
         alertMessage.success('success create folder')
-        console.log({ tree: self.currentProject })
+        console.log({
+          tree: self.currentProject
+        })
       })
       .catch(error => alertMessage.error(error))
   }
@@ -236,7 +256,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     const generatedFuncCode = funcGen.generateForPy(type)
     self.code = generatedFuncCode + self.code
   }
-  
+
   self.saveCode = function () {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
       .then(() => alertMessage.success('save success'))
@@ -246,7 +266,11 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
   self.runCode = function () {
     browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
-      (error, { type, render, link }) => {
+      (error, {
+        type,
+        render,
+        link
+      }) => {
         if (error) {
           return alertMessage.error(error.message)
         }
@@ -277,7 +301,7 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
 
     // pass to explorer
     self.code = `/* your code is here */`
-    self.curFile = 'sample.js'// using with write and runnign code
+    self.curFile = '' // using with write and runnign code
 
     // current tree node
     self.selectedNode = null
@@ -316,8 +340,196 @@ function controller(projectApi, alertMessage, funcGen, browserCodeRunner, mime) 
     if (dirContainProjectName) return dir.substr(0, lastSlashIndex)
     return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex)
   }
-}
 
+  function doSomething(element) {
+    console.log(element);
+    self.code += JSON.stringify(element);
+  }
+
+  function getProjectWellDatasetCurve() {
+    const BASE_URL = "http://dev.i2g.cloud";
+    let mytoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1bmduayIsIndob2FtaSI6Im1haW4tc2VydmljZSIsInJvbGUiOjIsImNvbXBhbnkiOiJFU1MiLCJpYXQiOjE1NTU1NTE5ODEsImV4cCI6MTU1NTcyNDc4MX0.9VhRt_Gk8DLQWtOcisXdHh9w75F5RvLyS8AejAvshv8";
+    $scope.treeConfig = [];
+
+    async.waterfall([
+      function (cb) {
+        getProjects($scope.treeConfig, cb);
+      },
+      function (projects, treeRoot, cb) {
+        let projectNodes = projects.map(function (prj) {
+          return {
+            data: {
+              icon: 'project-normal-16x16',
+              label: prj.name
+            },
+            properties: prj,
+            children: []
+          }
+        });
+
+        treeRoot.push(...projectNodes);
+        async.eachOfSeries(projects, function (proj, idx, cb) {
+          async.waterfall([
+            function (cb) {
+              getWells(proj.idProject, projectNodes[idx].children, cb);
+            },
+            function (wells, projectNodeChildren, cb) {
+              let wellNodes = wells.map(function (well) {
+                return {
+                  data: {
+                    icon: 'well-16x16',
+                    label: well.name
+                  },
+                  properties: well,
+                  children: []
+                }
+              });
+              projectNodeChildren.push(...wellNodes);
+              async.eachOfSeries(wells, function (well, idx, cb) {
+                async.waterfall([
+                  function (cb) {
+                    getDatasets(well.idWell, wellNodes[idx].children, cb);
+                  },
+                  function (datasets, wellNodeChildren, cb) {
+                    let datasetNodes = datasets.map(dataset => ({
+                      data: {
+                        label: dataset.name,
+                        icon: 'curve-data-16x16'
+                      },
+                      properties: dataset,
+                      children: []
+                    }));
+
+                    wellNodeChildren.push(...datasetNodes);
+
+                    async.eachOfSeries(datasets, function (dataset, idx, cb) {
+                      async.waterfall([
+                        function (cb) {
+                          getCurves(dataset.idDataset, datasetNodes[idx].children, cb);
+                        },
+                        function (curves, datasetNodeChildren, cb) {
+                          let curveNodes = curves.map(curve => ({
+                            data: {
+                              label: curve.name,
+                              icon: 'curve-16x16'
+                            },
+                            properties: curve
+                          }));
+                          datasetNodeChildren.push(...curveNodes);
+                          // console.log("curves:", curves);
+                          cb();
+                        }
+                      ], cb);
+                    }, cb);
+                  }
+                ], cb);
+              }, cb);
+            }
+          ], cb);
+        }, cb);
+      }
+    ], function (err) {
+      console.log("every thing is done", err);
+    });
+
+
+    function getProjects(treeConfig, cb) {
+      $http({
+        method: 'POST',
+        url: BASE_URL + '/project/list',
+        data: {},
+        headers: {
+          "Authorization": mytoken,
+        }
+      }).then(function (response) {
+        let projects = response.data.content;
+        cb(null, projects, treeConfig);
+      }, function (err) {
+        cb(err);
+      });
+    }
+
+    function getWells(projectId, projectNodeChildren, cb) {
+      $http({
+        method: 'POST',
+        url: BASE_URL + '/project/well/list',
+        data: {
+          idProject: projectId
+        },
+        headers: {
+          "Authorization": mytoken,
+        }
+      }).then(function (response) {
+        cb(null, response.data.content, projectNodeChildren);
+      }, function (err) {
+        cb(err);
+      });
+    }
+
+    function getDatasets(wellId, wellNodeChildren, cb) {
+      $http({
+        method: 'POST',
+        url: BASE_URL + '/project/well/info',
+        data: {
+          idWell: wellId
+        },
+        headers: {
+          "Authorization": mytoken,
+        }
+      }).then(function (response) {
+        cb(null, response.data.content.datasets, wellNodeChildren);
+      }, function (err) {
+        cb(err);
+      });
+    }
+
+    function getCurves(datasetId, datasetNodeChildren, cb) {
+      $http({
+        method: 'POST',
+        url: BASE_URL + '/project/well/dataset/info',
+        data: {
+          idDataset: datasetId
+        },
+        headers: {
+          "Authorization": mytoken,
+        }
+      }).then(function (response) {
+        cb(null, response.data.content.curves, datasetNodeChildren);
+      }, function (err) {
+        cb(err);
+      });
+    }
+  }
+  /*
+    function getProjectList() {
+      var projectList = [];
+      $http({
+        method: 'POST',
+        url: 'http://dev.i2g.cloud/project/list',
+        data: {},
+        headers: {
+          "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1bmduayIsIndob2FtaSI6Im1haW4tc2VydmljZSIsInJvbGUiOjIsImNvbXBhbnkiOiJFU1MiLCJpYXQiOjE1NTU1NTE5ODEsImV4cCI6MTU1NTcyNDc4MX0.9VhRt_Gk8DLQWtOcisXdHh9w75F5RvLyS8AejAvshv8",
+        }
+      }).then(function (response) {
+        let projects = response.data.content;
+        for (let index = 0; index < projects.length; index++) {
+          projectList.push({
+            data: {
+              icon: "project-normal-16x16",
+              label: projects[index].alias,
+            },
+            properties: projects[index]
+          });
+        }
+      }, function (errorResponse) {
+        window.alert("Unauthorized access!");
+        console.error(errorResponse);
+      });
+      $scope.projectList = projectList;
+      console.log(projectList);
+    }
+    */
+}
 export default {
   name,
   options: {

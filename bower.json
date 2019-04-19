@@ -14,7 +14,12 @@
   ],
   "dependencies": {
     "bootstrap": "3.3.7",
-    "jquery": "3.3.1"
+    "jquery": "3.3.1",
+    "misc-component": "https://github.com/tunghoang/misc-component.git",
+    "angular": "^1.7.8",
+    "jquery-ui": "^1.12.1",
+    "lodash": "^4.17.11",
+    "async": "^2.6.2"
   },
   "license": "ISC",
   "homepage": "https://github.com/bmq928/online-editor-client"

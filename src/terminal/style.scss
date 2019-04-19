@@ -1,15 +1,16 @@
 .terminal {
   background-color: white;
   height: 100%;
-  padding-top: 5px;
+  padding: 15px;
+  font-size: 13px;
 
-  .tools{
+  .tools {
     display: flex;
     flex-direction: row-reverse;
 
     i {
       cursor: pointer;
-      font-size: 15px;
+      font-size: 13px;
       margin-right: 25px;
 
 
@@ -17,9 +18,9 @@
         color: fade-in($color: #000000, $amount: 0)
       }
 
-      &:active{
+      &:active {
         color: fade-in($color: #999999, $amount: 0)
       }
-    }    
+    }
   }
 }

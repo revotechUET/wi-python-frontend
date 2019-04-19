@@ -3,44 +3,18 @@ import './style.scss'
 
 const name = 'modalIcon'
 
-///////////////////////////////////////
-
-// A Icon when is clicked show up a modal
-
-/////////////////////////////////////
-controller.$inject = []
-function controller() {
+controller.$inject = ['$timeout']
+function controller($timeout) {
   const self = this
 
   self.$onInit = function () {
-    initState()
-  }
-
-  self.showModal = function () {
-    self.modalStyle.display = 'block'
-    if(self.iconOnClick && typeof self.iconOnClick === 'function') {
-      self.iconOnClick()
-    }
+    console.log(this.showing);
   }
 
   self.close = function () {
-    self.modalStyle.display = 'none'
-    if(self.onClose && typeof self.onClose === 'function') {
-      self.onClose()
-    }
+    $timeout(() => (self.showing = !self.showing));
   }
 
-  self.closeByClickInChild = function() {
-    if(self.allowCloseAfterClick) {
-      self.close()
-    }
-  }
-
-  function initState() {
-    self.modalStyle = {
-      display: 'none'
-    }
-  }
 }
 
 export default {
@@ -50,8 +24,7 @@ export default {
       modalName: '<',
       icon: '<',
       iconTitle: '<',
-      iconOnClick: '<',
-      // modalStyle: '<',
+      showing: "=",
       allowCloseAfterClick: '<'
     },
     template,

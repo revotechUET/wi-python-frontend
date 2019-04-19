@@ -1,0 +1,29 @@
+{
+  "name": "misc-component",
+  "version": "1.0.0",
+  "description": "This is The Nam",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tunghoang/misc-component.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tunghoang/misc-component/issues"
+  },
+  "homepage": "https://github.com/tunghoang/misc-component#readme",
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "html-loader": "^0.5.5",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.23.1",
+    "less": "^3.9.0"
+  },
+  "dependencies": {
+    "jwt-decode": "^2.2.0"
+  }
+}

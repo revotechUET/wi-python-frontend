@@ -1,83 +1,126 @@
 <div class="tools">
-  
-  <i class="fas fa-sign-out-alt" 
-    title="logout" 
-    ng-click="self.logout()">
-  </i>
+    <div class="button-menu" ng-click="self.findAllProjects(); showOP = true;">
+        <div>
+            <modal-icon modal-name="'Open Project'" showing="showOP" icon-title="'open a project'"
+                allow-close-after-click="'true'">
+                <ul class="list-project">
+                    <li ng-repeat="project in self.allProjects track by $index"
+                        ng-click="self.openProject(project);self.setShowOP(false);">
+                        <span ng-bind="project"></span>
+                    </li>
+                </ul>
+            </modal-icon>
+        </div>
+        <div class="lable-button">Open project</div>
+    </div>
+    <div class="button-menu" ng-click="self.createNewProject()">
+        <div>
+            <span title="new project" class="new-project-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">New project</div>
+    </div>
+    <div class="button-menu" ng-click="self.closeProject()">
+        <div>
+            <span title="close project" class="close-project-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Close project</div>
+    </div>
+    <div class="button-menu" ng-click="self.deleteProject()">
+        <div>
+            <span title="delete project" class="delete-project-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Delete project</div>
+    </div>
 
-  <i class="fas fa-times-circle" 
-    title="close project" 
-    ng-click="self.closeProject()">
-  </i>
 
-  <i class="fas fa-desktop" 
-    title="run code" 
-    ng-click="self.runCode()">
-  </i>
+    <div class="button-menu" ng-click="self.codePalette()">
+        <div>
+            <span title="Code gen" class="run-code-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Code gen</div>
+    </div>
+    <div class="button-menu" ng-click="self.removeCodePalette()">
+        <div>
+            <span title="Clear code gen" class="run-code-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Clear code gen</div>
+    </div>
 
-  <i class="fas fa-save"
-    title="save code"
-    ng-click="self.saveCode()">
-  </i>
 
-  <!-- <i class="fas fa-pencil-alt" ng-click="self.addFunc()"></i> -->
+    <div class="button-menu" ng-click="self.runCode()">
+        <div>
+            <span title="run code" class="run-code-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Run code</div>
+    </div>
+    <div class="button-menu" ng-click="self.saveCode()">
+        <div>
+            <span title="save code" class="save-code-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Save code</div>
+    </div>
+    <div class="button-menu" ng-click="self.createNewFile()">
+        <div>
+            <span title="new file" class="new-file-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">New file</div>
+    </div>
+    <div class="button-menu" ng-click="self.createNewFolder()">
+        <div>
+            <span title="new folder" class="new-folder-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">New folder</div>
+    </div>
+    <!-- <div class="button-menu" ng-click="self.addFunc('login')">
+        <div>
+            <span title="login" class="login-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Login</div>
+    </div>
+    <div class="button-menu" ng-click="self.addFunc('list_project')">
+        <div>
+            <span title="list project" class="list-project-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">List project</div>
+    </div>
+    <div class="button-menu" ng-click="self.addFunc('list_well_of_project')">
+        <div>
+            <span title="list well of project" class="list-wells-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">List well</div>
+    </div>
+    <div class="button-menu" ng-click="self.addFunc('list_reference_curve')">
+        <div>
+            <span title="list reference curve" class="list-reference-curve-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Reference curve</div>
+    </div>
+    <div class="button-menu" ng-click="self.addFunc('get_curve_info')">
+        <div>
+            <span title="get curve info" class="get-curve-infor-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Curve info</div>
+    </div> -->
+    <div class="button-menu" ng-click="self.logout()">
+        <div>
+            <span title="logout" class="logout-wi-python-32x32">
+            </span>
+        </div>
+        <div class="lable-button">Logout</div>
+    </div>
 
-  <tooltip-icon icon="'fas fa-pencil-alt'" icon-title="'create function'">
-    <a href="#" ng-click="self.addFunc('login')" title="login">
-      <i style="color:white" class="fas fa-unlock"></i>
-    </a>
-
-    <a href="#" ng-click="self.addFunc('list_project')" title="list project">
-      <i style="color:white" class="fas fa-briefcase"></i>
-    </a>
-
-    <a href="#" ng-click="self.addFunc('list_well_of_project')" title="list well of project">
-      <i style="color:white" class="fas fa-database"></i>
-    </a>
-
-    <a href="#" ng-click="self.addFunc('list_reference_curve')" title="list reference curve">
-      <i style="color:white" class="fas fa-chart-line"></i>
-    </a>
-
-    <a href="#" ng-click="self.addFunc('get_curve_info')" title="get curve info">
-      <i style="color:white" class="fas fa-info"></i>
-    </a>
-  </tooltip-icon>
-  
-  <tooltip-icon icon="'fas fa-project-diagram'" icon-title="'action'">
-    <a href="#" ng-click="self.createNewFile()" title="new file">
-      <i style="color:white" class="fas fa-file"></i>
-    </a>
-
-    <a href="#" ng-click="self.createNewFolder()" title="new folder">
-      <i style="color:white" class="fas fa-folder-plus"></i>
-    </a>
-
-    <a href="#" ng-click="self.createNewProject()" title="new project">
-      <i style="color:white" class="fas fa-calendar-plus"></i>
-    </a>
-
-    <a href="#" ng-click="self.deleteItem()" title="delete item">
-      <i style="color:white" class="fas fa-trash"></i>
-    </a>
-    
-    <a href="#" ng-click="self.deleteProject()" title="delete project">
-      <i style="color:white" class="fas fa-calendar-times"></i>
-    </a>
-  </tooltip-icon>
-  
-  <modal-icon
-    modal-name="'Open Project'" 
-    icon="'fas fa-box-open'"
-    icon-on-click="self.findAllProjects"
-    icon-title="'open a project'"
-    allow-close-after-click="'true'">
-    <ul class="list-project">
-      <li ng-repeat="project in self.allProjects track by $index"
-        ng-click="self.openProject(project)">
-        <i class="fas fa-briefcase"></i>
-        <span ng-bind="project"></span>
-      </li>
-    </ul>
-  </modal-icon>
 </div>

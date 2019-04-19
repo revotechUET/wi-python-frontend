@@ -10,12 +10,16 @@ import './style.scss'
 
 const name = 'tools'
 
-controller.$inject = ['auth']
-function controller(auth) {
+controller.$inject = ['$scope', '$timeout', 'auth']
+function controller($scope, $timeout, auth) {
   const self = this
 
   self.logout = function () {
     auth.logout()
+  }
+
+  self.setShowOP = function(val) {
+    $timeout(() => {$scope.showOP = val;});
   }
 }
 
@@ -36,7 +40,9 @@ export default {
 
       addFunc: '<',
       saveCode: '<',
-      runCode: '<'
+      runCode: '<',
+      codePalette: '<',
+      removeCodePalette:'<'
     },
     template,
     controller,

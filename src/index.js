@@ -9,12 +9,12 @@ const renderComponent = '<browser></browser>'
 
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-undef
     
-    const angular = require('angular')
+    //const angular = require('angular')
     assignAppModule(angular, moduleName)
     document.getElementById('root-app').innerHTML = renderComponent
 
 } else {
-    const angular = window.angular
+    //const angular = window.angular
     assignAppModule(angular, moduleName)
 }
 

@@ -1,0 +1,36 @@
+{
+  "name": "misc-component",
+  "description": "",
+  "main": "src/test/main.js",
+  "authors": "",
+  "license": "ISC",
+  "homepage": "https://github.com/tunghoang/misc-component",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.7.8",
+    "jquery": "^3.3.1",
+    "jquery-ui": "^1.12.1",
+    "bootstrap-css": "^3.3.7",
+    "proj4": "^2.5.0",
+    "ng-dialog": "^1.4.0",
+    "lodash": "^4.17.11",
+    "font-awesome": "4",
+    "katex": "^0.10.1"
+  },
+  "_release": "932d2b721c",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "932d2b721cbc6c92ce7deda764068a715ae781a3"
+  },
+  "_source": "https://github.com/tunghoang/misc-component.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/tunghoang/misc-component.git"
+}

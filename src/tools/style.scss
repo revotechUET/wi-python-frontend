@@ -1,45 +1,30 @@
-.tools{
-  margin: 5px 0;
+tools .tools {
   display: flex;
-  padding-left: 5px;
-  flex-direction: row-reverse;
+    flex-direction: row;
+    background-image: linear-gradient(135deg, #0682cc, #167fca);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    color: #fff;
 
-  .tooltip-child-icon {
-    color: white;
-  }
-
-  .list-project {
-    list-style: none;
-    margin-top: 10px;
-    
-    li {
-      text-align: left;
-      margin-bottom: 3px;
-
-      i {
-        margin-right: 10px;
-      }
-
-      span {
-        cursor: pointer;
-        &:hover{
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  i {
+  .button-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 60px;
+    min-width: 60px;
+    white-space: normal;
+    padding: 10px 10px;
+    border-bottom: 4px solid #1480ca;
     cursor: pointer;
-    font-size: 15px;
-    margin-right: 15px;
 
-    &:hover {
-      color: fade-in($color: #000000, $amount: 0)
+    .lable-button {
+      margin-top: 5px;
+      color: #ffffffcc;
     }
-
-    &:active{
-      color: fade-in($color: #999999, $amount: 0)
-    }
-  }    
+  }
+  .button-menu:hover {
+    background: #0a76bd;
+    border-bottom: 4px solid #69bdff;
+  }
 }

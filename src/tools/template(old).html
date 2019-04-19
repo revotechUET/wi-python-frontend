@@ -1,0 +1,57 @@
+<div class="tools">
+  <div class="button-array">
+    <div class="button-array-label"><span>Project commands</span></div>
+
+    <div class="button-array-holder">
+      <span>
+        <modal-icon modal-name="'Open Project'" icon="'fas fa-box-open'" icon-on-click="self.findAllProjects"
+          icon-title="'open a project'" allow-close-after-click="'true'">
+          
+          <ul class="list-project">
+            <li ng-repeat="project in self.allProjects track by $index" ng-click="self.openProject(project)">
+              <span class="fas fa-briefcase"></span>
+              <span ng-bind="project"></span>
+            </li>
+          </ul>
+          
+        </modal-icon>
+       
+      </span>
+      
+    </div>
+  </div>
+ 
+  <div class="button-array">
+    <div class="button-array-label"><span>Code Gen</span></div>
+    <div class="button-array-holder">
+      <span class="fas fa-unlock" >
+        <p class="lable-button">Login</p>
+      </span>
+      <span class="fas fa-briefcase" >
+        <p class="lable-button">List project</p>
+      </span>
+      <span  class="fas fa-database">
+        <p class="lable-button">List well</p>
+      </span>
+      <span  class="fas fa-chart-line">
+        <p class="lable-button"></p>
+      </span>
+      <span  class="fas fa-info">
+        <p class="lable-button"></p>
+      </span>
+    </div>
+
+
+  </div>
+  <div class="button-array">
+    <div class="button-array-label"><span>Logout</span></div>
+    <div class="button-array-holder">
+      <span class="fas fa-sign-out-alt" >
+        <p class="lable-button">Logout</p>
+      </span>
+    </div>
+  </div>
+
+
+
+</div>

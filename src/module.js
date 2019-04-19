@@ -31,7 +31,7 @@ import * as keyBind from './_key-bind'
 
 
 export default function assignAppModule(angular, moduleName) {
-  const dependencies = []
+  const dependencies = ['sideBar', 'wi-base-treeview','wiToken']
 
   angular.module(moduleName, dependencies)
     .component(app.name, app.options)
