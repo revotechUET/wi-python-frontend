@@ -855,7 +855,7 @@ exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100%;\n  padding: 15px;\n  font-size: 13px; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
+exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 246px;\n  padding: 15px;\n  font-size: 13px;\n  overflow: auto; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
 
 
 
