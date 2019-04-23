@@ -11,7 +11,7 @@ body,
   display: flex;
   overflow-y: hidden;
 }
-  
+
 body {
   background-color: whitesmoke;
   margin: 0;
@@ -23,6 +23,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.delete-checked {
+  color: #525252 !important;
+}
+
+.save-checked {
+  color: #525252 !important;
+}
+
+.refresh-checked {
+  color: #525252 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -30,7 +43,7 @@ code {
 
 .label-list-view {
   // height: 44px;
-  padding: 13px;
+  padding: 10px 13px 10px 13px;
   font-size: 13px;
   font-weight: bold;
   background: #f4f4f4;
@@ -40,7 +53,7 @@ code {
 .label-buttom {
   float: right;
   cursor: pointer;
-  color: #bbbbbb;
+  color: #d4d4d4;
   margin: 2px 5px 0 25px;
 }
 
@@ -59,10 +72,12 @@ code {
   color: rgba(0, 0, 0, 0.253);
   /* font-weight: 100; */
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
   background: #f4f4f4;
   width: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #dcdcdc;
 }
@@ -76,29 +91,52 @@ code {
 .input-search-list-view:focus {
   outline: none;
 }
+
 //fix tree view css
 wi-base-treeview .wi-treeview-container .wi-parent-content {
   align-items: center;
   padding: 5px 0;
-  
-  > div.item-content {
+
+  >div.item-content {
     display: flex;
     align-items: center;
     overflow: hidden;
     flex: 1;
   }
-  
-}
-wi-base-treeview .wi-treeview-container:focus {
-  color: #000;
-  font-weight: bold;
-  background: #f4f4f4;
-  border-left: 4px solid #0074c5;
-  margin: 0;
-  padding: 0 6px;
-  display: flex;
-  align-items: center;
-  transition: none;
+
 }
 
-//toastr
+wi-login>div {
+  position: absolute;
+  z-index: 4;
+  right: 18px;
+  top: 20px;
+  /* padding: 10px; */
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+}
+
+wi-login>div>div.online {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  background: none;
+  margin-bottom: 11px;
+}
+
+wi-login>div>div {
+  font-size: 12px;
+  display: flex;
+  align-items: normal;
+  padding: 3px 5px 3px 9px;
+  border-radius: 20px;
+  border: 1px solid white;
+  background: #fff;
+  color: #0078be73;
+  cursor: pointer;
+}
+
+.ngdialog .btn {
+  padding: 4px;
+}

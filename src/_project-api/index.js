@@ -1,8 +1,8 @@
 export const name = 'projectApi';
 
-service.$inject = ['config', 'request'];
+service.$inject = ['config', 'request', 'wiToken'];
 
-export function service(config, request) {
+export function service(config, request, wiToken) {
 
 	const newProject = name => {
 		const token = getToken();
@@ -94,15 +94,12 @@ export function service(config, request) {
 	};
 
 	function getToken() {
-		return window.localStorage.getItem('JWT_TOKEN');
+		return wiToken.getToken();
 	}
 
 	function getUsername() {
-		const token = window.localStorage.getItem('JWT_TOKEN');
-		if (!token) throw new Error('token is emtpy');
 
-		const decoded = JSON.parse(atob(token.split('.')[1]));
-		return decoded.username
+		return wiToken.getUserName();
 	}
 
 	return {

@@ -34,6 +34,8 @@ function controller(mime) {
   }
 
   function initCodeEditor() {
+    let codeEditorElement = document.getElementById('codeArea');
+    if (!codeEditorElement) return; 
     const fileType = mime.getFileType(self.curFile)
     const codeArea = new CodeFlask('#codeArea', {
       lineNumbers: true,
@@ -41,6 +43,7 @@ function controller(mime) {
         mime.types.javascript :
         fileType
     })
+  
 
     addPythonSupport(codeArea)
 
@@ -59,18 +62,22 @@ function controller(mime) {
   }
 
   function fixDefaultStyle() {
-    const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
+    try {
+      const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth
 
-    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
+      document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`
 
-    // //fix sync scroll between <pre> and <textarea>
-    // const $pre = document.querySelector('.explorer pre')
-    // const $textarea = document.querySelector('.explorer textarea')
+      // //fix sync scroll between <pre> and <textarea>
+      // const $pre = document.querySelector('.explorer pre')
+      // const $textarea = document.querySelector('.explorer textarea')
 
-    // $textarea.addEventListener('scroll', e => {
-    //   $pre.scrollTop = $textarea.scrollTop
-    // })
-    
+      // $textarea.addEventListener('scroll', e => {
+      //   $pre.scrollTop = $textarea.scrollTop
+      // })
+    }
+    catch(e) {
+
+    }
   }
 
   function addPythonSupport(codeArea) {

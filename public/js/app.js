@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #bbbbbb;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-base-treeview .wi-treeview-container:focus {\n  color: #000;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-left: 4px solid #0074c5;\n  margin: 0;\n  padding: 0 6px;\n  display: flex;\n  align-items: center;\n  transition: none; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 4px; }\n", ""]);
 
 
 
@@ -818,7 +818,7 @@ exports.push([module.i, "", ""]);
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".my-modal {\n  pointer-events: all;\n  /* Add Animation */\n  /* The Close Button */ }\n  .my-modal .modal {\n    color: #000;\n    position: fixed;\n    z-index: 4;\n    padding-top: 20%;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    overflow: auto;\n    background-color: rgba(0, 0, 0, 0.15);\n    cursor: default; }\n    .my-modal .modal::before {\n      height: 0; }\n  .my-modal .modal-content {\n    position: relative;\n    background-color: #fefefe;\n    margin: auto;\n    border-radius: 5px;\n    padding: 0;\n    width: 450px;\n    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.05), 0 9px 46px 8px rgba(0, 0, 0, 0.02), 0 11px 15px -7px rgba(0, 0, 0, 0.07);\n    -webkit-animation-name: animatetop;\n    -webkit-animation-duration: 0.4s;\n    animation-name: animatetop;\n    animation-duration: 0.3s; }\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n  .my-modal .close {\n    right: 22px;\n    font-size: 20px;\n    top: 10px;\n    position: absolute; }\n  .my-modal .close:hover,\n  .my-modal .close:focus {\n    cursor: pointer; }\n  .my-modal .modal-header {\n    background-color: #0077be;\n    border-top-left-radius: 5px;\n    border-top-right-radius: 5px;\n    color: #fff;\n    display: flex;\n    align-items: center;\n    padding: 15px;\n    position: relative; }\n    .my-modal .modal-header h4 {\n      margin: 0 10px; }\n  .my-modal .modal-body {\n    padding: 10px;\n    min-height: 90px;\n    display: flex; }\n    .my-modal .modal-body .list-project {\n      margin: 0;\n      list-style-type: none;\n      padding: 0;\n      text-align: left;\n      display: flex;\n      flex-wrap: wrap; }\n      .my-modal .modal-body .list-project > li {\n        padding: 15px 17px;\n        border-radius: 3px;\n        background: #f4f4f4;\n        margin: 10px;\n        cursor: pointer; }\n      .my-modal .modal-body .list-project > li:hover {\n        animation-name: animatetop;\n        animation-duration: 0.5s;\n        background: #cacdd2; }\n", ""]);
+exports.push([module.i, ".my-modal {\n  pointer-events: all;\n  /* Add Animation */\n  /* The Close Button */ }\n  .my-modal .modal {\n    color: #000;\n    position: fixed;\n    z-index: 4;\n    padding-top: 20%;\n    left: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    overflow: auto;\n    background-color: rgba(0, 0, 0, 0.15);\n    cursor: default; }\n    .my-modal .modal::before {\n      height: 0; }\n  .my-modal .modal-content {\n    position: relative;\n    background-color: #fefefe;\n    margin: auto;\n    border-radius: 5px;\n    padding: 0;\n    width: 450px;\n    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.05), 0 9px 46px 8px rgba(0, 0, 0, 0.02), 0 11px 15px -7px rgba(0, 0, 0, 0.07);\n    -webkit-animation-name: animatetop;\n    -webkit-animation-duration: 0.4s;\n    animation-name: animatetop;\n    animation-duration: 0.3s; }\n\n@-webkit-keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n\n@keyframes animatetop {\n  from {\n    top: -300px;\n    opacity: 0; }\n  to {\n    top: 0;\n    opacity: 1; } }\n  .my-modal .close {\n    right: 22px;\n    font-size: 20px;\n    top: 10px;\n    position: absolute; }\n  .my-modal .close:hover,\n  .my-modal .close:focus {\n    cursor: pointer; }\n  .my-modal .modal-header {\n    background-color: #0077be;\n    border-top-left-radius: 5px;\n    border-top-right-radius: 5px;\n    color: #fff;\n    display: flex;\n    align-items: center;\n    padding: 15px;\n    position: relative; }\n    .my-modal .modal-header h4 {\n      margin: 0 10px; }\n  .my-modal .modal-body {\n    padding: 10px;\n    min-height: 90px;\n    display: flex; }\n    .my-modal .modal-body .list-project {\n      margin: 0;\n      list-style-type: none;\n      padding: 0;\n      text-align: left;\n      display: flex;\n      flex-wrap: wrap; }\n      .my-modal .modal-body .list-project > li {\n        padding: 15px 17px;\n        border-radius: 3px;\n        background: #ececec;\n        margin: 10px;\n        cursor: pointer; }\n      .my-modal .modal-body .list-project > li:hover {\n        animation-name: animatetop;\n        animation-duration: 0.5s;\n        background: #cacdd2; }\n", ""]);
 
 
 
@@ -840,7 +840,7 @@ var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ./assets/zTreeS
 var ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! ./assets/loading.gif */ "./src/sidebar/assets/loading.gif"));
 
 // Module
-exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 5px;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 12px;\n    border-bottom: 1px solid #f4f4f4;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
+exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 0;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 9px;\n    border-bottom: 1px solid #f4f4f4;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
 
 
 
@@ -11843,8 +11843,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 const name = 'projectApi';
-service.$inject = ['config', 'request'];
-function service(config, request) {
+service.$inject = ['config', 'request', 'wiToken'];
+function service(config, request, wiToken) {
   const newProject = name => {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}&token=${token}`;
@@ -11932,14 +11932,11 @@ function service(config, request) {
   };
 
   function getToken() {
-    return window.localStorage.getItem('JWT_TOKEN');
+    return wiToken.getToken();
   }
 
   function getUsername() {
-    const token = window.localStorage.getItem('JWT_TOKEN');
-    if (!token) throw new Error('token is emtpy');
-    const decoded = JSON.parse(atob(token.split('.')[1]));
-    return decoded.username;
+    return wiToken.getUserName();
   }
 
   return {
@@ -12018,16 +12015,6 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
 
   self.$onInit = function () {
     initState();
-  };
-
-  $scope.onClickNodeTreeview = function (index, $event, node) {
-    if ($event.metaKey) {
-      let element = $event.metaKey;
-      doSomething(element);
-    } else if ($event.ctrlKey) {
-      let element = $event.ctrlKey;
-      doSomething(element);
-    }
   }; ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////
@@ -12036,10 +12023,8 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   ///
 
 
-  self.getProjectWellDatasetCurve = getProjectWellDatasetCurve;
-
   self.removeTreeConfig = function () {
-    $scope.treeConfig = [];
+    $scope.treeConfig.length = 0;
   };
 
   self.findAllProjects = function () {
@@ -12092,7 +12077,11 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     self.curFile = fileName;
     self.selectedNode = fileNode;
     projectApi.openFile(dir).then(code => {
-      self.code = code;
+      console.log(code);
+
+      if (typeof code === "object") {
+        self.code = "";
+      } else self.code = code;
     }).catch(error => {
       alertMessage.error(error);
     });
@@ -12210,8 +12199,8 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         return alertMessage.error(error.message);
       }
 
-      if (render) self.resultHtml = render;
-      if (link) self.iframeHtmlLink = link;
+      if (render) self.resultHtml = render; // if (link) self.iframeHtmlLink = link
+
       self.isResultAIframe = type === mime.types.html;
     });
   };
@@ -12270,88 +12259,299 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex);
   }
 
-  function doSomething(element) {
-    console.log(element);
-    self.code += JSON.stringify(element);
+  this.codeGenMode = "load";
+
+  this.deleteChecked = function () {
+    console.log("deleteChecked");
+    self.codeGenMode = "delete";
+    return false;
+  };
+
+  this.saveChecked = function () {
+    console.log("saveChecked");
+    self.codeGenMode = "save";
+    return false;
+  };
+
+  this.refreshChecked = function () {
+    console.log("refeshChecked");
+    self.codeGenMode = "load";
+    return true;
+  };
+
+  this.getLabel = function (node) {
+    if (node.idCurve) {
+      return node.name;
+    } else if (node.idDataset) {
+      return node.name;
+    } else if (node.idWell) {
+      return node.name;
+    } else if (node.idProject) {
+      return node.alias;
+    }
+  };
+
+  this.getIcon = function (node) {
+    if (node.idCurve) return "curve-16x16";else if (node.idDataset) return "curve-data-16x16";else if (node.idWell) return "well-16x16";else if (node.idProject) return "project-normal-16x16";
+  };
+
+  this.getChildren = function (node) {
+    if (node.idDataset) {
+      return node.curves;
+    } else if (node.idWell) {
+      return node.datasets;
+    } else if (node.idProject) {
+      return node.wells;
+    }
+  };
+
+  this.runMatch = function (node, criteria) {
+    return node.name.includes(criteria);
+  };
+
+  self.onDrop = function (event, ui, node) {
+    function generateCode(type, mode, info) {
+      $timeout(() => {
+        switch (type) {
+          case 'curve':
+            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            break;
+
+          case 'dataset':
+            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            break;
+
+          case 'well':
+            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            break;
+
+          case 'project':
+            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            break;
+        }
+      });
+    }
+
+    if (node.idCurve) {
+      generateCode('curve', self.codeGenMode, node.idCurve);
+    } else if (node.idDataset) {
+      generateCode('dataset', self.codeGenMode, node.idDataset);
+    } else if (node.idWell) {
+      generateCode('well', self.codeGenMode, node.idWell);
+    } else if (node.idProject) {
+      generateCode('project', self.codeGenMode, node.idProject);
+    }
+  };
+
+  this.clickFunction = function ($event, node) {
+    if (node.idCurve) {
+      console.log("Curve clicked");
+    } else if (node.idDataset) {
+      console.log("Dataset clicked");
+    } else if (node.idWell) {
+      console.log("Well clicked");
+    } else if (node.idProject) {
+      if (!node.timestamp || Date.now() - node.timestamp > 10 * 1000) {
+        getWells(node.idProject, node, function (err, wells) {
+          if (err) {
+            return alertMessage.error(err.data.content);
+          }
+
+          node.wells = wells;
+          async.eachOf(node.wells, function (well, idx, cb) {
+            getDatasets(well.idWell, well, function (err, datasets) {
+              if (err) {
+                return cb(err);
+              }
+
+              well.datasets = datasets;
+              cb();
+            });
+          }, function (err) {
+            if (err) {
+              return alertMessage.error(err.message);
+            }
+
+            node.timestamp = Date.now();
+          });
+        });
+      }
+    }
+  };
+
+  this.getCurveTree = getCurveTree;
+  const BASE_URL = "http://dev.i2g.cloud";
+
+  function getCurveTree() {
+    $scope.treeConfig = [];
+    getProjects($scope.treeConfig, function (err, projects) {
+      if (err) {
+        return alertMessage.error(err.data.content);
+      }
+
+      $scope.treeConfig = projects;
+    });
   }
 
-  function getProjectWellDatasetCurve() {
-    const BASE_URL = "http://dev.i2g.cloud";
-    let mytoken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1bmduayIsIndob2FtaSI6Im1haW4tc2VydmljZSIsInJvbGUiOjIsImNvbXBhbnkiOiJFU1MiLCJpYXQiOjE1NTU1NTE5ODEsImV4cCI6MTU1NTcyNDc4MX0.9VhRt_Gk8DLQWtOcisXdHh9w75F5RvLyS8AejAvshv8";
-    $scope.treeConfig = [];
-    async.waterfall([function (cb) {
-      getProjects($scope.treeConfig, cb);
-    }, function (projects, treeRoot, cb) {
-      let projectNodes = projects.map(function (prj) {
-        return {
-          data: {
-            icon: 'project-normal-16x16',
-            label: prj.name
-          },
-          properties: prj,
-          children: []
-        };
-      });
-      treeRoot.push(...projectNodes);
-      async.eachOfSeries(projects, function (proj, idx, cb) {
-        async.waterfall([function (cb) {
-          getWells(proj.idProject, projectNodes[idx].children, cb);
-        }, function (wells, projectNodeChildren, cb) {
-          let wellNodes = wells.map(function (well) {
-            return {
-              data: {
-                icon: 'well-16x16',
-                label: well.name
-              },
-              properties: well,
-              children: []
-            };
-          });
-          projectNodeChildren.push(...wellNodes);
-          async.eachOfSeries(wells, function (well, idx, cb) {
-            async.waterfall([function (cb) {
-              getDatasets(well.idWell, wellNodes[idx].children, cb);
-            }, function (datasets, wellNodeChildren, cb) {
-              let datasetNodes = datasets.map(dataset => ({
-                data: {
-                  label: dataset.name,
-                  icon: 'curve-data-16x16'
-                },
-                properties: dataset,
-                children: []
-              }));
-              wellNodeChildren.push(...datasetNodes);
-              async.eachOfSeries(datasets, function (dataset, idx, cb) {
-                async.waterfall([function (cb) {
-                  getCurves(dataset.idDataset, datasetNodes[idx].children, cb);
-                }, function (curves, datasetNodeChildren, cb) {
-                  let curveNodes = curves.map(curve => ({
-                    data: {
-                      label: curve.name,
-                      icon: 'curve-16x16'
-                    },
-                    properties: curve
-                  }));
-                  datasetNodeChildren.push(...curveNodes); // console.log("curves:", curves);
+  function getProjects(treeConfig, cb) {
+    $http({
+      method: 'POST',
+      url: BASE_URL + '/project/list',
+      data: {},
+      headers: {
+        "Authorization": wiToken.getToken()
+      }
+    }).then(function (response) {
+      let projects = response.data.content;
+      cb(null, projects, treeConfig);
+    }, function (err) {
+      cb(err);
+    });
+  }
 
-                  cb();
-                }], cb);
+  function getWells(projectId, projectNodeChildren, cb) {
+    $http({
+      method: 'POST',
+      url: BASE_URL + '/project/well/list',
+      data: {
+        idProject: projectId
+      },
+      headers: {
+        "Authorization": wiToken.getToken()
+      }
+    }).then(function (response) {
+      cb(null, response.data.content, projectNodeChildren);
+    }, function (err) {
+      cb(err);
+    });
+  }
+
+  function getDatasets(wellId, wellNodeChildren, cb) {
+    $http({
+      method: 'POST',
+      url: BASE_URL + '/project/well/info',
+      data: {
+        idWell: wellId
+      },
+      headers: {
+        "Authorization": wiToken.getToken()
+      }
+    }).then(function (response) {
+      cb(null, response.data.content.datasets, wellNodeChildren);
+    }, function (err) {
+      cb(err);
+    });
+  }
+
+  function getCurves(datasetId, datasetNodeChildren, cb) {
+    $http({
+      method: 'POST',
+      url: BASE_URL + '/project/well/dataset/info',
+      data: {
+        idDataset: datasetId
+      },
+      headers: {
+        "Authorization": wiToken.getToken()
+      }
+    }).then(function (response) {
+      cb(null, response.data.content.curves, datasetNodeChildren);
+    }, function (err) {
+      cb(err);
+    });
+  }
+  /*
+  self.getProjectWellDatasetCurve = getProjectWellDatasetCurve;
+   function getProjectWellDatasetCurve() {
+    const BASE_URL = "http://dev.i2g.cloud";
+    let mytoken = wiToken.getToken();
+    $scope.treeConfig = [];
+     async.waterfall([
+      function (cb) {
+        getProjects($scope.treeConfig, cb);
+      },
+      function (projects, treeRoot, cb) {
+        let projectNodes = projects.map(function (prj) {
+          return {
+            data: {
+              icon: 'project-normal-16x16',
+              label: prj.name
+            },
+            properties: prj,
+            children: []
+          }
+        });
+         treeRoot.push(...projectNodes);
+        async.eachOfSeries(projects, function (proj, idx, cb) {
+          async.waterfall([
+            function (cb) {
+              getWells(proj.idProject, projectNodes[idx].children, cb);
+            },
+            function (wells, projectNodeChildren, cb) {
+              let wellNodes = wells.map(function (well) {
+                return {
+                  data: {
+                    icon: 'well-16x16',
+                    label: well.name
+                  },
+                  properties: well,
+                  children: []
+                }
+              });
+              projectNodeChildren.push(...wellNodes);
+              async.eachOfSeries(wells, function (well, idx, cb) {
+                async.waterfall([
+                  function (cb) {
+                    getDatasets(well.idWell, wellNodes[idx].children, cb);
+                  },
+                  function (datasets, wellNodeChildren, cb) {
+                    let datasetNodes = datasets.map(dataset => ({
+                      data: {
+                        label: dataset.name,
+                        icon: 'curve-data-16x16'
+                      },
+                      properties: dataset,
+                      children: []
+                    }));
+                     wellNodeChildren.push(...datasetNodes);
+                     async.eachOfSeries(datasets, function (dataset, idx, cb) {
+                      async.waterfall([
+                        function (cb) {
+                          getCurves(dataset.idDataset, datasetNodes[idx].children, cb);
+                        },
+                        function (curves, datasetNodeChildren, cb) {
+                          let curveNodes = curves.map(curve => ({
+                            data: {
+                              label: curve.name,
+                              icon: 'curve-16x16'
+                            },
+                            properties: curve
+                          }));
+                          datasetNodeChildren.push(...curveNodes);
+                          // console.log("curves:", curves);
+                          cb();
+                        }
+                      ], cb);
+                    }, cb);
+                  }
+                ], cb);
               }, cb);
-            }], cb);
-          }, cb);
-        }], cb);
-      }, cb);
-    }], function (err) {
+            }
+          ], cb);
+        }, cb);
+      }
+    ], function (err) {
+      if (err) {
+        alertMessage.error(err.data.content);
+      }
       console.log("every thing is done", err);
     });
-
-    function getProjects(treeConfig, cb) {
+      function getProjects(treeConfig, cb) {
       $http({
         method: 'POST',
         url: BASE_URL + '/project/list',
         data: {},
         headers: {
-          "Authorization": mytoken
+          "Authorization": mytoken,
         }
       }).then(function (response) {
         let projects = response.data.content;
@@ -12360,8 +12560,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         cb(err);
       });
     }
-
-    function getWells(projectId, projectNodeChildren, cb) {
+     function getWells(projectId, projectNodeChildren, cb) {
       $http({
         method: 'POST',
         url: BASE_URL + '/project/well/list',
@@ -12369,7 +12568,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
           idProject: projectId
         },
         headers: {
-          "Authorization": mytoken
+          "Authorization": mytoken,
         }
       }).then(function (response) {
         cb(null, response.data.content, projectNodeChildren);
@@ -12377,8 +12576,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         cb(err);
       });
     }
-
-    function getDatasets(wellId, wellNodeChildren, cb) {
+     function getDatasets(wellId, wellNodeChildren, cb) {
       $http({
         method: 'POST',
         url: BASE_URL + '/project/well/info',
@@ -12386,7 +12584,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
           idWell: wellId
         },
         headers: {
-          "Authorization": mytoken
+          "Authorization": mytoken,
         }
       }).then(function (response) {
         cb(null, response.data.content.datasets, wellNodeChildren);
@@ -12394,8 +12592,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         cb(err);
       });
     }
-
-    function getCurves(datasetId, datasetNodeChildren, cb) {
+     function getCurves(datasetId, datasetNodeChildren, cb) {
       $http({
         method: 'POST',
         url: BASE_URL + '/project/well/dataset/info',
@@ -12403,7 +12600,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
           idDataset: datasetId
         },
         headers: {
-          "Authorization": mytoken
+          "Authorization": mytoken,
         }
       }).then(function (response) {
         cb(null, response.data.content.curves, datasetNodeChildren);
@@ -12412,35 +12609,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       });
     }
   }
-  /*
-    function getProjectList() {
-      var projectList = [];
-      $http({
-        method: 'POST',
-        url: 'http://dev.i2g.cloud/project/list',
-        data: {},
-        headers: {
-          "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imh1bmduayIsIndob2FtaSI6Im1haW4tc2VydmljZSIsInJvbGUiOjIsImNvbXBhbnkiOiJFU1MiLCJpYXQiOjE1NTU1NTE5ODEsImV4cCI6MTU1NTcyNDc4MX0.9VhRt_Gk8DLQWtOcisXdHh9w75F5RvLyS8AejAvshv8",
-        }
-      }).then(function (response) {
-        let projects = response.data.content;
-        for (let index = 0; index < projects.length; index++) {
-          projectList.push({
-            data: {
-              icon: "project-normal-16x16",
-              label: projects[index].alias,
-            },
-            properties: projects[index]
-          });
-        }
-      }, function (errorResponse) {
-        window.alert("Unauthorized access!");
-        console.error(errorResponse);
-      });
-      $scope.projectList = projectList;
-      console.log(projectList);
-    }
-    */
+  */
 
 }
 
@@ -12493,7 +12662,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getProjectWellDatasetCurve remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=250 orientation=w collapsed=false> <div style=position:sticky;position:-webkit-sticky;z-index:1;top:0> <div class=label-list-view> <span>I2G CLOUD</span> <span class=\"label-buttom fa fa-forward\" aria-hidden=true ng-click=self.moveAllWell()></span> <span class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.refesh()></span> <span class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.refesh()></span> </div> <input class=input-search-list-view type=text placeholder=\"Search well this project\" ng-model=wellListSearch> </div> <wi-base-treeview name=abc filter={{wellListSearch}} on-click-function=onClickNodeTreeview config=treeConfig> </wi-base-treeview> </side-bar> </div> </div>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Bai Thông\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> </div> <side-bar my-default-width=250 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
 
 /***/ }),
 
@@ -12547,7 +12716,7 @@ function controller(auth) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app ng-if=self.isLogin></app> <login-page ng-if=!self.isLogin></login-page>";
+module.exports = "<app></app> ";
 
 /***/ }),
 
@@ -12601,6 +12770,8 @@ function controller(mime) {
   };
 
   function initCodeEditor() {
+    let codeEditorElement = document.getElementById('codeArea');
+    if (!codeEditorElement) return;
     const fileType = mime.getFileType(self.curFile);
     const codeArea = new codeflask__WEBPACK_IMPORTED_MODULE_0__["default"]('#codeArea', {
       lineNumbers: true,
@@ -12622,13 +12793,15 @@ function controller(mime) {
   }
 
   function fixDefaultStyle() {
-    const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
-    document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`; // //fix sync scroll between <pre> and <textarea>
-    // const $pre = document.querySelector('.explorer pre')
-    // const $textarea = document.querySelector('.explorer textarea')
-    // $textarea.addEventListener('scroll', e => {
-    //   $pre.scrollTop = $textarea.scrollTop
-    // })
+    try {
+      const preTagWidth = document.querySelector('.explorer .codeflask pre').offsetWidth;
+      document.querySelector('.explorer .codeflask textarea').style.width = `${preTagWidth}px`; // //fix sync scroll between <pre> and <textarea>
+      // const $pre = document.querySelector('.explorer pre')
+      // const $textarea = document.querySelector('.explorer textarea')
+      // $textarea.addEventListener('scroll', e => {
+      //   $pre.scrollTop = $textarea.scrollTop
+      // })
+    } catch (e) {}
   }
 
   function addPythonSupport(codeArea) {
@@ -13072,7 +13245,7 @@ __webpack_require__.r(__webpack_exports__);
 // const renderComponent = '<browser></browser>'
 
 function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wi-base-treeview', 'wiToken'];
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable'];
   angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]);
 }
 
@@ -13437,7 +13610,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <div class=button-menu ng-click=\"self.findAllProjects(); showOP = true;\"> <div> <modal-icon modal-name=\"'Open Project'\" showing=showOP icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project);self.setShowOP(false);> <span ng-bind=project></span> </li> </ul> </modal-icon> </div> <div class=lable-button>Open project</div> </div> <div class=button-menu ng-click=self.createNewProject()> <div> <span title=\"new project\" class=new-project-wi-python-32x32> </span> </div> <div class=lable-button>New project</div> </div> <div class=button-menu ng-click=self.closeProject()> <div> <span title=\"close project\" class=close-project-wi-python-32x32> </span> </div> <div class=lable-button>Close project</div> </div> <div class=button-menu ng-click=self.deleteProject()> <div> <span title=\"delete project\" class=delete-project-wi-python-32x32> </span> </div> <div class=lable-button>Delete project</div> </div> <div class=button-menu ng-click=self.codePalette()> <div> <span title=\"Code gen\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Code gen</div> </div> <div class=button-menu ng-click=self.removeCodePalette()> <div> <span title=\"Clear code gen\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Clear code gen</div> </div> <div class=button-menu ng-click=self.runCode()> <div> <span title=\"run code\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Run code</div> </div> <div class=button-menu ng-click=self.saveCode()> <div> <span title=\"save code\" class=save-code-wi-python-32x32> </span> </div> <div class=lable-button>Save code</div> </div> <div class=button-menu ng-click=self.createNewFile()> <div> <span title=\"new file\" class=new-file-wi-python-32x32> </span> </div> <div class=lable-button>New file</div> </div> <div class=button-menu ng-click=self.createNewFolder()> <div> <span title=\"new folder\" class=new-folder-wi-python-32x32> </span> </div> <div class=lable-button>New folder</div> </div> <div class=button-menu ng-click=self.logout()> <div> <span title=logout class=logout-wi-python-32x32> </span> </div> <div class=lable-button>Logout</div> </div> </div>";
+module.exports = "<div class=tools> <div class=button-menu ng-click=\"self.findAllProjects(); showOP = true;\"> <div> <modal-icon modal-name=\"'Open Project'\" showing=showOP icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project);self.setShowOP(false);> <span ng-bind=project></span> </li> </ul> </modal-icon> </div> <div class=lable-button>Open project</div> </div> <div class=button-menu ng-click=self.createNewProject()> <div> <span title=\"new project\" class=new-project-wi-python-32x32> </span> </div> <div class=lable-button>New project</div> </div> <div class=button-menu ng-click=self.closeProject()> <div> <span title=\"close project\" class=close-project-wi-python-32x32> </span> </div> <div class=lable-button>Close project</div> </div> <div class=button-menu ng-click=self.deleteProject()> <div> <span title=\"delete project\" class=delete-project-wi-python-32x32> </span> </div> <div class=lable-button>Delete project</div> </div> <div class=button-menu ng-click=self.codePalette()> <div> <span title=\"Code gen\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Code gen</div> </div> <div class=button-menu ng-click=self.removeCodePalette()> <div> <span title=\"Clear code gen\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Clear code gen</div> </div> <div class=button-menu ng-click=self.runCode()> <div> <span title=\"run code\" class=run-code-wi-python-32x32> </span> </div> <div class=lable-button>Run code</div> </div> <div class=button-menu ng-click=self.saveCode()> <div> <span title=\"save code\" class=save-code-wi-python-32x32> </span> </div> <div class=lable-button>Save code</div> </div> <div class=button-menu ng-click=self.createNewFile()> <div> <span title=\"new file\" class=new-file-wi-python-32x32> </span> </div> <div class=lable-button>New file</div> </div> <div class=button-menu ng-click=self.createNewFolder()> <div> <span title=\"new folder\" class=new-folder-wi-python-32x32> </span> </div> <div class=lable-button>New folder</div> </div> </div>";
 
 /***/ }),
 

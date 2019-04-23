@@ -7,5 +7,7 @@ module.exports = {
     wiToken: require('./wi-token/index'),
     wiSession: require('./wi-session'),
     katexView: require('./katex-view'),
-    wiTableView: require('./wi-table-view')
+    wiTableView: require('./wi-table-view'),
+    wiTreeView: require('./wi-tree-view'),
+    wiDroppable: require('./wi-droppable')
 }
