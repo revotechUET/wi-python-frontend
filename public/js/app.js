@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 4px; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n", ""]);
 
 
 
@@ -12309,7 +12309,17 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     return node.name.includes(criteria);
   };
 
-  self.onDrop = function (event, ui, node) {
+  self.onDrop = function (event, ui, nodeArray) {
+    if (nodeArray[0].idCurve) {
+      generateCode('curve', self.codeGenMode, nodeArray[0].idCurve);
+    } else if (nodeArray[0].idDataset) {
+      generateCode('dataset', self.codeGenMode, nodeArray[0].idDataset);
+    } else if (nodeArray[0].idWell) {
+      generateCode('well', self.codeGenMode, nodeArray[0].idWell);
+    } else if (nodeArray[0].idProject) {
+      generateCode('project', self.codeGenMode, nodeArray[0].idProject);
+    }
+
     function generateCode(type, mode, info) {
       $timeout(() => {
         switch (type) {
@@ -12330,16 +12340,6 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
             break;
         }
       });
-    }
-
-    if (node.idCurve) {
-      generateCode('curve', self.codeGenMode, node.idCurve);
-    } else if (node.idDataset) {
-      generateCode('dataset', self.codeGenMode, node.idDataset);
-    } else if (node.idWell) {
-      generateCode('well', self.codeGenMode, node.idWell);
-    } else if (node.idProject) {
-      generateCode('project', self.codeGenMode, node.idProject);
     }
   };
 
@@ -12438,23 +12438,6 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       }
     }).then(function (response) {
       cb(null, response.data.content.datasets, wellNodeChildren);
-    }, function (err) {
-      cb(err);
-    });
-  }
-
-  function getCurves(datasetId, datasetNodeChildren, cb) {
-    $http({
-      method: 'POST',
-      url: BASE_URL + '/project/well/dataset/info',
-      data: {
-        idDataset: datasetId
-      },
-      headers: {
-        "Authorization": wiToken.getToken()
-      }
-    }).then(function (response) {
-      cb(null, response.data.content.curves, datasetNodeChildren);
     }, function (err) {
       cb(err);
     });
@@ -12662,7 +12645,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Bai Thông\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=250 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=250 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
 
 /***/ }),
 
@@ -13245,7 +13228,7 @@ __webpack_require__.r(__webpack_exports__);
 // const renderComponent = '<browser></browser>'
 
 function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable'];
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiDialog'];
   angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]);
 }
 

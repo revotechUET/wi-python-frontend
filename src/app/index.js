@@ -382,8 +382,16 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   this.runMatch = function (node, criteria) {
     return node.name.includes(criteria);
   }
-  self.onDrop = function (event, ui, node) {
-
+  self.onDrop = function (event, ui, nodeArray) {
+    if (nodeArray[0].idCurve) {
+      generateCode('curve', self.codeGenMode, nodeArray[0].idCurve);
+    } else if (nodeArray[0].idDataset) {
+      generateCode('dataset', self.codeGenMode, nodeArray[0].idDataset);
+    } else if (nodeArray[0].idWell) {
+      generateCode('well', self.codeGenMode, nodeArray[0].idWell);
+    } else if (nodeArray[0].idProject) {
+      generateCode('project', self.codeGenMode, nodeArray[0].idProject);
+    }
     function generateCode(type, mode, info) {
       $timeout(() => {
         switch (type) {
@@ -401,19 +409,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
             break;
         }
       });
-
     }
-
-    if (node.idCurve) {
-      generateCode('curve', self.codeGenMode, node.idCurve);
-    } else if (node.idDataset) {
-      generateCode('dataset', self.codeGenMode, node.idDataset);
-    } else if (node.idWell) {
-      generateCode('well', self.codeGenMode, node.idWell);
-    } else if (node.idProject) {
-      generateCode('project', self.codeGenMode, node.idProject);
-    }
-
   }
   this.clickFunction = function ($event, node) {
 
@@ -511,22 +507,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     });
   }
 
-  function getCurves(datasetId, datasetNodeChildren, cb) {
-    $http({
-      method: 'POST',
-      url: BASE_URL + '/project/well/dataset/info',
-      data: {
-        idDataset: datasetId
-      },
-      headers: {
-        "Authorization": wiToken.getToken(),
-      }
-    }).then(function (response) {
-      cb(null, response.data.content.curves, datasetNodeChildren);
-    }, function (err) {
-      cb(err);
-    });
-  }
+
   /*
   self.getProjectWellDatasetCurve = getProjectWellDatasetCurve;
 
