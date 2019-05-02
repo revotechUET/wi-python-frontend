@@ -463,7 +463,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     } else if (node.idWell) {
       console.log("Well clicked");
     } else if (node.idProject) {
-      if (!node.timestamp || (Date.now() - node.timestamp > 10 * 1000)) {
+      if (!node.timestamp || (Date.now() - node.timestamp > 10 * 5000)) {
         getWells(node.idProject, node, function (err, wells) {
           if (err) {
             return alertMessage.error(err.data.content);
