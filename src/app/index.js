@@ -396,19 +396,47 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       $timeout(() => {
         switch (type) {
           case 'curve':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += generateCode4Curve(mode, info);
             break;
           case 'dataset':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += generateCode4Dataset(mode, info);
             break;
           case 'well':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += generateCode4Well(mode, info);;
             break;
           case 'project':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += generateCode4Project(mode, info);;
             break;
         }
       });
+    }
+    function generateCode4Curve(mode, info){
+        switch(mode) {
+            case "load":
+            case "save":
+            case "delete":
+        }
+    }
+    function generateCode4Dataset(mode, info){
+        switch(mode) {
+            case "load":
+            case "save":
+            case "delete":
+        }
+    }
+    function generateCode4Well(mode, info){
+        switch(mode) {
+            case "load":
+            case "save":
+            case "delete":
+        }
+    }
+    function generateCode4Project(mode, info){
+        switch(mode) {
+            case "load":
+            case "save":
+            case "delete":
+        }
     }
   }
   this.clickFunction = function ($event, node) {
