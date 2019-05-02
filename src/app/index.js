@@ -133,8 +133,9 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   self.createNewFile = function () {
 
     //filePath is not include project name in init
-    const filePath = prompt('Enter the file or path to the file (start without / and not include project name)')
+    let filePath = prompt('Enter the file or path to the file (start without / and not include project name)')
     if (!filePath) return
+    filePath = filePath + '.py';
 
 
     projectApi.newFile(self.currentProject.rootName, filePath)
@@ -160,6 +161,10 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         })
 
         alertMessage.success('success create file')
+        let initcode = `#--login block--\nimport wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n#--end of login block--`;
+        projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+          console.log("save init code success");
+        });
         console.log({
           tree: self.currentProject
         })
@@ -257,20 +262,25 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   }
 
   self.runCode = function () {
-    browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
-      (error, {
-        type,
-        render,
-        link
-      }) => {
-        if (error) {
-          return alertMessage.error(error.message)
-        }
+    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
+      .then(() => {
+        alertMessage.success('save success')
+        browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
+          (error, {
+            type,
+            render,
+            link
+          }) => {
+            if (error) {
+              return alertMessage.error(error.message)
+            }
 
-        if (render) self.resultHtml = render
-        // if (link) self.iframeHtmlLink = link
-        self.isResultAIframe = type === mime.types.html
+            if (render) self.resultHtml = render
+            // if (link) self.iframeHtmlLink = link
+            self.isResultAIframe = type === mime.types.html
+          })
       })
+      .catch(error => alertMessage.error(error))
   }
 
   self.coding = function (code) {
@@ -291,8 +301,12 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     }
     self.allProjects = []
 
+
     // pass to explorer
-    self.code = `/* your code is here */`
+    self.code = `/* your code is here */\n`
+
+    self.code += `import wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n`;
+
     self.curFile = '' // using with write and runnign code
 
     // current tree node
@@ -383,29 +397,58 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     return node.name.includes(criteria);
   }
   self.onDrop = function (event, ui, nodeArray) {
-    if (nodeArray[0].idCurve) {
-      generateCode('curve', self.codeGenMode, nodeArray[0].idCurve);
-    } else if (nodeArray[0].idDataset) {
-      generateCode('dataset', self.codeGenMode, nodeArray[0].idDataset);
-    } else if (nodeArray[0].idWell) {
-      generateCode('well', self.codeGenMode, nodeArray[0].idWell);
-    } else if (nodeArray[0].idProject) {
-      generateCode('project', self.codeGenMode, nodeArray[0].idProject);
+
+    for (let node of nodeArray) {
+      if (node.idCurve) {
+        generateCode('curve', self.codeGenMode, nodeArray[0].idCurve);
+      } else if (node.idDataset) {
+        generateCode('dataset', self.codeGenMode, nodeArray[0].idDataset);
+      } else if (node.idWell) {
+        generateCode('well', self.codeGenMode, nodeArray[0].idWell);
+      } else if (node.idProject) {
+        generateCode('project', self.codeGenMode, nodeArray[0].idProject);
+      }
     }
+
+    // login block
+
+    // #--login template--
+    // import wilibs.wilib as wilib
+    // client = wilib.login("username","password")
+    // #--end of login--
+
+    // drop curve 
+
+    // #--get curve info--
+    // curveInfo = client.getCurveById(369).getCurveInfo()
+    // print(curveInfo)
+    // #--end of get curve info--
+
+    // drop dataset 
+
+    // #--get dataset info--
+    // datasetInfo = client.getDatasetById(44).getDatasetInfo()
+    // print(datasetInfo)
+    // #--end of get dataset info--
+
     function generateCode(type, mode, info) {
       $timeout(() => {
         switch (type) {
           case 'curve':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += `\n#--get curve info--\ncurveInfo = client.getCurveById(${info}).getCurveInfo()\nprint(curveInfo)\n#--end of get curve info--\n`;
+            // self.code += `print("${type} - ${mode} - ${info}")\n`;
             break;
           case 'dataset':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += `\n#--get dataset info--\ndatasetInfo = client.getDatasetById(${info}).getDatasetInfo()\nprint(datasetInfo)\n#--end of get dataset info--\n`;
+            // self.code += `print("${type} - ${mode} - ${info}")\n`;
             break;
           case 'well':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += `\n#--get well info--\nwellInfo = client.getWellById(${info}).getWellInfo()\nprint(wellInfo)\n#--end of get well info--\n`;
+            // self.code += `print("${type} - ${mode} - ${info}")\n`;
             break;
           case 'project':
-            self.code += `print("${type} - ${mode} - ${info}")\n`;
+            self.code += `\n#--get project info--\nprojectInfo = client.getProjectById(${info}).getProjectInfo()\nprint(projectInfo)\n#--end of get project info--\n`;
+            // self.code += `print("${type} - ${mode} - ${info}")\n`;
             break;
         }
       });

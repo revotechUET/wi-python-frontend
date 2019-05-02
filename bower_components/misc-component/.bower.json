@@ -24,11 +24,11 @@
     "font-awesome": "4",
     "katex": "^0.10.1"
   },
-  "_release": "311aa1454d",
+  "_release": "11694ce93f",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "311aa1454d66ad0a78ceec627ab8052c2ca20f87"
+    "commit": "11694ce93f0ef7198b38f668078835c2d665563f"
   },
   "_source": "https://github.com/tunghoang/misc-component.git",
   "_target": "*",
