@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\n.new-button {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n", ""]);
 
 
 
@@ -12129,7 +12129,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         rootIsFile: true
       });
       alertMessage.success('success create file');
-      let initcode = `#--login block--\nimport wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n#--end of login block--`;
+      let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
       projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
         console.log("save init code success");
       });
@@ -12231,7 +12231,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     self.allProjects = []; // pass to explorer
 
     self.code = `/* your code is here */\n`;
-    self.code += `import wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n`;
+    self.code += `\nclient = wilib.loginByToken("${wiToken.getToken()}")\n`;
     self.curFile = ''; // using with write and runnign code
     // current tree node
 
@@ -12282,11 +12282,19 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     return false;
   };
 
+  this.newChecked = function () {
+    console.log("newChecked");
+    self.codeGenMode = "new";
+    return false;
+  };
+
   this.refreshChecked = function () {
     console.log("refeshChecked");
     self.codeGenMode = "load";
     return true;
   };
+
+  this.createProject = function () {};
 
   this.getLabel = function (node) {
     if (node.idCurve) {
@@ -12329,47 +12337,168 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       } else if (node.idProject) {
         generateCode('project', self.codeGenMode, nodeArray[0].idProject);
       }
-    } // login block
-    // #--login template--
-    // import wilibs.wilib as wilib
-    // client = wilib.login("username","password")
-    // #--end of login--
-    // drop curve 
-    // #--get curve info--
-    // curveInfo = client.getCurveById(369).getCurveInfo()
-    // print(curveInfo)
-    // #--end of get curve info--
-    // drop dataset 
-    // #--get dataset info--
-    // datasetInfo = client.getDatasetById(44).getDatasetInfo()
-    // print(datasetInfo)
-    // #--end of get dataset info--
+    } // function generateCode(type, mode, info) {
+    //   $timeout(() => {
+    //     switch (type) {
+    //       case 'curve':
+    //         self.code += `\n#--get curve info--\ncurveInfo = client.getCurveById(${info}).getCurveInfo()\nprint(curveInfo)\n#--end of get curve info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'dataset':
+    //         self.code += `\n#--get dataset info--\ndatasetInfo = client.getDatasetById(${info}).getDatasetInfo()\nprint(datasetInfo)\n#--end of get dataset info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'well':
+    //         self.code += `\n#--get well info--\nwellInfo = client.getWellById(${info}).getWellInfo()\nprint(wellInfo)\n#--end of get well info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'project':
+    //         self.code += `\n#--get project info--\nprojectInfo = client.getProjectById(${info}).getProjectInfo()\nprint(projectInfo)\n#--end of get project info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //     }
+    //   });
+    // }
 
 
     function generateCode(type, mode, info) {
       $timeout(() => {
         switch (type) {
           case 'curve':
-            self.code += `\n#--get curve info--\ncurveInfo = client.getCurveById(${info}).getCurveInfo()\nprint(curveInfo)\n#--end of get curve info--\n`; // self.code += `print("${type} - ${mode} - ${info}")\n`;
-
+            self.code += generateCode4Curve(mode, info);
             break;
 
           case 'dataset':
-            self.code += `\n#--get dataset info--\ndatasetInfo = client.getDatasetById(${info}).getDatasetInfo()\nprint(datasetInfo)\n#--end of get dataset info--\n`; // self.code += `print("${type} - ${mode} - ${info}")\n`;
-
+            self.code += generateCode4Dataset(mode, info);
             break;
 
           case 'well':
-            self.code += `\n#--get well info--\nwellInfo = client.getWellById(${info}).getWellInfo()\nprint(wellInfo)\n#--end of get well info--\n`; // self.code += `print("${type} - ${mode} - ${info}")\n`;
-
+            self.code += generateCode4Well(mode, info);
+            ;
             break;
 
           case 'project':
-            self.code += `\n#--get project info--\nprojectInfo = client.getProjectById(${info}).getProjectInfo()\nprint(projectInfo)\n#--end of get project info--\n`; // self.code += `print("${type} - ${mode} - ${info}")\n`;
-
+            self.code += generateCode4Project(mode, info);
+            ;
             break;
         }
       });
+    }
+
+    function generateCode4Curve(mode, info) {
+      switch (mode) {
+        case "load":
+          return `
+curveObj = client.getCurveById(${info})
+curveInfo = curveObj.getCurveInfo()
+curveData = curveObj.getCurveData()
+`;
+
+        case "save":
+          return `
+curveObj = client.getCurveById(${info})
+curveObj.editCurveInfo(name="someName");
+`;
+
+        case "delete":
+          return `
+curveObj = client.getCurveById(${info}).getCurveInfo()
+curveObj.deleteCurve()
+`;
+
+        case "new":
+          return `
+curveObj = client.getCurveById(${info}).getCurveInfo()
+curveObj.deleteCurve()
+`;
+      }
+    }
+
+    function generateCode4Dataset(mode, info) {
+      switch (mode) {
+        case "load":
+          return `
+datasetObj = client.getdatasetById(${info})
+datasetInfo = datasetObj.getdatasetInfo()
+datasetData = datasetObj.getdatasetData()
+`;
+
+        case "save":
+          return `
+datasetObj = client.getdatasetById(${info})
+datasetObj.editdatasetInfo(name="someName");
+`;
+
+        case "delete":
+          return `
+datasetObj = client.getdatasetById(${info}).getdatasetInfo()
+datasetObj.deletedataset()
+`;
+
+        case "new":
+          return `
+datasetObj = client.getdatasetById(${info}).getdatasetInfo()
+datasetObj.deletedataset()
+`;
+      }
+    }
+
+    function generateCode4Well(mode, info) {
+      switch (mode) {
+        case "load":
+          return `
+wellObj = client.getwellById(${info})
+wellInfo = wellObj.getwellInfo()
+wellData = wellObj.getwellData()
+`;
+
+        case "save":
+          return `
+wellObj = client.getwellById(${info})
+wellObj.editwellInfo(name="someName");
+`;
+
+        case "delete":
+          return `
+wellObj = client.getwellById(${info}).getwellInfo()
+wellObj.deletewell()
+`;
+
+        case "new":
+          return `
+wellObj = client.getwellById(${info}).getwellInfo()
+wellObj.deletewell()
+`;
+      }
+    }
+
+    function generateCode4Project(mode, info) {
+      switch (mode) {
+        case "load":
+          return `
+projectObj = client.getprojectById(${info})
+projectInfo = projectObj.getprojectInfo()
+projectData = projectObj.getprojectData()
+`;
+
+        case "save":
+          return `
+projectObj = client.getprojectById(${info})
+projectObj.editprojectInfo(name="someName");
+`;
+
+        case "delete":
+          return `
+projectObj = client.getprojectById(${info}).getprojectInfo()
+projectObj.deleteproject()
+`;
+
+        case "new":
+          return `
+projectObj = client.getprojectById(${info}).getprojectInfo()
+projectObj.deleteproject()
+`;
+      }
     }
   };
 
@@ -12675,7 +12804,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=250 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=300 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> <span ng-class=\"{'new-button':self.codeGenMode === 'new'}\" class=\"label-buttom fa fa-plus\" aria-hidden=true ng-click=self.newChecked() title=\"New mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
 
 /***/ }),
 

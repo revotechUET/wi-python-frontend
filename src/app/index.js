@@ -161,7 +161,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         })
 
         alertMessage.success('success create file')
-        let initcode = `#--login block--\nimport wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n#--end of login block--`;
+        let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
         projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
           console.log("save init code success");
         });
@@ -305,7 +305,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     // pass to explorer
     self.code = `/* your code is here */\n`
 
-    self.code += `import wilibs.wilib as wilib\nclient = wilib.login("${wiToken.getUserName()}","${wiToken.getPassword()}")\n`;
+    self.code += `\nclient = wilib.loginByToken("${wiToken.getToken()}")\n`;
 
     self.curFile = '' // using with write and runnign code
 
@@ -361,10 +361,19 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     self.codeGenMode = "save";
     return false;
   }
+  this.newChecked = function () {
+    console.log("newChecked");
+    self.codeGenMode = "new";
+    return false;
+  }
   this.refreshChecked = function () {
     console.log("refeshChecked");
     self.codeGenMode = "load";
     return true;
+  }
+
+  this.createProject = function () {
+
   }
 
   this.getLabel = function (node) {
@@ -410,26 +419,28 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       }
     }
 
-    // login block
-
-    // #--login template--
-    // import wilibs.wilib as wilib
-    // client = wilib.login("username","password")
-    // #--end of login--
-
-    // drop curve 
-
-    // #--get curve info--
-    // curveInfo = client.getCurveById(369).getCurveInfo()
-    // print(curveInfo)
-    // #--end of get curve info--
-
-    // drop dataset 
-
-    // #--get dataset info--
-    // datasetInfo = client.getDatasetById(44).getDatasetInfo()
-    // print(datasetInfo)
-    // #--end of get dataset info--
+    // function generateCode(type, mode, info) {
+    //   $timeout(() => {
+    //     switch (type) {
+    //       case 'curve':
+    //         self.code += `\n#--get curve info--\ncurveInfo = client.getCurveById(${info}).getCurveInfo()\nprint(curveInfo)\n#--end of get curve info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'dataset':
+    //         self.code += `\n#--get dataset info--\ndatasetInfo = client.getDatasetById(${info}).getDatasetInfo()\nprint(datasetInfo)\n#--end of get dataset info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'well':
+    //         self.code += `\n#--get well info--\nwellInfo = client.getWellById(${info}).getWellInfo()\nprint(wellInfo)\n#--end of get well info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //       case 'project':
+    //         self.code += `\n#--get project info--\nprojectInfo = client.getProjectById(${info}).getProjectInfo()\nprint(projectInfo)\n#--end of get project info--\n`;
+    //         // self.code += `print("${type} - ${mode} - ${info}")\n`;
+    //         break;
+    //     }
+    //   });
+    // }
 
     function generateCode(type, mode, info) {
       $timeout(() => {
@@ -449,35 +460,111 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         }
       });
     }
-    function generateCode4Curve(mode, info){
-        switch(mode) {
-            case "load":
-            case "save":
-            case "delete":
-        }
+
+    function generateCode4Curve(mode, info) {
+      switch (mode) {
+        case "load":
+          return `
+curveObj = client.getCurveById(${info})
+curveInfo = curveObj.getCurveInfo()
+curveData = curveObj.getCurveData()
+`;
+        case "save":
+          return `
+curveObj = client.getCurveById(${info})
+curveObj.editCurveInfo(name="someName");
+`;
+        case "delete":
+          return `
+curveObj = client.getCurveById(${info}).getCurveInfo()
+curveObj.deleteCurve()
+`;
+        case "new":
+          return `
+curveObj = client.getCurveById(${info}).getCurveInfo()
+curveObj.deleteCurve()
+`;
+      }
     }
-    function generateCode4Dataset(mode, info){
-        switch(mode) {
-            case "load":
-            case "save":
-            case "delete":
-        }
+    function generateCode4Dataset(mode, info) {
+      switch (mode) {
+        case "load":
+        return `
+datasetObj = client.getdatasetById(${info})
+datasetInfo = datasetObj.getdatasetInfo()
+datasetData = datasetObj.getdatasetData()
+`;
+      case "save":
+        return `
+datasetObj = client.getdatasetById(${info})
+datasetObj.editdatasetInfo(name="someName");
+`;
+      case "delete":
+        return `
+datasetObj = client.getdatasetById(${info}).getdatasetInfo()
+datasetObj.deletedataset()
+`;
+      case "new":
+        return `
+datasetObj = client.getdatasetById(${info}).getdatasetInfo()
+datasetObj.deletedataset()
+`;
+      }
     }
-    function generateCode4Well(mode, info){
-        switch(mode) {
-            case "load":
-            case "save":
-            case "delete":
-        }
+
+    function generateCode4Well(mode, info) {
+      switch (mode) {
+        case "load":
+        return `
+wellObj = client.getwellById(${info})
+wellInfo = wellObj.getwellInfo()
+wellData = wellObj.getwellData()
+`;
+      case "save":
+        return `
+wellObj = client.getwellById(${info})
+wellObj.editwellInfo(name="someName");
+`;
+      case "delete":
+        return `
+wellObj = client.getwellById(${info}).getwellInfo()
+wellObj.deletewell()
+`;
+      case "new":
+        return `
+wellObj = client.getwellById(${info}).getwellInfo()
+wellObj.deletewell()
+`;
+      }
     }
-    function generateCode4Project(mode, info){
-        switch(mode) {
-            case "load":
-            case "save":
-            case "delete":
-        }
+
+    function generateCode4Project(mode, info) {
+      switch (mode) {
+        case "load":
+        return `
+projectObj = client.getprojectById(${info})
+projectInfo = projectObj.getprojectInfo()
+projectData = projectObj.getprojectData()
+`;
+      case "save":
+        return `
+projectObj = client.getprojectById(${info})
+projectObj.editprojectInfo(name="someName");
+`;
+      case "delete":
+        return `
+projectObj = client.getprojectById(${info}).getprojectInfo()
+projectObj.deleteproject()
+`;
+      case "new":
+        return `
+projectObj = client.getprojectById(${info}).getprojectInfo()
+projectObj.deleteproject()
+`;
+      }
     }
   }
+
   this.clickFunction = function ($event, node) {
 
     if (node.idCurve) {
