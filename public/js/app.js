@@ -12402,13 +12402,7 @@ curveObj.editCurveInfo(name="someName");
 
         case "delete":
           return `
-curveObj = client.getCurveById(${info}).getCurveInfo()
-curveObj.deleteCurve()
-`;
-
-        case "new":
-          return `
-curveObj = client.getCurveById(${info}).getCurveInfo()
+curveObj = client.getCurveById(${info})
 curveObj.deleteCurve()
 `;
       }
@@ -12431,14 +12425,14 @@ datasetObj.editdatasetInfo(name="someName");
 
         case "delete":
           return `
-datasetObj = client.getdatasetById(${info}).getdatasetInfo()
+datasetObj = client.getdatasetById(${info})
 datasetObj.deletedataset()
 `;
 
         case "new":
           return `
-datasetObj = client.getdatasetById(${info}).getdatasetInfo()
-datasetObj.deletedataset()
+datasetObj = client.getdatasetById(${info})
+datasetObj.createCurve()
 `;
       }
     }
@@ -12460,14 +12454,14 @@ wellObj.editwellInfo(name="someName");
 
         case "delete":
           return `
-wellObj = client.getwellById(${info}).getwellInfo()
+wellObj = client.getwellById(${info})
 wellObj.deletewell()
 `;
 
         case "new":
           return `
-wellObj = client.getwellById(${info}).getwellInfo()
-wellObj.deletewell()
+wellObj = client.getwellById(${info})
+wellObj.createDataset()
 `;
       }
     }
@@ -12489,14 +12483,14 @@ projectObj.editprojectInfo(name="someName");
 
         case "delete":
           return `
-projectObj = client.getprojectById(${info}).getprojectInfo()
+projectObj = client.getprojectById(${info})
 projectObj.deleteproject()
 `;
 
         case "new":
           return `
-projectObj = client.getprojectById(${info}).getprojectInfo()
-projectObj.deleteproject()
+projectObj = client.getprojectById(${info})
+projectObj.createWell()
 `;
       }
     }
