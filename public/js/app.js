@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\n.new-button {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\n.delete-checked {\n  color: #525252 !important; }\n\n.save-checked {\n  color: #525252 !important; }\n\n.refresh-checked {\n  color: #525252 !important; }\n\n.new-button {\n  color: #525252 !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.label-buttom {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  margin: 2px 5px 0 25px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 18px;\n  top: 20px;\n  /* padding: 10px; */\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n\n.newDialog {\n  padding: 5px 13px 0 13px;\n  font-size: 15px;\n  font-weight: bold; }\n  .newDialog > div {\n    margin-bottom: 15px; }\n  .newDialog .newDialogContent {\n    display: flex; }\n", ""]);
 
 
 
@@ -12008,10 +12008,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout'];
+controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog'];
 
-function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout) {
-  const self = this;
+function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog) {
+  let self = this;
 
   self.$onInit = function () {
     initState();
@@ -12051,18 +12051,40 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   };
 
   self.createNewProject = function () {
-    const projectName = prompt('Project Name');
-    if (!projectName) return;
-    projectApi.newProject(projectName).then(() => self.openProject(projectName)).catch(error => alertMessage.error(error));
+    let projectName;
+
+    if (!projectName) {
+      ngDialog.open({
+        template: 'templateNewPrj',
+        className: 'ngdialog-theme-default',
+        scope: $scope
+      });
+
+      self.acceptNewPrj = function () {
+        projectApi.newProject(this.nameProject).then(() => self.openProject(this.nameProject)).catch(error => alertMessage.error(error));
+        ngDialog.close();
+      };
+    }
   };
 
   self.deleteProject = function () {
-    if (!confirm('Are you sure to remove this project')) return;
-    if (!self.currentProject) return alertMessage.error('No project is opened');
-    projectApi.deleteProject(self.currentProject.rootName).then(() => {
-      alertMessage.success('Success remove project ' + self.currentProject.rootName);
-      initState();
-    }).catch(error => alertMessage.error(error));
+    if (self.currentProject) {
+      ngDialog.open({
+        template: 'templateDeleteProject',
+        className: 'ngdialog-theme-default',
+        scope: $scope
+      });
+
+      self.acceptDelete = function () {
+        projectApi.deleteProject(self.currentProject.rootName).then(() => {
+          alertMessage.success('Success remove project ' + self.currentProject.rootName);
+          ngDialog.close();
+          initState();
+        }).catch(error => alertMessage.error(error));
+      };
+    } else {
+      return alertMessage.error('No project is opened');
+    }
   }; ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////
@@ -12112,53 +12134,96 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   };
 
   self.createNewFile = function () {
-    //filePath is not include project name in init
-    let filePath = prompt('Enter the file or path to the file (start without / and not include project name)');
-    if (!filePath) return;
-    filePath = filePath + '.py';
-    projectApi.newFile(self.currentProject.rootName, filePath).then(() => {
-      const containerFolderPath = getParrentFolderPath(filePath);
-      const fileName = filePath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
-      const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
-      if (!parrentFolder) return alertMessage.error('Cannot create file');
-      parrentFolder.files.push({
-        rootName: fileName,
-        files: [],
-        folders: [],
-        path: containerFolderPath + '/' + fileName,
-        rootIsFile: true
-      });
-      alertMessage.success('success create file');
-      let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
-      projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
-        console.log("save init code success");
-      });
-      console.log({
-        tree: self.currentProject
-      });
-    }).catch(error => alertMessage.error(error));
+    ngDialog.open({
+      template: 'templateNewFile',
+      className: 'ngdialog-theme-default',
+      scope: $scope
+    });
+
+    self.acceptNewFile = function () {
+      let filePath = this.nameFileNew;
+      filePath = filePath + '.py';
+      if (!filePath) return;
+      projectApi.newFile(self.currentProject.rootName, filePath).then(() => {
+        const containerFolderPath = getParrentFolderPath(filePath);
+        const fileName = filePath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+        const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+        if (!parrentFolder) return alertMessage.error('Cannot create file');
+        parrentFolder.files.push({
+          rootName: fileName,
+          files: [],
+          folders: [],
+          path: containerFolderPath + '/' + fileName,
+          rootIsFile: true
+        });
+        alertMessage.success('success create file');
+        let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
+        projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+          console.log("save init code success");
+        });
+        console.log({
+          tree: self.currentProject
+        });
+        ngDialog.close();
+      }).catch(error => alertMessage.error(error));
+    };
   };
 
   self.createNewFolder = function () {
-    const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)');
-    if (!folderPath) return;
-    projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
-      const containerFolderPath = getParrentFolderPath(folderPath);
-      const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
-      const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
-      if (!parrentFolder) return alertMessage.error('Cannot create folder');
-      parrentFolder.folders.push({
-        rootName: folderName,
-        files: [],
-        folders: [],
-        path: containerFolderPath + '/' + folderName,
-        rootIsFile: false
-      });
-      alertMessage.success('success create folder');
-      console.log({
-        tree: self.currentProject
-      });
-    }).catch(error => alertMessage.error(error));
+    ngDialog.open({
+      template: 'templateNewFolder',
+      className: 'ngdialog-theme-default',
+      scope: $scope
+    });
+
+    self.acceptNewFolder = function () {
+      const folderPath = this.nameFolderNew;
+      if (!folderPath) return;
+      projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
+        const containerFolderPath = getParrentFolderPath(folderPath);
+        const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+        const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+        if (!parrentFolder) return alertMessage.error('Cannot create folder');
+        parrentFolder.folders.push({
+          rootName: folderName,
+          files: [],
+          folders: [],
+          path: containerFolderPath + '/' + folderName,
+          rootIsFile: false
+        });
+        alertMessage.success('success create folder');
+        console.log({
+          tree: self.currentProject
+        });
+        ngDialog.close();
+      }).catch(error => alertMessage.error(error));
+    }; // const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
+    // if (!folderPath) return
+    // projectApi.newFolder(self.currentProject.rootName, folderPath)
+    //   .then(() => {
+    //     const containerFolderPath = getParrentFolderPath(folderPath)
+    //     const folderName = folderPath
+    //       .split('/')
+    //       .reduce((pre, cur, i, arr) => arr[arr.length - 1])
+    //     const parrentFolder = findNodeInTree(
+    //       self.currentProject,
+    //       node => node.path === containerFolderPath
+    //     )
+    //     if (!parrentFolder) return alertMessage.error('Cannot create folder')
+    //     parrentFolder.folders.push({
+    //       rootName: folderName,
+    //       files: [],
+    //       folders: [],
+    //       path: containerFolderPath + '/' + folderName,
+    //       rootIsFile: false
+    //     })
+    //     alertMessage.success('success create folder')
+    //     console.log({
+    //       tree: self.currentProject
+    //     })
+    //   })
+    //   .catch(error => alertMessage.error(error))
+
   };
 
   self.deleteItem = function () {
@@ -12798,7 +12863,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=300 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> <span ng-class=\"{'new-button':self.codeGenMode === 'new'}\" class=\"label-buttom fa fa-plus\" aria-hidden=true ng-click=self.newChecked() title=\"New mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\"></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITTOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <wi-droppable style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{\n        display:'flex',\n        flex: 1\n      }\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=300 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction> <div class=label-list-view> <span>I2G CLOUD</span> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"label-buttom fa fa-minus-circle\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"label-buttom fa fa-download\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"label-buttom fa fa-repeat\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> <span ng-class=\"{'new-button':self.codeGenMode === 'new'}\" class=\"label-buttom fa fa-plus\" aria-hidden=true ng-click=self.newChecked() title=\"New mode\"></span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the project name according to the following structure: projectname</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the file name according to the following structure: filename or foldername/filename</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the folder name according to the following structure:: foldername</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script>";
 
 /***/ }),
 

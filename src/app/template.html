@@ -65,14 +65,55 @@
           <span ng-class="{'refresh-checked':self.codeGenMode === 'load'}" class="label-buttom fa fa-repeat"
             aria-hidden="true" ng-click="self.refreshChecked()" title="Load mode"></span>
 
-          <span ng-class="{'new-button':self.codeGenMode === 'new'}" class="label-buttom fa fa-plus"
-            aria-hidden="true" ng-click="self.newChecked()" title="New mode"></span>
+          <span ng-class="{'new-button':self.codeGenMode === 'new'}" class="label-buttom fa fa-plus" aria-hidden="true"
+            ng-click="self.newChecked()" title="New mode"></span>
 
         </div>
       </wi-tree-view>
     </side-bar>
-
-
-
   </div>
 </div>
+<script type="text/ng-template" id="templateDeleteProject">
+  <div class="ngdialog-buttons">
+          <div class ="acceptLogout">Are you sure?
+              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">Delete</button>
+          </div>
+  </div>
+</script>
+<script type="text/ng-template" id="templateNewPrj">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog"><div>New Project</div>
+      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the project name according to the following structure: projectname</div>
+          <div class="newDialogContent">
+              <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
+          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
+          </div>
+      </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="templateNewFile">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog"><div>New File</div>
+      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the file name according to the following structure: filename or foldername/filename</div>
+          <div class="newDialogContent">
+              <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
+          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
+          </div>
+      </div>
+  </div>
+</script>
+<script type="text/ng-template" id="templateNewFolder">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog"><div>New Folder</div>
+      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the folder name according to the following structure:: foldername</div>
+          <div class="newDialogContent">
+              <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
+          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
+          </div>
+      </div>
+  </div>
+</script>

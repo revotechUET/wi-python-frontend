@@ -149,3 +149,15 @@ wi-login>div>div {
 //   overflow: hidden;
 //   white-space: normal;
 // }
+.newDialog{
+  padding: 5px 13px 0 13px;
+  font-size: 15px;
+  font-weight: bold;
+  >div{
+    margin-bottom: 15px;
+  }
+  .newDialogContent{
+    display: flex;
+
+  }
+}
