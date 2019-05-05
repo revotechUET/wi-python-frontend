@@ -232,6 +232,17 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
           })
           ngDialog.close();
 
+        alertMessage.success('success create file')
+        let initcode = 
+`#--login block--
+client = wilib.loginWithToken("${wiToken.getToken()}")
+#--end of login block--
+`;
+        projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+          console.log("save init code success");
+        });
+        console.log({
+          tree: self.currentProject
         })
         .catch(error => alertMessage.error(error))
     }
