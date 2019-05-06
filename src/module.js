@@ -31,7 +31,7 @@ import * as keyBind from './_key-bind'
 
 
 export default function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiDialog']
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable']
 
   angular.module(moduleName, dependencies)
     .component(app.name, app.options)
