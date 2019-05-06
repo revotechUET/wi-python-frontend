@@ -788,7 +788,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    border-top: none;\n    height: 9999999999999999999999999999999999999px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px; }\n    .explorer #codeArea .codeflask {\n      border-bottom: 1px solid #ececec; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      width: calc(100% - 40px) !important;\n      white-space: normal;\n      border-left: 1px solid #ececec;\n      color: transparent; }\n", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    border-top: none;\n    height: 9999999999999999999999999999999999999px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px; }\n    .explorer #codeArea .codeflask {\n      border-bottom: 1px solid #ececec; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF; }\n    .explorer #codeArea textarea {\n      width: calc(100% - 40px) !important;\n      border-left: 1px solid #ececec;\n      color: transparent; }\n", ""]);
 
 
 
