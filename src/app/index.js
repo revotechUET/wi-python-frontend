@@ -5,281 +5,278 @@ const name = 'app'
 
 controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog']
 
-function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog) {
-  let self = this
-  self.$onInit = function () {
-    initState();
-  }
-  ///////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////
-  //  Project function
-  //
-  ///
+function controller($scope, $http, wiToken, 
+    projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog
+) {
+    let self = this
+    self.$onInit = function () {
+        initState();
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////
+    //  Project function
+    //
+    ///
 
 
-  self.removeTreeConfig = function () {
-    $scope.treeConfig.length = 0;
-  }
-  self.findAllProjects = function () {
-    projectApi.listProjects()
-      .then(projects => {
-        console.log({
-          tree: self.currentProject
+    self.removeTreeConfig = function () {
+        $scope.treeConfig.length = 0;
+    }
+    self.findAllProjects = function () {
+        projectApi.listProjects()
+        .then(projects => {
+            console.log({
+                tree: self.currentProject
+            })
+            self.allProjects = projects
         })
-        self.allProjects = projects
-      })
-      .catch(error => {
-        alertMessage.error(error)
-      });
-  }
-  self.openProject = function (name) {
-    projectApi.openProject(name)
-      .then(item => {
-        self.currentProject = item
-
-      })
-      .catch(error => {
-        alertMessage.error(error)
-      })
-  }
-
-  self.closeProject = function () {
-    initState()
-  }
-
-  self.createNewProject = function () {
-    let projectName;
-    if (!projectName) {
-      ngDialog.open({
-        template: 'templateNewPrj',
-        className: 'ngdialog-theme-default',
-        scope: $scope,
-      });
-      self.acceptNewPrj = function () {
-        projectApi
-          .newProject(this.nameProject)
-          .then(() => self.openProject(this.nameProject))
-          .catch(error => alertMessage.error(error))
-        ngDialog.close();
-      }
-    }
-  }
-
-  self.deleteProject = function () {
-    if (self.currentProject) {
-      ngDialog.open({
-        template: 'templateDeleteProject',
-        className: 'ngdialog-theme-default',
-        scope: $scope,
-      });
-      self.acceptDelete = function () {
-        projectApi.deleteProject(self.currentProject.rootName)
-          .then(() => {
-            alertMessage.success('Success remove project ' + self.currentProject.rootName)
-            ngDialog.close();
-            initState()
-          })
-          .catch(error => alertMessage.error(error))
-      }
-    } else {
-      return alertMessage.error('No project is opened');
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////
-  //  fils system function
-  //
-  ///
-
-  self.openFile = function (dir) {
-
-    const fileName = dir
-      .split('/')
-      .reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null)
-
-    const fileNode = findNodeInTree(self.currentProject, f => f.path === dir)
-
-    self.curFile = fileName
-    self.selectedNode = fileNode
-
-    projectApi.openFile(dir)
-      .then(code => {
-        console.log(code);
-        if (typeof code === "object") {
-          self.code = "";
-        } else self.code = code
-      })
-      .catch(error => {
-        alertMessage.error(error)
-      })
-  }
-
-  self.openFolder = function (dir) {
-
-    const folderNode = findNodeInTree(self.currentProject, f => f.path === dir)
-
-    self.selectedNode = folderNode
-
-    if (!folderNode) return alertMessage.error('There are some error, refresh?')
-    if (folderNode.files.length + folderNode.folders.length)
-      return // already fetch inside item, do not have to fetch any more
-
-    //fetch inside item of folder
-    projectApi.openFolder(dir)
-      .then(item => {
-        if (!(item.files.length + item.folders.length)) {
-          return alertMessage.error('There is nothing in this folder')
-        }
-
-        for (const f of item.files) {
-          folderNode.files.push(f)
-        }
-
-        for (const f of item.folders) {
-          folderNode.folders.push(f)
-        }
-      })
-      .catch(error => {
-        alertMessage.error(error)
-      })
-  }
-
-
-  self.createNewFile = function () {
-    ngDialog.open({
-      template: 'templateNewFile',
-      className: 'ngdialog-theme-default',
-      scope: $scope,
-    });
-    self.acceptNewFile = function () {
-      let filePath = this.nameFileNew;
-      filePath = filePath + '.py';
-      if (!filePath) return
-      projectApi.newFile(self.currentProject.rootName, filePath)
-        .then(() => {
-          const containerFolderPath = getParrentFolderPath(filePath)
-          const fileName = filePath
-            .split('/')
-            .reduce((pre, cur, i, arr) => arr[arr.length - 1])
-
-          const parrentFolder = findNodeInTree(
-            self.currentProject,
-            node => node.path === containerFolderPath
-          )
-
-          if (!parrentFolder) return alertMessage.error('Cannot create file')
-
-          parrentFolder.files.push({
-            rootName: fileName,
-            files: [],
-            folders: [],
-            path: containerFolderPath + '/' + fileName,
-            rootIsFile: true
-          })
-
-          alertMessage.success('success create file')
-          let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
-          projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
-            console.log("save init code success");
-          });
-          console.log({
-            tree: self.currentProject
-          })
-          ngDialog.close();
-
-        })
-        .catch(error => alertMessage.error(error))
-    }
-  }
-
-  self.createNewFolder = function () {
-    ngDialog.open({
-      template: 'templateNewFolder',
-      className: 'ngdialog-theme-default',
-      scope: $scope,
-    });
-    self.acceptNewFolder = function () {
-      const folderPath = this.nameFolderNew
-      if (!folderPath) return
-      projectApi.newFolder(self.currentProject.rootName, folderPath)
-        .then(() => {
-          const containerFolderPath = getParrentFolderPath(folderPath)
-          const folderName = folderPath
-            .split('/')
-            .reduce((pre, cur, i, arr) => arr[arr.length - 1])
-
-          const parrentFolder = findNodeInTree(
-            self.currentProject,
-            node => node.path === containerFolderPath
-          )
-
-          if (!parrentFolder) return alertMessage.error('Cannot create folder')
-
-          parrentFolder.folders.push({
-            rootName: folderName,
-            files: [],
-            folders: [],
-            path: containerFolderPath + '/' + folderName,
-            rootIsFile: false
-          })
-
-          alertMessage.success('success create folder')
-          console.log({
-            tree: self.currentProject
-          })
-          ngDialog.close();
-
-        alertMessage.success('success create file')
-        let initcode = 
-`#--login block--
-client = wilib.loginWithToken("${wiToken.getToken()}")
-#--end of login block--
-`;
-        projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
-          console.log("save init code success");
+        .catch(error => {
+            alertMessage.error(error)
         });
-        console.log({
-          tree: self.currentProject
+    }
+    self.openProject = function (name) {
+        projectApi.openProject(name)
+        .then(item => {
+            self.currentProject = item
+
         })
-        .catch(error => alertMessage.error(error))
+        .catch(error => {
+            alertMessage.error(error)
+        })
     }
 
-    // const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
-    // if (!folderPath) return
+    self.closeProject = function () {
+        initState()
+    }
+
+    self.createNewProject = function () {
+        let projectName;
+        if (!projectName) {
+            ngDialog.open({
+                template: 'templateNewPrj',
+                className: 'ngdialog-theme-default',
+                scope: $scope,
+            });
+            self.acceptNewPrj = function () {
+                projectApi
+                .newProject(this.nameProject)
+                .then(() => self.openProject(this.nameProject))
+                .catch(error => alertMessage.error(error))
+                ngDialog.close();
+            }
+        }
+    }
+
+    self.deleteProject = function () {
+        if (self.currentProject) {
+            ngDialog.open({
+                template: 'templateDeleteProject',
+                className: 'ngdialog-theme-default',
+                scope: $scope,
+            });
+            self.acceptDelete = function () {
+                projectApi.deleteProject(self.currentProject.rootName)
+                .then(() => {
+                    alertMessage.success('Success remove project ' + self.currentProject.rootName)
+                    ngDialog.close();
+                    initState()
+                })
+                .catch(error => alertMessage.error(error))
+            }
+        } else {
+            return alertMessage.error('No project is opened');
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////
+    //  fils system function
+    //
+    ///
+
+    self.openFile = function (dir) {
+
+        const fileName = dir
+        .split('/')
+        .reduce((acc, cur, i, arr) => i === arr.length - 1 ? cur : null)
+
+        const fileNode = findNodeInTree(self.currentProject, f => f.path === dir)
+
+        self.curFile = fileName
+        self.selectedNode = fileNode
+
+        projectApi.openFile(dir)
+        .then(code => {
+            console.log(code);
+            if (typeof code === "object") {
+                self.code = "";
+            } else self.code = code
+        })
+        .catch(error => {
+            alertMessage.error(error)
+        })
+    }
+
+    self.openFolder = function (dir) {
+
+        const folderNode = findNodeInTree(self.currentProject, f => f.path === dir)
+
+        self.selectedNode = folderNode
+
+        if (!folderNode) return alertMessage.error('There are some error, refresh?')
+        if (folderNode.files.length + folderNode.folders.length)
+        return // already fetch inside item, do not have to fetch any more
+
+        //fetch inside item of folder
+        projectApi.openFolder(dir)
+        .then(item => {
+            if (!(item.files.length + item.folders.length)) {
+                return alertMessage.error('There is nothing in this folder')
+            }
+
+            for (const f of item.files) {
+                folderNode.files.push(f)
+            }
+
+            for (const f of item.folders) {
+                folderNode.folders.push(f)
+            }
+        })
+        .catch(error => {
+            alertMessage.error(error)
+        })
+    }
 
 
-    // projectApi.newFolder(self.currentProject.rootName, folderPath)
-    //   .then(() => {
-    //     const containerFolderPath = getParrentFolderPath(folderPath)
-    //     const folderName = folderPath
-    //       .split('/')
-    //       .reduce((pre, cur, i, arr) => arr[arr.length - 1])
+    self.createNewFile = function () {
+        ngDialog.open({
+            template: 'templateNewFile',
+            className: 'ngdialog-theme-default',
+            scope: $scope,
+        });
+        self.acceptNewFile = function () {
+            let filePath = this.nameFileNew;
+            filePath = filePath + '.py';
+            if (!filePath) return
+            projectApi.newFile(self.currentProject.rootName, filePath)
+            .then(() => {
+                const containerFolderPath = getParrentFolderPath(filePath)
+                const fileName = filePath
+                .split('/')
+                .reduce((pre, cur, i, arr) => arr[arr.length - 1])
 
-    //     const parrentFolder = findNodeInTree(
-    //       self.currentProject,
-    //       node => node.path === containerFolderPath
-    //     )
+                const parrentFolder = findNodeInTree(
+                self.currentProject,
+                node => node.path === containerFolderPath
+                )
 
-    //     if (!parrentFolder) return alertMessage.error('Cannot create folder')
+                if (!parrentFolder) return alertMessage.error('Cannot create file')
 
-    //     parrentFolder.folders.push({
-    //       rootName: folderName,
-    //       files: [],
-    //       folders: [],
-    //       path: containerFolderPath + '/' + folderName,
-    //       rootIsFile: false
-    //     })
+                parrentFolder.files.push({
+                    rootName: fileName,
+                    files: [],
+                    folders: [],
+                    path: containerFolderPath + '/' + fileName,
+                    rootIsFile: true
+                })
 
-    //     alertMessage.success('success create folder')
-    //     console.log({
-    //       tree: self.currentProject
-    //     })
-    //   })
-    //   .catch(error => alertMessage.error(error))
-  }
+                alertMessage.success('success create file')
+                let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
+                projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+                    console.log("save init code success");
+                });
+                console.log({
+                    tree: self.currentProject
+                })
+                ngDialog.close();
+
+            })
+            .catch(error => alertMessage.error(error))
+        }
+    }
+
+    self.createNewFolder = function () {
+        ngDialog.open({
+            template: 'templateNewFolder',
+            className: 'ngdialog-theme-default',
+            scope: $scope,
+        });
+    }
+
+    self.acceptNewFolder = function () {
+        const folderPath = this.nameFolderNew
+        if (!folderPath) return
+        projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
+            const containerFolderPath = getParrentFolderPath(folderPath)
+            const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1])
+
+            const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath)
+
+            if (!parrentFolder) return alertMessage.error('Cannot create folder')
+
+            parrentFolder.folders.push({
+                rootName: folderName,
+                files: [],
+                folders: [],
+                path: containerFolderPath + '/' + folderName,
+                rootIsFile: false
+            })
+
+            alertMessage.success('success create folder')
+            console.log({
+                tree: self.currentProject
+            })
+            ngDialog.close();
+
+            alertMessage.success('success create file');
+            let initcode = 
+            `#--login block--
+            client = wilib.loginWithToken("${wiToken.getToken()}")
+            #--end of login block--
+            `;
+            projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+                console.log("save init code success");
+            });
+            console.log({
+                tree: self.currentProject
+            });
+        }).catch(error => alertMessage.error(error))
+
+        // const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
+        // if (!folderPath) return
+
+
+        // projectApi.newFolder(self.currentProject.rootName, folderPath)
+        //   .then(() => {
+            //     const containerFolderPath = getParrentFolderPath(folderPath)
+            //     const folderName = folderPath
+            //       .split('/')
+            //       .reduce((pre, cur, i, arr) => arr[arr.length - 1])
+
+            //     const parrentFolder = findNodeInTree(
+            //       self.currentProject,
+            //       node => node.path === containerFolderPath
+            //     )
+
+            //     if (!parrentFolder) return alertMessage.error('Cannot create folder')
+
+            //     parrentFolder.folders.push({
+                //       rootName: folderName,
+                //       files: [],
+                //       folders: [],
+                //       path: containerFolderPath + '/' + folderName,
+                //       rootIsFile: false
+            //     })
+
+            //     alertMessage.success('success create folder')
+            //     console.log({
+                //       tree: self.currentProject
+            //     })
+        //   })
+        //   .catch(error => alertMessage.error(error))
+    }
 
   self.deleteItem = function () {
 
@@ -288,7 +285,6 @@ client = wilib.loginWithToken("${wiToken.getToken()}")
     projectApi
       .removeItem(self.currentProject.rootName, self.selectedNode.rootName)
       .then(() => {
-
         const nodeContainerOfRmItem = findNodeInTree(
           self.currentProject,
           node => node.path === getParrentFolderPath(self.selectedNode.path, true)
@@ -307,7 +303,7 @@ client = wilib.loginWithToken("${wiToken.getToken()}")
         alertMessage.success('remove success ' + self.selectedNode.rootName)
         self.selectedNode = null
       })
-      .catch(error => alertMessage.error('Cannot remove item'))
+      .catch(error => alertMessage.error('Cannot remove item'));
   }
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -318,12 +314,9 @@ client = wilib.loginWithToken("${wiToken.getToken()}")
   ///
 
   self.addFunction = function (type) {
-
     const fileType = mime.getFileType(self.curFile)
     if (fileType !== mime.types.python)
       return alertMessage.error(`Doesn't support gen function for file ${fileType}`)
-
-
     const generatedFuncCode = funcGen.generateForPy(type)
     self.code = generatedFuncCode + self.code
   }
@@ -331,7 +324,7 @@ client = wilib.loginWithToken("${wiToken.getToken()}")
   self.saveCode = function () {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
       .then(() => alertMessage.success('save success'))
-      .catch(error => alertMessage.error(error))
+      .catch(error => alertMessage.error(error));
 
   }
 
@@ -561,22 +554,22 @@ curveObj.deleteCurve()
         case "load":
           return `
 datasetObj = client.getdatasetById(${info})
-datasetInfo = datasetObj.getdatasetInfo()
-datasetData = datasetObj.getdatasetData()
+datasetInfo = datasetObj.getDatasetInfo()
+datasetData = datasetObj.getDatasetData()
 `;
         case "save":
           return `
-datasetObj = client.getdatasetById(${info})
-datasetObj.editdatasetInfo(name="someName");
+datasetObj = client.getDatasetById(${info})
+datasetObj.editDatasetInfo(name="someName");
 `;
         case "delete":
           return `
-datasetObj = client.getdatasetById(${info})
-datasetObj.deletedataset()
+datasetObj = client.getDatasetById(${info})
+datasetObj.deleteDataset()
 `;
         case "new":
           return `
-datasetObj = client.getdatasetById(${info})
+datasetObj = client.getDatasetById(${info})
 datasetObj.createCurve()
 `;
       }
@@ -586,23 +579,22 @@ datasetObj.createCurve()
       switch (mode) {
         case "load":
           return `
-wellObj = client.getwellById(${info})
-wellInfo = wellObj.getwellInfo()
-wellData = wellObj.getwellData()
+wellObj = client.getWellById(${info})
+wellInfo = wellObj.getWellInfo()
 `;
         case "save":
           return `
-wellObj = client.getwellById(${info})
-wellObj.editwellInfo(name="someName");
+wellObj = client.getWellById(${info})
+wellObj.editWellInfo(name="someName");
 `;
         case "delete":
           return `
-wellObj = client.getwellById(${info})
-wellObj.deletewell()
+wellObj = client.getWellById(${info})
+wellObj.deleteWell()
 `;
         case "new":
           return `
-wellObj = client.getwellById(${info})
+wellObj = client.getWellById(${info})
 wellObj.createDataset()
 `;
       }
@@ -612,24 +604,23 @@ wellObj.createDataset()
       switch (mode) {
         case "load":
           return `
-projectObj = client.getprojectById(${info})
-projectInfo = projectObj.getprojectInfo()
-projectData = projectObj.getprojectData()
+projectObj = client.getProjectById(${info})
+projectInfo = projectObj.getProjectInfo()
 `;
         case "save":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.editprojectInfo(name="someName");
+projectObj = client.getProjectById(${info})
+projectObj.editProjectInfo(name="someName");
 `;
         case "delete":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.deleteproject()
+projectObj = client.getProjectById(${info})
+projectObj.deleteProject()
 `;
         case "new":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.createWell()
+projectObj = client.getProjectById(${info})
+projectObj.createWell(name = "someName")
 `;
       }
     }

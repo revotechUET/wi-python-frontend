@@ -12175,29 +12175,40 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
       className: 'ngdialog-theme-default',
       scope: $scope
     });
+  };
 
-    self.acceptNewFolder = function () {
-      const folderPath = this.nameFolderNew;
-      if (!folderPath) return;
-      projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
-        const containerFolderPath = getParrentFolderPath(folderPath);
-        const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
-        const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
-        if (!parrentFolder) return alertMessage.error('Cannot create folder');
-        parrentFolder.folders.push({
-          rootName: folderName,
-          files: [],
-          folders: [],
-          path: containerFolderPath + '/' + folderName,
-          rootIsFile: false
-        });
-        alertMessage.success('success create folder');
-        console.log({
-          tree: self.currentProject
-        });
-        ngDialog.close();
-      }).catch(error => alertMessage.error(error));
-    }; // const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
+  self.acceptNewFolder = function () {
+    const folderPath = this.nameFolderNew;
+    if (!folderPath) return;
+    projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
+      const containerFolderPath = getParrentFolderPath(folderPath);
+      const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+      const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+      if (!parrentFolder) return alertMessage.error('Cannot create folder');
+      parrentFolder.folders.push({
+        rootName: folderName,
+        files: [],
+        folders: [],
+        path: containerFolderPath + '/' + folderName,
+        rootIsFile: false
+      });
+      alertMessage.success('success create folder');
+      console.log({
+        tree: self.currentProject
+      });
+      ngDialog.close();
+      alertMessage.success('success create file');
+      let initcode = `#--login block--
+            client = wilib.loginWithToken("${wiToken.getToken()}")
+            #--end of login block--
+            `;
+      projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
+        console.log("save init code success");
+      });
+      console.log({
+        tree: self.currentProject
+      });
+    }).catch(error => alertMessage.error(error)); // const folderPath = prompt('Enter the folder or path to the folder (start without / and not include project name)')
     // if (!folderPath) return
     // projectApi.newFolder(self.currentProject.rootName, folderPath)
     //   .then(() => {
@@ -12223,7 +12234,6 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     //     })
     //   })
     //   .catch(error => alertMessage.error(error))
-
   };
 
   self.deleteItem = function () {
@@ -12478,25 +12488,25 @@ curveObj.deleteCurve()
         case "load":
           return `
 datasetObj = client.getdatasetById(${info})
-datasetInfo = datasetObj.getdatasetInfo()
-datasetData = datasetObj.getdatasetData()
+datasetInfo = datasetObj.getDatasetInfo()
+datasetData = datasetObj.getDatasetData()
 `;
 
         case "save":
           return `
-datasetObj = client.getdatasetById(${info})
-datasetObj.editdatasetInfo(name="someName");
+datasetObj = client.getDatasetById(${info})
+datasetObj.editDatasetInfo(name="someName");
 `;
 
         case "delete":
           return `
-datasetObj = client.getdatasetById(${info})
-datasetObj.deletedataset()
+datasetObj = client.getDatasetById(${info})
+datasetObj.deleteDataset()
 `;
 
         case "new":
           return `
-datasetObj = client.getdatasetById(${info})
+datasetObj = client.getDatasetById(${info})
 datasetObj.createCurve()
 `;
       }
@@ -12506,26 +12516,25 @@ datasetObj.createCurve()
       switch (mode) {
         case "load":
           return `
-wellObj = client.getwellById(${info})
-wellInfo = wellObj.getwellInfo()
-wellData = wellObj.getwellData()
+wellObj = client.getWellById(${info})
+wellInfo = wellObj.getWellInfo()
 `;
 
         case "save":
           return `
-wellObj = client.getwellById(${info})
-wellObj.editwellInfo(name="someName");
+wellObj = client.getWellById(${info})
+wellObj.editWellInfo(name="someName");
 `;
 
         case "delete":
           return `
-wellObj = client.getwellById(${info})
-wellObj.deletewell()
+wellObj = client.getWellById(${info})
+wellObj.deleteWell()
 `;
 
         case "new":
           return `
-wellObj = client.getwellById(${info})
+wellObj = client.getWellById(${info})
 wellObj.createDataset()
 `;
       }
@@ -12535,27 +12544,26 @@ wellObj.createDataset()
       switch (mode) {
         case "load":
           return `
-projectObj = client.getprojectById(${info})
-projectInfo = projectObj.getprojectInfo()
-projectData = projectObj.getprojectData()
+projectObj = client.getProjectById(${info})
+projectInfo = projectObj.getProjectInfo()
 `;
 
         case "save":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.editprojectInfo(name="someName");
+projectObj = client.getProjectById(${info})
+projectObj.editProjectInfo(name="someName");
 `;
 
         case "delete":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.deleteproject()
+projectObj = client.getProjectById(${info})
+projectObj.deleteProject()
 `;
 
         case "new":
           return `
-projectObj = client.getprojectById(${info})
-projectObj.createWell()
+projectObj = client.getProjectById(${info})
+projectObj.createWell(name = "someName")
 `;
       }
     }
