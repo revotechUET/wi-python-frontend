@@ -331,7 +331,7 @@ function controller($scope, $http, wiToken,
   self.runCode = function () {
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
       .then(() => {
-        alertMessage.success('save success')
+        // alertMessage.success('save success')
         browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
           (error, {
             type,
@@ -342,7 +342,10 @@ function controller($scope, $http, wiToken,
               return alertMessage.error(error.message)
             }
 
-            if (render) self.resultHtml = render
+            if (render) {
+              self.resultHtml = render
+              alertMessage.success('Run Finished')
+            }
             // if (link) self.iframeHtmlLink = link
             self.isResultAIframe = type === mime.types.html
           })
@@ -555,7 +558,6 @@ curveObj.deleteCurve()
           return `
 datasetObj = client.getdatasetById(${info})
 datasetInfo = datasetObj.getDatasetInfo()
-datasetData = datasetObj.getDatasetData()
 `;
         case "save":
           return `
@@ -625,7 +627,22 @@ projectObj.createWell(name = "someName")
       }
     }
   }
-
+  this.generateSaveCurveData = function() {
+    self.code += `
+curveObject.updateCurveData(someData)    
+`;
+  }
+  this.generateLoginByToken = function() {
+    self.code += `
+client = wilib.loginByToken("${wiToken.getToken()}")
+`;
+  }
+  this. generateLoginByAccount = function() {
+    self.code += `
+client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
+`;
+  }
+   
   this.clickFunction = function ($event, node) {
 
     if (node.idCurve) {
@@ -635,7 +652,7 @@ projectObj.createWell(name = "someName")
     } else if (node.idWell) {
       console.log("Well clicked");
     } else if (node.idProject) {
-      if (!node.timestamp || (Date.now() - node.timestamp > 10 * 5000)) {
+      if (!node.timestamp || (Date.now() - node.timestamp > 3 * 1000)) {
         getWells(node.idProject, node, function (err, wells) {
           if (err) {
             return alertMessage.error(err.data.content);

@@ -23,25 +23,45 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+app {
+  .fn-button.color-green {
+    color: #01ad78;
+  }
+  .fn-button.color-red{
+    color: #a54f0e;
+  }
+  .separator {
+    border-bottom: 1px solid #dddd;
+    margin: 5px 5px;
+  }
+}
 
 .delete-checked {
-  color: #525252 !important;
+  color: #0077be !important;
 }
 
 .save-checked {
-  color: #525252 !important;
+  color: #0077be !important;
 }
 
 .refresh-checked {
-  color: #525252 !important;
+  color: #0077be !important;
 }
+
 .new-button {
-  color: #525252 !important;
+  color: #0077be !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-left: 1px solid #dcdcdc;
 }
 
 .label-list-view {
@@ -53,11 +73,11 @@ code {
   border-bottom: 1px solid #ececec;
 }
 
-.label-buttom {
+.fn-button {
   float: right;
   cursor: pointer;
   color: #d4d4d4;
-  margin: 2px 5px 0 25px;
+  padding: 11px;
 }
 
 .input-search-list-view {
@@ -143,20 +163,23 @@ wi-login>div>div {
 .ngdialog .btn {
   padding: 6px;
 }
+
 // .codeflask__code {
 //   display: block;
 //   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 //   overflow: hidden;
 //   white-space: normal;
 // }
-.newDialog{
+.newDialog {
   padding: 5px 13px 0 13px;
   font-size: 15px;
   font-weight: bold;
-  >div{
+
+  >div {
     margin-bottom: 15px;
   }
-  .newDialogContent{
+
+  .newDialogContent {
     display: flex;
 
   }

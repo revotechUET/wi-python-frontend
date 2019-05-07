@@ -27,8 +27,19 @@ $container-with : 40%;
     
       &::before, .codeflask__lines{
         background: #FFF;
-        // border-bottom: 1px solid #ccc;
-        // border-right: 1px solid #ccc;
+        padding: 10px 4px;
+        font-size: 12px;
+        line-height: 20px;
+        font-family: 'Cousine', monospace;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        font-weight: bold;
+        height: 100%;
+        text-align: right;
+        color: #1280ca;
+        z-index: 2;
       }
     }
 

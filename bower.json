@@ -18,6 +18,7 @@
     "misc-component": "https://github.com/tunghoang/misc-component.git",
     "angular": "^1.7.8",
     "jquery-ui": "^1.12.1",
+    "themify-icons": "^0.1.2",
     "lodash": "^4.17.11",
     "async": "^2.6.2"
   },

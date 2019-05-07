@@ -19,16 +19,51 @@
       <div class="label-list-view">
         <span>EDITTOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
       </div>
-      <wi-droppable style="display:flex;flex:3;" on-drop="self.onDrop" container-style="{
-        display:'flex',
-        flex: 1
-      }">
-        <div style="display:flex;flex:3;">
-          <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
-            cur-file="self.curFile">
-          </explorer>
-        </div>
-      </wi-droppable>
+      <div style="display:flex; flex:3; background-color: #fff;">
+          <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;" on-drop="self.onDrop" container-style="{display:'flex',flex: 1}">
+              <div style="display:flex;flex:3;">
+                <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
+                  cur-file="self.curFile">
+                </explorer>
+                <div class="editor">
+                  <span class="fn-button color-red fa fa-folder-open" aria-hidden="true" ng-click="self.getCurveTree()"
+                    title="Login by token"></span>
+      
+                  <span class="fn-button color-red fa fa-trash" aria-hidden="true" ng-click="self.removeTreeConfig()"
+                    title="Login by token"></span>
+      
+                  <div class="separator"></div>
+                  <span ng-class="{'delete-checked':self.codeGenMode === 'delete'}" class="fn-button ti-trash"
+                    aria-hidden="true" ng-click="self.deleteChecked()" title="Delete mode"></span>
+      
+                  <span ng-class="{'save-checked':self.codeGenMode === 'save'}" class="fn-button fa ti-cloud-up"
+                    aria-hidden="true" ng-click="self.saveChecked()" title="Save mode"></span>
+      
+                  <span ng-class="{'refresh-checked':self.codeGenMode === 'load'}" class="fn-button ti-cloud-down"
+                    aria-hidden="true" ng-click="self.refreshChecked()" title="Load mode"></span>
+      
+                  <span ng-class="{'new-button':self.codeGenMode === 'new'}" class="fn-button ti-plus" aria-hidden="true"
+                    ng-click="self.newChecked()" title="New mode"></span>
+      
+                  <!-- ////////////////////////  ADD  ////////////////////// -->
+                  <div class="separator"></div>
+      
+                  <span class="fn-button color-green ti-key" aria-hidden="true" ng-click="self.generateLoginByToken()"
+                    title="Login by token"></span>
+      
+                  <span class="fn-button color-green ti-user" aria-hidden="true" ng-click="self.generateLoginByAccount()"
+                    title="Login by account"></span>
+      
+                  <span class="fn-button color-green ti-cloud-up" aria-hidden="true" ng-click="self.generateSaveCurveData()"
+                    title="Save curve data"></span>
+      
+                  <!-- ////////////////////////  END  ////////////////////// -->
+                </div>
+              </div>
+            </wi-droppable>
+      </div>
+      
+
       <div class="label-list-view">
         <span>TERMINAL</span>
       </div>
@@ -36,38 +71,11 @@
         is-result-a-iframe="self.isResultAIframe">
       </terminal>
     </div>
-    <side-bar my-default-width="300" orientation="w" collapsed="false">
-      <!-- <div style="position: sticky; position: -webkit-sticky; z-index: 1; top: 0;">
-        <div class="label-list-view">
-          <span>I2G CLOUD</span>
-          <span class="label-buttom fa fa-forward" aria-hidden="true" ng-click="self.moveAllWell()"></span>
-          <span class="label-buttom fa fa-minus-circle" aria-hidden="true" ng-click="self.refesh()"></span>
-          <span class="label-buttom fa fa-minus-circle" aria-hidden="true" ng-click="self.refesh()"></span>
-        </div>
-        <input class="input-search-list-view" type="text" placeholder="Search well this project"
-          ng-model="wellListSearch">
-      </div>
-      
-      <wi-base-treeview name="abc" filter="{{wellListSearch}}" on-click-function="onClickNodeTreeview"
-        config="treeConfig">
-      </wi-base-treeview> -->
+    <side-bar my-default-width="200" orientation="w" collapsed="false">
       <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon"
         get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'>
         <div class="label-list-view">
           <span>I2G CLOUD</span>
-
-          <span ng-class="{'delete-checked':self.codeGenMode === 'delete'}" class="label-buttom fa fa-minus-circle"
-            aria-hidden="true" ng-click="self.deleteChecked()" title="Delete mode"></span>
-
-          <span ng-class="{'save-checked':self.codeGenMode === 'save'}" class="label-buttom fa fa-download"
-            aria-hidden="true" ng-click="self.saveChecked()" title="Save mode"></span>
-
-          <span ng-class="{'refresh-checked':self.codeGenMode === 'load'}" class="label-buttom fa fa-repeat"
-            aria-hidden="true" ng-click="self.refreshChecked()" title="Load mode"></span>
-
-          <span ng-class="{'new-button':self.codeGenMode === 'new'}" class="label-buttom fa fa-plus" aria-hidden="true"
-            ng-click="self.newChecked()" title="New mode"></span>
-
         </div>
       </wi-tree-view>
     </side-bar>
