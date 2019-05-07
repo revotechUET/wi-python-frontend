@@ -12270,13 +12270,15 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   };
 
   self.runCode = function () {
+    Spinner();
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => {
       // alertMessage.success('save success')
-      browserCodeRunner.execute(self.currentProject.rootName, self.curFile, (error, {
+      Spinner.show();
+      browserCodeRunner.execute(self.currentProject.rootName, self.curFile, function (error, {
         type,
         render,
         link
-      }) => {
+      }) {
         if (error) {
           return alertMessage.error(error.message);
         }
@@ -12284,8 +12286,9 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         if (render) {
           self.resultHtml = render;
           alertMessage.success('Run Finished');
-        } // if (link) self.iframeHtmlLink = link
+        }
 
+        Spinner.hide(); // if (link) self.iframeHtmlLink = link
 
         self.isResultAIframe = type === mime.types.html;
       });
@@ -12689,158 +12692,77 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       cb(err);
     });
   }
-  /*
-  self.getProjectWellDatasetCurve = getProjectWellDatasetCurve;
-   function getProjectWellDatasetCurve() {
-    const BASE_URL = "http://dev.i2g.cloud";
-    let mytoken = wiToken.getToken();
-    $scope.treeConfig = [];
-     async.waterfall([
-      function (cb) {
-        getProjects($scope.treeConfig, cb);
-      },
-      function (projects, treeRoot, cb) {
-        let projectNodes = projects.map(function (prj) {
-          return {
-            data: {
-              icon: 'project-normal-16x16',
-              label: prj.name
-            },
-            properties: prj,
-            children: []
-          }
-        });
-         treeRoot.push(...projectNodes);
-        async.eachOfSeries(projects, function (proj, idx, cb) {
-          async.waterfall([
-            function (cb) {
-              getWells(proj.idProject, projectNodes[idx].children, cb);
-            },
-            function (wells, projectNodeChildren, cb) {
-              let wellNodes = wells.map(function (well) {
-                return {
-                  data: {
-                    icon: 'well-16x16',
-                    label: well.name
-                  },
-                  properties: well,
-                  children: []
-                }
-              });
-              projectNodeChildren.push(...wellNodes);
-              async.eachOfSeries(wells, function (well, idx, cb) {
-                async.waterfall([
-                  function (cb) {
-                    getDatasets(well.idWell, wellNodes[idx].children, cb);
-                  },
-                  function (datasets, wellNodeChildren, cb) {
-                    let datasetNodes = datasets.map(dataset => ({
-                      data: {
-                        label: dataset.name,
-                        icon: 'curve-data-16x16'
-                      },
-                      properties: dataset,
-                      children: []
-                    }));
-                     wellNodeChildren.push(...datasetNodes);
-                     async.eachOfSeries(datasets, function (dataset, idx, cb) {
-                      async.waterfall([
-                        function (cb) {
-                          getCurves(dataset.idDataset, datasetNodes[idx].children, cb);
-                        },
-                        function (curves, datasetNodeChildren, cb) {
-                          let curveNodes = curves.map(curve => ({
-                            data: {
-                              label: curve.name,
-                              icon: 'curve-16x16'
-                            },
-                            properties: curve
-                          }));
-                          datasetNodeChildren.push(...curveNodes);
-                          // console.log("curves:", curves);
-                          cb();
-                        }
-                      ], cb);
-                    }, cb);
-                  }
-                ], cb);
-              }, cb);
-            }
-          ], cb);
-        }, cb);
-      }
-    ], function (err) {
-      if (err) {
-        alertMessage.error(err.data.content);
-      }
-      console.log("every thing is done", err);
-    });
-      function getProjects(treeConfig, cb) {
-      $http({
-        method: 'POST',
-        url: BASE_URL + '/project/list',
-        data: {},
-        headers: {
-          "Authorization": mytoken,
-        }
-      }).then(function (response) {
-        let projects = response.data.content;
-        cb(null, projects, treeConfig);
-      }, function (err) {
-        cb(err);
-      });
-    }
-     function getWells(projectId, projectNodeChildren, cb) {
-      $http({
-        method: 'POST',
-        url: BASE_URL + '/project/well/list',
-        data: {
-          idProject: projectId
-        },
-        headers: {
-          "Authorization": mytoken,
-        }
-      }).then(function (response) {
-        cb(null, response.data.content, projectNodeChildren);
-      }, function (err) {
-        cb(err);
-      });
-    }
-     function getDatasets(wellId, wellNodeChildren, cb) {
-      $http({
-        method: 'POST',
-        url: BASE_URL + '/project/well/info',
-        data: {
-          idWell: wellId
-        },
-        headers: {
-          "Authorization": mytoken,
-        }
-      }).then(function (response) {
-        cb(null, response.data.content.datasets, wellNodeChildren);
-      }, function (err) {
-        cb(err);
-      });
-    }
-     function getCurves(datasetId, datasetNodeChildren, cb) {
-      $http({
-        method: 'POST',
-        url: BASE_URL + '/project/well/dataset/info',
-        data: {
-          idDataset: datasetId
-        },
-        headers: {
-          "Authorization": mytoken,
-        }
-      }).then(function (response) {
-        cb(null, response.data.content.curves, datasetNodeChildren);
-      }, function (err) {
-        cb(err);
-      });
-    }
-  }
-  */
 
+  function Spinner() {
+    Spinner.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    let c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    Spinner.element.setAttribute('width', '100');
+    Spinner.element.setAttribute('height', '100');
+    c.setAttribute('viewBox', '0 0 100 100');
+    c.setAttribute('cx', '50');
+    c.setAttribute('cy', '50');
+    c.setAttribute('r', '42');
+    c.setAttribute('stroke-width', '16');
+    c.setAttribute('stroke', '#2196f3');
+    c.setAttribute('fill', 'transparent');
+    Spinner.element.appendChild(c);
+    Spinner.element.style.cssText = 'position:absolute;left:calc(50% - 50px);top:calc(50% - 50px)';
+    document.body.appendChild(Spinner.element);
+  }
+
+  Spinner.id = null;
+  Spinner.element = null;
+
+  Spinner.show = function () {
+    const c = 264,
+          m = 15;
+    Spinner.element.style.display = 'block';
+    move1();
+
+    function move1() {
+      let i = 0,
+          o = 0;
+      move();
+
+      function move() {
+        if (i == c) move2();else {
+          i += 4;
+          o += 8;
+          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
+          Spinner.element.setAttribute('stroke-dashoffset', o);
+          Spinner.id = setTimeout(move, m);
+        }
+      }
+    }
+
+    function move2() {
+      let i = c,
+          o = c * 2;
+      move();
+
+      function move() {
+        if (i == 0) move1();else {
+          i -= 4;
+          o += 4;
+          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
+          Spinner.element.setAttribute('stroke-dashoffset', o);
+          Spinner.id = setTimeout(move, m);
+        }
+      }
+    }
+  };
+
+  Spinner.hide = function () {
+    Spinner.element.style.display = 'none';
+
+    if (Spinner.id) {
+      clearTimeout(Spinner.id);
+      Spinner.id = null;
+    }
+
+    Spinner.element.setAttribute('stroke-dasharray', '0 264');
+    Spinner.element.setAttribute('stroke-dashoffset', '0');
+  };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
