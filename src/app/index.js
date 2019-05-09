@@ -474,6 +474,22 @@ function controller($scope, $http, wiToken,
       return node.wells;
     }
   }
+  this.getSiblings = function(node) {
+    if (node.idCurve) {
+      return [];
+    }
+    else if (node.idDataset && node.idWell) {
+      return [];
+    } 
+    else if (node.idWell && node.idProject) {
+      let project = $scope.treeConfig.find(prj => prj.idProject === node.idProject);
+//      self.treeConfig.filter(prj => prj.idProject != node.idProject).forEach(prj => prj._active = false);
+      return project.wells.filter(w => w.idWell != node.idWell);
+    } 
+    else if (node.idProject) {
+      return $scope.treeConfig.filter(prj => prj.idProject != node.idProject);
+    }
+  }
   this.runMatch = function (node, criteria) {
     return node.name.includes(criteria);
   }
@@ -653,6 +669,12 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       console.log("Dataset clicked");
     } else if (node.idWell) {
       console.log("Well clicked");
+      getDatasets(node.idWell, node, function (err, datasets) {
+        if (err) {
+          return console.log(err);
+        }
+        node.datasets = datasets;
+      });
     } else if (node.idProject) {
       if (!node.timestamp || (Date.now() - node.timestamp > 3 * 1000)) {
         getWells(node.idProject, node, function (err, wells) {
@@ -660,20 +682,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
             return alertMessage.error(err.data.content);
           }
           node.wells = wells;
-          async.eachOf(node.wells, function (well, idx, cb) {
-            getDatasets(well.idWell, well, function (err, datasets) {
-              if (err) {
-                return cb(err);
-              }
-              well.datasets = datasets;
-              cb();
-            });
-          }, function (err) {
-            if (err) {
-              return alertMessage.error(err.message);
-            }
-            node.timestamp = Date.now();
-          });
+          
         });
       }
     }

@@ -72,8 +72,8 @@
       </terminal>
     </div>
     <side-bar my-default-width="200" orientation="w" collapsed="false">
-      <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon"
-        get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'>
+      <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
+        get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction' get-siblings="self.getSiblings">
         <div class="label-list-view">
           <span>I2G CLOUD</span>
         </div>
