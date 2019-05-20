@@ -54,4 +54,7 @@ export default function assignAppModule(angular, moduleName) {
     .service(funcGen.name, funcGen.service)
     .service(auth.name, auth.service)
     .service(keyBind.name, keyBind.service)
+    .config(function($locationProvider) {
+      $locationProvider.html5Mode(true).hashPrefix('!');
+    })
 }

@@ -3,14 +3,18 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog']
+controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location']
 
 function controller($scope, $http, wiToken,
-  projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog
+  projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location
 ) {
   let self = this
+  const BASE_URL = "http://dev.i2g.cloud";
+
   self.$onInit = function () {
+    self.baseUrl = $location.search().baseUrl || self.baseUrl || BASE_URL;
     initState();
+
   }
   ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
@@ -351,8 +355,6 @@ function controller($scope, $http, wiToken,
           })
       })
       .catch(error => alertMessage.error(error))
-    
-
   }
 
   self.coding = function (code) {
@@ -688,7 +690,6 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
     }
   }
   this.getCurveTree = getCurveTree;
-  const BASE_URL = "http://dev.i2g.cloud";
 
   function getCurveTree() {
     $scope.treeConfig = [];
@@ -703,7 +704,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
   function getProjects(treeConfig, cb) {
     $http({
       method: 'POST',
-      url: BASE_URL + '/project/list',
+      url: self.baseUrl + '/project/list',
       data: {},
       headers: {
         "Authorization": wiToken.getToken(),
@@ -719,7 +720,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
   function getWells(projectId, projectNodeChildren, cb) {
     $http({
       method: 'POST',
-      url: BASE_URL + '/project/well/list',
+      url: self.baseUrl + '/project/well/list',
       data: {
         idProject: projectId
       },
@@ -736,7 +737,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
   function getDatasets(wellId, wellNodeChildren, cb) {
     $http({
       method: 'POST',
-      url: BASE_URL + '/project/well/info',
+      url: self.baseUrl + '/project/well/info',
       data: {
         idWell: wellId
       },
@@ -823,7 +824,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 export default {
   name,
   options: {
-    bindings: {},
+    bindings: {
+      baseUrl: "@"
+    },
     template,
     controller,
     controllerAs: 'self'

@@ -1,5 +1,5 @@
 <div style="display:flex;flex-direction:column;height:100%;">
-  <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"></wi-login>
+  <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>
   <tools find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject"
     close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject"
     create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem"
@@ -17,7 +17,7 @@
     </div>
     <div style="width:80%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
       <div class="label-list-view">
-        <span>EDITTOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
+        <span>EDITOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
       </div>
       <div style="display:flex; flex:3; background-color: #fff;">
           <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;" on-drop="self.onDrop" container-style="{display:'flex',flex: 1}">
