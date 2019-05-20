@@ -4,9 +4,12 @@ import './vendors/toolbar/toolbar'
 import assignAppModule from './module'
 
 const moduleName = 'online-editor-client'
-const renderComponent = '<browser></browser>'
+// const loginUrl = "https://users.i2g.cloud/login";
+const baseUrl = "https://api-1.i2g.cloud";
+// window.__WI_PAAS_URL__ = "https://python.i2g.cloud";
+// const renderComponent = `<browser base-url="${baseUrl}" login-url="${loginUrl}"></browser>`;
+const renderComponent = `<browser></browser>`;
 // import '../public/css/niffty.min.css'
-
 if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-undef
     
     //const angular = require('angular')

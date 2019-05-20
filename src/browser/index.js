@@ -26,6 +26,8 @@ export default {
   name,
   options: {
     bindings: {
+      loginUrl: "@",
+      baseUrl: "@"
     },
     template,
     controller,

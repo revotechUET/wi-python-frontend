@@ -3,17 +3,18 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location']
+controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config']
 
 function controller($scope, $http, wiToken,
-  projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location
+  projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config
 ) {
   let self = this
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
-    self.baseUrl = $location.search().baseUrl || self.baseUrl || BASE_URL;
-    initState();
+    self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
+    self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
+	  initState();
 
   }
   ///////////////////////////////////////////////////////////////////////////////
@@ -825,7 +826,8 @@ export default {
   name,
   options: {
     bindings: {
-      baseUrl: "@"
+      baseUrl: "@",
+      loginUrl: "@"
     },
     template,
     controller,
