@@ -3,18 +3,18 @@ import './style.scss'
 
 const name = 'app'
 
-controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config']
+controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading']
 
-function controller($scope, $http, wiToken,
-  projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config
-) {
+function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
   let self = this
+  var deleteNode ='';
+  var isFile = true;
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
     self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
     self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
-	  initState();
+    initState();
 
   }
   ///////////////////////////////////////////////////////////////////////////////
@@ -49,6 +49,55 @@ function controller($scope, $http, wiToken,
       .catch(error => {
         alertMessage.error(error)
       })
+  }
+  this.getChildren4Python = function (node) {
+    let children = node.files.concat(node.folders);
+    return children;
+  }
+
+  this.getLabel4Python = function (node) {
+    return node.rootName;
+  }
+  this.getIcon4Python = function (node) {
+    return node.rootIsFile ? 'file-wi-python-16x16' : 'folder-wi-python-16x16';
+  }
+
+  this.runMatch4Python = function (node, criteria) {
+    return node.rootName.includes(criteria);
+  }
+  this.clickFunction4Python = function ($event, node) {
+    if (node.rootIsFile) {
+      self.openFile(node.path);
+      deleteNode = node.rootName;
+      isFile = true;
+    } else {
+      // self.openFolder(node.path);
+      projectApi.openFolder(node.path)
+        .then(item => {
+          deleteNode = node.rootName;
+          isFile = false;
+          
+          if (!(item.files.length + item.folders.length)) {
+            return alertMessage.error('There is nothing in this folder')
+          }
+          node.files = item.files;
+          node.folders = item.folders;
+        })
+        .catch(error => {
+          alertMessage.error(error)
+        })
+    }
+  }
+
+  self.deleteFn = function () {
+    let projectName = self.currentProject.rootName;
+    if(isFile){
+      projectApi.deleteFile(projectName, deleteNode);
+    }
+    else {
+      projectApi.deleteFolder(projectName, deleteNode);
+    }
+
   }
 
   self.closeProject = function () {
@@ -93,7 +142,13 @@ function controller($scope, $http, wiToken,
       return alertMessage.error('No project is opened');
     }
   }
-
+  self.aboutWiPython = function () {
+    ngDialog.open({
+      template: 'templateAbout',
+      className: 'ngdialog-theme-default',
+      scope: $scope,
+    });
+  }
   ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////
@@ -114,7 +169,7 @@ function controller($scope, $http, wiToken,
 
     projectApi.openFile(dir)
       .then(code => {
-        console.log(code);
+        // console.log(code);
         if (typeof code === "object") {
           self.code = "";
         } else self.code = code
@@ -123,6 +178,8 @@ function controller($scope, $http, wiToken,
         alertMessage.error(error)
       })
   }
+
+
 
   self.openFolder = function (dir) {
 
@@ -336,13 +393,18 @@ function controller($scope, $http, wiToken,
 
 
   self.runCode = function () {
-    Spinner();
+    // Spinner();
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
       .then(() => {
         // alertMessage.success('save success')
-        Spinner.show();
+        wiLoading.show($element.find('.app')[0]);
+        // Spinner.show();
         browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
-          function (error, {type,render,link}) {
+          function (error, {
+            type,
+            render,
+            link
+          }) {
             if (error) {
               return alertMessage.error(error.message)
             }
@@ -350,7 +412,8 @@ function controller($scope, $http, wiToken,
               self.resultHtml = render
               alertMessage.success('Run Finished')
             }
-            Spinner.hide();
+            // Spinner.hide();
+            wiLoading.hide();
             // if (link) self.iframeHtmlLink = link
             self.isResultAIframe = type === mime.types.html
           })
@@ -459,7 +522,7 @@ function controller($scope, $http, wiToken,
     } else if (node.idWell) {
       return node.name;
     } else if (node.idProject) {
-      return node.alias;
+      return node.name;
     }
   }
   this.getIcon = function (node) {
@@ -469,6 +532,10 @@ function controller($scope, $http, wiToken,
     else if (node.idProject) return "project-normal-16x16";
   }
   this.getChildren = function (node) {
+    if (!node) {
+      return [];
+    }
+    // if (Array.isArray(node)) return node;
     if (node.idDataset) {
       return node.curves;
     } else if (node.idWell) {
@@ -477,19 +544,16 @@ function controller($scope, $http, wiToken,
       return node.wells;
     }
   }
-  this.getSiblings = function(node) {
+  this.getSiblings = function (node) {
     if (node.idCurve) {
       return [];
-    }
-    else if (node.idDataset && node.idWell) {
+    } else if (node.idDataset && node.idWell) {
       return [];
-    } 
-    else if (node.idWell && node.idProject) {
+    } else if (node.idWell && node.idProject) {
       let project = $scope.treeConfig.find(prj => prj.idProject === node.idProject);
-//      self.treeConfig.filter(prj => prj.idProject != node.idProject).forEach(prj => prj._active = false);
+      //      self.treeConfig.filter(prj => prj.idProject != node.idProject).forEach(prj => prj._active = false);
       return project.wells.filter(w => w.idWell != node.idWell);
-    } 
-    else if (node.idProject) {
+    } else if (node.idProject) {
       return $scope.treeConfig.filter(prj => prj.idProject != node.idProject);
     }
   }
@@ -685,7 +749,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
             return alertMessage.error(err.data.content);
           }
           node.wells = wells;
-          
+
         });
       }
     }
@@ -698,7 +762,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       if (err) {
         return alertMessage.error(err.data.content);
       }
-      $scope.treeConfig = projects;
+      $scope.treeConfig = projects.filter(project => !project.shared);
+      console.log($scope.treeConfig);
     });
   }
 
@@ -751,75 +816,6 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       cb(err);
     });
   }
-
-  function Spinner() {
-    Spinner.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    let c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    Spinner.element.setAttribute('width', '100');
-    Spinner.element.setAttribute('height', '100');
-    c.setAttribute('viewBox', '0 0 100 100');
-    c.setAttribute('cx', '50');
-    c.setAttribute('cy', '50');
-    c.setAttribute('r', '42');
-    c.setAttribute('stroke-width', '16');
-    c.setAttribute('stroke', '#2196f3');
-    c.setAttribute('fill', 'transparent');
-    Spinner.element.appendChild(c);
-    Spinner.element.style.cssText = 'position:absolute;left:calc(50% - 50px);top:calc(50% - 50px)';
-    document.body.appendChild(Spinner.element)
-  }
-  Spinner.id = null;
-  Spinner.element = null;
-  Spinner.show = function () {
-    const c = 264,
-      m = 15;
-    Spinner.element.style.display = 'block';
-    move1();
-
-    function move1() {
-      let i = 0,
-        o = 0;
-      move();
-
-      function move() {
-        if (i == c) move2();
-        else {
-          i += 4;
-          o += 8;
-          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
-          Spinner.element.setAttribute('stroke-dashoffset', o)
-          Spinner.id = setTimeout(move, m)
-        }
-      }
-    }
-
-    function move2() {
-      let i = c,
-        o = c * 2;
-      move();
-
-      function move() {
-        if (i == 0) move1();
-        else {
-          i -= 4;
-          o += 4;
-          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
-          Spinner.element.setAttribute('stroke-dashoffset', o)
-          Spinner.id = setTimeout(move, m)
-        }
-      }
-    }
-  };
-  Spinner.hide = function () {
-    Spinner.element.style.display = 'none';
-    if (Spinner.id) {
-      clearTimeout(Spinner.id);
-      Spinner.id = null
-    }
-    Spinner.element.setAttribute('stroke-dasharray', '0 264');
-    Spinner.element.setAttribute('stroke-dashoffset', '0')
-  };
-
 
 }
 export default {

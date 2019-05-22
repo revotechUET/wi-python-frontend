@@ -1,70 +1,49 @@
 <div style="display:flex;flex-direction:column;height:100%;">
-    <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
-    <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="{{self.loginUrl}}"></wi-login>
+  <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
+  <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"
+    login-url="{{self.loginUrl}}"></wi-login>
 
-    <tools find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject"
-    close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject"
-    create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem"
-    add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode" code-palette="self.getCurveTree"
-    remove-code-palette="self.removeTreeConfig">
+  <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects"
+    open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject"
+    delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder"
+    delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode"
+    code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree"
+    remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked"
+    refresh-checked="self.refreshChecked" new-checked="self.newChecked"
+    generate-login-by-token="self.generateLoginByToken" generate-login-byaccount="self.generateLoginByAccount"
+    generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython">
   </tools>
 
-  <div class="app">
-    <div style="width:20%; border-right: 1px solid #c7c7c7;">
-      <div class="label-list-view">
-        <span>PROJECTS</span>
-      </div>
-      <sidebar current-project="self.currentProject" open-file="self.openFile" open-folder="self.openFolder">
-      </sidebar>
+  <div class="app" style="z-index: 0;">
+    <div style="border-right: 1px solid #c7c7c7;">
+      <side-bar my-default-width="250" orientation="e" collapsed="false">
+        <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python" get-icon="self.getIcon4Python"
+          get-children="self.getChildren4Python" run-match="self.runMatch4Python" click-fn='self.clickFunction4Python'>
+          <!-- <div class="label-list-view">
+            <span>PYTHON PROJECTS</span>
+          </div> -->
+          <div class="label-list-view ng-scope"> <span>PYTHON PROJECTS</span>
+            <span style="color: #a4a4a4;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
+              aria-hidden="true" ng-click="self.deleteFn()"></span>
+          </div>
+        </wi-tree-view>
+      </side-bar>
     </div>
-    <div style="width:80%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
+    <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
       <div class="label-list-view">
         <span>EDITOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
       </div>
       <div style="display:flex; flex:3; background-color: #fff;">
-          <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;" on-drop="self.onDrop" container-style="{display:'flex',flex: 1}">
-              <div style="display:flex;flex:3;">
-                <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
-                  cur-file="self.curFile">
-                </explorer>
-                <div class="editor">
-                  <span class="fn-button color-red fa fa-folder-open" aria-hidden="true" ng-click="self.getCurveTree()"
-                    title="Login by token"></span>
-      
-                  <span class="fn-button color-red fa fa-trash" aria-hidden="true" ng-click="self.removeTreeConfig()"
-                    title="Login by token"></span>
-      
-                  <div class="separator"></div>
-                  <span ng-class="{'delete-checked':self.codeGenMode === 'delete'}" class="fn-button ti-trash"
-                    aria-hidden="true" ng-click="self.deleteChecked()" title="Delete mode"></span>
-      
-                  <span ng-class="{'save-checked':self.codeGenMode === 'save'}" class="fn-button fa ti-cloud-up"
-                    aria-hidden="true" ng-click="self.saveChecked()" title="Save mode"></span>
-      
-                  <span ng-class="{'refresh-checked':self.codeGenMode === 'load'}" class="fn-button ti-cloud-down"
-                    aria-hidden="true" ng-click="self.refreshChecked()" title="Load mode"></span>
-      
-                  <span ng-class="{'new-button':self.codeGenMode === 'new'}" class="fn-button ti-plus" aria-hidden="true"
-                    ng-click="self.newChecked()" title="New mode"></span>
-      
-                  <!-- ////////////////////////  ADD  ////////////////////// -->
-                  <div class="separator"></div>
-      
-                  <span class="fn-button color-green ti-key" aria-hidden="true" ng-click="self.generateLoginByToken()"
-                    title="Login by token"></span>
-      
-                  <span class="fn-button color-green ti-user" aria-hidden="true" ng-click="self.generateLoginByAccount()"
-                    title="Login by account"></span>
-      
-                  <span class="fn-button color-green ti-cloud-up" aria-hidden="true" ng-click="self.generateSaveCurveData()"
-                    title="Save curve data"></span>
-      
-                  <!-- ////////////////////////  END  ////////////////////// -->
-                </div>
-              </div>
-            </wi-droppable>
+        <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;" on-drop="self.onDrop"
+          container-style="{display:'flex',flex: 1}">
+          <div style="display:flex;flex:3;">
+            <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
+              cur-file="self.curFile">
+            </explorer>
+          </div>
+        </wi-droppable>
       </div>
-      
+
 
       <div class="label-list-view">
         <span>TERMINAL</span>
@@ -75,7 +54,8 @@
     </div>
     <side-bar my-default-width="200" orientation="w" collapsed="false">
       <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
-        get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction' get-siblings="self.getSiblings">
+        get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'
+        get-siblings="self.getSiblings">
         <div class="label-list-view">
           <span>I2G CLOUD</span>
         </div>
@@ -125,5 +105,24 @@
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
           </div>
       </div>
+  </div>
+</script>
+<script type="text/ng-template" id="templateAbout">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog" style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0;
+      font-size: 15px;
+      font-weight: bold;">
+      <div style="font-size: 22px;">Wi Python</div>
+      <div style="border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Version 2.5.7 (Official Build)</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Recommend Google Chrome</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Copyright (C) 2019 Revotech. All rights reserved</div>
+
   </div>
 </script>

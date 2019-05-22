@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\napp .fn-button.color-green {\n  color: #01ad78; }\n\napp .fn-button.color-red {\n  color: #a54f0e; }\n\napp .separator {\n  border-bottom: 1px solid #dddd;\n  margin: 5px 5px; }\n\n.delete-checked {\n  color: #0077be !important; }\n\n.save-checked {\n  color: #0077be !important; }\n\n.refresh-checked {\n  color: #0077be !important; }\n\n.new-button {\n  color: #0077be !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.editor {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  border-left: 1px solid #dcdcdc; }\n\n.label-list-view {\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.fn-button {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  padding: 11px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 15px;\n  top: 13px;\n  flex-direction: column;\n  display: flex;\n  align-items: flex-end; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  margin-bottom: 11px; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  border: 1px solid white;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\n.ngdialog .btn {\n  padding: 6px; }\n\n.newDialog {\n  padding: 5px 13px 0 13px;\n  font-size: 15px;\n  font-weight: bold; }\n  .newDialog > div {\n    margin-bottom: 15px; }\n  .newDialog .newDialogContent {\n    display: flex; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\napp .fn-button.color-green {\n  color: #01ad78; }\n\napp .fn-button.color-red {\n  color: #a54f0e; }\n\napp .separator {\n  border-bottom: 1px solid #dddd;\n  margin: 5px 5px; }\n\n.delete-checked {\n  color: #0077be !important; }\n\n.save-checked {\n  color: #0077be !important; }\n\n.refresh-checked {\n  color: #0077be !important; }\n\n.new-button {\n  color: #0077be !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.editor {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  border-left: 1px solid #dcdcdc; }\n\n.label-list-view {\n  display: flex;\n  align-items: center;\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.fn-button {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  padding: 11px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 15px;\n  top: 8px;\n  flex-direction: row;\n  display: flex;\n  align-items: center; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  pointer-events: none; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\nwi-login > div > span:hover {\n  background: #0077be;\n  color: #fff; }\n\n.wi-loading .spinner-backdrop::after {\n  animation: 0.7s linear 0s normal none infinite running spinner-backdrop_after;\n  border-color: #0077be transparent;\n  border-radius: 80px;\n  border-style: solid;\n  border-width: 5px;\n  content: \"\";\n  height: 80px;\n  left: -20px;\n  position: absolute;\n  top: -20px;\n  width: 80px; }\n\n.ngdialog .btn {\n  padding: 6px; }\n\n.newDialog {\n  padding: 5px 13px 0 13px;\n  font-size: 15px;\n  font-weight: bold; }\n  .newDialog > div {\n    margin-bottom: 15px; }\n  .newDialog .newDialogContent {\n    display: flex; }\n", ""]);
 
 
 
@@ -788,7 +788,7 @@ exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  ov
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    border-top: none;\n    height: 9999999999999999999999999999999999999px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px; }\n    .explorer #codeArea .codeflask {\n      border-bottom: 1px solid #ececec; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF;\n        padding: 10px 4px;\n        font-size: 12px;\n        line-height: 20px;\n        font-family: 'Cousine', monospace;\n        position: absolute;\n        left: 0;\n        top: 0;\n        width: 40px;\n        font-weight: bold;\n        height: 100%;\n        text-align: right;\n        color: #1280ca;\n        z-index: 2; }\n    .explorer #codeArea textarea {\n      width: calc(100% - 40px) !important;\n      border-left: 1px solid #ececec;\n      color: transparent; }\n", ""]);
+exports.push([module.i, ".explorer {\n  height: 100%; }\n  .explorer pre {\n    background: transparent;\n    border-bottom: none;\n    border-top: none;\n    height: 9999999999999999999999999999999999999px;\n    word-break: break-word; }\n  .explorer #codeArea {\n    height: 100%;\n    border-radius: 3px; }\n    .explorer #codeArea .codeflask__pre {\n      pointer-events: none;\n      z-index: 2;\n      overflow: hidden; }\n    .explorer #codeArea .codeflask {\n      border-bottom: 1px solid #ececec; }\n      .explorer #codeArea .codeflask::before, .explorer #codeArea .codeflask .codeflask__lines {\n        background: #FFF;\n        padding: 10px 4px;\n        font-size: 12px;\n        line-height: 20px;\n        font-family: 'Cousine', monospace;\n        position: absolute;\n        left: 0;\n        top: 0;\n        width: 40px;\n        font-weight: bold;\n        height: 100%;\n        text-align: right;\n        color: #1280ca;\n        z-index: 2; }\n    .explorer #codeArea textarea {\n      width: calc(100% - 40px) !important;\n      border-left: 1px solid #ececec;\n      color: transparent; }\n", ""]);
 
 
 
@@ -870,7 +870,7 @@ exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 246p
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "tools .tools {\n  display: flex;\n  flex-direction: row;\n  background-image: linear-gradient(135deg, #0682cc, #167fca);\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  font-size: 13px;\n  color: #fff; }\n  tools .tools .button-menu {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    text-align: center;\n    max-width: 90px;\n    min-width: 67px;\n    white-space: normal;\n    padding: 10px 10px;\n    border-bottom: 4px solid #1480ca;\n    cursor: pointer; }\n    tools .tools .button-menu .lable-button {\n      margin-top: 5px;\n      color: #ffffffcc; }\n  tools .tools .button-menu:hover {\n    background: #0a76bd;\n    border-bottom: 4px solid #69bdff; }\n", ""]);
+exports.push([module.i, "tools .tools {\n  display: flex;\n  flex-direction: row;\n  background: #1962a7;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n  font-size: 12px;\n  font-weight: 500;\n  color: #fff; }\n  tools .tools .dropdown {\n    float: left;\n    overflow: hidden; }\n  tools .tools .dropdown .dropbtn {\n    font-size: 12px;\n    font-weight: bold;\n    border: none;\n    outline: none;\n    color: white;\n    padding: 12px 16px;\n    background-color: inherit;\n    font-family: inherit;\n    margin: 0; }\n  tools .tools .dropdown .dropbtn i {\n    margin-left: 5px; }\n  tools .tools .navbar a:hover,\n  tools .tools .dropdown:hover .dropbtn {\n    background-color: #237acc;\n    transition: all .3s; }\n  tools .tools .dropdown-content {\n    display: none;\n    position: absolute;\n    background-color: #f9f9f9;\n    border: 1px solid #e4e4e4;\n    min-width: 160px;\n    border-radius: 5px;\n    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);\n    z-index: 1; }\n  tools .tools .dropdown-content a {\n    float: none;\n    color: black;\n    padding: 12px 16px;\n    text-decoration: none;\n    display: block;\n    text-align: left;\n    border-right: 3px solid #f9f9f9; }\n  tools .tools .dropdown-content a:hover {\n    background-color: #ddd;\n    border-right: 3px solid #1962a7; }\n  tools .tools .dropdown:hover .dropdown-content {\n    display: block; }\n", ""]);
 
 
 
@@ -11609,10 +11609,10 @@ __webpack_require__.r(__webpack_exports__);
 const name = 'config';
 function service() {
   return {
-    ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'http://python.dev.i2g.cloud' || 'http://localhost:3000',
+    ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
     //USER_RELATED_ROOT_URL: 'http://localhost:3000',
-    USER_RELATED_ROOT_URL: 'http://admin.dev.i2g.cloud',
-    PROJECT_RELATED_ROOT_URL: 'http://dev.i2g.cloud'
+    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
+    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   };
 }
 
@@ -11861,6 +11861,23 @@ function service(config, request, wiToken) {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}&token=${token}`;
     return request.get(url);
+  }; // const deleteFile = name => {
+  // 	const token = getToken();
+  // 	const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}&token=${token}`;
+  // 	return request.get(url)
+  // };
+
+
+  const deleteFolder = (project, folder) => {
+    const token = getToken();
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}&token=${token}`;
+    return request.get(url);
+  };
+
+  const deleteFile = (project, file) => {
+    const token = getToken();
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}&token=${token}`;
+    return request.get(url);
   };
 
   const openFile = dir => {
@@ -11907,11 +11924,7 @@ function service(config, request, wiToken) {
       password
     };
     return request.post(url, data);
-  }; // const removeFile = (project, file) => {
-  //   const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
-  //   return request.get(url)
-  // }
-
+  };
 
   const removeItem = (project, item) => {
     const token = getToken();
@@ -11943,6 +11956,8 @@ function service(config, request, wiToken) {
     newProject,
     openProject,
     deleteProject,
+    deleteFile,
+    deleteFolder,
     openFile,
     openFolder,
     listProjects,
@@ -12008,14 +12023,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'app';
-controller.$inject = ['$scope', '$http', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location'];
+controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading'];
 
-function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location) {
+function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
   let self = this;
+  var deleteNode = '';
+  var isFile = true;
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
-    self.baseUrl = $location.search().baseUrl || self.baseUrl || BASE_URL;
+    self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
+    self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
     initState();
   }; ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
@@ -12046,6 +12064,56 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     }).catch(error => {
       alertMessage.error(error);
     });
+  };
+
+  this.getChildren4Python = function (node) {
+    let children = node.files.concat(node.folders);
+    return children;
+  };
+
+  this.getLabel4Python = function (node) {
+    return node.rootName;
+  };
+
+  this.getIcon4Python = function (node) {
+    return node.rootIsFile ? 'file-wi-python-16x16' : 'folder-wi-python-16x16';
+  };
+
+  this.runMatch4Python = function (node, criteria) {
+    return node.rootName.includes(criteria);
+  };
+
+  this.clickFunction4Python = function ($event, node) {
+    if (node.rootIsFile) {
+      self.openFile(node.path);
+      deleteNode = node.rootName;
+      isFile = true;
+    } else {
+      // self.openFolder(node.path);
+      projectApi.openFolder(node.path).then(item => {
+        deleteNode = node.rootName;
+        isFile = false;
+
+        if (!(item.files.length + item.folders.length)) {
+          return alertMessage.error('There is nothing in this folder');
+        }
+
+        node.files = item.files;
+        node.folders = item.folders;
+      }).catch(error => {
+        alertMessage.error(error);
+      });
+    }
+  };
+
+  self.deleteFn = function () {
+    let projectName = self.currentProject.rootName;
+
+    if (isFile) {
+      projectApi.deleteFile(projectName, deleteNode);
+    } else {
+      projectApi.deleteFolder(projectName, deleteNode);
+    }
   };
 
   self.closeProject = function () {
@@ -12087,6 +12155,14 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     } else {
       return alertMessage.error('No project is opened');
     }
+  };
+
+  self.aboutWiPython = function () {
+    ngDialog.open({
+      template: 'templateAbout',
+      className: 'ngdialog-theme-default',
+      scope: $scope
+    });
   }; ///////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////
@@ -12101,8 +12177,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     self.curFile = fileName;
     self.selectedNode = fileNode;
     projectApi.openFile(dir).then(code => {
-      console.log(code);
-
+      // console.log(code);
       if (typeof code === "object") {
         self.code = "";
       } else self.code = code;
@@ -12272,10 +12347,11 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   };
 
   self.runCode = function () {
-    Spinner();
+    // Spinner();
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code).then(() => {
       // alertMessage.success('save success')
-      Spinner.show();
+      wiLoading.show($element.find('.app')[0]); // Spinner.show();
+
       browserCodeRunner.execute(self.currentProject.rootName, self.curFile, function (error, {
         type,
         render,
@@ -12288,9 +12364,10 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
         if (render) {
           self.resultHtml = render;
           alertMessage.success('Run Finished');
-        }
+        } // Spinner.hide();
 
-        Spinner.hide(); // if (link) self.iframeHtmlLink = link
+
+        wiLoading.hide(); // if (link) self.iframeHtmlLink = link
 
         self.isResultAIframe = type === mime.types.html;
       });
@@ -12388,7 +12465,7 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
     } else if (node.idWell) {
       return node.name;
     } else if (node.idProject) {
-      return node.alias;
+      return node.name;
     }
   };
 
@@ -12397,6 +12474,11 @@ function controller($scope, $http, wiToken, projectApi, alertMessage, funcGen, b
   };
 
   this.getChildren = function (node) {
+    if (!node) {
+      return [];
+    } // if (Array.isArray(node)) return node;
+
+
     if (node.idDataset) {
       return node.curves;
     } else if (node.idWell) {
@@ -12645,7 +12727,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
         return alertMessage.error(err.data.content);
       }
 
-      $scope.treeConfig = projects;
+      $scope.treeConfig = projects.filter(project => !project.shared);
+      console.log($scope.treeConfig);
     });
   }
 
@@ -12698,84 +12781,14 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       cb(err);
     });
   }
-
-  function Spinner() {
-    Spinner.element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    let c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    Spinner.element.setAttribute('width', '100');
-    Spinner.element.setAttribute('height', '100');
-    c.setAttribute('viewBox', '0 0 100 100');
-    c.setAttribute('cx', '50');
-    c.setAttribute('cy', '50');
-    c.setAttribute('r', '42');
-    c.setAttribute('stroke-width', '16');
-    c.setAttribute('stroke', '#2196f3');
-    c.setAttribute('fill', 'transparent');
-    Spinner.element.appendChild(c);
-    Spinner.element.style.cssText = 'position:absolute;left:calc(50% - 50px);top:calc(50% - 50px)';
-    document.body.appendChild(Spinner.element);
-  }
-
-  Spinner.id = null;
-  Spinner.element = null;
-
-  Spinner.show = function () {
-    const c = 264,
-          m = 15;
-    Spinner.element.style.display = 'block';
-    move1();
-
-    function move1() {
-      let i = 0,
-          o = 0;
-      move();
-
-      function move() {
-        if (i == c) move2();else {
-          i += 4;
-          o += 8;
-          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
-          Spinner.element.setAttribute('stroke-dashoffset', o);
-          Spinner.id = setTimeout(move, m);
-        }
-      }
-    }
-
-    function move2() {
-      let i = c,
-          o = c * 2;
-      move();
-
-      function move() {
-        if (i == 0) move1();else {
-          i -= 4;
-          o += 4;
-          Spinner.element.setAttribute('stroke-dasharray', i + ' ' + (c - i));
-          Spinner.element.setAttribute('stroke-dashoffset', o);
-          Spinner.id = setTimeout(move, m);
-        }
-      }
-    }
-  };
-
-  Spinner.hide = function () {
-    Spinner.element.style.display = 'none';
-
-    if (Spinner.id) {
-      clearTimeout(Spinner.id);
-      Spinner.id = null;
-    }
-
-    Spinner.element.setAttribute('stroke-dasharray', '0 264');
-    Spinner.element.setAttribute('stroke-dashoffset', '0');
-  };
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name,
   options: {
     bindings: {
-      baseUrl: "@"
+      baseUrl: "@",
+      loginUrl: "@"
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -12822,7 +12835,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url=https://users.i2g.cloud/login></wi-login> <tools find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig> </tools> <div class=app> <div style=\"width:20%;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>PROJECTS</span> </div> <sidebar current-project=self.currentProject open-file=self.openFile open-folder=self.openFolder> </sidebar> </div> <div style=\"width:80%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> <div class=editor> <span class=\"fn-button color-red fa fa-folder-open\" aria-hidden=true ng-click=self.getCurveTree() title=\"Login by token\"></span> <span class=\"fn-button color-red fa fa-trash\" aria-hidden=true ng-click=self.removeTreeConfig() title=\"Login by token\"></span> <div class=separator></div> <span ng-class=\"{'delete-checked':self.codeGenMode === 'delete'}\" class=\"fn-button ti-trash\" aria-hidden=true ng-click=self.deleteChecked() title=\"Delete mode\"></span> <span ng-class=\"{'save-checked':self.codeGenMode === 'save'}\" class=\"fn-button fa ti-cloud-up\" aria-hidden=true ng-click=self.saveChecked() title=\"Save mode\"></span> <span ng-class=\"{'refresh-checked':self.codeGenMode === 'load'}\" class=\"fn-button ti-cloud-down\" aria-hidden=true ng-click=self.refreshChecked() title=\"Load mode\"></span> <span ng-class=\"{'new-button':self.codeGenMode === 'new'}\" class=\"fn-button ti-plus\" aria-hidden=true ng-click=self.newChecked() title=\"New mode\"></span> <div class=separator></div> <span class=\"fn-button color-green ti-key\" aria-hidden=true ng-click=self.generateLoginByToken() title=\"Login by token\"></span> <span class=\"fn-button color-green ti-user\" aria-hidden=true ng-click=self.generateLoginByAccount() title=\"Login by account\"></span> <span class=\"fn-button color-green ti-cloud-up\" aria-hidden=true ng-click=self.generateSaveCurveData() title=\"Save curve data\"></span> </div> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the project name according to the following structure: projectname</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the file name according to the following structure: filename or foldername/filename</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the folder name according to the following structure:: foldername</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url={{self.loginUrl}}></wi-login> <tools style=z-index:1 find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig get-curve-tree=self.getCurveTree remove-tree-config=self.removeTreeConfig delete-checked=self.deleteChecked save-checked=self.saveChecked refresh-checked=self.refreshChecked new-checked=self.newChecked generate-login-by-token=self.generateLoginByToken generate-login-byaccount=self.generateLoginByAccount generate-save-curve-data=self.generateSaveCurveData about-wi-python=self.aboutWiPython> </tools> <div class=app style=z-index:0> <div style=\"border-right:1px solid #c7c7c7\"> <side-bar my-default-width=250 orientation=e collapsed=false> <wi-tree-view tree-root=self.currentProject get-label=self.getLabel4Python get-icon=self.getIcon4Python get-children=self.getChildren4Python run-match=self.runMatch4Python click-fn=self.clickFunction4Python> <div class=\"label-list-view ng-scope\"> <span>PYTHON PROJECTS</span> <span style=color:#a4a4a4;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.deleteFn()></span> </div> </wi-tree-view> </side-bar> </div> <div style=\"width:100%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the project name according to the following structure: projectname</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the file name according to the following structure: filename or foldername/filename</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the folder name according to the following structure:: foldername</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateAbout> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\" style=\"\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      align-items: center;\n      padding: 15px 0;\n      font-size: 15px;\n      font-weight: bold;\">\n      <div style=\"font-size: 22px;\">Wi Python</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Version 2.5.7 (Official Build)</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Recommend Google Chrome</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">2019-05-15T21:49:51.528Z</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Copyright (C) 2019 Revotech. All rights reserved</div>\n\n  </div> </script>";
 
 /***/ }),
 
@@ -12860,7 +12873,10 @@ function controller(auth) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   name,
   options: {
-    bindings: {},
+    bindings: {
+      loginUrl: "@",
+      baseUrl: "@"
+    },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
     controllerAs: 'self'
@@ -12876,7 +12892,7 @@ function controller(auth) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app base-url=https://python.i2g.cloud></app> ";
+module.exports = " <app></app> ";
 
 /***/ }),
 
@@ -13191,8 +13207,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const moduleName = 'online-editor-client';
-const renderComponent = '<browser></browser>'; // import '../public/css/niffty.min.css'
+const moduleName = 'online-editor-client'; // const loginUrl = "https://users.i2g.cloud/login";
+
+const baseUrl = "https://api-1.i2g.cloud"; // window.__WI_PAAS_URL__ = "https://python.i2g.cloud";
+// const renderComponent = `<browser base-url="${baseUrl}" login-url="${loginUrl}"></browser>`;
+
+const renderComponent = `<browser></browser>`; // import '../public/css/niffty.min.css'
 
 if (true) {
   // eslint-disable-line no-undef
@@ -13345,7 +13365,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=my-modal> <span class=open-project-wi-python-32x32 title={{self.iconTitle}}></span> <div class=modal ng-show=self.showing> <div class=modal-content> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude></ng-transclude> </div> </div> </div> </div>";
+module.exports = "<div class=my-modal> <div class=modal ng-show=self.showing> <div class=modal-content> <div class=modal-header> <h4 ng-bind=self.modalName></h4> <span class=close ng-click=self.close()>&times;</span> </div> <div class=modal-body> <ng-transclude></ng-transclude> </div> </div> </div> </div>";
 
 /***/ }),
 
@@ -13405,7 +13425,7 @@ __webpack_require__.r(__webpack_exports__);
 // const renderComponent = '<browser></browser>'
 
 function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable'];
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiLoading'];
   angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]).config(function ($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
   });
@@ -13725,7 +13745,17 @@ function controller($scope, $timeout, auth) {
       saveCode: '<',
       runCode: '<',
       codePalette: '<',
-      removeCodePalette: '<'
+      removeCodePalette: '<',
+      getCurveTree: '<',
+      removeTreeConfig: '<',
+      deleteChecked: '<',
+      saveChecked: '<',
+      refreshChecked: '<',
+      newChecked: '<',
+      generateLoginByToken: '<',
+      generateLoginByAccount: '<',
+      generateSaveCurveData: '<',
+      aboutWiPython: '<'
     },
     template: (_template_html__WEBPACK_IMPORTED_MODULE_0___default()),
     controller,
@@ -13772,7 +13802,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=tools> <div class=button-menu ng-click=\"self.findAllProjects(); showOP = true;\"> <div> <modal-icon modal-name=\"'Open Project'\" showing=showOP icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project);self.setShowOP(false);> <span ng-bind=project></span> </li> </ul> </modal-icon> </div> <div class=lable-button>Open project</div> </div> <div class=button-menu ng-click=self.createNewProject()> <div> <span title=\"new project\" class=new-project-wi-python-32x32> </span> </div> <div class=lable-button>New project</div> </div> <div class=button-menu ng-click=self.closeProject()> <div> <span title=\"close project\" class=close-project-wi-python-32x32> </span> </div> <div class=lable-button>Close project</div> </div> <div class=button-menu ng-click=self.deleteProject()> <div> <span title=\"delete project\" class=delete-project-wi-python-32x32> </span> </div> <div class=lable-button>Delete project</div> </div> <div class=button-menu ng-click=self.runCode()> <div> <span style=font-size:270% title=\"run code\" class=ti-control-play> </span> </div> <div class=lable-button>Run code</div> </div> <div class=button-menu ng-click=self.saveCode()> <div> <span title=\"save code\" class=save-code-wi-python-32x32> </span> </div> <div class=lable-button>Save code</div> </div> <div class=button-menu ng-click=self.createNewFile()> <div> <span title=\"new file\" class=new-file-wi-python-32x32> </span> </div> <div class=lable-button>New file</div> </div> <div class=button-menu ng-click=self.createNewFolder()> <div> <span title=\"new folder\" class=new-folder-wi-python-32x32> </span> </div> <div class=lable-button>New folder</div> </div> </div>";
+module.exports = "<div class=tools> <div class=dropdown> <button class=dropbtn>Wi Python </button> </div> <div class=dropdown> <button class=dropbtn>File <i class=\"fa fa-caret-down\"></i> </button> <div class=dropdown-content> <a href=# ng-click=self.createNewFile()>New File</a> <a href=# ng-click=self.createNewFolder()>New Folder</a> </div> </div> <div class=dropdown> <button class=dropbtn>Project <i class=\"fa fa-caret-down\"></i> </button> <div class=dropdown-content> <a href=# ng-click=self.createNewProject()>New Project</a> <a href=# ng-click=\"self.findAllProjects(); showOP = true;\">Open Project <div> <modal-icon modal-name=\"'Open Project'\" showing=showOP icon-title=\"'open a project'\" allow-close-after-click=\"'true'\"> <ul class=list-project> <li ng-repeat=\"project in self.allProjects track by $index\" ng-click=self.openProject(project);self.setShowOP(false);> <span ng-bind=project></span> </li> </ul> </modal-icon> </div> </a> <div style=\"margin:4px 17px;border-bottom:1px solid #e6e6e6\"></div> <a href=# ng-click=self.closeProject()>Close Project</a> <a href=# ng-click=self.deleteProject()>Delete Project</a> </div> </div> <div class=dropdown> <button class=dropbtn>Action <i class=\"fa fa-caret-down\"></i> </button> <div class=dropdown-content> <a href=# ng-click=self.runCode()>Run Code</a> <a href=# ng-click=self.saveCode()>Save Code</a> </div> </div> <div class=dropdown> <button class=dropbtn>Tools <i class=\"fa fa-caret-down\"></i> </button> <div class=dropdown-content> <a href=# ng-click=self.getCurveTree()>Open Project i2G</a> <a href=# ng-click=self.removeTreeConfig()>Clear i2g Project</a> <div style=\"margin:4px 17px;border-bottom:1px solid #e6e6e6\"></div> <a href=# ng-click=self.deleteChecked()>Delete Mode</a> <a href=# ng-click=self.saveChecked()>Save Mode</a> <a href=# ng-click=self.refreshChecked()>Refresh Mode</a> <a href=# ng-click=self.newChecked()>New Mode</a> <div style=\"margin:4px 17px;border-bottom:1px solid #e6e6e6\"></div> <a href=# ng-click=self.generateLoginByToken()>Login by Token</a> <a href=# ng-click=self.generateLoginByAccount()>Login by Account</a> <a href=# ng-click=self.generateSaveCurveData()>Save Curve Data</a> </div> </div> <div class=dropdown> <button class=dropbtn>Help <i class=\"fa fa-caret-down\"></i> </button> <div class=dropdown-content> <a href=# ng-click=self.aboutWiPython()>About Wi Python</a> </div> </div> </div>";
 
 /***/ }),
 

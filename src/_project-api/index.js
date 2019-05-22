@@ -21,7 +21,21 @@ export function service(config, request, wiToken) {
 		const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}&token=${token}`;
 		return request.get(url)
 	};
-
+	// const deleteFile = name => {
+	// 	const token = getToken();
+	// 	const url = `${config.ONLINE_EDITOR_URL}/project/delete?name=${encodeURIComponent(name)}&token=${token}`;
+	// 	return request.get(url)
+	// };
+	const deleteFolder = (project, folder) => {
+		const token = getToken();
+	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}&token=${token}`
+	    return request.get(url)
+	};
+	const deleteFile = (project, file) => {
+		const token = getToken();
+	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}&token=${token}`
+	    return request.get(url)
+	};
 	const openFile = dir => {
 		const token = getToken();
 		const url = `${config.ONLINE_EDITOR_URL}/project/read-file?dir=${encodeURIComponent(dir)}&token=${token}`;
@@ -70,10 +84,7 @@ export function service(config, request, wiToken) {
 		return request.post(url, data)
 	};
 
-	// const removeFile = (project, file) => {
-	//   const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}`
-	//   return request.get(url)
-	// }
+
 
 	const removeItem = (project, item) => {
 		const token = getToken();
@@ -106,6 +117,8 @@ export function service(config, request, wiToken) {
 		newProject,
 		openProject,
 		deleteProject,
+		deleteFile,
+		deleteFolder,
 		openFile,
 		openFolder,
 		listProjects,

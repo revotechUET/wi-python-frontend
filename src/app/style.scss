@@ -66,6 +66,9 @@ code {
 
 .label-list-view {
   // height: 44px;
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
   padding: 10px 13px 10px 13px;
   font-size: 13px;
   font-weight: bold;
@@ -133,10 +136,10 @@ wi-login>div {
   position: absolute;
   z-index: 4;
   right: 15px;
-  top: 13px;
-  flex-direction: column;
+  top: 8px;
+  flex-direction: row;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 wi-login>div>div.online {
@@ -144,7 +147,9 @@ wi-login>div>div.online {
   font-weight: bold;
   font-size: 12px;
   background: none;
-  margin-bottom: 11px;
+  // margin-bottom: 11px;
+  pointer-events: none;
+
 }
 
 wi-login>div>div {
@@ -153,10 +158,27 @@ wi-login>div>div {
   align-items: normal;
   padding: 3px 5px 3px 9px;
   border-radius: 20px;
-  border: 1px solid white;
+  // border: 1px solid white;
   background: #fff;
   color: #0078be73;
   cursor: pointer;
+}
+wi-login>div>span:hover{
+    background: #0077be;
+    color: #fff;
+}
+.wi-loading .spinner-backdrop::after {
+  animation: 0.7s linear 0s normal none infinite running spinner-backdrop_after;
+  border-color: #0077be transparent;
+  border-radius: 80px;
+  border-style: solid;
+  border-width: 5px;
+  content: "";
+  height: 80px;
+  left: -20px;
+  position: absolute;
+  top: -20px;
+  width: 80px;
 }
 
 .ngdialog .btn {

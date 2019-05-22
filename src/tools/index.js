@@ -42,7 +42,18 @@ export default {
       saveCode: '<',
       runCode: '<',
       codePalette: '<',
-      removeCodePalette:'<'
+      removeCodePalette:'<',
+
+      getCurveTree:'<',
+      removeTreeConfig:'<',
+      deleteChecked:'<',
+      saveChecked:'<',
+      refreshChecked:'<',
+      newChecked:'<',
+      generateLoginByToken:'<',
+      generateLoginByAccount:'<',
+      generateSaveCurveData:'<',
+      aboutWiPython: '<'
     },
     template,
     controller,
