@@ -23,8 +23,10 @@
             <span>PYTHON PROJECTS</span>
           </div> -->
           <div class="label-list-view ng-scope"> <span>PYTHON PROJECTS</span>
-            <span style="color: #a4a4a4;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
+            <span style="color: red;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
               aria-hidden="true" ng-click="self.deleteFn()"></span>
+            <span style="color:blue;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
+            aria-hidden="true" ng-click="self.renameFn()"></span>
           </div>
         </wi-tree-view>
       </side-bar>
@@ -34,7 +36,8 @@
         <span>EDITOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
       </div>
       <div style="display:flex; flex:3; background-color: #fff;">
-        <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;" on-drop="self.onDrop"
+        <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;resize: vertical;overflow: auto -webkit-paged-x; min-height: 600px;" 
+        on-drop="self.onDrop"
           container-style="{display:'flex',flex: 1}">
           <div style="display:flex;flex:3;">
             <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
@@ -48,7 +51,7 @@
       <div class="label-list-view">
         <span>TERMINAL</span>
       </div>
-      <terminal style="flex:1;" result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
+      <terminal style="height: 100%;;" result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
         is-result-a-iframe="self.isResultAIframe">
       </terminal>
     </div>
@@ -74,7 +77,8 @@
   <div class="ngdialog-buttons">
       <div class ="newDialog"><div>New Project</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the project name according to the following structure: projectname</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+        Enter the project name according to the following structure: <b>projectname</b></div>
           <div class="newDialogContent">
               <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
@@ -87,7 +91,8 @@
   <div class="ngdialog-buttons">
       <div class ="newDialog"><div>New File</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the file name according to the following structure: filename or foldername/filename</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+        Enter the file name according to the following structure: <b>filename or foldername/filename</b></div>
           <div class="newDialogContent">
               <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
@@ -99,7 +104,8 @@
   <div class="ngdialog-buttons">
       <div class ="newDialog"><div>New Folder</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Enter the folder name according to the following structure:: foldername</div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+        Enter the folder name according to the following structure:: <b>foldername</b></div>
           <div class="newDialogContent">
               <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
@@ -124,5 +130,25 @@
       <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z</div>
       <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Copyright (C) 2019 Revotech. All rights reserved</div>
 
+  </div>
+</script>
+<script type="text/ng-template" id="templateWarning">
+  <div class="ngdialog-buttons">
+          <div class ="acceptLogout">Are you sure delete <b>{{self.curFile}}</b>
+              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">Delete</button>
+          </div>
+  </div>
+</script>
+<script type="text/ng-template" id="templateRename">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog"><div>Remane</div>
+      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+        Enter the new fileName(folderName/fileName)<b>.py</b> or folderName<b>.py</b></div>
+          <div class="newDialogContent">
+              <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
+          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+          </div>
+      </div>
   </div>
 </script>

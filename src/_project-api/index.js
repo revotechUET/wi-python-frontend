@@ -31,6 +31,16 @@ export function service(config, request, wiToken) {
 	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-folder?project=${project}&folder=${encodeURIComponent(folder)}&token=${token}`
 	    return request.get(url)
 	};
+	const renameFile = (project, file, newFileName) => {
+		const token = getToken();
+	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-file?project=${project}&file=${encodeURIComponent(file)}&newFileName=${encodeURIComponent(newFileName)}&token=${token}`
+	    return request.get(url)
+	};
+	const renameFolder = (project, folder, newFolderName) => {
+		const token = getToken();
+	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-folder?project=${project}&folder=${encodeURIComponent(folder)}&newFolderName=${encodeURIComponent(newFolderName)}&token=${token}`
+	    return request.get(url)
+	};
 	const deleteFile = (project, file) => {
 		const token = getToken();
 	    const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}&token=${token}`
@@ -117,6 +127,8 @@ export function service(config, request, wiToken) {
 		newProject,
 		openProject,
 		deleteProject,
+		renameFile,
+		renameFolder,
 		deleteFile,
 		deleteFolder,
 		openFile,

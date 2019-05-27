@@ -855,7 +855,7 @@ exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 246px;\n  padding: 15px;\n  font-size: 13px;\n  overflow: auto; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
+exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100vh;\n  padding: 15px;\n  font-size: 13px;\n  overflow: auto; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
 
 
 
@@ -11874,6 +11874,18 @@ function service(config, request, wiToken) {
     return request.get(url);
   };
 
+  const renameFile = (project, file, newFileName) => {
+    const token = getToken();
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-file?project=${project}&file=${encodeURIComponent(file)}&newFileName=${encodeURIComponent(newFileName)}&token=${token}`;
+    return request.get(url);
+  };
+
+  const renameFolder = (project, folder, newFolderName) => {
+    const token = getToken();
+    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-folder?project=${project}&folder=${encodeURIComponent(folder)}&newFolderName=${encodeURIComponent(newFolderName)}&token=${token}`;
+    return request.get(url);
+  };
+
   const deleteFile = (project, file) => {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}&token=${token}`;
@@ -11956,6 +11968,8 @@ function service(config, request, wiToken) {
     newProject,
     openProject,
     deleteProject,
+    renameFile,
+    renameFolder,
     deleteFile,
     deleteFolder,
     openFile,
@@ -12026,22 +12040,16 @@ const name = 'app';
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading'];
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
-  let self = this;
-  var deleteNode = '';
-  var isFile = true;
+  let self = this; // let nameNode ='';
+  // var isFile = true;
+
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
     self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
     self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
     initState();
-  }; ///////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////
-  //  Project function
-  //
-  ///
-
+  };
 
   self.removeTreeConfig = function () {
     $scope.treeConfig.length = 0;
@@ -12084,16 +12092,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   };
 
   this.clickFunction4Python = function ($event, node) {
-    if (node.rootIsFile) {
-      self.openFile(node.path);
-      deleteNode = node.rootName;
-      isFile = true;
-    } else {
-      // self.openFolder(node.path);
-      projectApi.openFolder(node.path).then(item => {
-        deleteNode = node.rootName;
-        isFile = false;
+    self.selectedNode = node;
 
+    if (node.rootIsFile) {
+      self.openFile(node.path); // console.log(node.rootName)
+    } else {
+      projectApi.openFolder(node.path).then(item => {
         if (!(item.files.length + item.folders.length)) {
           return alertMessage.error('There is nothing in this folder');
         }
@@ -12106,13 +12110,68 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     }
   };
 
+  self.renameFn = function () {
+    let projectName = self.currentProject.rootName;
+    ngDialog.open({
+      template: 'templateRename',
+      className: 'ngdialog-theme-default',
+      scope: $scope
+    });
+
+    self.acceptRename = function () {
+      if (self.selectedNode.rootIsFile) {
+        if (this.newFileName.includes('.py')) {
+          projectApi.renameFile(projectName, self.selectedNode.rootName, this.newFileName);
+          ngDialog.close();
+        } else if (this.newFileName) {
+          let newFileName = this.newFileName + '.py';
+          projectApi.renameFile(projectName, self.selectedNode.rootName, newFileName);
+          ngDialog.close();
+        }
+      } else {
+        projectApi.renameFolder(projectName, self.selectedNode.rootName, this.newFileName);
+        ngDialog.close();
+      } // console.log(self.currentProject);
+
+
+      projectApi.openProject(self.currentProject.rootName).then(item => {
+        // console.log(item);
+        $timeout(() => {
+          self.currentProject = item;
+        });
+      }).catch(error => {
+        alertMessage.error(error);
+      });
+    };
+  };
+
   self.deleteFn = function () {
     let projectName = self.currentProject.rootName;
 
-    if (isFile) {
-      projectApi.deleteFile(projectName, deleteNode);
+    if (self.selectedNode.rootIsFile) {
+      ngDialog.open({
+        template: 'templateWarning',
+        className: 'ngdialog-theme-default',
+        scope: $scope
+      });
+
+      self.acceptDelete = function () {
+        projectApi.deleteFile(projectName, self.selectedNode.rootName);
+        console.log(self.currentProject);
+        ngDialog.close();
+      };
     } else {
-      projectApi.deleteFolder(projectName, deleteNode);
+      ngDialog.open({
+        template: 'templateWarning',
+        className: 'ngdialog-theme-default',
+        scope: $scope
+      });
+
+      self.acceptDelete = function () {
+        projectApi.deleteFolder(projectName, self.selectedNode.rootName);
+        console.log(self.currentProject);
+        ngDialog.close();
+      };
     }
   };
 
@@ -12835,7 +12894,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url={{self.loginUrl}}></wi-login> <tools style=z-index:1 find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig get-curve-tree=self.getCurveTree remove-tree-config=self.removeTreeConfig delete-checked=self.deleteChecked save-checked=self.saveChecked refresh-checked=self.refreshChecked new-checked=self.newChecked generate-login-by-token=self.generateLoginByToken generate-login-byaccount=self.generateLoginByAccount generate-save-curve-data=self.generateSaveCurveData about-wi-python=self.aboutWiPython> </tools> <div class=app style=z-index:0> <div style=\"border-right:1px solid #c7c7c7\"> <side-bar my-default-width=250 orientation=e collapsed=false> <wi-tree-view tree-root=self.currentProject get-label=self.getLabel4Python get-icon=self.getIcon4Python get-children=self.getChildren4Python run-match=self.runMatch4Python click-fn=self.clickFunction4Python> <div class=\"label-list-view ng-scope\"> <span>PYTHON PROJECTS</span> <span style=color:#a4a4a4;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.deleteFn()></span> </div> </wi-tree-view> </side-bar> </div> <div style=\"width:100%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the project name according to the following structure: projectname</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the file name according to the following structure: filename or foldername/filename</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the folder name according to the following structure:: foldername</div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateAbout> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\" style=\"\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      align-items: center;\n      padding: 15px 0;\n      font-size: 15px;\n      font-weight: bold;\">\n      <div style=\"font-size: 22px;\">Wi Python</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Version 2.5.7 (Official Build)</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Recommend Google Chrome</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">2019-05-15T21:49:51.528Z</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Copyright (C) 2019 Revotech. All rights reserved</div>\n\n  </div> </script>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url={{self.loginUrl}}></wi-login> <tools style=z-index:1 find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig get-curve-tree=self.getCurveTree remove-tree-config=self.removeTreeConfig delete-checked=self.deleteChecked save-checked=self.saveChecked refresh-checked=self.refreshChecked new-checked=self.newChecked generate-login-by-token=self.generateLoginByToken generate-login-byaccount=self.generateLoginByAccount generate-save-curve-data=self.generateSaveCurveData about-wi-python=self.aboutWiPython> </tools> <div class=app style=z-index:0> <div style=\"border-right:1px solid #c7c7c7\"> <side-bar my-default-width=250 orientation=e collapsed=false> <wi-tree-view tree-root=self.currentProject get-label=self.getLabel4Python get-icon=self.getIcon4Python get-children=self.getChildren4Python run-match=self.runMatch4Python click-fn=self.clickFunction4Python> <div class=\"label-list-view ng-scope\"> <span>PYTHON PROJECTS</span> <span style=color:red;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.deleteFn()></span> <span style=color:#00f;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.renameFn()></span> </div> </wi-tree-view> </side-bar> </div> <div style=\"width:100%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=\"display:flex;flex:3;resize:vertical;overflow:auto -webkit-paged-x;min-height:600px\" on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=height:100% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the project name according to the following structure: <b>projectname</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the file name according to the following structure: <b>filename or foldername/filename</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the folder name according to the following structure:: <b>foldername</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateAbout> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\" style=\"\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      align-items: center;\n      padding: 15px 0;\n      font-size: 15px;\n      font-weight: bold;\">\n      <div style=\"font-size: 22px;\">Wi Python</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Version 2.5.7 (Official Build)</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Recommend Google Chrome</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">2019-05-15T21:49:51.528Z</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Copyright (C) 2019 Revotech. All rights reserved</div>\n\n  </div> </script> <script type=text/ng-template id=templateWarning> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure delete <b>{{self.curFile}}</b>\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateRename> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>Remane</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the new fileName(folderName/fileName)<b>.py</b> or folderName<b>.py</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter new file name\" ng-model=\"self.newFileName\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptRename()\">Done</a>\n          </div>\n      </div>\n  </div> </script>";
 
 /***/ }),
 

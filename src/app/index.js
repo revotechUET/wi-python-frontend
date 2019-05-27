@@ -7,23 +7,15 @@ controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'a
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
   let self = this
-  var deleteNode ='';
-  var isFile = true;
+  // let nameNode ='';
+  // var isFile = true;
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
     self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
     self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
     initState();
-
   }
-  ///////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////
-  //  Project function
-  //
-  ///
-
 
   self.removeTreeConfig = function () {
     $scope.treeConfig.length = 0;
@@ -66,16 +58,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     return node.rootName.includes(criteria);
   }
   this.clickFunction4Python = function ($event, node) {
+    self.selectedNode = node;
     if (node.rootIsFile) {
       self.openFile(node.path);
-      deleteNode = node.rootName;
-      isFile = true;
+      
+      // console.log(node.rootName)
     } else {
-      // self.openFolder(node.path);
       projectApi.openFolder(node.path)
         .then(item => {
-          deleteNode = node.rootName;
-          isFile = false;
+          
           
           if (!(item.files.length + item.folders.length)) {
             return alertMessage.error('There is nothing in this folder')
@@ -88,16 +79,68 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         })
     }
   }
+  self.renameFn = function () {
+    let projectName = self.currentProject.rootName;
+    ngDialog.open({
+      template: 'templateRename',
+      className: 'ngdialog-theme-default',
+      scope: $scope,
+    });
+    self.acceptRename = function() {
+      if(self.selectedNode.rootIsFile){
+        if(this.newFileName.includes('.py')){
+          projectApi.renameFile(projectName, self.selectedNode.rootName, this.newFileName);
+          ngDialog.close();
+        } else if(this.newFileName) {
+          let newFileName = this.newFileName + '.py';
+          projectApi.renameFile(projectName, self.selectedNode.rootName, newFileName);
+          ngDialog.close();
+        }
+      } else {
+        projectApi.renameFolder(projectName, self.selectedNode.rootName, this.newFileName);
+        ngDialog.close();
+      }
+      // console.log(self.currentProject);
+      projectApi.openProject(self.currentProject.rootName)
+      .then(item => {
+        // console.log(item);
+        $timeout(() => {
+          self.currentProject = item;
+          
+        })
+      })
+      .catch(error => {
+        alertMessage.error(error)
+      })
+    }
+  }
 
   self.deleteFn = function () {
     let projectName = self.currentProject.rootName;
-    if(isFile){
-      projectApi.deleteFile(projectName, deleteNode);
+    if(self.selectedNode.rootIsFile){
+      ngDialog.open({
+        template: 'templateWarning',
+        className: 'ngdialog-theme-default',
+        scope: $scope,
+      });
+      self.acceptDelete = function() {
+        projectApi.deleteFile(projectName, self.selectedNode.rootName);
+        console.log(self.currentProject)
+        ngDialog.close();
+      }
     }
     else {
-      projectApi.deleteFolder(projectName, deleteNode);
+      ngDialog.open({
+        template: 'templateWarning',
+        className: 'ngdialog-theme-default',
+        scope: $scope,
+      });
+      self.acceptDelete = function() {
+        projectApi.deleteFolder(projectName, self.selectedNode.rootName);
+        console.log(self.currentProject)
+        ngDialog.close();
+      }
     }
-
   }
 
   self.closeProject = function () {
@@ -390,8 +433,6 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
   }
 
-
-
   self.runCode = function () {
     // Spinner();
     projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
@@ -447,6 +488,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
     self.curFile = '' // using with write and runnign code
 
+    
     // current tree node
     self.selectedNode = null
 
