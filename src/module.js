@@ -57,7 +57,7 @@ export default function assignAppModule(angular, moduleName) {
 			$locationProvider.html5Mode(true).hashPrefix('!');
 		})
 		.value('config', {
-			logStreamWS: 'http://python.dev.i2g.cloud',
+			logStreamWS: 'ws://python.dev.i2g.cloud',
 			logStreamHTTP: 'http://python.dev.i2g.cloud',
 			// ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
 			ONLINE_EDITOR_URL: 'http://python.dev.i2g.cloud',
