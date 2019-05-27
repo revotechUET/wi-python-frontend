@@ -9,26 +9,9 @@ export function service(mime, config, projectApi) {
   const HOST = config.ONLINE_EDITOR_URL
 
   const render = code => {
-    console.log({code})
-    // let renderVal = ''
-    // const execMarker = '<span style="color:green;margin-right: 25px">></span>'
-    // const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
-    // const br = '<br/>'
-    // for (const attr in console) {
-    //   console[attr] = val => renderVal += (execMarker + val + br)
-    // }
-
-
-
-    // //run code
-    // try {
-    //   eval(code)
-    // } catch (error) {
-    //   renderVal += (errorMarker + `<span style="color:red">${error.name}</span>` + br)
-    //   renderVal += (errorMarker + `<span style="color:red">${error.message}</span>` + br)
-    //   renderVal += (execMarker + execMarker)
-    // }
-
+    console.log(code);
+    return "========= START ===========";
+/*
     let renderVal = ''
     const execMarker = '<span style="color:green;margin-right: 25px">></span>'
     const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
@@ -43,6 +26,7 @@ export function service(mime, config, projectApi) {
     }
 
     return renderVal
+    */
   }
 
   const execute = (project, fileName, callback) => {

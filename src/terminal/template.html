@@ -1,6 +1,7 @@
 <div class="terminal" >
-  <div ng-if="!self.codeOrIframe" ng-bind-html="self._resultHtml"></div>
-  <!-- <iframe 
+  <!--<div ng-if="!self.codeOrIframe" ng-bind-html="self._resultHtml"></div>-->
+  <div ng-repeat="msg in self.messages">{{msg.content}}</div>
+  <!-- <iframe
     ng-if="self.isResultAIframe" 
     src="{{self._iframeHtmlLink}}" 
     frameborder="0">

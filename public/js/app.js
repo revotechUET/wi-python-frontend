@@ -773,7 +773,7 @@ exports.push([module.i, ".toast-title {\n  font-weight: 700; }\n\n.toast-message
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\", \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\", sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\napp .fn-button.color-green {\n  color: #01ad78; }\n\napp .fn-button.color-red {\n  color: #a54f0e; }\n\napp .separator {\n  border-bottom: 1px solid #dddd;\n  margin: 5px 5px; }\n\n.delete-checked {\n  color: #0077be !important; }\n\n.save-checked {\n  color: #0077be !important; }\n\n.refresh-checked {\n  color: #0077be !important; }\n\n.new-button {\n  color: #0077be !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\n.editor {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  border-left: 1px solid #dcdcdc; }\n\n.label-list-view {\n  display: flex;\n  align-items: center;\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.fn-button {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  padding: 11px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 15px;\n  top: 8px;\n  flex-direction: row;\n  display: flex;\n  align-items: center; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  pointer-events: none; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\nwi-login > div > span:hover {\n  background: #0077be;\n  color: #fff; }\n\n.wi-loading .spinner-backdrop::after {\n  animation: 0.7s linear 0s normal none infinite running spinner-backdrop_after;\n  border-color: #0077be transparent;\n  border-radius: 80px;\n  border-style: solid;\n  border-width: 5px;\n  content: \"\";\n  height: 80px;\n  left: -20px;\n  position: absolute;\n  top: -20px;\n  width: 80px; }\n\n.ngdialog .btn {\n  padding: 6px; }\n\n.newDialog {\n  padding: 5px 13px 0 13px;\n  font-size: 15px;\n  font-weight: bold; }\n  .newDialog > div {\n    margin-bottom: 15px; }\n  .newDialog .newDialogContent {\n    display: flex; }\n", ""]);
+exports.push([module.i, "html,\nbody,\n#root-app,\n.app {\n  height: 100%;\n  overflow-x: hidden;\n  flex: 1; }\n\n.app {\n  display: flex;\n  overflow-y: hidden; }\n\nbody {\n  background-color: whitesmoke;\n  margin: 0;\n  padding: 0;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", \"Roboto\", \"Oxygen\",\r \"Ubuntu\", \"Cantarell\", \"Fira Sans\", \"Droid Sans\", \"Helvetica Neue\",\r sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale; }\n\napp .fn-button.color-green {\n  color: #01ad78; }\n\napp .fn-button.color-red {\n  color: #a54f0e; }\n\napp .separator {\n  border-bottom: 1px solid #dddd;\n  margin: 5px 5px; }\n\n.delete-checked {\n  color: #0077be !important; }\n\n.save-checked {\n  color: #0077be !important; }\n\n.refresh-checked {\n  color: #0077be !important; }\n\n.new-button {\n  color: #0077be !important; }\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, \"Courier New\",\r monospace; }\n\n.editor {\n  display: flex;\n  flex-direction: column;\n  background: #fff;\n  border-left: 1px solid #dcdcdc; }\n\n.label-list-view {\n  display: flex;\n  align-items: center;\n  padding: 10px 13px 10px 13px;\n  font-size: 13px;\n  font-weight: bold;\n  background: #f4f4f4;\n  border-bottom: 1px solid #ececec; }\n\n.fn-button {\n  float: right;\n  cursor: pointer;\n  color: #d4d4d4;\n  padding: 11px; }\n\n.input-search-list-view {\n  background: #fff;\n  width: 100%;\n  border: 1px solid #ffffff4a;\n  border-bottom: 1px solid #eaeaea;\n  padding: 14px 20px 14px 15px;\n  font-weight: bold; }\n\n::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n::-webkit-scrollbar {\n  background: #f4f4f4;\n  width: 10px; }\n\n::-webkit-scrollbar-thumb {\n  background-color: #dcdcdc; }\n\n:focus::-webkit-input-placeholder {\n  opacity: 0.5;\n  color: rgba(0, 0, 0, 0.253);\n  /* font-weight: 100; */ }\n\n.input-search-list-view:focus {\n  outline: none; }\n\nwi-base-treeview .wi-treeview-container .wi-parent-content {\n  align-items: center;\n  padding: 5px 0; }\n  wi-base-treeview .wi-treeview-container .wi-parent-content > div.item-content {\n    display: flex;\n    align-items: center;\n    overflow: hidden;\n    flex: 1; }\n\nwi-login > div {\n  position: absolute;\n  z-index: 4;\n  right: 15px;\n  top: 8px;\n  flex-direction: row;\n  display: flex;\n  align-items: center; }\n\nwi-login > div > div.online {\n  color: #ffffff;\n  font-weight: bold;\n  font-size: 12px;\n  background: none;\n  pointer-events: none; }\n\nwi-login > div > div {\n  font-size: 12px;\n  display: flex;\n  align-items: normal;\n  padding: 3px 5px 3px 9px;\n  border-radius: 20px;\n  background: #fff;\n  color: #0078be73;\n  cursor: pointer; }\n\nwi-login > div > span:hover {\n  background: #0077be;\n  color: #fff; }\n\n.wi-loading .spinner-backdrop::after {\n  animation: 0.7s linear 0s normal none infinite running spinner-backdrop_after;\n  border-color: #0077be transparent;\n  border-radius: 80px;\n  border-style: solid;\n  border-width: 5px;\n  content: \"\";\n  height: 80px;\n  left: -20px;\n  position: absolute;\n  top: -20px;\n  width: 80px; }\n\n.ngdialog .btn {\n  padding: 6px; }\n\n.newDialog {\n  padding: 5px 13px 0 13px;\n  font-size: 15px;\n  font-weight: bold; }\n  .newDialog > div {\n    margin-bottom: 15px; }\n  .newDialog .newDialogContent {\n    display: flex; }\n", ""]);
 
 
 
@@ -840,7 +840,7 @@ var ___CSS_LOADER_URL___2___ = urlEscape(__webpack_require__(/*! ./assets/zTreeS
 var ___CSS_LOADER_URL___3___ = urlEscape(__webpack_require__(/*! ./assets/loading.gif */ "./src/sidebar/assets/loading.gif"));
 
 // Module
-exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;\n  /* level style*/\n  /*.ztree li span.button.level0 {\n  \tdisplay:none;\n  }\n  .ztree li ul.level0 {\n  \tpadding:0;\n  \tbackground:none;\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 0;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 9px;\n    border-bottom: 1px solid #f4f4f4;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
+exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;\n  /* level style*/\n  /*.ztree li span.button.level0 {\r\n  \tdisplay:none;\r\n  }\r\n  .ztree li ul.level0 {\r\n  \tpadding:0;\r\n  \tbackground:none;\r\n  }*/ }\n  .sidebar .ztree * {\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif; }\n  .sidebar .ztree {\n    margin: 0;\n    padding: 0;\n    color: #333; }\n  .sidebar .ztree li {\n    padding: 9px;\n    border-bottom: 1px solid #f4f4f4;\n    margin: 0;\n    list-style: none;\n    line-height: 14px;\n    text-align: left;\n    white-space: nowrap;\n    outline: 0; }\n  .sidebar .ztree li ul {\n    margin: 0;\n    padding: 0 0 0 18px; }\n  .sidebar .ztree li ul.line {\n    background: url(" + ___CSS_LOADER_URL___0___ + ") 0 0 repeat-y; }\n  .sidebar .ztree li a {\n    padding: 1px 3px 0 0;\n    margin: 0;\n    cursor: pointer;\n    height: 17px;\n    color: #333;\n    background-color: transparent;\n    text-decoration: none;\n    vertical-align: top;\n    display: inline-block; }\n  .sidebar .ztree li a:hover {\n    text-decoration: underline; }\n  .sidebar .ztree li a.curSelectedNode {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.curSelectedNode_Edit {\n    padding-top: 0px;\n    background-color: #FFE6B0;\n    color: black;\n    height: 16px;\n    border: 1px #FFB951 solid;\n    opacity: 0.8; }\n  .sidebar .ztree li a.tmpTargetNode_inner {\n    padding-top: 0px;\n    background-color: #316AC5;\n    color: white;\n    height: 16px;\n    border: 1px #316AC5 solid;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .ztree li a input.rename {\n    height: 14px;\n    width: 80px;\n    padding: 0;\n    margin: 0;\n    font-size: 12px;\n    border: 1px #7EC4CC solid;\n    *border: 0px; }\n  .sidebar .ztree li span {\n    line-height: 16px;\n    margin-right: 2px; }\n  .sidebar .ztree li span.button {\n    line-height: 0;\n    margin: 0;\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    vertical-align: middle;\n    border: 0 none;\n    cursor: pointer;\n    outline: none;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar .ztree li span.button.chk {\n    width: 13px;\n    height: 13px;\n    margin: 0 3px 0 0;\n    cursor: auto; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full {\n    background-position: 0 0; }\n  .sidebar .ztree li span.button.chk.checkbox_false_full_focus {\n    background-position: 0 -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part {\n    background-position: 0 -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_part_focus {\n    background-position: 0 -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_false_disable {\n    background-position: 0 -56px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full {\n    background-position: -14px 0; }\n  .sidebar .ztree li span.button.chk.checkbox_true_full_focus {\n    background-position: -14px -14px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part {\n    background-position: -14px -28px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_part_focus {\n    background-position: -14px -42px; }\n  .sidebar .ztree li span.button.chk.checkbox_true_disable {\n    background-position: -14px -56px; }\n  .sidebar .ztree li span.button.chk.radio_false_full {\n    background-position: -28px 0; }\n  .sidebar .ztree li span.button.chk.radio_false_full_focus {\n    background-position: -28px -14px; }\n  .sidebar .ztree li span.button.chk.radio_false_part {\n    background-position: -28px -28px; }\n  .sidebar .ztree li span.button.chk.radio_false_part_focus {\n    background-position: -28px -42px; }\n  .sidebar .ztree li span.button.chk.radio_false_disable {\n    background-position: -28px -56px; }\n  .sidebar .ztree li span.button.chk.radio_true_full {\n    background-position: -42px 0; }\n  .sidebar .ztree li span.button.chk.radio_true_full_focus {\n    background-position: -42px -14px; }\n  .sidebar .ztree li span.button.chk.radio_true_part {\n    background-position: -42px -28px; }\n  .sidebar .ztree li span.button.chk.radio_true_part_focus {\n    background-position: -42px -42px; }\n  .sidebar .ztree li span.button.chk.radio_true_disable {\n    background-position: -42px -56px; }\n  .sidebar .ztree li span.button.switch {\n    width: 18px;\n    height: 18px; }\n  .sidebar .ztree li span.button.root_open {\n    background-position: -92px -54px; }\n  .sidebar .ztree li span.button.root_close {\n    background-position: -74px -54px; }\n  .sidebar .ztree li span.button.roots_open {\n    background-position: -92px 0; }\n  .sidebar .ztree li span.button.roots_close {\n    background-position: -74px 0; }\n  .sidebar .ztree li span.button.center_open {\n    background-position: -92px -18px; }\n  .sidebar .ztree li span.button.center_close {\n    background-position: -74px -18px; }\n  .sidebar .ztree li span.button.bottom_open {\n    background-position: -92px -36px; }\n  .sidebar .ztree li span.button.bottom_close {\n    background-position: -74px -36px; }\n  .sidebar .ztree li span.button.noline_open {\n    background-position: -92px -72px; }\n  .sidebar .ztree li span.button.noline_close {\n    background-position: -74px -72px; }\n  .sidebar .ztree li span.button.root_docu {\n    background: none; }\n  .sidebar .ztree li span.button.roots_docu {\n    background-position: -56px 0; }\n  .sidebar .ztree li span.button.center_docu {\n    background-position: -56px -18px; }\n  .sidebar .ztree li span.button.bottom_docu {\n    background-position: -56px -36px; }\n  .sidebar .ztree li span.button.noline_docu {\n    background: none; }\n  .sidebar .ztree li span.button.ico_open {\n    margin-right: 2px;\n    background-position: -110px -16px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_close {\n    margin-right: 2px;\n    background-position: -110px 0;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_docu {\n    margin-right: 2px;\n    background-position: -110px -32px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.edit {\n    margin-right: 2px;\n    background-position: -110px -48px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.remove {\n    margin-right: 2px;\n    background-position: -110px -64px;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar .ztree li span.button.ico_loading {\n    margin-right: 2px;\n    background: url(" + ___CSS_LOADER_URL___3___ + ") no-repeat scroll 0 0 transparent;\n    vertical-align: top;\n    *vertical-align: middle; }\n  .sidebar ul.tmpTargetzTree {\n    background-color: #FFE6B0;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar span.tmpzTreeMove_arrow {\n    width: 16px;\n    height: 16px;\n    display: inline-block;\n    padding: 0;\n    margin: 2px 0 0 1px;\n    border: 0 none;\n    position: absolute;\n    background-color: transparent;\n    background-repeat: no-repeat;\n    background-attachment: scroll;\n    background-position: -110px -80px;\n    background-image: url(" + ___CSS_LOADER_URL___1___ + ");\n    *background-image: url(" + ___CSS_LOADER_URL___2___ + "); }\n  .sidebar ul.ztree.zTreeDragUL {\n    margin: 0;\n    padding: 0;\n    position: absolute;\n    width: auto;\n    height: auto;\n    overflow: hidden;\n    background-color: #cfcfcf;\n    border: 1px #00B83F dotted;\n    opacity: 0.8;\n    filter: alpha(opacity=80); }\n  .sidebar .zTreeMask {\n    z-index: 10000;\n    background-color: #cfcfcf;\n    opacity: 0.0;\n    filter: alpha(opacity=0);\n    position: absolute; }\n", ""]);
 
 
 
@@ -855,7 +855,7 @@ exports.push([module.i, ".sidebar {\n  height: 100%;\n  background-color: white;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 100vh;\n  padding: 15px;\n  font-size: 13px;\n  overflow: auto; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
+exports.push([module.i, ".terminal {\n  background-color: white;\n  height: 246px;\n  padding: 15px;\n  font-size: 13px;\n  overflow: auto; }\n  .terminal .tools {\n    display: flex;\n    flex-direction: row-reverse; }\n    .terminal .tools i {\n      cursor: pointer;\n      font-size: 13px;\n      margin-right: 25px; }\n      .terminal .tools i:hover {\n        color: black; }\n      .terminal .tools i:active {\n        color: #999999; }\n", ""]);
 
 
 
@@ -11530,38 +11530,24 @@ function service(mime, config, projectApi) {
   const HOST = config.ONLINE_EDITOR_URL;
 
   const render = code => {
-    console.log({
-      code
-    }); // let renderVal = ''
-    // const execMarker = '<span style="color:green;margin-right: 25px">></span>'
-    // const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
-    // const br = '<br/>'
-    // for (const attr in console) {
-    //   console[attr] = val => renderVal += (execMarker + val + br)
-    // }
-    // //run code
-    // try {
-    //   eval(code)
-    // } catch (error) {
-    //   renderVal += (errorMarker + `<span style="color:red">${error.name}</span>` + br)
-    //   renderVal += (errorMarker + `<span style="color:red">${error.message}</span>` + br)
-    //   renderVal += (execMarker + execMarker)
-    // }
-
-    let renderVal = '';
-    const execMarker = '<span style="color:green;margin-right: 25px">></span>';
-    const errorMarker = '<span style="color:red;margin-right: 25px">></span>';
-    const br = '<br/>';
-
-    for (const {
-      line,
-      error
-    } of code) {
-      const msg = error ? errorMarker + `<span style="color:red">${line}</span>` + br : execMarker + line + br;
-      renderVal += msg;
-    }
-
-    return renderVal;
+    console.log(code);
+    return "========= START ===========";
+    /*
+        let renderVal = ''
+        const execMarker = '<span style="color:green;margin-right: 25px">></span>'
+        const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
+        const br = '<br/>'
+    
+        for (const { line, error } of code) {
+          const msg = error ?
+            (errorMarker + `<span style="color:red">${line}</span>` + br) :
+            (execMarker + line + br)
+    
+          renderVal += msg
+        }
+    
+        return renderVal
+        */
   };
 
   const execute = (project, fileName, callback) => {
@@ -11590,29 +11576,6 @@ function service(mime, config, projectApi) {
 
   return {
     execute
-  };
-}
-
-/***/ }),
-
-/***/ "./src/_config/index.js":
-/*!******************************!*\
-  !*** ./src/_config/index.js ***!
-  \******************************/
-/*! exports provided: name, service */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
-const name = 'config';
-function service() {
-  return {
-    ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
-    //USER_RELATED_ROOT_URL: 'http://localhost:3000',
-    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
-    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   };
 }
 
@@ -11843,8 +11806,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 const name = 'projectApi';
-service.$inject = ['config', 'request', 'wiToken'];
-function service(config, request, wiToken) {
+service.$inject = ['config', 'request', 'wiToken', 'logStream'];
+function service(config, request, wiToken, logStream) {
   const newProject = name => {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}&token=${token}`;
@@ -11874,18 +11837,6 @@ function service(config, request, wiToken) {
     return request.get(url);
   };
 
-  const renameFile = (project, file, newFileName) => {
-    const token = getToken();
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-file?project=${project}&file=${encodeURIComponent(file)}&newFileName=${encodeURIComponent(newFileName)}&token=${token}`;
-    return request.get(url);
-  };
-
-  const renameFolder = (project, folder, newFolderName) => {
-    const token = getToken();
-    const url = `${config.ONLINE_EDITOR_URL}/file-sys/rename-folder?project=${project}&folder=${encodeURIComponent(folder)}&newFolderName=${encodeURIComponent(newFolderName)}&token=${token}`;
-    return request.get(url);
-  };
-
   const deleteFile = (project, file) => {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/file-sys/remove-file?project=${project}&file=${encodeURIComponent(file)}&token=${token}`;
@@ -11911,9 +11862,16 @@ function service(config, request, wiToken) {
   };
 
   const runCode = (fileName, project) => {
-    const token = getToken();
-    const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
-    return request.get(url);
+    // const token = getToken();
+    // const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
+    // return request.get(url)
+    // TO BE CHECKED
+    return logStream.fetchGet('/code-runner', {
+      file: fileName,
+      key: 'pyLog',
+      token: getToken(),
+      project: project
+    });
   };
 
   const saveCode = (project, fileName, code) => {
@@ -11968,8 +11926,6 @@ function service(config, request, wiToken) {
     newProject,
     openProject,
     deleteProject,
-    renameFile,
-    renameFolder,
     deleteFile,
     deleteFolder,
     openFile,
@@ -12040,16 +11996,22 @@ const name = 'app';
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading'];
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
-  let self = this; // let nameNode ='';
-  // var isFile = true;
-
+  let self = this;
+  var deleteNode = '';
+  var isFile = true;
   const BASE_URL = "http://dev.i2g.cloud";
 
   self.$onInit = function () {
     self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
     self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
     initState();
-  };
+  }; ///////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////
+  //  Project function
+  //
+  ///
+
 
   self.removeTreeConfig = function () {
     $scope.treeConfig.length = 0;
@@ -12092,12 +12054,16 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   };
 
   this.clickFunction4Python = function ($event, node) {
-    self.selectedNode = node;
-
     if (node.rootIsFile) {
-      self.openFile(node.path); // console.log(node.rootName)
+      self.openFile(node.path);
+      deleteNode = node.rootName;
+      isFile = true;
     } else {
+      // self.openFolder(node.path);
       projectApi.openFolder(node.path).then(item => {
+        deleteNode = node.rootName;
+        isFile = false;
+
         if (!(item.files.length + item.folders.length)) {
           return alertMessage.error('There is nothing in this folder');
         }
@@ -12110,68 +12076,13 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     }
   };
 
-  self.renameFn = function () {
-    let projectName = self.currentProject.rootName;
-    ngDialog.open({
-      template: 'templateRename',
-      className: 'ngdialog-theme-default',
-      scope: $scope
-    });
-
-    self.acceptRename = function () {
-      if (self.selectedNode.rootIsFile) {
-        if (this.newFileName.includes('.py')) {
-          projectApi.renameFile(projectName, self.selectedNode.rootName, this.newFileName);
-          ngDialog.close();
-        } else if (this.newFileName) {
-          let newFileName = this.newFileName + '.py';
-          projectApi.renameFile(projectName, self.selectedNode.rootName, newFileName);
-          ngDialog.close();
-        }
-      } else {
-        projectApi.renameFolder(projectName, self.selectedNode.rootName, this.newFileName);
-        ngDialog.close();
-      } // console.log(self.currentProject);
-
-
-      projectApi.openProject(self.currentProject.rootName).then(item => {
-        // console.log(item);
-        $timeout(() => {
-          self.currentProject = item;
-        });
-      }).catch(error => {
-        alertMessage.error(error);
-      });
-    };
-  };
-
   self.deleteFn = function () {
     let projectName = self.currentProject.rootName;
 
-    if (self.selectedNode.rootIsFile) {
-      ngDialog.open({
-        template: 'templateWarning',
-        className: 'ngdialog-theme-default',
-        scope: $scope
-      });
-
-      self.acceptDelete = function () {
-        projectApi.deleteFile(projectName, self.selectedNode.rootName);
-        console.log(self.currentProject);
-        ngDialog.close();
-      };
+    if (isFile) {
+      projectApi.deleteFile(projectName, deleteNode);
     } else {
-      ngDialog.open({
-        template: 'templateWarning',
-        className: 'ngdialog-theme-default',
-        scope: $scope
-      });
-
-      self.acceptDelete = function () {
-        projectApi.deleteFolder(projectName, self.selectedNode.rootName);
-        console.log(self.currentProject);
-        ngDialog.close();
-      };
+      projectApi.deleteFolder(projectName, deleteNode);
     }
   };
 
@@ -12894,7 +12805,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url={{self.loginUrl}}></wi-login> <tools style=z-index:1 find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig get-curve-tree=self.getCurveTree remove-tree-config=self.removeTreeConfig delete-checked=self.deleteChecked save-checked=self.saveChecked refresh-checked=self.refreshChecked new-checked=self.newChecked generate-login-by-token=self.generateLoginByToken generate-login-byaccount=self.generateLoginByAccount generate-save-curve-data=self.generateSaveCurveData about-wi-python=self.aboutWiPython> </tools> <div class=app style=z-index:0> <div style=\"border-right:1px solid #c7c7c7\"> <side-bar my-default-width=250 orientation=e collapsed=false> <wi-tree-view tree-root=self.currentProject get-label=self.getLabel4Python get-icon=self.getIcon4Python get-children=self.getChildren4Python run-match=self.runMatch4Python click-fn=self.clickFunction4Python> <div class=\"label-list-view ng-scope\"> <span>PYTHON PROJECTS</span> <span style=color:red;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.deleteFn()></span> <span style=color:#00f;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.renameFn()></span> </div> </wi-tree-view> </side-bar> </div> <div style=\"width:100%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=\"display:flex;flex:3;resize:vertical;overflow:auto -webkit-paged-x;min-height:600px\" on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=height:100% result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure?\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Project</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the project name according to the following structure: <b>projectname</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New File</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the file name according to the following structure: <b>filename or foldername/filename</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>New Folder</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the folder name according to the following structure:: <b>foldername</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\n          </div>\n      </div>\n  </div> </script> <script type=text/ng-template id=templateAbout> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\" style=\"\n      display: flex;\n      flex-direction: column;\n      justify-content: center;\n      align-items: center;\n      padding: 15px 0;\n      font-size: 15px;\n      font-weight: bold;\">\n      <div style=\"font-size: 22px;\">Wi Python</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Version 2.5.7 (Official Build)</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Recommend Google Chrome</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">2019-05-15T21:49:51.528Z</div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Copyright (C) 2019 Revotech. All rights reserved</div>\n\n  </div> </script> <script type=text/ng-template id=templateWarning> <div class=\"ngdialog-buttons\">\n          <div class =\"acceptLogout\">Are you sure delete <b>{{self.curFile}}</b>\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\n          </div>\n  </div> </script> <script type=text/ng-template id=templateRename> <div class=\"ngdialog-buttons\">\n      <div class =\"newDialog\"><div>Remane</div>\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">\n        Enter the new fileName(folderName/fileName)<b>.py</b> or folderName<b>.py</b></div>\n          <div class=\"newDialogContent\">\n              <input type=\"text\" placeholder=\"Enter new file name\" ng-model=\"self.newFileName\">\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptRename()\">Done</a>\n          </div>\n      </div>\n  </div> </script>";
+module.exports = "<div style=display:flex;flex-direction:column;height:100%> <wi-login register-url=https://www.i2g.cloud/register-information/ app-name=\"Wi Python\" login-url={{self.loginUrl}}></wi-login> <tools style=z-index:1 find-all-projects=self.findAllProjects all-projects=self.allProjects open-project=self.openProject close-project=self.closeProject create-new-project=self.createNewProject delete-project=self.deleteProject create-new-file=self.createNewFile create-new-folder=self.createNewFolder delete-item=self.deleteItem add-func=self.addFunction save-code=self.saveCode run-code=self.runCode code-palette=self.getCurveTree remove-code-palette=self.removeTreeConfig get-curve-tree=self.getCurveTree remove-tree-config=self.removeTreeConfig delete-checked=self.deleteChecked save-checked=self.saveChecked refresh-checked=self.refreshChecked new-checked=self.newChecked generate-login-by-token=self.generateLoginByToken generate-login-byaccount=self.generateLoginByAccount generate-save-curve-data=self.generateSaveCurveData about-wi-python=self.aboutWiPython> </tools> <div class=app style=z-index:0> <div style=\"border-right:1px solid #c7c7c7\"> <side-bar my-default-width=250 orientation=e collapsed=false> <wi-tree-view tree-root=self.currentProject get-label=self.getLabel4Python get-icon=self.getIcon4Python get-children=self.getChildren4Python run-match=self.runMatch4Python click-fn=self.clickFunction4Python> <div class=\"label-list-view ng-scope\"> <span>PYTHON PROJECTS</span> <span style=color:#a4a4a4;float:right;margin-left:20px;cursor:pointer class=\"label-buttom fa fa-times-circle\" aria-hidden=true ng-click=self.deleteFn()></span> </div> </wi-tree-view> </side-bar> </div> <div style=\"width:100%;display:flex;flex-direction:column;border-right:1px solid #c7c7c7\"> <div class=label-list-view> <span>EDITOR </span><span ng-show=\"self.curFile && self.curFile.length\">- ({{self.curFile}})</span> </div> <div style=display:flex;flex:3;background-color:#fff> <wi-droppable ng-if=self.curFile style=display:flex;flex:3 on-drop=self.onDrop container-style=\"{display:'flex',flex: 1}\"> <div style=display:flex;flex:3> <explorer style=flex:3;position:relative update-code=self.coding code=self.code cur-file=self.curFile> </explorer> </div> </wi-droppable> </div> <div class=label-list-view> <span>TERMINAL</span> </div> <terminal style=flex:1 result-html=self.resultHtml iframe-html-link=self.iframeHtmlLink is-result-a-iframe=self.isResultAIframe> </terminal> </div> <side-bar my-default-width=200 orientation=w collapsed=false> <wi-tree-view tree-root=treeConfig get-label=self.getLabel get-icon=self.getIcon single-node=true get-children=self.getChildren run-match=self.runMatch click-fn=self.clickFunction get-siblings=self.getSiblings> <div class=label-list-view> <span>I2G CLOUD</span> </div> </wi-tree-view> </side-bar> </div> </div> <script type=text/ng-template id=templateDeleteProject> <div class=\"ngdialog-buttons\">\r\n          <div class =\"acceptLogout\">Are you sure?\r\n              <button type=\"button\" class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptDelete()\">Delete</button>\r\n          </div>\r\n  </div> </script> <script type=text/ng-template id=templateNewPrj> <div class=\"ngdialog-buttons\">\r\n      <div class =\"newDialog\"><div>New Project</div>\r\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the project name according to the following structure: projectname</div>\r\n          <div class=\"newDialogContent\">\r\n              <input type=\"text\" placeholder=\"Enter project name\" ng-model=\"self.nameProject\">\r\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewPrj()\">New</a>\r\n          </div>\r\n      </div>\r\n  </div> </script> <script type=text/ng-template id=templateNewFile> <div class=\"ngdialog-buttons\">\r\n      <div class =\"newDialog\"><div>New File</div>\r\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the file name according to the following structure: filename or foldername/filename</div>\r\n          <div class=\"newDialogContent\">\r\n              <input type=\"text\" placeholder=\"Enter file name\" ng-model=\"self.nameFileNew\">\r\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFile()\">New</a>\r\n          </div>\r\n      </div>\r\n  </div> </script> <script type=text/ng-template id=templateNewFolder> <div class=\"ngdialog-buttons\">\r\n      <div class =\"newDialog\"><div>New Folder</div>\r\n      <div style=\"border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;\"></div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Enter the folder name according to the following structure:: foldername</div>\r\n          <div class=\"newDialogContent\">\r\n              <input type=\"text\" placeholder=\"Enter folder name\" ng-model=\"self.nameFolderNew\">\r\n          <a class=\"ngdialog-button ngdialog-button-primary\" ng-click=\"self.acceptNewFolder()\">New</a>\r\n          </div>\r\n      </div>\r\n  </div> </script> <script type=text/ng-template id=templateAbout> <div class=\"ngdialog-buttons\">\r\n      <div class =\"newDialog\" style=\"\r\n      display: flex;\r\n      flex-direction: column;\r\n      justify-content: center;\r\n      align-items: center;\r\n      padding: 15px 0;\r\n      font-size: 15px;\r\n      font-weight: bold;\">\r\n      <div style=\"font-size: 22px;\">Wi Python</div>\r\n      <div style=\"border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;\"></div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Version 2.5.7 (Official Build)</div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Recommend Google Chrome</div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">2019-05-15T21:49:51.528Z</div>\r\n      <div style=\"font-weight: 300; color: #666; font-size: 13px; font-style: italic;\">Copyright (C) 2019 Revotech. All rights reserved</div>\r\n\r\n  </div> </script>";
 
 /***/ }),
 
@@ -13448,16 +13359,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tools */ "./src/tools/index.js");
 /* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./browser */ "./src/browser/index.js");
 /* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login-page */ "./src/login-page/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
-/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
-/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
-/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
-/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
-/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
-/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
+/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
+/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
+/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
 // import angular from 'angular'
 
 
@@ -13468,7 +13378,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import * as config from './_config'
 
 
 
@@ -13484,9 +13394,17 @@ __webpack_require__.r(__webpack_exports__);
 // const renderComponent = '<browser></browser>'
 
 function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiLoading'];
-  angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]).config(function ($locationProvider) {
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiLoading', 'logStream'];
+  angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_13__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_13__["filter"]) // .service(config.name, config.service)
+  .service(_project_api__WEBPACK_IMPORTED_MODULE_10__["name"], _project_api__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_11__["name"], _request__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_12__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_14__["name"], _mime__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_16__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_17__["name"], _auth__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_18__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_18__["service"]).config(function ($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
+  }).value('config', {
+    logStreamWS: 'ws://localhost:3000',
+    logStreamHTTP: 'http://localhost:3000',
+    // ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
+    ONLINE_EDITOR_URL: 'http://localhost:3000',
+    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
+    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   });
 }
 
@@ -13653,10 +13571,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = ['$sce'];
+controller.$inject = ['$sce', '$timeout', 'logStream'];
 
-function controller($sce) {
+function controller($sce, $timeout, logStream) {
   const self = this;
+  self.messages = [];
+  logStream.registerCallback("pyLog", function (msg) {
+    console.log(msg);
+    self.messages.push(msg);
+    $timeout(() => {});
+  });
 
   self.$onInit = function () {
     initState();
@@ -13748,7 +13672,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div ng-if=!self.codeOrIframe ng-bind-html=self._resultHtml></div> </div>";
+module.exports = "<div class=terminal> <div ng-repeat=\"msg in self.messages\">{{msg.content}}</div> </div>";
 
 /***/ }),
 

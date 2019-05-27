@@ -1,8 +1,8 @@
 export const name = 'projectApi';
 
-service.$inject = ['config', 'request', 'wiToken'];
+service.$inject = ['config', 'request', 'wiToken', 'logStream'];
 
-export function service(config, request, wiToken) {
+export function service(config, request, wiToken, logStream) {
 
 	const newProject = name => {
 		const token = getToken();
@@ -65,9 +65,12 @@ export function service(config, request, wiToken) {
 	};
 
 	const runCode = (fileName, project) => {
-		const token = getToken();
-		const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
-		return request.get(url)
+		// const token = getToken();
+		// const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
+		// return request.get(url)
+
+		// TO BE CHECKED
+		return logStream.fetchGet('/code-runner', {file: fileName, key: 'pyLog', token: getToken(), project: project});
 	};
 
 	const saveCode = (project, fileName, code) => {

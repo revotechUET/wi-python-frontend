@@ -3,11 +3,15 @@ import './style.scss'
 
 const name = 'terminal'
 
-controller.$inject = ['$sce']
-function controller($sce) {
+controller.$inject = ['$sce', '$timeout', 'logStream']
+function controller($sce, $timeout, logStream) {
   const self = this
-
-
+  self.messages = [];
+  logStream.registerCallback("pyLog", function(msg) {
+    console.log(msg);
+    self.messages.push(msg);
+    $timeout(() => {});
+  });
   self.$onInit = function () {
     initState()
   }
