@@ -16,17 +16,22 @@
 
   <div class="app" style="z-index: 0;">
     <div style="border-right: 1px solid #c7c7c7;">
-      <side-bar my-default-width="250" orientation="e" collapsed="false">
+      <side-bar my-default-width="235" orientation="e" collapsed="false">
         <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python" get-icon="self.getIcon4Python"
           get-children="self.getChildren4Python" run-match="self.runMatch4Python" click-fn='self.clickFunction4Python'>
-          <!-- <div class="label-list-view">
-            <span>PYTHON PROJECTS</span>
-          </div> -->
-          <div class="label-list-view ng-scope"> <span>PYTHON PROJECTS</span>
-            <span style="color: red;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
-              aria-hidden="true" ng-click="self.deleteFn()"></span>
-            <span style="color:blue;float: right;margin-left: 20px; cursor: pointer;" class="label-buttom fa fa-times-circle"
-            aria-hidden="true" ng-click="self.renameFn()"></span>
+          <div style="padding: 7px 13px 8px 13px;"class="label-list-view ng-scope"> <span>PROJECTS</span>
+            <span style="font-size: 9px;
+            border: 1px solid #929292;
+            padding: 4px 10px;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-left: 10px;"ng-click="self.deleteFn()"> DELETE</span>
+            <span style="font-size: 9px;
+            border: 1px solid #929292;
+            padding: 4px 10px;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-left: 10px;" ng-click="self.renameFn()">RENAME</span>
           </div>
         </wi-tree-view>
       </side-bar>
@@ -92,7 +97,7 @@
       <div class ="newDialog"><div>New File</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
       <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the file name according to the following structure: <b>filename or foldername/filename</b></div>
+        Enter the file name according to the following structure: <b>filename or foldername</b></div>
           <div class="newDialogContent">
               <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
@@ -144,7 +149,7 @@
       <div class ="newDialog"><div>Remane</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
       <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the new fileName(folderName/fileName)<b>.py</b> or folderName<b>.py</b></div>
+        Enter the new fileName or folderName</div>
           <div class="newDialogContent">
               <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>

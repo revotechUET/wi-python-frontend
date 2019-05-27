@@ -59,15 +59,16 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   }
   this.clickFunction4Python = function ($event, node) {
     self.selectedNode = node;
+    console.log(self.selectedNode);
     if (node.rootIsFile) {
       self.openFile(node.path);
-      
+
       // console.log(node.rootName)
     } else {
       projectApi.openFolder(node.path)
         .then(item => {
-          
-          
+
+
           if (!(item.files.length + item.folders.length)) {
             return alertMessage.error('There is nothing in this folder')
           }
@@ -81,52 +82,70 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   }
   self.renameFn = function () {
     let projectName = self.currentProject.rootName;
-    ngDialog.open({
-      template: 'templateRename',
-      className: 'ngdialog-theme-default',
-      scope: $scope,
-    });
-    self.acceptRename = function() {
-      if(self.selectedNode.rootIsFile){
-        if(this.newFileName.includes('.py')){
-          projectApi.renameFile(projectName, self.selectedNode.rootName, this.newFileName);
-          ngDialog.close();
-        } else if(this.newFileName) {
-          let newFileName = this.newFileName + '.py';
-          projectApi.renameFile(projectName, self.selectedNode.rootName, newFileName);
-          ngDialog.close();
+    if(self.selectedNode.rootName){
+      ngDialog.open({
+        template: 'templateRename',
+        className: 'ngdialog-theme-default',
+        scope: $scope,
+      });
+    } else {
+      alertMessage.success('Please select file or folder');
+
+    }
+    self.acceptRename = function () {
+      if (self.selectedNode.rootIsFile) {
+        if (!self.newFileName || !self.newFileName.length) {
+          alertMessage.success('Fill your fileName or folderName');
+        }
+        else {
+          if (!self.newFileName.includes('.py')) {
+            self.newFileName = self.newFileName + '.py';
+          }
+          let newFileName = getRelPath(projectName, self.selectedNode.path);
+          newFileName = newFileName.replace(self.selectedNode.rootName,'');
+          projectApi.renameFile(
+            projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
+          ).then((data) => {
+            ngDialog.close();
+            self.newFileName = '';
+          }).catch((e) => {
+            console.error(e);
+          });
         }
       } else {
-        projectApi.renameFolder(projectName, self.selectedNode.rootName, this.newFileName);
-        ngDialog.close();
+        let newFileName = getRelPath(projectName, self.selectedNode.path);
+          newFileName = newFileName.replace(self.selectedNode.rootName,'');
+          projectApi.renameFolder(
+            projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
+          ).then((data) => {
+            ngDialog.close();
+            self.newFileName = '';
+          }).catch((e) => {
+            console.error(e);
+          });
       }
-      // console.log(self.currentProject);
-      projectApi.openProject(self.currentProject.rootName)
-      .then(item => {
-        // console.log(item);
-        $timeout(() => {
-          self.currentProject = item;
-          
-        })
-      })
-      .catch(error => {
-        alertMessage.error(error)
-      })
+      reloadPrj(projectName);
     }
   }
-
   self.deleteFn = function () {
     let projectName = self.currentProject.rootName;
-    if(self.selectedNode.rootIsFile){
+    if (self.selectedNode.rootIsFile) {
       ngDialog.open({
         template: 'templateWarning',
         className: 'ngdialog-theme-default',
         scope: $scope,
       });
-      self.acceptDelete = function() {
-        projectApi.deleteFile(projectName, self.selectedNode.rootName);
-        console.log(self.currentProject)
-        ngDialog.close();
+      self.acceptDelete = function () {
+        projectApi.deleteFile(
+          projectName, 
+          getRelPath(projectName, self.selectedNode.path)
+        ).then((data) => {
+          console.log(data);
+          reloadPrj(projectName);
+          ngDialog.close();
+        }).catch(e => {
+          console.error(e);
+        });
       }
     }
     else {
@@ -135,14 +154,30 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         className: 'ngdialog-theme-default',
         scope: $scope,
       });
-      self.acceptDelete = function() {
-        projectApi.deleteFolder(projectName, self.selectedNode.rootName);
-        console.log(self.currentProject)
-        ngDialog.close();
+      self.acceptDelete = function () {
+        projectApi.deleteFolder(
+          projectName, 
+          getRelPath(projectName, self.selectedNode.path)
+        ).then(data => {
+          console.log(data);
+          reloadPrj(projectName);
+          ngDialog.close();
+        }).catch(e => console.error(e));
       }
     }
   }
-
+  function getRelPath(prjName, path) {
+    return path.replace(prjName + '/', '');
+  }
+  function reloadPrj(prjName) {
+    projectApi.openProject(prjName).then(item => {
+      $timeout(() => {
+        self.currentProject = item;
+      });
+    }).catch(error => {
+      alertMessage.error(error)
+    });
+  }
   self.closeProject = function () {
     initState()
   }
@@ -265,40 +300,23 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
       let filePath = this.nameFileNew;
       filePath = filePath + '.py';
       if (!filePath) return
-      projectApi.newFile(self.currentProject.rootName, filePath)
-        .then(() => {
-          const containerFolderPath = getParrentFolderPath(filePath)
-          const fileName = filePath
-            .split('/')
-            .reduce((pre, cur, i, arr) => arr[arr.length - 1])
-
-          const parrentFolder = findNodeInTree(
-            self.currentProject,
-            node => node.path === containerFolderPath
-          )
-
-          if (!parrentFolder) return alertMessage.error('Cannot create file')
-
-          parrentFolder.files.push({
-            rootName: fileName,
+      // projectApi.newFile(getRelPath(self.currentProject.rootName, self.selectedNode.path), filePath)
+      let fileFullPath = getRelPath(self.currentProject.rootName, self.selectedNode.path) + '/' + filePath;
+      projectApi.newFile(self.currentProject.rootName, fileFullPath)
+        .then((data) => {
+          self.selectedNode.files.push({
+            rootName: filePath, 
+            path: self.currentProject.rootName + '/' + fileFullPath,
+            rootIsFile: true,
             files: [],
-            folders: [],
-            path: containerFolderPath + '/' + fileName,
-            rootIsFile: true
-          })
-
-          alertMessage.success('success create file')
-          let initcode = `#--login block--\nclient = wilib.loginByToken("${wiToken.getToken()}")\n#--end of login block--`;
-          projectApi.saveCode(self.currentProject.rootName, fileName, initcode).then(() => {
-            console.log("save init code success");
+            folders: []
           });
-          console.log({
-            tree: self.currentProject
-          })
           ngDialog.close();
-
+          this.nameFileNew = '';
         })
-        .catch(error => alertMessage.error(error))
+        .catch(error => {
+          alertMessage.error(error)
+        })
     }
   }
 
@@ -334,7 +352,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         tree: self.currentProject
       })
       ngDialog.close();
-
+      this.nameFolderNew = '';
       alertMessage.success('success create file');
       let initcode =
         `#--login block--
@@ -488,7 +506,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
     self.curFile = '' // using with write and runnign code
 
-    
+
     // current tree node
     self.selectedNode = null
 
