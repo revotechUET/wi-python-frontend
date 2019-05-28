@@ -1,4 +1,16 @@
 <div class="terminal" >
+    <span style="
+    font-size: 9px;
+    border: 1px solid #929292;
+    padding: 4px 10px;
+    border-radius: 2px;
+    position: absolute;
+    cursor: pointer;
+    right: 9px;
+    top: 7px;
+    z-index: 3;
+    margin-left: 10px;"
+    ng-click="self.clearConsole()">CLEAR</span>
   <!--<div ng-if="!self.codeOrIframe" ng-bind-html="self._resultHtml"></div>-->
   <div ng-repeat="msg in self.messages">{{msg.content}}</div>
   <!-- <iframe

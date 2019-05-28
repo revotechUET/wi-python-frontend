@@ -103,6 +103,7 @@
         padding: 15px 17px;
         border-radius: 3px;
         background: #ececec;
+        border: 1px solid #ececec;
         margin: 10px;
         cursor: pointer;
       }
@@ -111,6 +112,8 @@
         animation-name: animatetop;
         animation-duration: 0.5s;
         background: #cacdd2;
+        border: 1px solid #0077be;
+
       }
     }
   }

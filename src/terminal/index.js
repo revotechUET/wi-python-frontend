@@ -15,6 +15,9 @@ function controller($sce, $timeout, logStream) {
   self.$onInit = function () {
     initState()
   }
+  self.clearConsole = function () {
+    this.messages.length = 0;
+  }
 
   self.$onChanges = function ({ resultHtml, iframeHtmlLink, isResultAIframe }) {
     if (resultHtml) {

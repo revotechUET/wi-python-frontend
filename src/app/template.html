@@ -51,17 +51,24 @@
           </div>
         </wi-droppable>
       </div>
-
-      <div class="label-list-view">
-        <span>CONSOLE</span>
-      </div>
-      <terminal style="
+      <div style="
+      position: relative;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      flex: 1;"
-        result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
-        is-result-a-iframe="self.isResultAIframe">
-      </terminal>
+      overflow: hidden;">
+          <div class="label-list-view">
+              <span>CONSOLE</span>
+            </div>
+            <terminal style="
+            display: flex;
+            flex-direction: column;
+            flex: 1;"
+              result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
+              is-result-a-iframe="self.isResultAIframe">
+            </terminal>
+      </div>
+      
     </div>
     <side-bar my-default-width="200" orientation="w" collapsed="false">
       <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
@@ -165,7 +172,7 @@
       <div class ="newDialog"><div>Open Projects</div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
       <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the new fileName or folderName</div>
+        Please select project. Projects are arranged according to the creation time</div>
           <div class="newDialogContent">
             <ul class="list-project">
               <li ng-repeat="project in self.allProjects track by $index"

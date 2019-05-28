@@ -21,17 +21,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     $scope.treeConfig.length = 0;
   }
   self.findAllProjects = function () {
-    // ngDialog.open({
-    //   template: 'templateOpenProject',
-    //   className: 'ngdialog-theme-default',
-    //   scope: $scope,
-    // });
+    ngDialog.open({
+      template: 'templateOpenProject',
+      className: 'ngdialog-theme-default',
+      scope: $scope,
+    });
     projectApi.listProjects()
       .then(projects => {
         console.log({
           tree: self.currentProject
         })
         self.allProjects = projects
+        
       })
       .catch(error => {
         alertMessage.error(error)
@@ -41,7 +42,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     projectApi.openProject(name)
       .then(item => {
         self.currentProject = item
-
+        ngDialog.close();
       })
       .catch(error => {
         alertMessage.error(error)
