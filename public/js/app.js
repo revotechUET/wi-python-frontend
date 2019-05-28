@@ -11530,38 +11530,24 @@ function service(mime, config, projectApi) {
   const HOST = config.ONLINE_EDITOR_URL;
 
   const render = code => {
-    console.log({
-      code
-    }); // let renderVal = ''
-    // const execMarker = '<span style="color:green;margin-right: 25px">></span>'
-    // const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
-    // const br = '<br/>'
-    // for (const attr in console) {
-    //   console[attr] = val => renderVal += (execMarker + val + br)
-    // }
-    // //run code
-    // try {
-    //   eval(code)
-    // } catch (error) {
-    //   renderVal += (errorMarker + `<span style="color:red">${error.name}</span>` + br)
-    //   renderVal += (errorMarker + `<span style="color:red">${error.message}</span>` + br)
-    //   renderVal += (execMarker + execMarker)
-    // }
-
-    let renderVal = '';
-    const execMarker = '<span style="color:green;margin-right: 25px">></span>';
-    const errorMarker = '<span style="color:red;margin-right: 25px">></span>';
-    const br = '<br/>';
-
-    for (const {
-      line,
-      error
-    } of code) {
-      const msg = error ? errorMarker + `<span style="color:red">${line}</span>` + br : execMarker + line + br;
-      renderVal += msg;
-    }
-
-    return renderVal;
+    console.log(code);
+    return "========= START ===========";
+    /*
+        let renderVal = ''
+        const execMarker = '<span style="color:green;margin-right: 25px">></span>'
+        const errorMarker = '<span style="color:red;margin-right: 25px">></span>'
+        const br = '<br/>'
+    
+        for (const { line, error } of code) {
+          const msg = error ?
+            (errorMarker + `<span style="color:red">${line}</span>` + br) :
+            (execMarker + line + br)
+    
+          renderVal += msg
+        }
+    
+        return renderVal
+        */
   };
 
   const execute = (project, fileName, callback) => {
@@ -11590,29 +11576,6 @@ function service(mime, config, projectApi) {
 
   return {
     execute
-  };
-}
-
-/***/ }),
-
-/***/ "./src/_config/index.js":
-/*!******************************!*\
-  !*** ./src/_config/index.js ***!
-  \******************************/
-/*! exports provided: name, service */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
-const name = 'config';
-function service() {
-  return {
-    ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
-    //USER_RELATED_ROOT_URL: 'http://localhost:3000',
-    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
-    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   };
 }
 
@@ -11843,8 +11806,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "service", function() { return service; });
 const name = 'projectApi';
-service.$inject = ['config', 'request', 'wiToken'];
-function service(config, request, wiToken) {
+service.$inject = ['config', 'request', 'wiToken', 'logStream'];
+function service(config, request, wiToken, logStream) {
   const newProject = name => {
     const token = getToken();
     const url = `${config.ONLINE_EDITOR_URL}/project/new?name=${encodeURIComponent(name)}&token=${token}`;
@@ -11911,9 +11874,16 @@ function service(config, request, wiToken) {
   };
 
   const runCode = (fileName, project) => {
-    const token = getToken();
-    const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
-    return request.get(url);
+    // const token = getToken();
+    // const url = `${config.ONLINE_EDITOR_URL}/code-runner/?file=${encodeURIComponent(fileName)}&project=${encodeURIComponent(project)}&token=${token}`;
+    // return request.get(url)
+    // TO BE CHECKED
+    return logStream.fetchGet('/code-runner', {
+      file: fileName,
+      key: 'pyLog',
+      token: getToken(),
+      project: project
+    });
   };
 
   const saveCode = (project, fileName, code) => {
@@ -13474,16 +13444,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tools__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tools */ "./src/tools/index.js");
 /* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./browser */ "./src/browser/index.js");
 /* harmony import */ var _login_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login-page */ "./src/login-page/index.js");
-/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_config */ "./src/_config/index.js");
-/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
-/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
-/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
-/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
-/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
-/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
-/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
-/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
+/* harmony import */ var _project_api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_project-api */ "./src/_project-api/index.js");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./_request */ "./src/_request/index.js");
+/* harmony import */ var _alert_message__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./_alert-message */ "./src/_alert-message/index.js");
+/* harmony import */ var _empty_array__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./_empty-array */ "./src/_empty-array/index.js");
+/* harmony import */ var _mime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./_mime */ "./src/_mime/index.js");
+/* harmony import */ var _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./_browser-code-runner */ "./src/_browser-code-runner/index.js");
+/* harmony import */ var _func_gen__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./_func-gen */ "./src/_func-gen/index.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./_auth */ "./src/_auth/index.js");
+/* harmony import */ var _key_bind__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./_key-bind */ "./src/_key-bind/index.js");
 // import angular from 'angular'
 
 
@@ -13494,7 +13463,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ // import * as config from './_config'
 
 
 
@@ -13510,9 +13479,17 @@ __webpack_require__.r(__webpack_exports__);
 // const renderComponent = '<browser></browser>'
 
 function assignAppModule(angular, moduleName) {
-  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiLoading'];
-  angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_14__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_14__["filter"]).service(_config__WEBPACK_IMPORTED_MODULE_10__["name"], _config__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_project_api__WEBPACK_IMPORTED_MODULE_11__["name"], _project_api__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_12__["name"], _request__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_13__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_13__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_15__["name"], _mime__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_17__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_18__["name"], _auth__WEBPACK_IMPORTED_MODULE_18__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_19__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_19__["service"]).config(function ($locationProvider) {
+  const dependencies = ['sideBar', 'wiTreeView', 'wiLogin', 'wiDroppable', 'wiLoading', 'logStream'];
+  angular.module(moduleName, dependencies).component(_app__WEBPACK_IMPORTED_MODULE_0__["default"].name, _app__WEBPACK_IMPORTED_MODULE_0__["default"].options).component(_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].name, _sidebar__WEBPACK_IMPORTED_MODULE_1__["default"].options).component(_f_element__WEBPACK_IMPORTED_MODULE_2__["default"].name, _f_element__WEBPACK_IMPORTED_MODULE_2__["default"].options).component(_terminal__WEBPACK_IMPORTED_MODULE_3__["default"].name, _terminal__WEBPACK_IMPORTED_MODULE_3__["default"].options).component(_explorer__WEBPACK_IMPORTED_MODULE_4__["default"].name, _explorer__WEBPACK_IMPORTED_MODULE_4__["default"].options).component(_modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].name, _modal_icon__WEBPACK_IMPORTED_MODULE_5__["default"].options).component(_tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].name, _tooltip_icon__WEBPACK_IMPORTED_MODULE_6__["default"].options).component(_tools__WEBPACK_IMPORTED_MODULE_7__["default"].name, _tools__WEBPACK_IMPORTED_MODULE_7__["default"].options).component(_browser__WEBPACK_IMPORTED_MODULE_8__["default"].name, _browser__WEBPACK_IMPORTED_MODULE_8__["default"].options).component(_login_page__WEBPACK_IMPORTED_MODULE_9__["default"].name, _login_page__WEBPACK_IMPORTED_MODULE_9__["default"].options).filter(_empty_array__WEBPACK_IMPORTED_MODULE_13__["name"], _empty_array__WEBPACK_IMPORTED_MODULE_13__["filter"]) // .service(config.name, config.service)
+  .service(_project_api__WEBPACK_IMPORTED_MODULE_10__["name"], _project_api__WEBPACK_IMPORTED_MODULE_10__["service"]).service(_request__WEBPACK_IMPORTED_MODULE_11__["name"], _request__WEBPACK_IMPORTED_MODULE_11__["service"]).service(_alert_message__WEBPACK_IMPORTED_MODULE_12__["name"], _alert_message__WEBPACK_IMPORTED_MODULE_12__["service"]).service(_mime__WEBPACK_IMPORTED_MODULE_14__["name"], _mime__WEBPACK_IMPORTED_MODULE_14__["service"]).service(_browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["name"], _browser_code_runner__WEBPACK_IMPORTED_MODULE_15__["service"]).service(_func_gen__WEBPACK_IMPORTED_MODULE_16__["name"], _func_gen__WEBPACK_IMPORTED_MODULE_16__["service"]).service(_auth__WEBPACK_IMPORTED_MODULE_17__["name"], _auth__WEBPACK_IMPORTED_MODULE_17__["service"]).service(_key_bind__WEBPACK_IMPORTED_MODULE_18__["name"], _key_bind__WEBPACK_IMPORTED_MODULE_18__["service"]).config(function ($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
+  }).value('config', {
+    logStreamWS: 'http://python.dev.i2g.cloud',
+    logStreamHTTP: 'http://python.dev.i2g.cloud',
+    // ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
+    ONLINE_EDITOR_URL: 'http://python.dev.i2g.cloud',
+    USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
+    PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
   });
 }
 
@@ -13679,10 +13656,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const name = 'terminal';
-controller.$inject = ['$sce'];
+controller.$inject = ['$sce', '$timeout', 'logStream'];
 
-function controller($sce) {
+function controller($sce, $timeout, logStream) {
   const self = this;
+  self.messages = [];
+  logStream.registerCallback("pyLog", function (msg) {
+    console.log(msg);
+    self.messages.push(msg);
+    $timeout(() => {});
+  });
 
   self.$onInit = function () {
     initState();
@@ -13774,7 +13757,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=terminal> <div ng-if=!self.codeOrIframe ng-bind-html=self._resultHtml></div> </div>";
+module.exports = "<div class=terminal> <div ng-repeat=\"msg in self.messages\">{{msg.content}}</div> </div>";
 
 /***/ }),
 
