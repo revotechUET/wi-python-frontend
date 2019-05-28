@@ -21,6 +21,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     $scope.treeConfig.length = 0;
   }
   self.findAllProjects = function () {
+    // ngDialog.open({
+    //   template: 'templateOpenProject',
+    //   className: 'ngdialog-theme-default',
+    //   scope: $scope,
+    // });
     projectApi.listProjects()
       .then(projects => {
         console.log({

@@ -1,9 +1,10 @@
 .terminal {
-  background-color: white;
-  height: 255px;
-  padding: 15px;
-  font-size: 13px;
-  overflow: auto;
+    background-color: white;
+    /* height: 255px; */
+    padding: 15px;
+    font-size: 13px;
+    overflow: auto;
+    flex: 1;
 
   .tools {
     display: flex;

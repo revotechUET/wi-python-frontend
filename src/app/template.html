@@ -41,7 +41,7 @@
         <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
       </div>
       <div style="display:flex; flex:3; background-color: #fff;">
-        <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:3;resize: vertical; min-height: 600px;" 
+        <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;" 
         on-drop="self.onDrop"
           container-style="{display:'flex',flex: 1}">
           <div style="display:flex;flex:3;">
@@ -52,11 +52,14 @@
         </wi-droppable>
       </div>
 
-
       <div class="label-list-view">
-        <span>TERMINAL</span>
+        <span>CONSOLE</span>
       </div>
-      <terminal style="height: 100%;;" result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
+      <terminal style="
+      display: flex;
+      flex-direction: column;
+      flex: 1;"
+        result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
         is-result-a-iframe="self.isResultAIframe">
       </terminal>
     </div>
@@ -153,6 +156,23 @@
           <div class="newDialogContent">
               <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
           <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+          </div>
+      </div>
+  </div>
+</script>
+<script type="text/ng-template" id="templateOpenProject">
+  <div class="ngdialog-buttons">
+      <div class ="newDialog"><div>Open Projects</div>
+      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+        Enter the new fileName or folderName</div>
+          <div class="newDialogContent">
+            <ul class="list-project">
+              <li ng-repeat="project in self.allProjects track by $index"
+                  ng-click="self.openProject(project);self.setShowOP(false);">
+                  <span ng-bind="project"></span>
+              </li>
+          </ul>
           </div>
       </div>
   </div>
