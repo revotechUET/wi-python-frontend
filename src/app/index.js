@@ -227,20 +227,23 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     }
   }
   self.delProject = function (project) {
+    
     let dialog = ngDialog.open({
       template: 'templateDeleteProject',
       className: 'ngdialog-theme-default',
       scope: $scope,
     });
     dialog.closePromise.then((data)=> {
-      // console.log(data)
-      projectApi.deleteProject(project)
-      .then(() => {
-        alertMessage.success('Success remove project ' + project)
-        self.allProjects = self.allProjects.filter( p => p !== project)
-        // initState()
-      })
-      .catch(error => alertMessage.error(error))
+      console.log(data)
+      if(data.value === 'accept'){
+        projectApi.deleteProject(project)
+        .then(() => {
+          alertMessage.success('Success remove project ' + project)
+          self.allProjects = self.allProjects.filter( p => p !== project)
+          // initState()
+        })
+        .catch(error => alertMessage.error(error))
+      }
     })
     // self.acceptDelete = function () {
       
