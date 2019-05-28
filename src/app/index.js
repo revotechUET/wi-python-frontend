@@ -28,7 +28,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     });
     projectApi.listProjects()
       .then(projects => {
-        self.allProjects = projects;    
+        if(self.currentProject.rootName !== 'NOT OPEN PROJECT YET!!!'){
+          console.log(self.currentProject.rootName)
+          self.allProjects = projects.filter( p => p !== self.currentProject.rootName)
+        } else {
+          self.allProjects = projects;    
+        }
       })
       .catch(error => {
         alertMessage.error(error)
