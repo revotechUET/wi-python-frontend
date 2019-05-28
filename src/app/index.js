@@ -166,8 +166,30 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
       }
     }
   }
+  function getParentPath(path) {
+    if (!path) return "";
+    let tokens = path.split('/');
+    tokens.splice(tokens.length - 1, 1);
+    return tokens.join('/');
+  }
+
   function getRelPath(prjName, path) {
-    return path.replace(prjName + '/', '');
+  	let sNodePath = path;
+  	if (!sNodePath) {
+		  let sNode = self.selectedNode;
+		  if (sNode) {
+			  if (sNode.rootIsFile) {
+				  sNodePath = getParentPath(sNodePath);
+			  }
+			  else {
+				  sNodePath = sNode.path;
+			  }
+		  }
+		  else {
+			  sNodePath = "";
+		  }
+	  }
+    return sNodePath.replace(prjName + '/', '');
   }
   function reloadPrj(prjName) {
     projectApi.openProject(prjName).then(item => {
@@ -301,10 +323,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
       filePath = filePath + '.py';
       if (!filePath) return
       // projectApi.newFile(getRelPath(self.currentProject.rootName, self.selectedNode.path), filePath)
-      let fileFullPath = getRelPath(self.currentProject.rootName, self.selectedNode.path) + '/' + filePath;
+      let fileFullPath = getRelPath(self.currentProject.rootName) + '/' + filePath;
       projectApi.newFile(self.currentProject.rootName, fileFullPath)
         .then((data) => {
-          self.selectedNode.files.push({
+        	let rootNode = self.selectedNode || self.currentProject;
+          rootNode.files.push({
             rootName: filePath, 
             path: self.currentProject.rootName + '/' + fileFullPath,
             rootIsFile: true,
@@ -876,7 +899,6 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
       cb(err);
     });
   }
-
 }
 export default {
   name,
