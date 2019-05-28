@@ -437,7 +437,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   ///
 
   self.addFunction = function (type) {
-    const fileType = mime.getFileType(self.curFile)
+    const fileType = mime.getFileType(self.selectedNode.rootName)
     if (fileType !== mime.types.python)
       return alertMessage.error(`Doesn't support gen function for file ${fileType}`)
     const generatedFuncCode = funcGen.generateForPy(type)
@@ -445,7 +445,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
   }
 
   self.saveCode = function () {
-    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
+    projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path) , self.code)
       .then(() => alertMessage.success('save success'))
       .catch(error => alertMessage.error(error));
 
@@ -453,12 +453,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
   self.runCode = function () {
     // Spinner();
-    projectApi.saveCode(self.currentProject.rootName, self.curFile, self.code)
+    projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName , self.selectedNode.path), self.code)
       .then(() => {
         // alertMessage.success('save success')
         wiLoading.show($element.find('.app')[0]);
         // Spinner.show();
-        browserCodeRunner.execute(self.currentProject.rootName, self.curFile,
+        browserCodeRunner.execute(self.currentProject.rootName, getRelPath(self.currentProject.rootName , self.selectedNode.path),
           function (error, {
             type,
             render,
@@ -504,7 +504,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
     self.code += `\nclient = wilib.loginByToken("${wiToken.getToken()}")\n`;
 
-    self.curFile = '' // using with write and runnign code
+    self.curFile = '' // using with write and running code
 
 
     // current tree node

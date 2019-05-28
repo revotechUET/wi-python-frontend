@@ -38,10 +38,10 @@
     </div>
     <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
       <div class="label-list-view">
-        <span>EDITOR </span><span ng-show="self.curFile && self.curFile.length">- ({{self.curFile}})</span>
+        <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
       </div>
       <div style="display:flex; flex:3; background-color: #fff;">
-        <wi-droppable ng-if="self.curFile" style="display:flex;flex:3;resize: vertical;overflow: auto -webkit-paged-x; min-height: 600px;" 
+        <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:3;resize: vertical; min-height: 600px;" 
         on-drop="self.onDrop"
           container-style="{display:'flex',flex: 1}">
           <div style="display:flex;flex:3;">
