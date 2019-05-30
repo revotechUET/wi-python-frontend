@@ -68,7 +68,6 @@
               is-result-a-iframe="self.isResultAIframe">
             </terminal>
       </div>
-      
     </div>
     <side-bar my-default-width="200" orientation="w" collapsed="false">
       <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
@@ -84,7 +83,7 @@
 <script type="text/ng-template" id="templateDeleteProject">
   <div class="ngdialog-buttons">
           <div class ="acceptLogout">Are you sure?
-              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">Delete</button>
+              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('accept')">Delete</button>
           </div>
   </div>
 </script>
@@ -169,18 +168,33 @@
 </script>
 <script type="text/ng-template" id="templateOpenProject">
   <div class="ngdialog-buttons">
-      <div class ="newDialog"><div>Open Projects</div>
+      <div class ="newDialog">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div>Open Projects</div>
+            <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
+        </div>
       <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Please select project. Projects are arranged according to the creation time</div>
-          <div class="newDialogContent">
+
+      
+          <div class="newDialogContent" style="overflow-y: auto; max-height: 203px;">
             <ul class="list-project">
-              <li ng-repeat="project in self.allProjects track by $index"
-                  ng-click="self.openProject(project);self.setShowOP(false);">
+              <li ng-repeat="project in self.allProjects | filter:searchProject track by $index"
+                  ng-click="self.selectedProject = project;" ng-class="{selectedProject: self.selectedProject == project}">
                   <span ng-bind="project"></span>
+                  <span class="fa fa-times-circle del" ng-click="event.stopPropagation(); self.delProject(project);"></span>
               </li>
           </ul>
           </div>
+          <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                  Projects are arranged according to the creation time!</div>
+              <div>
+                  <a class="ngdialog-button ngdialog-button-primary" ng-click="self.openProject(self.selectedProject);">OPEN</a>
+              </div>
+          </div>
+          
       </div>
+      
   </div>
 </script>

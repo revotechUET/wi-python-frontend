@@ -28,11 +28,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
     });
     projectApi.listProjects()
       .then(projects => {
-        console.log({
-          tree: self.currentProject
-        })
-        self.allProjects = projects
-        
+        if(self.currentProject.rootName !== 'NOT OPEN PROJECT YET!!!'){
+          console.log(self.currentProject.rootName)
+          self.allProjects = projects.filter( p => p !== self.currentProject.rootName)
+        } else {
+          self.allProjects = projects;    
+        }
       })
       .catch(error => {
         alertMessage.error(error)
@@ -221,29 +222,56 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
       self.acceptNewPrj = function () {
         projectApi
           .newProject(this.nameProject)
-          .then(() => self.openProject(this.nameProject))
+          .then(() => {
+            self.openProject(this.nameProject)
+            this.nameProject = '';
+            ngDialog.close();
+          })
           .catch(error => alertMessage.error(error))
-        ngDialog.close();
       }
     }
+  }
+  self.delProject = function (project) {
+    
+    let dialog = ngDialog.open({
+      template: 'templateDeleteProject',
+      className: 'ngdialog-theme-default',
+      scope: $scope,
+    });
+    dialog.closePromise.then((data)=> {
+      console.log(data)
+      if(data.value === 'accept'){
+        projectApi.deleteProject(project)
+        .then(() => {
+          alertMessage.success('Success remove project ' + project)
+          self.allProjects = self.allProjects.filter( p => p !== project)
+          // initState()
+        })
+        .catch(error => alertMessage.error(error))
+      }
+    })
+    // self.acceptDelete = function () {
+      
+    // }
+    
   }
 
   self.deleteProject = function () {
     if (self.currentProject) {
-      ngDialog.open({
+      let dialog = ngDialog.open({
         template: 'templateDeleteProject',
         className: 'ngdialog-theme-default',
         scope: $scope,
       });
-      self.acceptDelete = function () {
+      dialog.closePromise.then((data)=> {
+        // console.log(data)
         projectApi.deleteProject(self.currentProject.rootName)
-          .then(() => {
-            alertMessage.success('Success remove project ' + self.currentProject.rootName)
-            ngDialog.close();
-            initState()
-          })
-          .catch(error => alertMessage.error(error))
-      }
+        .then(() => {
+          alertMessage.success('Success remove project ' + self.currentProject.rootName)
+          initState()
+        })
+        .catch(error => alertMessage.error(error))
+      })
     } else {
       return alertMessage.error('No project is opened');
     }

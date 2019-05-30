@@ -199,7 +199,18 @@ wi-login>div>span:hover{
   >div {
     margin-bottom: 15px;
   }
-
+  .searchInput{
+    text-align: left;
+    color: #0074c5;
+    background-color: #ffffff;
+    border: 1px solid #cecece;
+    border-radius: 70px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 13px;
+    width: auto;
+    transition: border 0.5s;
+  }
   .newDialogContent {
     display: flex;
     .list-project {
@@ -208,20 +219,36 @@ wi-login>div>span:hover{
       padding: 0;
       text-align: left;
       display: flex;
-      flex-wrap: wrap;
-
+      width: 100%;
+      flex-direction: column;
       >li {
-        padding: 15px 17px;
+        padding: 4px 13px;
         border-radius: 3px;
-        background: #ececec;
-        margin: 10px;
+        background: #dcdcdc80;
+        border: 1px solid #f4f4f4;
+        margin: 0 0 8px 0;
+        font-size: 12px;
         cursor: pointer;
+        transition: border 0.5s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .del {
+          color: #d2d2d2;
+          &:hover{
+            color: rgb(202, 120, 120);
+          }
+        }
+        &.selectedProject {
+          border: 1px solid #0077be;
+          color: #0077be;
+        }
       }
 
       >li:hover {
-        animation-name: animatetop;
-        animation-duration: 0.5s;
-        background: #cacdd2;
+        border: 1px solid #0077be;
+        transition: border 0.5s;
+
       }
     }
   }
