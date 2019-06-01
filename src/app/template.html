@@ -1,135 +1,146 @@
 <div style="display:flex;flex-direction:column;height:100%;">
-  <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
-  <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"
-    login-url="{{self.loginUrl}}"></wi-login>
+    <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
+    <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"
+              login-url="{{self.loginUrl}}"></wi-login>
 
-  <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects"
-    open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject"
-    delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder"
-    delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode"
-    code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree"
-    remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked"
-    refresh-checked="self.refreshChecked" new-checked="self.newChecked"
-    generate-login-by-token="self.generateLoginByToken" generate-login-byaccount="self.generateLoginByAccount"
-    generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython">
-  </tools>
+    <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects"
+           open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject"
+           delete-project="self.deleteProject" create-new-file="self.createNewFile"
+           create-new-folder="self.createNewFolder"
+           delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode"
+           code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig"
+           get-curve-tree="self.getCurveTree"
+           remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked"
+           save-checked="self.saveChecked"
+           refresh-checked="self.refreshChecked" new-checked="self.newChecked"
+           generate-login-by-token="self.generateLoginByToken" generate-login-byaccount="self.generateLoginByAccount"
+           generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython">
+    </tools>
 
-  <div class="app" style="z-index: 0;">
-    <div style="border-right: 1px solid #c7c7c7;">
-      <side-bar my-default-width="235" orientation="e" collapsed="false">
-        <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python" get-icon="self.getIcon4Python"
-          get-children="self.getChildren4Python" run-match="self.runMatch4Python" click-fn='self.clickFunction4Python'>
-          <div style="padding: 7px 13px 8px 13px;"class="label-list-view ng-scope"> <span>PROJECTS</span>
-            <span style="font-size: 9px;
+    <div class="app" style="z-index: 0;">
+        <div style="border-right: 1px solid #c7c7c7;">
+            <side-bar my-default-width="235" orientation="e" collapsed="false">
+                <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python"
+                              get-icon="self.getIcon4Python"
+                              get-children="self.getChildren4Python" run-match="self.runMatch4Python"
+                              click-fn='self.clickFunction4Python'>
+                    <div style="padding: 7px 13px 8px 13px;" class="label-list-view ng-scope"><span>PROJECTS</span>
+                        <span style="font-size: 9px;
             border: 1px solid #929292;
             padding: 4px 10px;
             border-radius: 2px;
             cursor: pointer;
-            margin-left: 10px;"ng-click="self.deleteFn()"> DELETE</span>
-            <span style="font-size: 9px;
+            margin-left: 10px;" ng-click="self.deleteFn()"> DELETE</span>
+                        <span style="font-size: 9px;
             border: 1px solid #929292;
             padding: 4px 10px;
             border-radius: 2px;
             cursor: pointer;
             margin-left: 10px;" ng-click="self.renameFn()">RENAME</span>
-          </div>
-        </wi-tree-view>
-      </side-bar>
-    </div>
-    <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
-      <div class="label-list-view">
-        <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
-      </div>
-      <div style="display:flex; flex:3; background-color: #fff;">
-        <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;" 
-        on-drop="self.onDrop"
-          container-style="{display:'flex',flex: 1}">
-          <div style="display:flex;flex:3;">
-            <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
-              cur-file="self.curFile">
-            </explorer>
-          </div>
-        </wi-droppable>
-      </div>
-      <div style="
+                    </div>
+                </wi-tree-view>
+            </side-bar>
+        </div>
+        <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
+            <div class="label-list-view">
+                <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
+            </div>
+            <div style="display:flex; flex:3; background-color: #fff;">
+                <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
+                              on-drop="self.onDrop"
+                              container-style="{display:'flex',flex: 1}">
+                    <div style="display:flex;flex:3;">
+                        <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
+                                  cur-file="self.curFile">
+                        </explorer>
+                    </div>
+                </wi-droppable>
+            </div>
+            <div style="
       position: relative;
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;">
-          <div class="label-list-view">
-              <span>CONSOLE</span>
-            </div>
-            <terminal style="
+                <div class="label-list-view">
+                    <span>CONSOLE</span>
+                </div>
+                <terminal style="
             display: flex;
             flex-direction: column;
             flex: 1;"
-              result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
-              is-result-a-iframe="self.isResultAIframe">
-            </terminal>
-      </div>
-    </div>
-    <side-bar my-default-width="200" orientation="w" collapsed="false">
-      <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
-        get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'
-        get-siblings="self.getSiblings">
-        <div class="label-list-view">
-          <span>I2G CLOUD</span>
+                          result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
+                          is-result-a-iframe="self.isResultAIframe">
+                </terminal>
+            </div>
         </div>
-      </wi-tree-view>
-    </side-bar>
-  </div>
+        <side-bar my-default-width="200" orientation="w" collapsed="false">
+            <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
+                          get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'
+                          get-siblings="self.getSiblings">
+                <div class="label-list-view">
+                    <span>I2G CLOUD</span>
+                </div>
+            </wi-tree-view>
+        </side-bar>
+    </div>
 </div>
 <script type="text/ng-template" id="templateDeleteProject">
-  <div class="ngdialog-buttons">
-          <div class ="acceptLogout">Are you sure?
-              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('accept')">Delete</button>
-          </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="acceptLogout">Are you sure?
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog('accept')">
+                Delete
+            </button>
+        </div>
+    </div>
 </script>
 <script type="text/ng-template" id="templateNewPrj">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog"><div>New Project</div>
-      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the project name according to the following structure: <b>projectname</b></div>
-          <div class="newDialogContent">
-              <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
-          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
-          </div>
-      </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>New Project</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Enter the project name according to the following structure: <b>projectname</b></div>
+            <div class="newDialogContent">
+                <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script type="text/ng-template" id="templateNewFile">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog"><div>New File</div>
-      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the file name according to the following structure: <b>filename or foldername</b></div>
-          <div class="newDialogContent">
-              <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
-          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
-          </div>
-      </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>New File</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Enter the file name according to the following structure: <b>filename or filename.py</b></div>
+            <div class="newDialogContent">
+                <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
+            </div>
+        </div>
+    </div>
 </script>
+
 <script type="text/ng-template" id="templateNewFolder">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog"><div>New Folder</div>
-      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the folder name according to the following structure:: <b>foldername</b></div>
-          <div class="newDialogContent">
-              <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
-          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
-          </div>
-      </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>New Folder</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Enter the folder name according to the following structure:: <b>foldername</b></div>
+            <div class="newDialogContent">
+                <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
+            </div>
+        </div>
+    </div>
 </script>
 <script type="text/ng-template" id="templateAbout">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog" style="
+    <div class="ngdialog-buttons">
+        <div class="newDialog" style="
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -137,64 +148,78 @@
       padding: 15px 0;
       font-size: 15px;
       font-weight: bold;">
-      <div style="font-size: 22px;">Wi Python</div>
-      <div style="border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Version 2.5.7 (Official Build)</div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Recommend Google Chrome</div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z</div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Copyright (C) 2019 Revotech. All rights reserved</div>
+            <div style="font-size: 22px;">Wi Python</div>
+            <div style="border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Version 2.5.7 (Official
+                Build)
+            </div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Recommend Google Chrome
+            </div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z
+            </div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Copyright (C) 2019
+                Revotech. All rights reserved
+            </div>
 
-  </div>
+        </div>
 </script>
 <script type="text/ng-template" id="templateWarning">
-  <div class="ngdialog-buttons">
-          <div class ="acceptLogout">Are you sure delete <b>{{self.curFile}}</b>
-              <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">Delete</button>
-          </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="acceptLogout">Are you sure delete <b>{{self.curFile}}</b>
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">
+                Delete
+            </button>
+        </div>
+    </div>
 </script>
 <script type="text/ng-template" id="templateRename">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog"><div>Remane</div>
-      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-      <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-        Enter the new fileName or folderName</div>
-          <div class="newDialogContent">
-              <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
-          <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
-          </div>
-      </div>
-  </div>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>Remane</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Enter the new fileName or folderName
+            </div>
+            <div class="newDialogContent">
+                <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+            </div>
+        </div>
+    </div>
 </script>
 <script type="text/ng-template" id="templateOpenProject">
-  <div class="ngdialog-buttons">
-      <div class ="newDialog">
-        <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div>Open Projects</div>
-            <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
-        </div>
-      <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>Open Projects</div>
+                <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
+            </div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
 
-      
-          <div class="newDialogContent" style="overflow-y: auto; max-height: 203px;">
-            <ul class="list-project">
-              <li ng-repeat="project in self.allProjects | filter:searchProject track by $index"
-                  ng-click="self.selectedProject = project;" ng-class="{selectedProject: self.selectedProject == project}">
-                  <span ng-bind="project"></span>
-                  <span class="fa fa-times-circle del" ng-click="event.stopPropagation(); self.delProject(project);"></span>
-              </li>
-          </ul>
-          </div>
-          <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-              <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                  Projects are arranged according to the creation time!</div>
-              <div>
-                  <a class="ngdialog-button ngdialog-button-primary" ng-click="self.openProject(self.selectedProject);">OPEN</a>
-              </div>
-          </div>
-          
-      </div>
-      
-  </div>
+
+            <div class="newDialogContent" style="overflow-y: auto; max-height: 203px;">
+                <ul class="list-project">
+                    <li ng-repeat="project in self.allProjects | filter:searchProject track by $index"
+                        ng-click="self.selectedProject = project;"
+                        ng-class="{selectedProject: self.selectedProject == project}">
+                        <span ng-bind="project"></span>
+                        <span class="fa fa-times-circle del"
+                              ng-click="event.stopPropagation(); self.delProject(project);"></span>
+                    </li>
+                </ul>
+            </div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                    Projects are arranged according to the creation time!
+                </div>
+                <div>
+                    <a class="ngdialog-button ngdialog-button-primary"
+                       ng-click="self.openProject(self.selectedProject);">OPEN</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 </script>
