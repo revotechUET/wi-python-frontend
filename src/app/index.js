@@ -408,20 +408,29 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (!folderPath) return;
 		projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
 			const containerFolderPath = getParrentFolderPath(folderPath);
-			const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
+			if (containerFolderPath === self.currentProject.rootName + '/'){
+				self.currentProject.folders.push({
+					rootName: folderName,
+					files: [],
+					folders: [],
+					path: containerFolderPath + '/' + folderName,
+					rootIsFile: false
+				});
+			} else {
+				const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
 
-			const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
+				const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
 
-			if (!parrentFolder) return alertMessage.error('Cannot create folder');
+				if (!parrentFolder) return alertMessage.error('Cannot create folder');
 
-			parrentFolder.folders.push({
-				rootName: folderName,
-				files: [],
-				folders: [],
-				path: containerFolderPath + '/' + folderName,
-				rootIsFile: false
-			});
-
+				parrentFolder.folders.push({
+					rootName: folderName,
+					files: [],
+					folders: [],
+					path: containerFolderPath + '/' + folderName,
+					rootIsFile: false
+				});
+			}
 			alertMessage.success('success create folder');
 			console.log({
 				tree: self.currentProject
