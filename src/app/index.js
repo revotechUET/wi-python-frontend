@@ -875,6 +875,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				return alertMessage.error(err.data.content);
 			}
 			$scope.treeConfig = projects.filter(project => !project.shared);
+			$scope.treeConfig.map(p => {p.realName = p.name; p.name = p.alias})
 			console.log($scope.treeConfig);
 		});
 	}
