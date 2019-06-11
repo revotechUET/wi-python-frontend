@@ -41,11 +41,11 @@
                 </wi-tree-view>
             </side-bar>
         </div>
-        <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;">
+        <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
             <div class="label-list-view">
                 <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
             </div>
-            <div style="display:flex; flex:3; background-color: #fff;">
+            <div style="display:flex; flex:3; background-color: #fff;margin-bottom: 15px;">
                 <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
                               on-drop="self.onDrop"
                               container-style="{display:'flex',flex: 1}">
@@ -56,19 +56,11 @@
                     </div>
                 </wi-droppable>
             </div>
-            <div style="
-      position: relative;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;">
+            <div style="position: relative; flex-basis: 100px; display: flex; flex-direction: column;" resizable r-directions="['top']" r-flex="true">
                 <div class="label-list-view">
                     <span>CONSOLE</span>
                 </div>
-                <terminal style="
-            display: flex;
-            flex-direction: column;
-            flex: 1;"
+                <terminal style="display: flex;flex-direction: column;flex: 1;"
                           result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
                           is-result-a-iframe="self.isResultAIframe">
                 </terminal>

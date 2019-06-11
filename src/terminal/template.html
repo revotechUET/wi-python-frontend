@@ -1,26 +1,13 @@
 <div class="terminal">
-    <span style="
-    font-size: 9px;
-    border: 1px solid #929292;
-    padding: 4px 10px;
-    border-radius: 2px;
-    position: absolute;
-    cursor: pointer;
-    right: 35px;
-    top: 7px;
-    z-index: 3;
-    margin-left: 10px;"
-          ng-click="self.clearConsole()">CLEAR</span>
-    <span style="font-size: 9px; border: 1px solid #929292; padding: 4px 10px; border-radius: 2px; position: absolute;
-cursor: pointer; right: 90px; top: 7px;" ng-click="self.stopRunning()">TERMINATE</span>
     <span style="right: 5px; top: 10px; position: absolute" ng-show="self.running">
         <img src="./spinner.gif">
     </span>
-    <!--<div ng-if="!self.codeOrIframe" ng-bind-html="self._resultHtml"></div>-->
+    <span
+        style="font-size: 9px;border: 1px solid #929292;padding: 4px 10px;border-radius: 2px;position: absolute;cursor: pointer;right: 35px; top: 7px; z-index: 3; margin-left: 10px;"
+        ng-click="self.clearConsole()">CLEAR</span>
+    <span
+        style="font-size: 9px; border: 1px solid #929292; padding: 4px 10px; border-radius: 2px; position: absolute; cursor: pointer; right: 97px; top: 7px;"
+        ng-click="self.stopRunning()">TERMINATE</span>
+
     <div ng-repeat="msg in self.messages">{{msg.content}}</div>
-    <!-- <iframe
-      ng-if="self.isResultAIframe"
-      src="{{self._iframeHtmlLink}}"
-      frameborder="0">
-    </iframe> -->
 </div>
