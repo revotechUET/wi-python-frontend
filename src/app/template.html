@@ -72,6 +72,11 @@
                     <span class="fn-button" 
                         ng-click="self.getCurveTree()">SYNC PROJECTS</span>
                 </div>
+                <div ng-show="self.showLoading" class="loading">
+                    <div class="loading-bar">
+                    <span class="bar-animation"></span>
+                    </div>
+                </div>
             </wi-tree-view>
         </side-bar>
     </div>
@@ -121,7 +126,7 @@
             <div>New Folder</div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the folder name according to the following structure:: <b>foldername</b></div>
+                Enter the folder name according to the following structure: <b>foldername</b></div>
             <div class="newDialogContent">
                 <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
                 <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
@@ -193,6 +198,33 @@
             <div class="newDialogContent">
                 <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
                 <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="templateRestore">
+    <style>
+        .ngdialog-overlay{
+            pointer-events: none;
+        }
+    </style>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>Restore opened project</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 30px;"></div>
+            <div class="newDialogContent" style="justify-content: space-between;">
+                <a style="background: #fff;
+                color: #0077be;
+                border: 1px solid;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 226px;
+                margin: 0;
+                text-overflow: ellipsis;" 
+                class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
+                <i style="transform: scaleX(-1); margin-right:10px;"class="fa fa-repeat" aria-hidden="true"></i>
+                <b>{{self.curPrj}}</b> </a>
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
             </div>
         </div>
     </div>
