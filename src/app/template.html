@@ -98,8 +98,10 @@
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Enter the project name according to the following structure: <b>projectname</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter project name" ng-model="self.nameProject">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">
+                </form>
             </div>
         </div>
     </div>
@@ -113,8 +115,10 @@
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Enter the file name according to the following structure: <b>filename or filename.py</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
+                <form>
+                    <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">
+                </form>
             </div>
         </div>
     </div>
@@ -128,8 +132,10 @@
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Enter the folder name according to the following structure: <b>foldername</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">
+                </form>
             </div>
         </div>
     </div>
@@ -196,8 +202,10 @@
                 Enter the new fileName or folderName
             </div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter new name" ng-model="self.newFileName">
+                    <input style="max-width: fit-content;" type="submit" value="DONE" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">
+                </form>
             </div>
         </div>
     </div>
@@ -212,7 +220,7 @@
         <div class="newDialog">
             <div>Restore opened project</div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 30px;"></div>
-            <div class="newDialogContent" style="justify-content: space-between;">
+            <div class="newDialogContent" style="display:flex; justify-content: space-between;">
                 <a style="background: #fff;
                 color: #0077be;
                 border: 1px solid;

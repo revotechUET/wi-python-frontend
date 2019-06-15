@@ -224,7 +224,9 @@ wi-login>div>span:hover{
     transition: border 0.5s;
   }
   .newDialogContent {
-    display: flex;
+    >form{
+      display: flex;
+    }
     .list-project {
       margin: 0;
       list-style-type: none;
