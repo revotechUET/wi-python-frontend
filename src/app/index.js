@@ -520,7 +520,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						}
 						if (render) {
 							self.resultHtml = render;
-							alertMessage.success('Run Finished')
+							// alertMessage.success('Run Finished')
 						}
 						// Spinner.hide();
 						wiLoading.hide();
