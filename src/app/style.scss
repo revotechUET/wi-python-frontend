@@ -77,10 +77,19 @@ code {
 }
 
 .fn-button {
-  float: right;
-  cursor: pointer;
-  color: #d4d4d4;
-  padding: 11px;
+  font-size: 9px;
+  border: 1px solid #929292;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer; 
+  margin-left: 10px;
+  transition      : all 0.2s ease-in;
+  &:hover {
+    border: 1px solid #0077be;
+    color: #0077be;
+    transition      : all 0.2s ease-in;
+    background: #fff;
+  }
 }
 
 .input-search-list-view {
