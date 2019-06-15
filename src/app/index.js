@@ -20,6 +20,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         }, function (newValue, oldValue) {
             // console.log(newValue, oldValue);
             if ((localStorage.getItem("token")) !== null) {
+				getCurveTree();
 				setTimeout(function () {
 					wellcome();
 				}, 1500);
