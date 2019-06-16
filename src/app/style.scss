@@ -273,16 +273,14 @@ wi-login>div>span:hover{
   width: 35px;
   height: 35px;
   display: flex;
-  border: 1px solid #cecece;
+  border: 1px solid #0077be;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  color: #cecece;
+  color: #0077be;
   transition: ease-in 0.2s;
   cursor: pointer;
   &:hover {
-    border: 1px solid #0077be;
-    color: #0077be;
     transform: scale(1.2);
     transition: ease-in 0.2s;
   }

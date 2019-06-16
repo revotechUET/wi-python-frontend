@@ -22,7 +22,11 @@
             <side-bar my-default-width="235" orientation="e" collapsed="false">
                 <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python"
                               get-icon="self.getIcon4Python"
-                              get-children="self.getChildren4Python" run-match="self.runMatch4Python"
+                              get-children="self.getChildren4Python"
+                              keep-children='true'
+                              uncollapsible='true'
+                              hide-unmatched="true"
+                              run-match="self.runMatch4Python"
                               click-fn='self.clickFunction4Python'>
                     <div style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;" class="label-list-view ng-scope"><span>PROJECTS</span>
                         <span class="fn-button" 
@@ -123,6 +127,38 @@
                 <form>
                     <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
                     <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="templateWarningSave">
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div style="display: flex;align-items: center;">
+                <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #f1b500;font-size: 25px;">
+                </i>Warning
+            </div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Save changes to the python file “<b>{{self.selectedNode.rootName}}</b>” before closing? </div>
+            <div class="newDialogContent">
+                <form style="justify-content: space-between;">
+                        <a style="background: #fff;
+                        color: #0077be;
+                        border: 1px solid;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        margin: 0;
+                        text-overflow: ellipsis;
+                        letter-spacing: 0;
+                        text-transform: none;" 
+                        class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()"> Don't save </a>
+                    <div>
+                        <input type="submit" style="max-width: fit-content;" value="Save" class="ngdialog-button ngdialog-button-primary" ng-click="self.saveCode">
+                        <input type="submit" style="max-width: fit-content;" value="Cancel" class="ngdialog-button ngdialog-button-primary" ng-click="">
+                    </div>
                 </form>
             </div>
         </div>
@@ -233,11 +269,13 @@
                 white-space: nowrap;
                 width: 226px;
                 margin: 0;
-                text-overflow: ellipsis;" 
+                text-overflow: ellipsis;
+                letter-spacing: 0;
+                text-transform: none;" 
                 class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
                 <i style="transform: scaleX(-1); margin-right:10px;"class="fa fa-repeat" aria-hidden="true"></i>
                 <b>{{self.curPrj}}</b> </a>
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
+                <a style="border: 1px solid #0077be;" class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
             </div>
         </div>
     </div>

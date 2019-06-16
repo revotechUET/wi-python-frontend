@@ -8,7 +8,6 @@ const name = 'explorer'
 controller.$inject = ['mime']
 function controller(mime) {
   const self = this
-
   self.$onInit = function () {
     initCodeEditor()
     fixDefaultStyle()
@@ -16,13 +15,16 @@ function controller(mime) {
 
   self.$onChanges = function ({ code, curFile }) {
     if (code) {
-      self.code = code.currentValue
+      self.code = code.currentValue;
+      if(self.code !== self.codeChanged ){
+        console.log("...........................")
+     }
     }
 
     if (curFile && curFile.currentValue) {
       self.curFile = curFile.currentValue
     }
-
+    
     initCodeEditor()
 
     // if (.explorer .codeflask pre) try again until success
@@ -56,6 +58,7 @@ function controller(mime) {
       this.lineNumber = lineNumber
       this.updateLineNumbersCount()
     }
+    self.codeChanged = self.code;
 
     codeArea.updateCode(self.code)
     codeArea.onUpdate(code => self.updateCode(code))
