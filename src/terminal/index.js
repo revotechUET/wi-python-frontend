@@ -3,17 +3,18 @@ import './style.scss'
 
 const name = 'terminal';
 
-controller.$inject = ['$sce', '$timeout', 'logStream'];
+controller.$inject = ['$sce', '$timeout', 'logStream', 'projectApi'];
 
-function controller($sce, $timeout, logStream) {
+function controller($sce, $timeout, logStream, projectApi) {
 	const self = this;
 
 	//------------------------------------
-	function updateScroll(){
-    	let element = document.getElementById("consoleWindow");
+	function updateScroll() {
+		let element = document.getElementById("consoleWindow");
 		element.scrollTop = element.scrollHeight;
 		console.log(".")
 	}
+
 	//------------------------------------
 	self.messages = [];
 	self.running = false;
@@ -23,15 +24,30 @@ function controller($sce, $timeout, logStream) {
 		self.messages.push(msg);
 		$timeout(() => {
 		});
-		if(self.running) {
+		if (self.running) {
 			updateScroll();
 		}
 	});
+
 	self.$onInit = function () {
 		initState()
 	};
+
 	self.clearConsole = function () {
 		this.messages.length = 0;
+	};
+
+	self.terminateProcess = function () {
+		let processes = JSON.parse(localStorage.getItem('running-pid') || []);
+		console.log("Terminate ", processes);
+		async.each(processes, (p, next) => {
+			projectApi.terminateProcess(p).then(data => {
+				console.log(data);
+				next()
+			});
+		}, () => {
+			localStorage.setItem('running-pid', '[]');
+		});
 	};
 
 	self.$onChanges = function ({resultHtml, iframeHtmlLink, isResultAIframe}) {

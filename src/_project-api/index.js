@@ -73,6 +73,12 @@ export function service(config, request, wiToken, logStream) {
 		return logStream.fetchGet('/code-runner', {file: fileName, key: 'pyLog', token: getToken(), project: project});
 	};
 
+	const terminateProcess = (pid) => {
+		const token = getToken();
+		const url = `${config.ONLINE_EDITOR_URL}/code-runner/teminate?token=${token}&pid=${pid}`;
+		return request.get(url)
+	};
+
 	const saveCode = (project, fileName, code) => {
 		const token = getToken();
 		const url = `${config.ONLINE_EDITOR_URL}/code-action/save`;
@@ -138,6 +144,7 @@ export function service(config, request, wiToken, logStream) {
 		openFolder,
 		listProjects,
 		runCode,
+		terminateProcess,
 		saveCode,
 		login,
 		// removeFile,
