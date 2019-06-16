@@ -1,6 +1,7 @@
 import template from './template.html'
 import './style.scss'
 
+const queryString = require('query-string')
 const name = 'app';
 
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading'];
@@ -14,19 +15,21 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.$onInit = function () {
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
 		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
+		self.queryString = queryString.parse(location.search);
 		initState();
 		$scope.$watch(function () {
-            return localStorage.getItem('token');
-        }, function (newValue, oldValue) {
-            // console.log(newValue, oldValue);
-            if ((localStorage.getItem("token")) !== null) {
+			return localStorage.getItem('token');
+		}, function (newValue, oldValue) {
+			// console.log(newValue, oldValue);
+			if ((localStorage.getItem("token")) !== null) {
 				getCurveTree();
 				setTimeout(function () {
 					wellcome();
 				}, 1500);
-            }
-        });
+			}
+		});
 	};
+
 	function wellcome() {
 		if (wiToken.getCurrentProjectName()) {
 			self.curPrj = wiToken.getCurrentProjectName()
@@ -46,7 +49,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						alertMessage.error(error)
 					})
 			}
-		} else if(wiToken.getToken()) {
+		} else if (wiToken.getToken()) {
 			ngDialog.open({
 				template: 'templateOpenProject',
 				className: 'ngdialog-theme-default',
@@ -66,7 +69,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				});
 		}
 	}
-	
+
 	self.removeTreeConfig = function () {
 		$scope.treeConfig.length = 0;
 	};
@@ -928,7 +931,10 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				return alertMessage.error(err.data.content);
 			}
 			$scope.treeConfig = projects.filter(project => !project.shared);
-			$scope.treeConfig.map(p => { p.realName = p.name; p.name = p.alias })
+			$scope.treeConfig.map(p => {
+				p.realName = p.name;
+				p.name = p.alias
+			})
 			console.log($scope.treeConfig);
 			self.showLoading = false;
 		});
