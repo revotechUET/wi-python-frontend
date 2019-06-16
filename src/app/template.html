@@ -91,6 +91,11 @@
     </div>
 </script>
 <script type="text/ng-template" id="templateNewPrj">
+    <style>
+        .ngdialog-overlay{
+            pointer-events: auto;
+        }
+    </style>
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div>New Project</div>
@@ -243,6 +248,7 @@
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div>Open Projects</div>
                 <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
+                <a class="new-circle" ng-click="self.createNewProject()"><i class="fa fa-plus"></i></a>
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
 

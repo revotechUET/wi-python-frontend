@@ -194,7 +194,8 @@ wi-login>div>span:hover{
 }
 
 .ngdialog .btn {
-  padding: 6px;
+  padding: 9px;
+  text-align: center;
 }
 
 // .codeflask__code {
@@ -265,6 +266,25 @@ wi-login>div>span:hover{
 
       }
     }
+  }
+}
+.new-circle {
+  background: #f4f4f4;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border: 1px solid #cecece;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: #cecece;
+  transition: ease-in 0.2s;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #0077be;
+    color: #0077be;
+    transform: scale(1.2);
+    transition: ease-in 0.2s;
   }
 }
 

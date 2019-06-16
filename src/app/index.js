@@ -39,6 +39,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				projectApi.openProject(wiToken.getCurrentProjectName())
 					.then(item => {
 						self.currentProject = item;
+						self.selectedNode = self.currentProject;
 						ngDialog.close();
 					})
 					.catch(error => {
@@ -78,7 +79,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		projectApi.listProjects()
 			.then(projects => {
 				if (self.currentProject.rootName !== 'NOT OPEN PROJECT YET!!!') {
-					console.log(self.currentProject.rootName);
+					console.log(self.currentProject);
 					self.allProjects = projects.filter(p => p !== self.currentProject.rootName)
 				} else {
 					self.allProjects = projects;
@@ -92,6 +93,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		projectApi.openProject(name)
 			.then(item => {
 				self.currentProject = item;
+				self.selectedNode = self.currentProject;
 				wiToken.setCurrentProjectName(self.currentProject.rootName)
 				ngDialog.close();
 			})
@@ -254,6 +256,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		projectApi.openProject(prjName).then(item => {
 			$timeout(() => {
 				self.currentProject = item;
+				self.selectedNode = self.currentProject;
 			});
 		}).catch(error => {
 			alertMessage.error(error)
