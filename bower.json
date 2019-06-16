@@ -24,5 +24,8 @@
     "wi-live-python": "https://github.com/tunghoang/wi-live-python.git"
   },
   "license": "ISC",
-  "homepage": "https://github.com/bmq928/online-editor-client"
+  "homepage": "https://github.com/bmq928/online-editor-client",
+  "resolutions": {
+    "angular": "1.7.8"
+  }
 }
