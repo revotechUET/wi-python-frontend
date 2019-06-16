@@ -24,7 +24,7 @@
                               get-icon="self.getIcon4Python"
                               get-children="self.getChildren4Python" run-match="self.runMatch4Python"
                               click-fn='self.clickFunction4Python'>
-                    <div style="padding: 7px 13px 8px 13px;" class="label-list-view ng-scope"><span>PROJECTS</span>
+                    <div style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;" class="label-list-view ng-scope"><span>PROJECTS</span>
                         <span class="fn-button" 
                         ng-click="self.deleteFn()"> DELETE</span>
                         <span class="fn-button" 
@@ -34,10 +34,11 @@
             </side-bar>
         </div>
         <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
-            <div class="label-list-view" style="padding: 7px 13px 8px 13px;">
+            <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
                 <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
                 <span class="fn-button" 
-                    ng-click="self.runCode()">RUN CODE</span>
+                    ng-click="self.runCode()">
+                    <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
                 <span class="fn-button"  
                     ng-click="self.saveCode()">SAVE CODE</span>
             </div>
@@ -53,7 +54,7 @@
                 </wi-droppable>
             </div>
             <div style="position: relative; flex-basis: 100px; display: flex; flex-direction: column;" resizable r-directions="['top']" r-flex="true">
-                <div class="label-list-view">
+                <div class="label-list-view" style="padding: 12px 13px; border-bottom: 1px solid #e4e4e4; border-top: 1px solid #e4e4e4;">
                     <span>CONSOLE</span>
                 </div>
                 <terminal style="display: flex;flex-direction: column;flex: 1;"
@@ -62,12 +63,19 @@
                 </terminal>
             </div>
         </div>
-        <side-bar my-default-width="200" orientation="w" collapsed="false">
+        <side-bar my-default-width="215" orientation="w" collapsed="false">
             <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
                           get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'
                           get-siblings="self.getSiblings">
-                <div class="label-list-view">
+                <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
                     <span>I2G CLOUD</span>
+                    <span class="fn-button" 
+                        ng-click="self.getCurveTree()">SYNC PROJECTS</span>
+                </div>
+                <div ng-show="self.showLoading" class="loading">
+                    <div class="loading-bar">
+                    <span class="bar-animation"></span>
+                    </div>
                 </div>
             </wi-tree-view>
         </side-bar>
@@ -83,6 +91,11 @@
     </div>
 </script>
 <script type="text/ng-template" id="templateNewPrj">
+    <style>
+        .ngdialog-overlay{
+            pointer-events: auto;
+        }
+    </style>
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div>New Project</div>
@@ -90,8 +103,10 @@
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Enter the project name according to the following structure: <b>projectname</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">New</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter project name" ng-model="self.nameProject">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">
+                </form>
             </div>
         </div>
     </div>
@@ -105,8 +120,10 @@
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Enter the file name according to the following structure: <b>filename or filename.py</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">New</a>
+                <form>
+                    <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">
+                </form>
             </div>
         </div>
     </div>
@@ -118,37 +135,58 @@
             <div>New Folder</div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the folder name according to the following structure:: <b>foldername</b></div>
+                Enter the folder name according to the following structure: <b>foldername</b></div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">New</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
+                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">
+                </form>
             </div>
         </div>
     </div>
 </script>
 <script type="text/ng-template" id="templateAbout">
+    <style>
+        .ngdialog.ngdialog-theme-default .ngdialog-content {
+            padding: 0;
+        }
+        .newDialog > div {
+            margin-bottom: 0;
+            border-radius: 5px;
+        }
+        .ngdialog-overlay {
+            background: rgba(255, 255, 255, 0);
+        }
+    </style>
     <div class="ngdialog-buttons">
-        <div class="newDialog" style="
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 0;
-      font-size: 15px;
-      font-weight: bold;">
-            <div style="font-size: 22px;">Wi Python</div>
-            <div style="border-bottom: 1px solid #f1f0f0;margin: 10px 0 15px 0; width: 60%;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Version 2.5.7 (Official
-                Build)
-            </div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Recommend Google Chrome
-            </div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z
-            </div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">Copyright (C) 2019
-                Revotech. All rights reserved
-            </div>
-
+        <div class="newDialog" style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 0; font-size: 15px; font-weight: bold;">
+            <div class="area" style="position: relative; display: flex;align-items: center; justify-content: center;">
+                <div style="position: absolute; color: #fff;">
+                    <div style="font-size: 22px;">Wi Python</div>
+                    <div style="border-bottom: 1px solid #f1f0f0; margin: 10px 0 15px 0; width: 60%;"></div>
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Version 2.5.7 (Official Build)
+                    </div>
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Recommend Google Chrome
+                    </div>
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z
+                    </div>
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Copyright (C) 2019
+                        Revotech. All rights reserved
+                    </div>
+                </div>
+                <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div >
         </div>
 </script>
 <script type="text/ng-template" id="templateWarning">
@@ -169,8 +207,37 @@
                 Enter the new fileName or folderName
             </div>
             <div class="newDialogContent">
-                <input type="text" placeholder="Enter new file name" ng-model="self.newFileName">
-                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">Done</a>
+                <form>
+                    <input style="flex: 1;" type="text" placeholder="Enter new name" ng-model="self.newFileName">
+                    <input style="max-width: fit-content;" type="submit" value="DONE" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRename()">
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="templateRestore">
+    <style>
+        .ngdialog-overlay{
+            pointer-events: none;
+        }
+    </style>
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div>Restore opened project</div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 30px;"></div>
+            <div class="newDialogContent" style="display:flex; justify-content: space-between;">
+                <a style="background: #fff;
+                color: #0077be;
+                border: 1px solid;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 226px;
+                margin: 0;
+                text-overflow: ellipsis;" 
+                class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
+                <i style="transform: scaleX(-1); margin-right:10px;"class="fa fa-repeat" aria-hidden="true"></i>
+                <b>{{self.curPrj}}</b> </a>
+                <a class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
             </div>
         </div>
     </div>
@@ -181,6 +248,7 @@
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div>Open Projects</div>
                 <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
+                <a class="new-circle" ng-click="self.createNewProject()"><i class="fa fa-plus"></i></a>
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
 

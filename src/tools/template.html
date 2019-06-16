@@ -52,12 +52,17 @@
         </button>
         <div class="dropdown-content">
             <a href="#" ng-click="self.getCurveTree()">Open Project i2G</a>
-            <a href="#" ng-click="self.removeTreeConfig()">Clear i2g Project</a>
+            <a href="#" ng-click="self.removeTreeConfig()">Hide i2g Project</a>
             <div style="margin: 4px 17px;;border-bottom: 1px solid #e6e6e6;"></div>
-            <a href="#" ng-click="self.deleteChecked()">Delete Mode</a>
-            <a href="#" ng-click="self.saveChecked()">Save Mode</a>
-            <a href="#" ng-click="self.refreshChecked()">Refresh Mode</a>
-            <a href="#" ng-click="self.newChecked()">New Mode</a>
+            <div class="dropdown-submenu" href="#" ng-click="">Select Mode
+                    <i class="fa fa-caret-right"></i>
+                <div class="submenu-content">
+                    <a href="#" ng-click="self.deleteChecked()">Delete Mode</a>
+                    <a href="#" ng-click="self.saveChecked()">Save Mode</a>
+                    <a href="#" ng-click="self.refreshChecked()">Refresh Mode</a>
+                    <a href="#" ng-click="self.newChecked()">New Mode</a>
+                </div>
+            </div>
             <div style="margin: 4px 17px;;border-bottom: 1px solid #e6e6e6;"></div>
             <a href="#" ng-click="self.generateLoginByToken()">Login by Token</a>
             <a href="#" ng-click="self.generateLoginByAccount()">Login by Account</a>

@@ -7,6 +7,14 @@ controller.$inject = ['$sce', '$timeout', 'logStream'];
 
 function controller($sce, $timeout, logStream) {
 	const self = this;
+
+	//------------------------------------
+	function updateScroll(){
+    	let element = document.getElementById("consoleWindow");
+		element.scrollTop = element.scrollHeight;
+		console.log(".")
+	}
+	//------------------------------------
 	self.messages = [];
 	self.running = false;
 	logStream.registerCallback("pyLog", function (msg) {
@@ -15,6 +23,9 @@ function controller($sce, $timeout, logStream) {
 		self.messages.push(msg);
 		$timeout(() => {
 		});
+		if(self.running) {
+			updateScroll();
+		}
 	});
 	self.$onInit = function () {
 		initState()

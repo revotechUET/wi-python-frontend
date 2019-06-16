@@ -1,14 +1,14 @@
-<div class="terminal">
+<div id="consoleWindow" class="terminal">
     <span style="right: 159px; top: 10px; position: absolute" ng-show="self.running">
         <img src="./spinner.gif">
     </span>
     <span
         class="fn-button"
-        style="position: absolute;right: 10px; top: 8px; z-index: 3;"
+        style="position: absolute;right: 10px; top: 10px; z-index: 3;"
         ng-click="self.clearConsole()">CLEAR</span>
     <span
         class="fn-button"
-        style="position: absolute; right: 71px; top: 8px;"
+        style="position: absolute; right: 71px; top: 10px;"
         ng-click="self.stopRunning()">TERMINATE</span>
 
     <div ng-repeat="msg in self.messages">{{msg.content}}</div>
