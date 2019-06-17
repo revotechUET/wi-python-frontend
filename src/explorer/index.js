@@ -15,10 +15,7 @@ function controller(mime) {
 
   self.$onChanges = function ({ code, curFile }) {
     if (code) {
-      self.code = code.currentValue;
-      if(self.code !== self.codeChanged ){
-        console.log("...........................")
-     }
+      self.code = code.currentValue
     }
 
     if (curFile && curFile.currentValue) {
@@ -58,7 +55,6 @@ function controller(mime) {
       this.lineNumber = lineNumber
       this.updateLineNumbersCount()
     }
-    self.codeChanged = self.code;
 
     codeArea.updateCode(self.code)
     codeArea.onUpdate(code => self.updateCode(code))
@@ -103,7 +99,8 @@ export default {
     bindings: {
       updateCode: '<',
       code: '<',
-      curFile: '<'
+      curFile: '<',
+      // codeChange: '<'
     },
     template,
     controller,

@@ -120,8 +120,21 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		return node.rootName.includes(criteria);
 	};
 	this.clickFunction4Python = function ($event, node) {
-		self.selectedNode = node;
-		console.log(self.selectedNode);
+		self.coutClick = self.coutClick +  1;
+		// 
+		// if(self.coutClick > 1){
+		// 	self.selectedNode = node;
+		// 	console.log(node)
+		// 	console.log(self.code)
+		// }
+		// // console.log(self.selectedNode);
+		// if(self.change) {
+		// 	ngDialog.open({
+		// 		template: 'templateWarningSave',
+		// 		className: 'ngdialog-theme-default',
+		// 		scope: $scope,
+		// 	});
+		// }
 		if (node.rootIsFile) {
 			self.openFile(node.path);
 
@@ -613,7 +626,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 		self.curFile = ''; // using with write and running code
 
+		self.coutClick = 0;
 
+		self.change = false;
 		// current tree node
 		self.selectedNode = null;
 
@@ -935,7 +950,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				p.realName = p.name;
 				p.name = p.alias
 			})
-			console.log($scope.treeConfig);
+			// console.log($scope.treeConfig);
 			self.showLoading = false;
 		});
 	}
