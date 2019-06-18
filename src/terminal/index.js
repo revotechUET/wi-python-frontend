@@ -9,12 +9,11 @@ function controller($sce, $timeout, logStream, projectApi) {
 	const self = this;
 
 	//------------------------------------
-	function updateScroll() {
-		let element = document.getElementById("consoleWindow");
-		element.scrollTop = element.scrollHeight;
-		console.log(".")
-	}
-
+	// function updateScroll() {
+	// 	let element = document.getElementById("consoleWindow");
+	// 	element.scrollTop = element.scrollHeight;
+	// 	console.log(".")
+	// }
 	//------------------------------------
 	self.messages = [];
 	self.running = false;
@@ -25,7 +24,15 @@ function controller($sce, $timeout, logStream, projectApi) {
 		$timeout(() => {
 		});
 		if (self.running) {
-			updateScroll();
+			let i = 0;
+			let id = setInterval(updateScroll, 1000); //Cứ 3s gọi hàm myAlert một lần
+			function updateScroll() {
+				i++;
+				let element = document.getElementById("consoleWindow");
+				element.scrollTop = element.scrollHeight;
+				console.log(".");
+				clearInterval(id);          //Ngắt lặp lại sau 5 lần
+			}
 		}
 	});
 
