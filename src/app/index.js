@@ -424,7 +424,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			scope: $scope,
 		});
 		self.acceptNewFile = function () {
-			let fileName = this.nameFileNew.lastIndexOf('.py') === -1 ? this.nameFileNew + '.py' : this.nameFileNew;
+			let fileName = this.nameFileNew.lastIndexOf('.') === -1 ? this.nameFileNew + '.py' : this.nameFileNew;
 			let parentPath = self.selectedNode.rootIsFile ? self.selectedNode.path.substring(0, self.selectedNode.path.lastIndexOf('/')) : self.selectedNode.path;
 			if (parentPath.indexOf('/') === -1) parentPath += '/';
 			let filePath = getRelPath(self.currentProject.rootName, parentPath) + '/' + fileName;
