@@ -173,7 +173,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					alertMessage.success('Fill your fileName or folderName');
 				}
 				else {
-					if (!self.newFileName.includes('.py')) {
+					if (!self.newFileName.includes('.')) {
 						self.newFileName = self.newFileName + '.py';
 					}
 					let newFileName = getRelPath(projectName, self.selectedNode.path);
