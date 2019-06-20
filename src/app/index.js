@@ -335,23 +335,28 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 	self.deleteProject = function () {
 		if (self.currentProject) {
-			let dialog = ngDialog.open({
+			ngDialog.open({
 				template: 'templateDeleteProject',
 				className: 'ngdialog-theme-default',
 				scope: $scope,
 			});
-			dialog.closePromise.then((data) => {
-				// console.log(data)
+			self.acceptDeletePrj = function () {
 				projectApi.deleteProject(self.currentProject.rootName)
-					.then(() => {
-						alertMessage.success('Success remove project ' + self.currentProject.rootName);
-						initState()
-					})
-					.catch(error => alertMessage.error(error))
-			})
+						.then(() => {
+							alertMessage.success('Success remove project ' + self.currentProject.rootName);
+							initState();
+							ngDialog.close();
+						})
+						.catch(error => alertMessage.error(error))
+			}
+			self.cancelDeletePrj = function () {
+				ngDialog.close();
+			}
+			
 		} else {
 			return alertMessage.error('No project is opened');
 		}
+	
 	};
 	self.aboutWiPython = function () {
 		ngDialog.open({
