@@ -120,10 +120,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		return node.rootName.includes(criteria);
 	};
 	this.clickFunction4Python = function ($event, node) {
-		self.coutClick = self.coutClick +  1;
+		// self.coutClick = self.coutClick +  1;
 		// 
 		// if(self.coutClick > 1){
-		// 	self.selectedNode = node;
+		self.selectedNode = node;
+		console.log(self.selectedNode)
+
 		// 	console.log(node)
 		// 	console.log(self.code)
 		// }
@@ -221,6 +223,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}).catch(e => {
 					console.error(e);
 				});
+			}
+			self.cancelDelete = function () {
+				ngDialog.close();
 			}
 		}
 		else {
