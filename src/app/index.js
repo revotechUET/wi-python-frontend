@@ -120,10 +120,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		return node.rootName.includes(criteria);
 	};
 	this.clickFunction4Python = function ($event, node) {
-		self.coutClick = self.coutClick +  1;
+		// self.coutClick = self.coutClick +  1;
 		// 
 		// if(self.coutClick > 1){
-		// 	self.selectedNode = node;
+		self.selectedNode = node;
+		console.log(self.selectedNode)
+
 		// 	console.log(node)
 		// 	console.log(self.code)
 		// }
@@ -221,6 +223,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}).catch(e => {
 					console.error(e);
 				});
+			}
+			self.cancelDelete = function () {
+				ngDialog.close();
 			}
 		}
 		else {
@@ -330,23 +335,28 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 	self.deleteProject = function () {
 		if (self.currentProject) {
-			let dialog = ngDialog.open({
+			ngDialog.open({
 				template: 'templateDeleteProject',
 				className: 'ngdialog-theme-default',
 				scope: $scope,
 			});
-			dialog.closePromise.then((data) => {
-				// console.log(data)
+			self.acceptDeletePrj = function () {
 				projectApi.deleteProject(self.currentProject.rootName)
-					.then(() => {
-						alertMessage.success('Success remove project ' + self.currentProject.rootName);
-						initState()
-					})
-					.catch(error => alertMessage.error(error))
-			})
+						.then(() => {
+							alertMessage.success('Success remove project ' + self.currentProject.rootName);
+							initState();
+							ngDialog.close();
+						})
+						.catch(error => alertMessage.error(error))
+			}
+			self.cancelDeletePrj = function () {
+				ngDialog.close();
+			}
+			
 		} else {
 			return alertMessage.error('No project is opened');
 		}
+	
 	};
 	self.aboutWiPython = function () {
 		ngDialog.open({
