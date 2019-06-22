@@ -29,13 +29,13 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			}
 		});
 		// $scope.$watch(function () {
-		// 	return [self.autoSave];
+		// 	return [self.code];
 		// }, function () {
 		// 	if (self.autoSave) {
 		// 		if(self.selectedNode){
-		// 			projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
-		// 				.then((data) => console.log(data))
-		// 				.catch(error => console.log(error));
+		// 			// projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
+		// 			// 	.then((data) => console.log(data))
+		// 			// 	.catch(error => console.log(error));
 		// 			console.log("auto SAVED")
 		// 		}
 		// 	}
@@ -250,6 +250,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					reloadPrj(projectName);
 					ngDialog.close();
 				}).catch(e => console.error(e));
+			}
+			self.cancelDelete = function () {
+				ngDialog.close();
 			}
 		}
 	};
