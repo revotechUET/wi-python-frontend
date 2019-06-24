@@ -36,13 +36,22 @@
             </side-bar>
         </div>
         <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
-            <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
-                <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
-                <span class="fn-button" 
-                    ng-click="self.runCode()">
-                    <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
-                <span class="fn-button"  
-                    ng-click="self.saveCode()">SAVE CODE</span>
+            <div class="label-list-view" style="padding: 11px 13px 14px 13px; border-bottom: 1px solid #e4e4e4; justify-content: space-between;">
+                <div>
+                    <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
+                    <span class="fn-button" 
+                        ng-click="self.runCode()">
+                        <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
+                    <span class="fn-button"  
+                        ng-click="self.saveCode()">SAVE CODE</span>
+                    <!-- <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.autoSave}"
+                        ng-click="self.autoSave = !self.autoSave;">
+                        <i class="fa fa-check" style="margin-right: 8px;"></i>AUTO SAVE</span> -->
+                </div>
+                <!-- <div>
+                    <span class="fn-button"  
+                        ng-click="self.clearCode()">CLEAR</span>
+                </div> -->
             </div>
             <div style="display:flex; flex:3; background-color: #fff;margin-bottom: 15px;">
                 <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
@@ -92,11 +101,11 @@
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Are you sure want delete <br><b>{{self.currentProject.rootName}}</b></div>
+                Are you sure want delete this project</b></div>
             <div class="newDialogContent">
                 <form style="justify-content: flex-end;">
                         <a style="background: #fff;
-                        color: #0077be;
+                        color: #0077be
                         border: 1px solid;
                         overflow: hidden;
                         white-space: nowrap;
@@ -141,7 +150,7 @@
             <div>New File</div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the file name according to the following structure: <b>filename or filename.py</b></div>
+                Please enter the file name:</div>
             <div class="newDialogContent">
                 <form>
                     <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
@@ -190,7 +199,7 @@
             <div>New Folder</div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the folder name according to the following structure: <b>foldername</b></div>
+                Enter the folder name:</div>
             <div class="newDialogContent">
                 <form>
                     <input style="flex: 1;" type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
@@ -259,8 +268,10 @@
                 </i>Delete
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Are you sure want delete <br><b>{{self.curFile}}</b></div>
+            <div ng-show="self.delFile" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Are you sure want delete file: <b>{{self.curFile}}</b></div>
+            <div ng-show="self.delFolder" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Are you sure want delete folder: <b>{{self.curFolder}}</b></div>
             <div class="newDialogContent">
                 <form style="justify-content: flex-end;">
                         <a style="background: #fff;
@@ -336,7 +347,6 @@
                 <a class="new-circle" ng-click="self.createNewProject()"><i class="fa fa-plus"></i></a>
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-
 
             <div class="newDialogContent" style="overflow-y: auto; max-height: 203px;">
                 <ul class="list-project">

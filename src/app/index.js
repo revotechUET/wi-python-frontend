@@ -8,11 +8,11 @@ controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'a
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
 	let self = this;
-	// let nameNode ='';
-	// var isFile = true;
 	const BASE_URL = "http://dev.i2g.cloud";
+	var count = 0;
 
 	self.$onInit = function () {
+		// self.autoSave = true;
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
 		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
 		self.queryString = queryString.parse(location.search);
@@ -28,6 +28,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}, 1500);
 			}
 		});
+		// $scope.$watch(function () {
+		// 	return [self.code];
+		// }, function () {
+		// 	if (self.autoSave) {
+		// 		if(self.selectedNode){
+		// 			// projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
+		// 			// 	.then((data) => console.log(data))
+		// 			// 	.catch(error => console.log(error));
+		// 			console.log("auto SAVED")
+		// 		}
+		// 	}
+		// }, true);
 	};
 
 	function wellcome() {
@@ -69,6 +81,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				});
 		}
 	}
+
+	self.saveCode = function () {
+		projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
+			.then(() => alertMessage.success('save success'))
+			.catch(error => alertMessage.error(error));
+	};
 
 	self.removeTreeConfig = function () {
 		$scope.treeConfig.length = 0;
@@ -120,32 +138,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		return node.rootName.includes(criteria);
 	};
 	this.clickFunction4Python = function ($event, node) {
-		// self.coutClick = self.coutClick +  1;
-		// 
-		// if(self.coutClick > 1){
 		self.selectedNode = node;
-		console.log(self.selectedNode)
-
-		// 	console.log(node)
-		// 	console.log(self.code)
-		// }
-		// // console.log(self.selectedNode);
-		// if(self.change) {
-		// 	ngDialog.open({
-		// 		template: 'templateWarningSave',
-		// 		className: 'ngdialog-theme-default',
-		// 		scope: $scope,
-		// 	});
-		// }
+		// console.log(self.selectedNode)
+		// console.log(self.currentProject);
 		if (node.rootIsFile) {
 			self.openFile(node.path);
-
 			// console.log(node.rootName)
 		} else {
 			projectApi.openFolder(node.path)
 				.then(item => {
-
-
 					if (!(item.files.length + item.folders.length)) {
 						return alertMessage.error('There is nothing in this folder')
 					}
@@ -206,7 +207,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 	self.deleteFn = function () {
 		let projectName = self.currentProject.rootName;
+		let isProject = self.selectedNode.path.search("/");
 		if (self.selectedNode.rootIsFile) {
+			self.delFile = true;
+			self.delFolder = false;
 			ngDialog.open({
 				template: 'templateWarning',
 				className: 'ngdialog-theme-default',
@@ -228,7 +232,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				ngDialog.close();
 			}
 		}
-		else {
+		else if(isProject !== -1){
+			self.delFile = false;
+			self.delFolder = true;
+			self.curFolder = getRelPath(projectName, self.selectedNode.path)
 			ngDialog.open({
 				template: 'templateWarning',
 				className: 'ngdialog-theme-default',
@@ -243,6 +250,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					reloadPrj(projectName);
 					ngDialog.close();
 				}).catch(e => console.error(e));
+			}
+			self.cancelDelete = function () {
+				ngDialog.close();
 			}
 		}
 	};
@@ -310,26 +320,43 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 	self.delProject = function (project) {
 
-		let dialog = ngDialog.open({
+		// let dialog = ngDialog.open({
+		// 	template: 'templateDeleteProject',
+		// 	className: 'ngdialog-theme-default',
+		// 	scope: $scope,
+		// });
+		// dialog.closePromise.then((data) => {
+		// 	console.log(data);
+		// 	if (data.value === 'accept') {
+		// 		projectApi.deleteProject(project)
+		// 			.then(() => {
+		// 				alertMessage.success('Success remove project ' + project);
+		// 				self.allProjects = self.allProjects.filter(p => p !== project)
+		// 				// initState()
+		// 			})
+		// 			.catch(error => alertMessage.error(error))
+		// 	}
+		// })
+		// // self.acceptDelete = function () {
+
+		// // }
+		ngDialog.open({
 			template: 'templateDeleteProject',
 			className: 'ngdialog-theme-default',
 			scope: $scope,
 		});
-		dialog.closePromise.then((data) => {
-			console.log(data);
-			if (data.value === 'accept') {
-				projectApi.deleteProject(project)
-					.then(() => {
-						alertMessage.success('Success remove project ' + project);
-						self.allProjects = self.allProjects.filter(p => p !== project)
-						// initState()
-					})
-					.catch(error => alertMessage.error(error))
-			}
-		})
-		// self.acceptDelete = function () {
-
-		// }
+		self.acceptDeletePrj = function () {
+			projectApi.deleteProject(project)
+				.then(() => {
+					alertMessage.success('Success remove project ' + project);
+					initState();
+					ngDialog.close();
+				})
+				.catch(error => alertMessage.error(error))
+		}
+		self.cancelDeletePrj = function () {
+			ngDialog.close();
+		}
 
 	};
 
@@ -342,21 +369,21 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			});
 			self.acceptDeletePrj = function () {
 				projectApi.deleteProject(self.currentProject.rootName)
-						.then(() => {
-							alertMessage.success('Success remove project ' + self.currentProject.rootName);
-							initState();
-							ngDialog.close();
-						})
-						.catch(error => alertMessage.error(error))
+					.then(() => {
+						alertMessage.success('Success remove project ' + self.currentProject.rootName);
+						initState();
+						ngDialog.close();
+					})
+					.catch(error => alertMessage.error(error))
 			}
 			self.cancelDeletePrj = function () {
 				ngDialog.close();
 			}
-			
+
 		} else {
 			return alertMessage.error('No project is opened');
 		}
-	
+
 	};
 	self.aboutWiPython = function () {
 		ngDialog.open({
@@ -574,12 +601,6 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		self.code = generatedFuncCode + self.code
 	};
 
-	self.saveCode = function () {
-		projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
-			.then(() => alertMessage.success('save success'))
-			.catch(error => alertMessage.error(error));
-
-	};
 
 	self.runCode = function () {
 		// Spinner();
@@ -628,7 +649,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		};
 		self.allProjects = [];
 
-
+		self.autoSave = true;
+		self.check = 'sidebar';
+		// self.outCoding = false;
 		// pass to explorer
 		self.code = `/* your code is here */\n`;
 
@@ -636,9 +659,6 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 		self.curFile = ''; // using with write and running code
 
-		self.coutClick = 0;
-
-		self.change = false;
 		// current tree node
 		self.selectedNode = null;
 
