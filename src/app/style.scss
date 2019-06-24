@@ -100,6 +100,37 @@ code {
     transition      : all 0.2s ease-in;
     background: #fff;
 }
+.askSaveClass {
+    color: #0077be !important;
+    transition      : all 0.2s ease-in;
+}
+.askTooltip {
+  display: none;
+  animation: fade-in 0.5s;
+}
+.askSaveHover:hover .askTooltip{
+  display: inline;
+  font-weight: 300;
+  animation: fade-in 0.5s;
+  font-style: italic;
+}
+@keyframes fade-in {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes fade-out {
+  from { 
+    opacity: 1; 
+  }
+  to { 
+    opacity: 0;
+  }
+}
 
 .input-search-list-view {
   background: #fff;

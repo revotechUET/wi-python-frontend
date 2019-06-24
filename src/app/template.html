@@ -44,14 +44,16 @@
                         <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
                     <span class="fn-button"  
                         ng-click="self.saveCode()">SAVE CODE</span>
-                    <!-- <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.autoSave}"
+                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.autoSave}"
                         ng-click="self.autoSave = !self.autoSave;">
-                        <i class="fa fa-check" style="margin-right: 8px;"></i>AUTO SAVE</span> -->
+                        <i class="fa fa-check" style="margin-right: 8px;"></i>AUTO SAVE</span>
                 </div>
-                <!-- <div>
-                    <span class="fn-button"  
-                        ng-click="self.clearCode()">CLEAR</span>
-                </div> -->
+                <div class="askSaveHover">
+                    <span class="askTooltip">Show dialog when click other file</span>
+                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: !self.askSave}"
+                        ng-click="self.askSave = !self.askSave;">
+                        <i class="fa fa-check" style="margin-right: 8px;"></i>ASK SAVE</span>
+                </div>
             </div>
             <div style="display:flex; flex:3; background-color: #fff;margin-bottom: 15px;">
                 <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
@@ -164,15 +166,23 @@
 <script type="text/ng-template" id="templateWarningSave">
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #f1b500;font-size: 25px;">
-                </i>Warning
+            <div style="display: flex;align-items: center; justify-content: space-between;">
+                <div style="display: flex;align-items: center;">
+                    <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #f1b500;font-size: 25px;">
+                    </i>Warning
+                </div>
+                <div style="display: flex; align-items: center; font-weight: 300;  color: #666;font-size: 13px;font-style: italic;">
+                    Don't ask me
+                    <i style=" margin-left: 15px;" class="fa fa-circle-o"  ng-class="{askSaveClass: self.askSave}"
+                    ng-click="self.askSave = !self.askSave"></i>
+                </div>
+                
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Save changes to the python file “<b>{{self.selectedNode.rootName}}</b>” before closing? </div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;margin-bottom: 30px;">
+                Save changes to the previous file before closing? </div>
             <div class="newDialogContent">
-                <form style="justify-content: space-between;">
+                <form style="justify-content: flex-end;">
                         <a style="background: #fff;
                         color: #0077be;
                         border: 1px solid;
@@ -181,11 +191,11 @@
                         margin: 0;
                         text-overflow: ellipsis;
                         letter-spacing: 0;
-                        text-transform: none;" 
-                        class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()"> Don't save </a>
+                        text-transform: none; " 
+                        class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDontSave()"> Don't save </a>
                     <div>
-                        <input type="submit" style="max-width: fit-content;" value="Save" class="ngdialog-button ngdialog-button-primary" ng-click="self.saveCode">
-                        <input type="submit" style="max-width: fit-content;" value="Cancel" class="ngdialog-button ngdialog-button-primary" ng-click="">
+                        <input type="submit" style="max-width: fit-content;" value="Save" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptSave()">
+                
                     </div>
                 </form>
             </div>
@@ -362,7 +372,7 @@
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                    Projects are arranged according to the creation time!
+                    Projects has been arranged alphabetically.
                 </div>
                 <div>
                     <a class="ngdialog-button ngdialog-button-primary"

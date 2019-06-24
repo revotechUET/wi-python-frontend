@@ -9,8 +9,7 @@ controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'a
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
 	let self = this;
 	const BASE_URL = "http://dev.i2g.cloud";
-	var count = 0;
-
+	let stackNode = [];
 	self.$onInit = function () {
 		// self.autoSave = true;
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
@@ -25,21 +24,35 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				getCurveTree();
 				setTimeout(function () {
 					wellcome();
-				}, 1500);
+				}, 500);
 			}
 		});
-		// $scope.$watch(function () {
-		// 	return [self.code];
-		// }, function () {
-		// 	if (self.autoSave) {
-		// 		if(self.selectedNode){
-		// 			// projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
-		// 			// 	.then((data) => console.log(data))
-		// 			// 	.catch(error => console.log(error));
-		// 			console.log("auto SAVED")
-		// 		}
-		// 	}
-		// }, true);
+		$scope.$watch(function () {
+			return [self.curFile]
+		}, function () {
+			let preCode = self.code;
+			let preNode = stackNode[1];
+			if (self.autoSave && preNode) {
+				if(self.selectedNode){
+					projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
+						.catch(error => console.log(error));
+				}
+			} else if (!self.autoSave && !self.askSave && preNode) {
+				ngDialog.open({
+					template: 'templateWarningSave',
+					className: 'ngdialog-theme-default',
+					scope: $scope,
+				});
+				self.acceptDontSave = function(){
+					ngDialog.close();
+				}
+				self.acceptSave = function(){
+					projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
+						.catch(error => console.log(error));
+					ngDialog.close();
+				}
+			}
+		}, true);
 	};
 
 	function wellcome() {
@@ -144,6 +157,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (node.rootIsFile) {
 			self.openFile(node.path);
 			// console.log(node.rootName)
+			self.previousNode = self.selectedNode;
+			stackNode.unshift(self.previousNode);
 		} else {
 			projectApi.openFolder(node.path)
 				.then(item => {
@@ -157,6 +172,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					alertMessage.error(error)
 				})
 		}
+		
 	};
 	self.renameFn = function () {
 		let projectName = self.currentProject.rootName;
@@ -649,7 +665,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		};
 		self.allProjects = [];
 
-		self.autoSave = true;
+		self.autoSave = false;
+		self.askSave = true;
 		self.check = 'sidebar';
 		// self.outCoding = false;
 		// pass to explorer
