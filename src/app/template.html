@@ -23,8 +23,9 @@
                 <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python"
                               get-icon="self.getIcon4Python"
                               get-children="self.getChildren4Python"
-                              hide-unmatched="true"
+                              hide-unmatched="true" selected-ids="self.selectedIdsHash"
                               run-match="self.runMatch4Python"
+                              uncollapsible="false"
                               click-fn='self.clickFunction4Python'>
                     <div style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;" class="label-list-view ng-scope"><span>PROJECTS</span>
                         <span class="fn-button" 
@@ -78,7 +79,7 @@
         </div>
         <side-bar my-default-width="215" orientation="w" collapsed="false">
             <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
-                          get-children="self.getChildren" run-match="self.runMatch" click-fn='self.clickFunction'
+                          get-children="self.getChildren" run-match="self.runMatch" hide-unmatched="true" selected-ids="self.selectedIdsHash" click-fn='self.clickFunction' 
                           get-siblings="self.getSiblings">
                 <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
                     <span>I2G CLOUD</span>

@@ -24,7 +24,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				getCurveTree();
 				setTimeout(function () {
 					wellcome();
-				}, 500);
+				}, 1500);
 			}
 		});
 		$scope.$watch(function () {
@@ -786,7 +786,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}
 	};
 	this.runMatch = function (node, criteria) {
-		return node.name.includes(criteria);
+		let keySearch = criteria.toLowerCase();
+        let searchArray = node.alias.toLowerCase();
+        return searchArray.includes(keySearch);
 	};
 	self.onDrop = function (event, ui, nodeArray) {
 		for (let node of nodeArray) {

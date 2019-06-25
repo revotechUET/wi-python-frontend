@@ -25,13 +25,12 @@ function controller($sce, $timeout, logStream, projectApi) {
 		});
 		if (self.running) {
 			let i = 0;
-			let id = setInterval(updateScroll, 1000); //Cứ 3s gọi hàm myAlert một lần
+			let id = setInterval(updateScroll, 1000); 
 			function updateScroll() {
 				i++;
 				let element = document.getElementById("consoleWindow");
 				element.scrollTop = element.scrollHeight;
-				console.log(".");
-				clearInterval(id);          //Ngắt lặp lại sau 5 lần
+				clearInterval(id);    
 			}
 		}
 	});
