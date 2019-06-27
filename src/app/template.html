@@ -99,7 +99,7 @@
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div style="display: flex;align-items: center;">
-                <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #ff825b;font-size: 25px;">
+                <i class="del-project-wi-python-32x32" style="margin-right: 20px; color: #ff0000;font-size: 25px;">
                 </i>Delete
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
@@ -133,7 +133,10 @@
     </style>
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div>New Project</div>
+            <div style="display: flex;align-items: center;">
+                <i class="new-project-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
+                </i>New Project
+            </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
                 Please enter the project name:</div>
@@ -146,14 +149,16 @@
         </div>
     </div>
 </script>
-
 <script type="text/ng-template" id="templateNewFile">
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div>New File</div>
+            <div style="display: flex;align-items: center;">
+                <i class="new-file-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
+                </i>New File
+            </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Please enter the file name:</div>
+                New file in path <b>{{self.curPath}}/...</b></div>
             <div class="newDialogContent">
                 <form>
                     <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
@@ -163,27 +168,27 @@
         </div>
     </div>
 </script>
-
 <script type="text/ng-template" id="templateWarningSave">
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div style="display: flex;align-items: center; justify-content: space-between;">
                 <div style="display: flex;align-items: center;">
-                    <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #f1b500;font-size: 25px;">
+                    <i class="warning-save-project-wi-python-32x32" style="margin-right: 20px; color: #f1b500;font-size: 25px;">
                     </i>Warning
                 </div>
-                <div style="display: flex; align-items: center; font-weight: 300;  color: #666;font-size: 13px;font-style: italic;">
+                <div style="display: flex; align-items: center; font-weight: 300;color: #666;font-size: 13px; font-style: italic;">
                     Don't ask me
-                    <i style=" margin-left: 15px;" class="fa fa-circle-o"  ng-class="{askSaveClass: self.askSave}"
-                    ng-click="self.askSave = !self.askSave"></i>
+                    <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round" ng-click="self.askSave = !self.askSave"></span>
+                    </label>
                 </div>
-                
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;margin-bottom: 30px;">
                 Save changes to the previous file before closing? </div>
             <div class="newDialogContent">
-                <form style="justify-content: flex-end;">
+                <form style="justify-content: space-between;">
                         <a style="background: #fff;
                         color: #0077be;
                         border: 1px solid;
@@ -203,14 +208,16 @@
         </div>
     </div>
 </script>
-
 <script type="text/ng-template" id="templateNewFolder">
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div>New Folder</div>
+            <div style="display: flex;align-items: center;">
+                <i class="new-folder-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
+                </i>New Folder
+            </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the folder name:</div>
+                New folder in path <b>{{self.curPath}}</b>/...</div>
             <div class="newDialogContent">
                 <form>
                     <input style="flex: 1;" type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
@@ -275,8 +282,9 @@
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div style="display: flex;align-items: center;">
-                <i class="fa fa-exclamation-circle" style="margin-right: 10px; color: #ff825b;font-size: 25px;">
-                </i>Delete
+                <i ng-show="self.delFile" class="del-file-wi-python-32x32" style="margin-right: 20px; color: #ff825b;font-size: 25px;"></i>
+                <i ng-show="self.delFolder" class="del-folder-wi-python-32x32" style="margin-right: 20px; color: #ff825b;font-size: 25px;"></i>
+                Delete
             </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
             <div ng-show="self.delFile" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
@@ -306,11 +314,15 @@
 <script type="text/ng-template" id="templateRename">
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div>Rename</div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Enter the new fileName or folderName
+            <div style="display: flex;align-items: center;">
+                <i class="rename-wi-python-32x32" style="margin-right: 20px; color: #0074c5;font-size: 25px;">
+                </i>Rename
             </div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div ng-show="self.delFile" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Rename file: <b>{{self.curFile}}</b> with name: </div>
+            <div ng-show="self.delFolder" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Rename folder: <b>{{self.curFolder}}</b> with name: </div>
             <div class="newDialogContent">
                 <form>
                     <input style="flex: 1;" type="text" placeholder="Enter new name" ng-model="self.newFileName">
@@ -328,7 +340,10 @@
     </style>
     <div class="ngdialog-buttons">
         <div class="newDialog">
-            <div>Restore opened project</div>
+            <div style="display: flex;align-items: center;">
+                <i class="restore-project-wi-python-32x32" style="margin-right: 20px;">
+                </i>Restore opened project
+            </div>
             <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 30px;"></div>
             <div class="newDialogContent" style="display:flex; justify-content: space-between;">
                 <a style="background: #fff;
@@ -342,7 +357,7 @@
                 letter-spacing: 0;
                 text-transform: none;" 
                 class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
-                <i style="transform: scaleX(-1); margin-right:10px;"class="fa fa-repeat" aria-hidden="true"></i>
+                <i style="margin-right:10px;"class="fa fa-arrow-left" aria-hidden="true"></i>
                 <b>{{self.curPrj}}</b> </a>
                 <a style="border: 1px solid #0077be;" class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
             </div>
