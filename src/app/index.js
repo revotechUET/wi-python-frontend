@@ -10,8 +10,6 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	let self = this;
 	const BASE_URL = "http://dev.i2g.cloud";
 	let stackNode = [];
-	let element = document.getElementById("root-app");
-		element.classList.add("blur");
 	self.$onInit = function () {
 		// self.autoSave = true;
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
