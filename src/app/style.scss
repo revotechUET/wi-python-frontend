@@ -561,3 +561,24 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+
+.toast-top-right {
+  top: 50px !important;
+  right: 10px !important;
+}
+.toast-success {
+  background-color: #54acff !important;
+}
+.toast-error {
+  background-color: #f58460 !important;
+}
+#toast-container > div {
+  box-shadow: none !important;
+}
+#toast-container > div:hover {
+  box-shadow: none !important;
+}
+.toast-message {
+  font-weight: bold !important;
+  font-size: 12px !important
+}

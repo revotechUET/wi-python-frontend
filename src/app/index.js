@@ -74,7 +74,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						getCurveTree();
 					})
 					.catch(error => {
-						alertMessage.error(error)
+						ngDialog.open({
+							template: 'templateConnectionError',
+							className: 'ngdialog-theme-default',
+							scope: $scope,
+						});
+						self.cancelReload = function (){
+							ngDialog.close();
+							$timeout(()=>{
+								location.reload();
+							},500)
+						}
+						// alertMessage.error(error)
 					})
 			}
 		} else if (wiToken.getToken()) {
@@ -123,7 +134,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}
 			})
 			.catch(error => {
-				alertMessage.error(error)
+				ngDialog.open({
+					template: 'templateConnectionError',
+					className: 'ngdialog-theme-default',
+					scope: $scope,
+				});
+				self.cancelReload = function (){
+					ngDialog.close();
+					$timeout(()=>{
+						location.reload();
+					},500)
+				}
+				// alertMessage.error(error)
 			});
 	};
 	self.openProject = function (name) {
