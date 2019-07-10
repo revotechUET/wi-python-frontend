@@ -451,6 +451,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			scope: $scope,
 		});
 	};
+	self.changeTheme = function () {
+		var element = document.getElementById("tools");
+		  element.classList.toggle("dark-theme");
+		var element2 = document.getElementById("app");
+  		element2.classList.toggle("dark-theme");
+	};
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////

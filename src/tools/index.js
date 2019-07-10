@@ -53,7 +53,8 @@ export default {
       generateLoginByToken:'<',
       generateLoginByAccount:'<',
       generateSaveCurveData:'<',
-      aboutWiPython: '<'
+      aboutWiPython: '<',
+      changeTheme: '<'
     },
     template,
     controller,

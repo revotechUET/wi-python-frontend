@@ -9,8 +9,6 @@ export function service () {
     "positionClass": "toast-top-right",
     "showDuration": "50",
     "hideDuration": "50",
-    "timeOut": "1500000",
-    "extendedTimeOut": "1500000",
     "showEasing": "linear",
     "hideEasing": "linear",
     "showMethod": "slideDown",
