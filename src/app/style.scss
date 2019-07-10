@@ -588,6 +588,10 @@ input:checked + .slider:before {
 .dark-theme {
   transition: all 3s;
   background: #1d1d1f !important;
+  > div > span {
+    color: #ffffff !important;
+    background: #1d1d1f !important;
+  }
   .dropdown:hover .dropbtn{
     background-color: #464646 !important;
     transition: all 3s;
@@ -657,6 +661,7 @@ input:checked + .slider:before {
   wi-tree-view div input {
     background: #333 !important;
     border-bottom: 1px solid #5d5d5d !important;
+    color: #fff;
   }
   wi-tree-node .node-content, wi-tree-node .node-content::after {
     color: white;
@@ -672,6 +677,12 @@ input:checked + .slider:before {
   }
   wi-tree-node .node-content::after {
     color: transparent !important;
+  }
+  .loading-bar {
+    background: #464646 !important;
+  }
+  .bar-animation {
+    background: #34ab74 !important;
   }
   side-bar div.handle{
     opacity: 0 !important;
@@ -728,12 +739,13 @@ input:checked + .slider:before {
   .codeflask .token.string {
     color: #42ffcb !important;
   }
-  .slim-scroller ::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background-color: #333333 !important;
   }
-  .slim-scroller ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     background: #464646 !important;
     width: 5px !important;
   }
+  
 
 }

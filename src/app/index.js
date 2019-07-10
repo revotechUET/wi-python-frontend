@@ -455,7 +455,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		var element = document.getElementById("tools");
 		  element.classList.toggle("dark-theme");
 		var element2 = document.getElementById("app");
-  		element2.classList.toggle("dark-theme");
+		  element2.classList.toggle("dark-theme");
+		var element3 = document.getElementById("custom-login-css");
+			element3.classList.toggle("dark-theme");
 	};
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
