@@ -3,7 +3,9 @@ $container-with : 40%;
 
 .explorer {
   height: 100%;
-
+  .codeflask--has-line-numbers .codeflask__flatten {
+    width: unset !important;
+  }
   pre {
     background: transparent;
     border-bottom: none;
