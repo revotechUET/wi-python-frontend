@@ -1,6 +1,6 @@
 <div style="display:flex;flex-direction:column;height:100%;">
     <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
-    <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"
+    <wi-login id="custom-login-css" register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python"
               login-url="{{self.loginUrl}}" query-string="self.queryString"></wi-login>
 
     <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects"
@@ -14,11 +14,11 @@
            save-checked="self.saveChecked"
            refresh-checked="self.refreshChecked" new-checked="self.newChecked"
            generate-login-by-token="self.generateLoginByToken" generate-login-byaccount="self.generateLoginByAccount"
-           generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython">
+           generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" change-theme="self.changeTheme">
     </tools>
 
-    <div class="app" style="z-index: 0;">
-        <div style="border-right: 1px solid #c7c7c7;">
+    <div id="app" class="app" style="z-index: 0;">
+        <div class="side-bar-right" style="border-right: 1px solid #c7c7c7;">
             <side-bar my-default-width="235" orientation="e" collapsed="false">
                 <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python"
                               get-icon="self.getIcon4Python"
@@ -36,10 +36,18 @@
                 </wi-tree-view>
             </side-bar>
         </div>
-        <div style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
-            <div class="label-list-view" style="padding: 11px 13px 14px 13px; border-bottom: 1px solid #e4e4e4; justify-content: space-between;">
-                <div>
-                    <span>EDITOR </span><span ng-show="self.selectedNode && self.selectedNode.path">- ({{self.selectedNode.path}})</span>
+        <div class="main-center" style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
+            <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4; justify-content: space-between;">
+                <div style="display: flex;align-items: center;">
+                    <span>EDITOR - </span><span 
+                        style="max-width: 205px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        direction: rtl;" 
+                        ng-show="self.selectedNode && self.selectedNode.path">
+                         ({{self.selectedNode.path}})
+                    </span>
                     <span class="fn-button" 
                         ng-click="self.runCode()">
                         <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
@@ -49,14 +57,14 @@
                         ng-click="self.autoSave = !self.autoSave;">
                         <i class="fa fa-check" style="margin-right: 8px;"></i>AUTO SAVE</span>
                 </div>
-                <div class="askSaveHover">
-                    <span class="askTooltip">Show dialog when click other file</span>
+                <div class="askSaveHover" style="margin-top: -3px;">
+                    <span class="askTooltip">Warning when don't save file</span>
                     <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: !self.askSave}"
                         ng-click="self.askSave = !self.askSave;">
                         <i class="fa fa-check" style="margin-right: 8px;"></i>ASK SAVE</span>
                 </div>
             </div>
-            <div style="display:flex; flex:3; background-color: #fff;margin-bottom: 15px;">
+            <div style="display:flex; flex:3;margin-bottom: 15px;">
                 <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
                               on-drop="self.onDrop"
                               container-style="{display:'flex',flex: 1}">
@@ -77,14 +85,16 @@
                 </terminal>
             </div>
         </div>
-        <side-bar my-default-width="215" orientation="w" collapsed="false">
+        <side-bar my-default-width="220" orientation="w" collapsed="false">
             <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
                           get-children="self.getChildren" run-match="self.runMatch" hide-unmatched="true" selected-ids="self.selectedIdsHash" click-fn='self.clickFunction' 
                           get-siblings="self.getSiblings">
                 <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
-                    <span>I2G CLOUD</span>
-                    <span class="fn-button" 
-                        ng-click="self.getCurveTree()">SYNC PROJECTS</span>
+                    <!-- <span>I2G</span> -->
+                    <span class="fn-button" ng-click="self.refreshTree()">RELOAD</span>
+                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.sortByName}"
+                        ng-click="self.refreshTree(); self.sortByName = !self.sortByName;">
+                        <i class="fa fa-check" style="margin-right: 8px;"></i>SORT BY NAME</span>
                 </div>
                 <div ng-show="self.showLoading" class="loading">
                     <div class="loading-bar">
@@ -244,11 +254,11 @@
         <div class="newDialog" style="display: flex;flex-direction: column;justify-content: center;align-items: center;padding: 0; font-size: 15px; font-weight: bold;">
             <div class="area" style="position: relative; display: flex;align-items: center; justify-content: center;">
                 <div style="position: absolute; color: #fff;">
-                    <div style="font-size: 22px;">Wi Python</div>
+                    <div style="font-size: 22px;">Online editor client</div>
                     <div style="border-bottom: 1px solid #f1f0f0; margin: 10px 0 15px 0; width: 60%;"></div>
-                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Version 2.5.7 (Official Build)
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Version 1.0 (Official Build)
                     </div>
-                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Recommend Google Chrome
+                    <div style="font-weight: 300; font-size: 13px; font-style: italic;">Recommend Google Chrome Browser
                     </div>
                     <div style="font-weight: 300; font-size: 13px; font-style: italic;">2019-05-15T21:49:51.528Z
                     </div>
@@ -272,13 +282,6 @@
         </div>
 </script>
 <script type="text/ng-template" id="templateWarning">
-    <!-- <div class="ngdialog-buttons">
-        <div class="acceptLogout">Are you sure want delete <b>{{self.curFile}}</b>
-            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">
-                Delete
-            </button>
-        </div>
-    </div> -->
     <div class="ngdialog-buttons">
         <div class="newDialog">
             <div style="display: flex;align-items: center;">
@@ -357,9 +360,9 @@
                 letter-spacing: 0;
                 text-transform: none;" 
                 class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
-                <i style="margin-right:10px;"class="fa fa-arrow-left" aria-hidden="true"></i>
+                <i style="margin-right:10px;"class="ti-arrow-left" aria-hidden="true"></i>
                 <b>{{self.curPrj}}</b> </a>
-                <a style="border: 1px solid #0077be;" class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other</a>
+                <a style="border: 1px solid #0077be;" class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other<i style="margin-left:10px;"class="ti-arrow-right" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -398,5 +401,25 @@
 
         </div>
 
+    </div>
+</script>
+<script type="text/ng-template" id="templateConnectionError">
+    <div class="ngdialog-buttons">
+        <div class="newDialog">
+            <div style="display: flex;align-items: center;">
+                <i class="connection-error-wi-python-32x32" style="margin-right: 20px; color: #0074c5;font-size: 25px;">
+                </i>Connection has problems
+            </div>
+            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
+            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
+                Try reconnecting the Wifi or LAN network</div>
+            <div class="newDialogContent">
+                <form style="justify-content: flex-end;">
+                    <div>
+                        <input type="submit" style="max-width: fit-content;" value="RELOAD PAGE" class="ngdialog-button ngdialog-button-primary" ng-click="self.cancelReload()">
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </script>

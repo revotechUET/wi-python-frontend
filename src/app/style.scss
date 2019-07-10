@@ -6,6 +6,11 @@ body,
   overflow-x: hidden;
   flex: 1;
 }
+.blur {
+  filter: blur(10px);
+  transition      : all 0.5s ease-in;
+  pointer-events: none;
+}
 
 .app {
   display: flex;
@@ -22,6 +27,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 app {
   .fn-button.color-green {
@@ -556,3 +562,190 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+
+.toast-top-right {
+  top: 50px !important;
+  right: 10px !important;
+}
+.toast-success {
+  background-color: #54acff !important;
+}
+.toast-error {
+  background-color: #f58460 !important;
+}
+#toast-container > div {
+  box-shadow: none !important;
+}
+#toast-container > div:hover {
+  box-shadow: none !important;
+}
+.toast-message {
+  font-weight: bold !important;
+  font-size: 12px !important
+}
+//dark theme
+
+.dark-theme {
+  transition: all 3s;
+  background: #1d1d1f !important;
+  > div > span {
+    color: #ffffff !important;
+    background: #1d1d1f !important;
+  }
+  .dropdown:hover .dropbtn{
+    background-color: #464646 !important;
+    transition: all 3s;
+  }
+  .dropdown-content {
+    transition: all 3s;
+    background-color: #585858 !important;
+    border: 1px solid #1f1f1f !important;
+    >div{
+      color: white !important;
+      transition: all 3s;
+    }
+  }
+  .dropdown-content a {
+    color: white !important;
+    border-right: 3px solid #585858 !important;
+  }
+  .dropdown-content a:hover {
+    transition: all 0.3s !important;
+    background-color: #333 !important;
+    border-right: 3px solid #1962a7 !important;
+  }
+  .dropdown-submenu {
+    border-right: 3px solid #585858 !important;
+  }
+  .submenu-content {
+    background-color: #585858 !important;
+    border: 1px solid #585858 !important;
+  }
+  .dropdown-submenu .submenu-content{
+    display: none;
+    animation: fade-out 0.5s;
+  }
+  .dropdown-submenu:hover {
+    background-color: #333 !important;
+    border-right: 3px solid #1962a7;
+  }
+  .label-list-view {
+    transition: all 3s;
+    color: white !important;
+    background: #464646 !important;
+    border-bottom: 1px solid #5d5d5d !important;
+  }
+  .fn-button {
+    border: 1px solid #f7f7f7;
+    color: #fff !important;
+    background: #2d2d2d !important;
+    &.autoSaveClass {
+      border: 1px solid #32b578 !important;
+      color: #40e296 !important;
+      transition: all 0.2s ease-in;
+    }
+  }
+  .fn-button:hover {
+    border: 1px solid #00aeff;
+    color: #fff !important;
+    background: #3f3f3f !important;
+  }
+  
+  side-bar>div {
+    
+    background: #333333 !important;
+  }
+  wi-tree-node .node-icon {
+    filter: saturate(3.1) brightness(1.2) hue-rotate(390deg);
+  } 
+  wi-tree-view div input {
+    background: #333 !important;
+    border-bottom: 1px solid #5d5d5d !important;
+    color: #fff;
+  }
+  wi-tree-node .node-content, wi-tree-node .node-content::after {
+    color: white;
+  }
+  wi-tree-node .node-content:hover {
+    background: linear-gradient(to left, #f0f0f014, #fff0) !important;
+  }
+  wi-tree-node .node-content {
+    border-bottom: 1px solid #464646 !important;
+  }
+  wi-tree-node .node-content.selected {
+    background: linear-gradient(to left, #f0f0f014, #fff0) !important;
+  }
+  wi-tree-node .node-content::after {
+    color: transparent !important;
+  }
+  .loading-bar {
+    background: #464646 !important;
+  }
+  .bar-animation {
+    background: #34ab74 !important;
+  }
+  side-bar div.handle{
+    opacity: 0 !important;
+    &.full-opacity{
+      opacity: 1 !important;
+      background: #797979 !important;
+    }
+    &:hover {
+      opacity: 0.2 !important;
+    }
+  }
+  .main-center {
+    border-right: 1px solid #656565 !important;
+    background: #464646 !important;
+  }
+  .side-bar-right {
+    border-right: 1px solid #656565 !important;
+  }
+  .codeflask {
+    background: #464646 !important;
+    color: #ffffff !important;
+  }
+  .explorer #codeArea .codeflask::before, 
+  .explorer #codeArea .codeflask .codeflask__lines{
+    background: #464646 !important;
+    color: #ffffff !important;
+  }
+  .explorer #codeArea textarea {
+    border-left: none !important; 
+  }
+  .explorer #codeArea .codeflask {
+    border-bottom: 1px solid #464646 !important;
+}
+  .rg-top {
+    background: #505050;
+    margin-top: -15px !important;
+    height: 16px !important;
+  }
+  .terminal {
+    background: #464646 !important;
+    color: #fff;
+  }
+
+  //codeFlask
+  .codeflask .token.keyword {
+    color: #ca8fff !important;
+  }
+  .codeflask .token.number {
+    color: #e1c0ff !important;
+  }
+  .codeflask .token.punctuation {
+    color: #ffffff !important;
+  }
+  .codeflask .token.string {
+    color: #42ffcb !important;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #333333 !important;
+  }
+  ::-webkit-scrollbar {
+    background: #464646 !important;
+    width: 5px !important;
+  }
+  
+
+}

@@ -21,10 +21,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}, function (newValue, oldValue) {
 			// console.log(newValue, oldValue);
 			if ((localStorage.getItem("token")) !== null) {
-				getCurveTree();
+				// getCurveTree();
 				setTimeout(function () {
 					wellcome();
-				}, 1500);
+				}, 1400);
 			}
 		});
 		$scope.$watch(function () {
@@ -56,6 +56,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 
 	function wellcome() {
+		
 		if (wiToken.getCurrentProjectName()) {
 			self.curPrj = wiToken.getCurrentProjectName()
 			ngDialog.open({
@@ -69,9 +70,22 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						self.currentProject = item;
 						self.selectedNode = self.currentProject;
 						ngDialog.close();
+						$("#root-app").removeClass("blur");
+						getCurveTree();
 					})
 					.catch(error => {
-						alertMessage.error(error)
+						ngDialog.open({
+							template: 'templateConnectionError',
+							className: 'ngdialog-theme-default',
+							scope: $scope,
+						});
+						self.cancelReload = function (){
+							ngDialog.close();
+							$timeout(()=>{
+								location.reload();
+							},500)
+						}
+						// alertMessage.error(error)
 					})
 			}
 		} else if (wiToken.getToken()) {
@@ -120,7 +134,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}
 			})
 			.catch(error => {
-				alertMessage.error(error)
+				ngDialog.open({
+					template: 'templateConnectionError',
+					className: 'ngdialog-theme-default',
+					scope: $scope,
+				});
+				self.cancelReload = function (){
+					ngDialog.close();
+					$timeout(()=>{
+						location.reload();
+					},500)
+				}
+				// alertMessage.error(error)
 			});
 	};
 	self.openProject = function (name) {
@@ -130,6 +155,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				self.selectedNode = self.currentProject;
 				wiToken.setCurrentProjectName(self.currentProject.rootName)
 				ngDialog.close();
+				$("#root-app").removeClass("blur");
+				getCurveTree();
 			})
 			.catch(error => {
 				alertMessage.error(error)
@@ -380,11 +407,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					alertMessage.success('Success remove project ' + project);
 					initState();
 					ngDialog.close();
+					$("#root-app").removeClass("blur");
 				})
 				.catch(error => alertMessage.error(error))
 		}
 		self.cancelDeletePrj = function () {
 			ngDialog.close();
+			$("#root-app").removeClass("blur");
+
 		}
 
 	};
@@ -420,6 +450,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			className: 'ngdialog-theme-default',
 			scope: $scope,
 		});
+	};
+	self.changeTheme = function () {
+		var element = document.getElementById("tools");
+		  element.classList.toggle("dark-theme");
+		var element2 = document.getElementById("app");
+		  element2.classList.toggle("dark-theme");
+		var element3 = document.getElementById("custom-login-css");
+			element3.classList.toggle("dark-theme");
 	};
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
@@ -677,9 +715,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		};
 		self.allProjects = [];
 
-		self.autoSave = false;
+		self.autoSave = true;
 		self.askSave = true;
 		self.check = 'sidebar';
+		self.sortByName = true;
 		// self.outCoding = false;
 		// pass to explorer
 		self.code = `/* your code is here */\n`;
@@ -755,21 +794,26 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 
 	this.getLabel = function (node) {
-		if (node.idCurve) {
-			return node.name;
-		} else if (node.idDataset) {
-			return node.name;
-		} else if (node.idWell) {
-			return node.name;
-		} else if (node.idProject) {
-			return node.name;
+		if(node){
+			if (node.idCurve) {
+				return node.name;
+			} else if (node.idDataset) {
+				return node.name;
+			} else if (node.idWell) {
+				return node.name;
+			} else if (node.idProject) {
+				return node.name;
+			}
 		}
+		
 	};
 	this.getIcon = function (node) {
-		if (node.idCurve) return "curve-16x16";
-		else if (node.idDataset) return "curve-data-16x16";
-		else if (node.idWell) return "well-16x16";
-		else if (node.idProject) return "project-normal-16x16";
+		if(node){
+			if (node.idCurve) return "curve-16x16";
+			else if (node.idDataset) return "curve-data-16x16";
+			else if (node.idWell) return "well-16x16";
+			else if (node.idProject) return "project-normal-16x16";
+		}
 	};
 	this.getChildren = function (node) {
 		if (!node) {
@@ -997,23 +1041,46 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			}
 		}
 	};
-	this.getCurveTree = getCurveTree;
+	// this.getCurveTree = getCurveTree;
 
 	function getCurveTree() {
 		self.showLoading = true;
 		$scope.treeConfig = [];
 		getProjects($scope.treeConfig, function (err, projects) {
 			if (err) {
-				return alertMessage.error(err.data.content);
+				ngDialog.open({
+					template: 'templateConnectionError',
+					className: 'ngdialog-theme-default',
+					scope: $scope,
+				});
+				self.cancelReload = function (){
+					ngDialog.close();
+					$timeout(()=>{
+						location.reload();
+					},500)
+				}
+				self.showLoading = false;
+				return;
 			}
 			$scope.treeConfig = projects.filter(project => !project.shared);
 			$scope.treeConfig.map(p => {
 				p.realName = p.name;
-				p.name = p.alias
+				p.name = p.alias;
 			})
-			$scope.treeConfig = $scope.treeConfig.sort(dynamicSort("name"));
-			self.showLoading = false;
+			if(self.sortByName){
+				$scope.treeConfig = $scope.treeConfig.sort(dynamicSort("name"));
+				self.showLoading = false;
+				// console.log(self.sortByName)
+			}else{
+				$scope.treeConfig = $scope.treeConfig.sort(dynamicSort("alias"));
+				self.showLoading = false;
+				// console.log(self.sortByName)
+
+			}
 		});
+	}
+	this.refreshTree = function () {
+		getCurveTree();
 	}
 	function dynamicSort(property) {
 		var sortOrder = 1;
