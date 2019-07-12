@@ -20,7 +20,7 @@
     <div id="app" class="app" style="z-index: 0;">
         <div class="side-bar-right" style="border-right: 1px solid #c7c7c7;">
             <side-bar my-default-width="235" orientation="e" collapsed="false">
-                <wi-tree-view tree-root="self.currentProject" get-label="self.getLabel4Python"
+                <wi-tree-view-virtual tree-root="self.currentProject" get-label="self.getLabel4Python"
                               get-icon="self.getIcon4Python"
                               get-children="self.getChildren4Python"
                               hide-unmatched="true" selected-ids="self.selectedIdsHash"
@@ -33,7 +33,7 @@
                         <span class="fn-button" 
                         ng-click="self.renameFn()">RENAME</span>
                     </div>
-                </wi-tree-view>
+                </wi-tree-view-virtual>
             </side-bar>
         </div>
         <div class="main-center" style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
@@ -85,7 +85,7 @@
             </div>
         </div>
         <side-bar my-default-width="220" orientation="w" collapsed="false">
-            <wi-tree-view tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
+            <wi-tree-view-virtual tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
                           get-children="self.getChildren" run-match="self.runMatch" hide-unmatched="true" selected-ids="self.selectedIdsHash" click-fn='self.clickFunction' 
                           get-siblings="self.getSiblings">
                 <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
@@ -100,7 +100,7 @@
                     <span class="bar-animation"></span>
                     </div>
                 </div>
-            </wi-tree-view>
+            </wi-tree-view-virtual>
         </side-bar>
     </div>
 </div>

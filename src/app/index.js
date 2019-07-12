@@ -192,8 +192,20 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					if (!(item.files.length + item.folders.length)) {
 						return alertMessage.error('There is nothing in this folder')
 					}
-					node.files = item.files;
-					node.folders = item.folders;
+					// node.files = item.files;
+					// node.folders = item.folders;
+				  if(!((node.files && node.files.length) || (node.folders && node.folders.length))){
+            //node.files.length = 0;
+					  //node.folders.length = 0;
+					  for(const f of item.files) {
+						  node.files.push(f)
+					  }
+
+					  for(const f of item.folders) {
+						  node.folders.push(f)
+					  } 
+          }
+
 				})
 				.catch(error => {
 					alertMessage.error(error)
@@ -1033,7 +1045,11 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 					if (err) {
 						return alertMessage.error(err.data.content);
 					}
-					node.wells = wells;
+					//node.wells = wells;
+          if(!node.wells || !node.wells.length) {
+            node.wells = [];
+            for(const w of wells) node.wells.push(w);
+          }
 
 				});
 			}
