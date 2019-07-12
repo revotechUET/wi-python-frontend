@@ -195,7 +195,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// node.files = item.files;
 					// node.folders = item.folders;
 				  if(!((node.files && node.files.length) || (node.folders && node.folders.length))){
-            //node.files.length = 0;
+            		//node.files.length = 0;
 					  //node.folders.length = 0;
 					  for(const f of item.files) {
 						  node.files.push(f)

@@ -174,19 +174,6 @@ code {
   outline: none;
 }
 
-//fix tree view css
-wi-base-treeview .wi-treeview-container .wi-parent-content {
-  align-items: center;
-  padding: 5px 0;
-
-  >div.item-content {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    flex: 1;
-  }
-
-}
 
 wi-login>div {
   position: absolute;
@@ -655,27 +642,27 @@ input:checked + .slider:before {
     
     background: #1c2127 !important;
   }
-  wi-tree-node .node-icon {
+  wi-tree-view-virtual .node-icon {
     filter: saturate(3.1) brightness(1.2) hue-rotate(390deg);
   } 
-  wi-tree-view div input {
+  wi-tree-view-virtual div input {
     background: #1c2127 !important;
     border-bottom: 1px solid #2f3944 !important;
     color: #fff;
   }
-  wi-tree-node .node-content, wi-tree-node .node-content::after {
+  wi-tree-view-virtual .node-content, wi-tree-view-virtual .node-content::after {
     color: white;
   }
-  wi-tree-node .node-content:hover {
+  wi-tree-view-virtual .node-content:hover {
     background: linear-gradient(to left, #f0f0f014, #fff0) !important;
   }
-  wi-tree-node .node-content {
+  wi-tree-view-virtual .node-content {
     border-bottom: 1px solid #232a31 !important;
   }
-  wi-tree-node .node-content.selected {
+  wi-tree-view-virtual .node-content.selected {
     background: linear-gradient(to left, #f0f0f014, #fff0) !important;
   }
-  wi-tree-node .node-content::after {
+  wi-tree-view-virtual .node-content::after {
     color: transparent !important;
   }
   .loading-bar {
