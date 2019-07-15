@@ -1091,7 +1091,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				self.showLoading = false;
 				// console.log(self.sortByName)
 			}
-			$scope.$apply()
+			// $scope.$apply()
 		});
 	}
 	this.refreshTree = function () {
@@ -1116,7 +1116,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 
 	function getProjects(treeConfig, cb) {
 		wiApi.getListProjects().then(resp => {
-			cb(null, resp, treeConfig);
+			$timeout(()=>{
+				cb(null, resp, treeConfig);
+			})
 		}).catch(err => {
 			cb(err);
 		});
@@ -1129,7 +1131,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		// 	}
 		// }).then(function (response) {
 		// 	let projects = response.data.content;
-		// 	cb(null, projects, treeConfig);
+		// 	console.log(projects)
+		// 	// cb(null, projects, treeConfig);
 		// }, function (err) {
 		// 	cb(err);
 		// });
@@ -1137,7 +1140,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 
 	function getWells(projectId, projectNodeChildren, cb) {
 		wiApi.getListWells(projectId).then(wells => {
-			cb(null, wells, projectNodeChildren);
+			$timeout(()=>{
+				cb(null, wells, projectNodeChildren);
+			})
 		}).catch(err => {
 			console.log(err);
 			cb(err);
@@ -1160,7 +1165,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 
 	function getDatasets(wellId, wellNodeChildren, cb) {
 		wiApi.getListDatasets(wellId).then(well => {
-			cb(null, well.datasets, wellNodeChildren);
+			$timeout(()=>{
+				cb(null, well.datasets, wellNodeChildren);
+			})
 		}).catch(err => {
 			cb(err);
 		})
