@@ -6,6 +6,7 @@ import assignAppModule from './module'
 const moduleName = 'online-editor-client'
 // const loginUrl = "https://users.i2g.cloud/login";
 const baseUrl = "https://api-1.i2g.cloud";
+localStorage.setItem("__BASE_URL", baseUrl);
 // window.__WI_PAAS_URL__ = "https://python.i2g.cloud";
 // const renderComponent = `<browser base-url="${baseUrl}" login-url="${loginUrl}"></browser>`;
 const renderComponent = `<browser></browser>`;

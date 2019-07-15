@@ -4,9 +4,9 @@ import './style.scss'
 const queryString = require('query-string')
 const name = 'app';
 
-controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading'];
+controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading', 'wiApi'];
 
-function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading) {
+function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading, wiApi) {
 	let self = this;
 	const BASE_URL = "http://dev.i2g.cloud";
 	let stackNode = [];
@@ -1048,11 +1048,10 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 						return alertMessage.error(err.data.content);
 					}
 					//node.wells = wells;
-          if(!node.wells || !node.wells.length) {
-            node.wells = [];
-            for(const w of wells) node.wells.push(w);
-          }
-
+					if (!node.wells || !node.wells.length) {
+						node.wells = [];
+						for (const w of wells) node.wells.push(w);
+					}
 				});
 			}
 		}
@@ -1069,12 +1068,12 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 					className: 'ngdialog-theme-default',
 					scope: $scope,
 				});
-				self.cancelReload = function (){
+				self.cancelReload = function () {
 					ngDialog.close();
-					$timeout(()=>{
+					$timeout(() => {
 						location.reload();
-					},500)
-				}
+					}, 500)
+				};
 				self.showLoading = false;
 				return;
 			}
@@ -1082,17 +1081,17 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			$scope.treeConfig.map(p => {
 				p.realName = p.name;
 				p.name = p.alias;
-			})
-			if(self.sortByName){
+			});
+			if (self.sortByName) {
 				$scope.treeConfig = $scope.treeConfig.sort(dynamicSort("name"));
 				self.showLoading = false;
 				// console.log(self.sortByName)
-			}else{
+			} else {
 				$scope.treeConfig = $scope.treeConfig.sort(dynamicSort("alias"));
 				self.showLoading = false;
 				// console.log(self.sortByName)
-
 			}
+			$scope.$apply()
 		});
 	}
 	this.refreshTree = function () {
@@ -1114,56 +1113,71 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			}        
 		}
 	}
-	
 
 	function getProjects(treeConfig, cb) {
-		$http({
-			method: 'POST',
-			url: self.baseUrl + '/project/list',
-			data: {},
-			headers: {
-				"Authorization": wiToken.getToken(),
-			}
-		}).then(function (response) {
-			let projects = response.data.content;
-			cb(null, projects, treeConfig);
-		}, function (err) {
+		wiApi.getListProjects().then(resp => {
+			cb(null, resp, treeConfig);
+		}).catch(err => {
 			cb(err);
 		});
+		// $http({
+		// 	method: 'POST',
+		// 	url: self.baseUrl + '/project/list',
+		// 	data: {},
+		// 	headers: {
+		// 		"Authorization": wiToken.getToken(),
+		// 	}
+		// }).then(function (response) {
+		// 	let projects = response.data.content;
+		// 	cb(null, projects, treeConfig);
+		// }, function (err) {
+		// 	cb(err);
+		// });
 	}
 
 	function getWells(projectId, projectNodeChildren, cb) {
-		$http({
-			method: 'POST',
-			url: self.baseUrl + '/project/well/list',
-			data: {
-				idProject: projectId
-			},
-			headers: {
-				"Authorization": wiToken.getToken(),
-			}
-		}).then(function (response) {
-			cb(null, response.data.content, projectNodeChildren);
-		}, function (err) {
+		wiApi.getListWells(projectId).then(wells => {
+			cb(null, wells, projectNodeChildren);
+		}).catch(err => {
+			console.log(err);
 			cb(err);
 		});
+		// $http({
+		// 	method: 'POST',
+		// 	url: self.baseUrl + '/project/well/list',
+		// 	data: {
+		// 		idProject: projectId
+		// 	},
+		// 	headers: {
+		// 		"Authorization": wiToken.getToken(),
+		// 	}
+		// }).then(function (response) {
+		// 	cb(null, response.data.content, projectNodeChildren);
+		// }, function (err) {
+		// 	cb(err);
+		// });
 	}
 
 	function getDatasets(wellId, wellNodeChildren, cb) {
-		$http({
-			method: 'POST',
-			url: self.baseUrl + '/project/well/info',
-			data: {
-				idWell: wellId
-			},
-			headers: {
-				"Authorization": wiToken.getToken(),
-			}
-		}).then(function (response) {
-			cb(null, response.data.content.datasets, wellNodeChildren);
-		}, function (err) {
+		wiApi.getListDatasets(wellId).then(well => {
+			cb(null, well.datasets, wellNodeChildren);
+		}).catch(err => {
 			cb(err);
-		});
+		})
+		// $http({
+		// 	method: 'POST',
+		// 	url: self.baseUrl + '/project/well/info',
+		// 	data: {
+		// 		idWell: wellId
+		// 	},
+		// 	headers: {
+		// 		"Authorization": wiToken.getToken(),
+		// 	}
+		// }).then(function (response) {
+		// 	cb(null, response.data.content.datasets, wellNodeChildren);
+		// }, function (err) {
+		// 	cb(err);
+		// });
 	}
 }
 
