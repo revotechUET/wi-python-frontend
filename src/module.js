@@ -57,11 +57,11 @@ export default function assignAppModule(angular, moduleName) {
 			$locationProvider.html5Mode(true).hashPrefix('!');
 		})
 		.value('config', {
-			logStreamWS: 'wss://python.i2g.cloud/ws',
-			logStreamHTTP: 'https://python.i2g.cloud',
+			logStreamWS: 'ws://localhost:30002/ws',
+			logStreamHTTP: 'http://localhost:30002',
 			// ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
-			ONLINE_EDITOR_URL: 'https://python.i2g.cloud',
-			USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
-			PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
+			ONLINE_EDITOR_URL: 'http://localhost:30002',
+			USER_RELATED_ROOT_URL: 'http://localhost:30000/login',
+			PROJECT_RELATED_ROOT_URL: 'http://localhost:30001'
 		})
 }
