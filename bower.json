@@ -22,7 +22,8 @@
     "lodash": "^4.17.11",
     "async": "^2.6.2",
     "wi-live-python": "https://github.com/tunghoang/wi-live-python.git",
-    "angular-resizable": "^1.2.0"
+    "angular-resizable": "^1.2.0",
+    "resize-sensor": "^0.0.7"
   },
   "license": "ISC",
   "homepage": "https://github.com/bmq928/online-editor-client",

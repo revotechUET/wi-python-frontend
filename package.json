@@ -14,6 +14,7 @@
     "codeflask": "^1.4.0",
     "material-icons": "^0.3.0",
     "query-string": "^6.7.0",
+    "resize-sensor": "0.0.6",
     "toastr": "^2.1.4",
     "uglifyjs-webpack-plugin": "^2.1.3"
   },
