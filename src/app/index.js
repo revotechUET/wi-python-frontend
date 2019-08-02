@@ -10,6 +10,17 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	let self = this;
 	const BASE_URL = "http://dev.i2g.cloud";
 	let stackNode = [];
+	$scope.safeApply = function (fn) {
+    const phase = this.$root.$$phase;
+    if (phase == '$apply' || phase == '$digest') {
+      if (fn && (typeof (fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
+    }
+  };
+
 	self.$onInit = function () {
 		// self.autoSave = true;
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
@@ -561,20 +572,32 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				if (parentFolderPath === self.currentProject.rootName + '/') {
 					self.currentProject.files.push({
 						rootName: fileName,
-						path: self.currentProject.rootName + '/' + filePath,
+						path: self.currentProject.rootName + filePath,
 						rootIsFile: true,
 						files: [],
 						folders: []
 					});
+					// self.currentProject = {
+					// 	...self.currentProject,
+					// 	files: [...self.currentProject.files, {
+					// 		rootName: fileName,
+					// 		path: self.currentProject.rootName + filePath,
+					// 		rootIsFile: true,
+					// 		files: [],
+					// 		folders: []
+					// 	}]
+					// }
+					self.currentProject = {...self.currentProject};
 				} else {
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
 					parentFolder.files.push({
 						rootName: fileName,
-						path: self.currentProject.rootName + '/' + filePath,
+						path: self.currentProject.rootName  + filePath,
 						rootIsFile: true,
 						files: [],
 						folders: []
 					});
+					self.currentProject = {...self.currentProject};
 				}
 				ngDialog.close();
 				this.nameFileNew = '';
@@ -600,6 +623,17 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					path: containerFolderPath + '/' + folderName,
 					rootIsFile: false
 				});
+				// self.currentProject = {
+				// 	...self.currentProject,
+				// 	folders: [...self.currentProject.files, {
+				// 		rootName: folderName,
+				// 		files: [],
+				// 		folders: [],
+				// 		path: containerFolderPath + '/' + folderName,
+				// 		rootIsFile: false
+				// 	}]
+				// }
+				self.currentProject = {...self.currentProject};
 			} else {
 				const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
 
@@ -614,6 +648,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					path: containerFolderPath + '/' + folderName,
 					rootIsFile: false
 				});
+				self.currentProject = {...self.currentProject};
 			}
 			alertMessage.success('success create folder');
 			console.log({
