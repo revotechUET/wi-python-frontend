@@ -279,12 +279,32 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					console.error(e);
 				});
 			}
-			reloadPrj(projectName);
+			// reloadPrj(projectName);
+
+			//update in client
+			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
+			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			const newItemPath = parentItemPath + '/' + self.newFileName
+
+			renameItemNode.rootName = self.newFileName
+			renameItemNode.path = newItemPath
 		}
 	};
 	self.deleteFn = function () {
 		let projectName = self.currentProject.rootName;
 		let isProject = self.selectedNode.path.search("/");
+		function updateUI() {
+			const deleteItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const deleteItemNode = findNodeInTree(self.currentProject, node => node.path === deleteItemPath)
+			const parentItemPath = deleteItemPath.substring(0, deleteItemPath.lastIndexOf('/'))
+			const parentItemNode = findNodeInTree(self.currentProject, node => node.path === parentItemPath)
+
+			parentItemNode.files = parentItemNode.files.filter(f => f !== deleteItemNode)
+			parentItemNode.folders = parentItemNode.folders.filter(f => f !== deleteItemNode)
+			//update vTree
+			self.currentProject = {...self.currentProject};
+		}
 		if (self.selectedNode.rootIsFile) {
 			self.delFile = true;
 			self.delFolder = false;
@@ -299,7 +319,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					getRelPath(projectName, self.selectedNode.path)
 				).then((data) => {
 					console.log(data);
-					reloadPrj(projectName);
+					// reloadPrj(projectName);
+					updateUI()
 					ngDialog.close();
 				}).catch(e => {
 					console.error(e);
@@ -324,7 +345,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					getRelPath(projectName, self.selectedNode.path)
 				).then(data => {
 					console.log(data);
-					reloadPrj(projectName);
+					// reloadPrj(projectName);
+					updateUI()
 					ngDialog.close();
 				}).catch(e => console.error(e));
 			}
