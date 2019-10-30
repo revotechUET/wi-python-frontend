@@ -586,6 +586,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (parentPath.indexOf('/') === -1) parentPath += '/';
 		let filePath = getRelPath(self.currentProject.rootName, parentPath) + '/' + fileName;
 		if (!filePath) return;
+
 		projectApi.newFile(self.currentProject.rootName, filePath)
 			.then((data) => {
 				// reloadPrj(self.currentProject.rootName);
@@ -609,7 +610,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// 		folders: []
 					// 	}]
 					// }
-					self.currentProject = {...self.currentProject};
+					
+					// self.currentProject = {...self.currentProject};
 				} else {
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
 					parentFolder.files.push({
@@ -619,8 +621,12 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						files: [],
 						folders: []
 					});
-					self.currentProject = {...self.currentProject};
+					// self.currentProject = {...self.currentProject};
 				}
+                
+                //remove selected in vTree
+			    self.selectedNode._selected = false
+    			self.currentProject = {...self.currentProject};
 				ngDialog.close();
 				this.nameFileNew = '';
 			})
