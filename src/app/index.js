@@ -614,7 +614,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
 					parentFolder.files.push({
 						rootName: fileName,
-						path: self.currentProject.rootName  + filePath,
+						path: parentFolder.path + '/' + fileName,
 						rootIsFile: true,
 						files: [],
 						folders: []
