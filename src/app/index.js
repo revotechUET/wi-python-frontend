@@ -228,6 +228,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		let projectName = self.currentProject.rootName;
 		let isProject = self.selectedNode.path.search("/");
 
+
 		function updateUI() {
 			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
 			const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
@@ -236,6 +237,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 			renameItemNode.rootName = self.newFileName
 			renameItemNode.path = newItemPath
+		}
+		function checkExistItem() {
+			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			const parentNode = findNodeInTree(self.currentProject, node => node.path === parentItemPath)
+			const listFileName = parentNode.files.map(f => f.rootName)
+			const listFolderName = parentNode.folders.map(f => f.rootName)
+			const listItemName = [...listFolderName,...listFileName]
+			return listItemName.includes(self.newFileName) || listItemName.includes(self.newFileName + '.py')
 		}
 		if (self.selectedNode.rootIsFile) {
 			self.delFile = true;
@@ -258,6 +268,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			alertMessage.error('Please select file or folder!');
 		}
 		self.acceptRename = function () {
+			const isExistItem = checkExistItem()
+			if(isExistItem) return alertMessage.error('File name is existed')
+
 			if (self.selectedNode.rootIsFile) {
 				if (!self.newFileName || !self.newFileName.length) {
 					alertMessage.error('Fill your fileName or folderName');
