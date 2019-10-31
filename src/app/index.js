@@ -227,6 +227,16 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.renameFn = function () {
 		let projectName = self.currentProject.rootName;
 		let isProject = self.selectedNode.path.search("/");
+
+		function updateUI() {
+			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
+			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			const newItemPath = parentItemPath + '/' + self.newFileName
+
+			renameItemNode.rootName = self.newFileName
+			renameItemNode.path = newItemPath
+		}
 		if (self.selectedNode.rootIsFile) {
 			self.delFile = true;
 			self.delFolder = false;
@@ -261,6 +271,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					projectApi.renameFile(
 						projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
 					).then((data) => {
+						updateUI()
 						ngDialog.close();
 						self.newFileName = '';
 					}).catch((e) => {
@@ -273,6 +284,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				projectApi.renameFolder(
 					projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
 				).then((data) => {
+					updateUI();
 					ngDialog.close();
 					self.newFileName = '';
 				}).catch((e) => {
@@ -282,13 +294,13 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			// reloadPrj(projectName);
 
 			//update in client
-			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
-			const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
-			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
-			const newItemPath = parentItemPath + '/' + self.newFileName
+			// const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			// const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
+			// const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			// const newItemPath = parentItemPath + '/' + self.newFileName
 
-			renameItemNode.rootName = self.newFileName
-			renameItemNode.path = newItemPath
+			// renameItemNode.rootName = self.newFileName
+			// renameItemNode.path = newItemPath
 		}
 	};
 	self.deleteFn = function () {
