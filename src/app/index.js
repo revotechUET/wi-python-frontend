@@ -894,15 +894,24 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 
 	this.getLabel = function (node) {
+		function getDisplayName(node) {
+			if(node.displayName) return node.displayName;
+			return node.name
+		}
+
 		if(node){
 			if (node.idCurve) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idDataset) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idWell) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idProject) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			}
 		}
 		
@@ -1165,7 +1174,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				self.showLoading = false;
 				return;
 			}
-			$scope.treeConfig = projects.filter(project => !project.shared);
+			// $scope.treeConfig = projects.filter(project => !project.shared);
+			$scope.treeConfig = projects;
 			$scope.treeConfig.map(p => {
 				p.realName = p.name;
 				p.name = p.alias;
