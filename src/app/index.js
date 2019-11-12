@@ -227,6 +227,26 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.renameFn = function () {
 		let projectName = self.currentProject.rootName;
 		let isProject = self.selectedNode.path.search("/");
+
+
+		function updateUI() {
+			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
+			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			const newItemPath = parentItemPath + '/' + self.newFileName
+
+			renameItemNode.rootName = self.newFileName
+			renameItemNode.path = newItemPath
+		}
+		function checkExistItem() {
+			const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			const parentNode = findNodeInTree(self.currentProject, node => node.path === parentItemPath)
+			const listFileName = parentNode.files.map(f => f.rootName)
+			const listFolderName = parentNode.folders.map(f => f.rootName)
+			const listItemName = [...listFolderName,...listFileName]
+			return listItemName.includes(self.newFileName) || listItemName.includes(self.newFileName + '.py')
+		}
 		if (self.selectedNode.rootIsFile) {
 			self.delFile = true;
 			self.delFolder = false;
@@ -248,6 +268,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			alertMessage.error('Please select file or folder!');
 		}
 		self.acceptRename = function () {
+			const isExistItem = checkExistItem()
+			if(isExistItem) return alertMessage.error('File name is existed')
+
 			if (self.selectedNode.rootIsFile) {
 				if (!self.newFileName || !self.newFileName.length) {
 					alertMessage.error('Fill your fileName or folderName');
@@ -261,6 +284,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					projectApi.renameFile(
 						projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
 					).then((data) => {
+						updateUI()
 						ngDialog.close();
 						self.newFileName = '';
 					}).catch((e) => {
@@ -273,18 +297,39 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				projectApi.renameFolder(
 					projectName, getRelPath(projectName, self.selectedNode.path), newFileName + self.newFileName
 				).then((data) => {
+					updateUI();
 					ngDialog.close();
 					self.newFileName = '';
 				}).catch((e) => {
 					console.error(e);
 				});
 			}
-			reloadPrj(projectName);
+			// reloadPrj(projectName);
+
+			//update in client
+			// const renameItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			// const renameItemNode = findNodeInTree(self.currentProject, node => node.path === renameItemPath)
+			// const parentItemPath = renameItemPath.substring(0, renameItemPath.lastIndexOf('/'))
+			// const newItemPath = parentItemPath + '/' + self.newFileName
+
+			// renameItemNode.rootName = self.newFileName
+			// renameItemNode.path = newItemPath
 		}
 	};
 	self.deleteFn = function () {
 		let projectName = self.currentProject.rootName;
 		let isProject = self.selectedNode.path.search("/");
+		function updateUI() {
+			const deleteItemPath = projectName + '/' + getRelPath(projectName, self.selectedNode.path)
+			const deleteItemNode = findNodeInTree(self.currentProject, node => node.path === deleteItemPath)
+			const parentItemPath = deleteItemPath.substring(0, deleteItemPath.lastIndexOf('/'))
+			const parentItemNode = findNodeInTree(self.currentProject, node => node.path === parentItemPath)
+
+			parentItemNode.files = parentItemNode.files.filter(f => f !== deleteItemNode)
+			parentItemNode.folders = parentItemNode.folders.filter(f => f !== deleteItemNode)
+			//update vTree
+			self.currentProject = {...self.currentProject};
+		}
 		if (self.selectedNode.rootIsFile) {
 			self.delFile = true;
 			self.delFolder = false;
@@ -299,7 +344,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					getRelPath(projectName, self.selectedNode.path)
 				).then((data) => {
 					console.log(data);
-					reloadPrj(projectName);
+					// reloadPrj(projectName);
+					updateUI()
 					ngDialog.close();
 				}).catch(e => {
 					console.error(e);
@@ -324,7 +370,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					getRelPath(projectName, self.selectedNode.path)
 				).then(data => {
 					console.log(data);
-					reloadPrj(projectName);
+					// reloadPrj(projectName);
+					updateUI()
 					ngDialog.close();
 				}).catch(e => console.error(e));
 			}
@@ -564,6 +611,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (parentPath.indexOf('/') === -1) parentPath += '/';
 		let filePath = getRelPath(self.currentProject.rootName, parentPath) + '/' + fileName;
 		if (!filePath) return;
+
 		projectApi.newFile(self.currentProject.rootName, filePath)
 			.then((data) => {
 				// reloadPrj(self.currentProject.rootName);
@@ -587,18 +635,23 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// 		folders: []
 					// 	}]
 					// }
-					self.currentProject = {...self.currentProject};
+					
+					// self.currentProject = {...self.currentProject};
 				} else {
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
 					parentFolder.files.push({
 						rootName: fileName,
-						path: self.currentProject.rootName  + filePath,
+						path: parentFolder.path + '/' + fileName,
 						rootIsFile: true,
 						files: [],
 						folders: []
 					});
-					self.currentProject = {...self.currentProject};
+					// self.currentProject = {...self.currentProject};
 				}
+                
+                //remove selected in vTree
+			    self.selectedNode._selected = false
+    			self.currentProject = {...self.currentProject};
 				ngDialog.close();
 				this.nameFileNew = '';
 			})
@@ -841,15 +894,24 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 
 	this.getLabel = function (node) {
+		function getDisplayName(node) {
+			if(node.displayName) return node.displayName;
+			return node.name
+		}
+
 		if(node){
 			if (node.idCurve) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idDataset) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idWell) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			} else if (node.idProject) {
-				return node.name;
+				// return node.name;
+				return getDisplayName(node)
 			}
 		}
 		
@@ -1112,7 +1174,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				self.showLoading = false;
 				return;
 			}
-			$scope.treeConfig = projects.filter(project => !project.shared);
+			// $scope.treeConfig = projects.filter(project => !project.shared);
+			$scope.treeConfig = projects;
 			$scope.treeConfig.map(p => {
 				p.realName = p.name;
 				p.name = p.alias;
