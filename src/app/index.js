@@ -379,7 +379,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				ngDialog.close();
 			}
 		} else {
-			self.delProject();
+			self.delProject(projectName);
 		}
 	};
 
@@ -620,7 +620,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				if (parentFolderPath === self.currentProject.rootName + '/') {
 					self.currentProject.files.push({
 						rootName: fileName,
-						path: self.currentProject.rootName + filePath,
+						// path: self.currentProject.rootName + filePath,
+						path: joinPath(self.currentProject.rootName, filePath),
 						rootIsFile: true,
 						files: [],
 						folders: []
@@ -641,7 +642,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
 					parentFolder.files.push({
 						rootName: fileName,
-						path: parentFolder.path + '/' + fileName,
+						// path: parentFolder.path + '/' + fileName,
+						path: joinPath(parentFolder.path, fileName),
 						rootIsFile: true,
 						files: [],
 						folders: []
@@ -673,19 +675,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					rootName: folderName,
 					files: [],
 					folders: [],
-					path: containerFolderPath + '/' + folderName,
+					// path: containerFolderPath + '/' + folderName,
+					path: joinPath(containerFolderPath, folderName),
 					rootIsFile: false
 				});
-				// self.currentProject = {
-				// 	...self.currentProject,
-				// 	folders: [...self.currentProject.files, {
-				// 		rootName: folderName,
-				// 		files: [],
-				// 		folders: [],
-				// 		path: containerFolderPath + '/' + folderName,
-				// 		rootIsFile: false
-				// 	}]
-				// }
 				self.currentProject = {...self.currentProject};
 			} else {
 				const folderName = folderPath.split('/').reduce((pre, cur, i, arr) => arr[arr.length - 1]);
@@ -698,7 +691,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					rootName: folderName,
 					files: [],
 					folders: [],
-					path: containerFolderPath + '/' + folderName,
+					// path: containerFolderPath + '/' + folderName,
+					path: joinPath(containerFolderPath, folderName),
 					rootIsFile: false
 				});
 				self.currentProject = {...self.currentProject};
@@ -860,9 +854,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		const lastSlashIndex = dir.lastIndexOf('/');
 
 
-		if (lastSlashIndex === -1) return self.currentProject.path;
-		if (dirContainProjectName) return dir.substr(0, lastSlashIndex);
-		return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex)
+		if (lastSlashIndex === -1) return joinPath(self.currentProject.path);
+		if (dirContainProjectName) return joinPath(dir.substr(0, lastSlashIndex));
+		// return self.currentProject.path + '/' + dir.substr(0, lastSlashIndex)
+		return joinPath(self.currentProject.path, dir.substr(0, lastSlashIndex));
 	}
 
 
@@ -1269,20 +1264,13 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		}).catch(err => {
 			cb(err);
 		})
-		// $http({
-		// 	method: 'POST',
-		// 	url: self.baseUrl + '/project/well/info',
-		// 	data: {
-		// 		idWell: wellId
-		// 	},
-		// 	headers: {
-		// 		"Authorization": wiToken.getToken(),
-		// 	}
-		// }).then(function (response) {
-		// 	cb(null, response.data.content.datasets, wellNodeChildren);
-		// }, function (err) {
-		// 	cb(err);
-		// });
+	}
+
+	function joinPath(...items) {
+		// const rawPath = items.reduce((acc, cur) => acc + '/' + cur, '')
+		const rawPath = items.join('/')
+		const singleSlashPath = rawPath.replace(/(\/)+/g, '/')
+		return singleSlashPath
 	}
 }
 
