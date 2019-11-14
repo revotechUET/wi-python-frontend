@@ -611,7 +611,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (parentPath.indexOf('/') === -1) parentPath += '/';
 		let filePath = getRelPath(self.currentProject.rootName, parentPath) + '/' + fileName;
 		if (!filePath) return;
-
+		removeSelectedIndicator()
 		projectApi.newFile(self.currentProject.rootName, filePath)
 			.then((data) => {
 				// reloadPrj(self.currentProject.rootName);
@@ -668,6 +668,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (parentPath.indexOf('/') === -1) parentPath += '/';
 		let folderPath = getRelPath(self.currentProject.rootName, parentPath) + '/' + folderName;
 		if (!folderPath) return;
+		removeSelectedIndicator()
 		projectApi.newFolder(self.currentProject.rootName, folderPath).then(() => {
 			const containerFolderPath = getParrentFolderPath(folderPath);
 			if (containerFolderPath === self.currentProject.rootName + '/') {
@@ -1271,6 +1272,10 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		const rawPath = items.join('/')
 		const singleSlashPath = rawPath.replace(/(\/)+/g, '/')
 		return singleSlashPath
+	}
+
+	function removeSelectedIndicator() {
+		self.selectedNode._selected = false
 	}
 }
 
