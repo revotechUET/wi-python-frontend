@@ -947,6 +947,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}
 	};
 	this.runMatch = function (node, criteria) {
+		if(!node || !node.alias) return false
 		let keySearch = criteria.toLowerCase();
         let searchArray = node.alias.toLowerCase();
         return searchArray.includes(keySearch);
@@ -1200,10 +1201,12 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		}
 	
 		return function (a,b) {
+			const compareValOfA = a[property] || ''
+			const compareValOfB = b[property] || ''
 			if(sortOrder == -1){
-				return b[property].localeCompare(a[property]);
+				return compareValOfB.localeCompare(compareValOfA);
 			}else{
-				return a[property].localeCompare(b[property]);
+				return compareValOfA.localeCompare(compareValOfB);
 			}        
 		}
 	}
