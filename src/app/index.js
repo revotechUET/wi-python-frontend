@@ -8,7 +8,7 @@ controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'a
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading, wiApi) {
 	let self = this;
-	const BASE_URL = "http://dev.i2g.cloud";
+	const BASE_URL = "https://users.i2g.cloud";
 	let stackNode = [];
 	$scope.safeApply = function (fn) {
     const phase = this.$root.$$phase;
