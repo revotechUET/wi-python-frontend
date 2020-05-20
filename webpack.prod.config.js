@@ -1,5 +1,4 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   //entry: path.join(__dirname, 'src', 'index.js'),
@@ -49,13 +48,8 @@ module.exports = {
     ]
   },
   optimization: {
-    minimizer: [
-      // new UglifyJsPlugin()
-    ]
+    minimize: true
   },
-  plugins: [
-    new UglifyJsPlugin({uglifyOptions:{compress:true}})
-  ],
   //fix bug cannot resolve  'fs'
   node: {
     fs: "empty"

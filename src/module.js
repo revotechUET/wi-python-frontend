@@ -53,9 +53,9 @@ export default function assignAppModule(angular, moduleName) {
 		.service(funcGen.name, funcGen.service)
 		.service(auth.name, auth.service)
 		.service(keyBind.name, keyBind.service)
-		.config(function ($locationProvider) {
+		.config(['$locationProvider', function ($locationProvider) {
 			$locationProvider.html5Mode(true).hashPrefix('!');
-		})
+		}])
 		.value('config', {
 			logStreamWS: 'wss://python.i2g.cloud/ws',
 			logStreamHTTP: 'https://python.i2g.cloud',

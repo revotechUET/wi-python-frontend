@@ -4,6 +4,11 @@ import './style.scss'
 const queryString = require('query-string')
 const name = 'app';
 
+function getClientId(owner, prjName) {
+	if (!owner || !owner.length) return "WI_PYTHON_CLIENT";
+	return `WI_PYTHON_CLIENT-${owner}-${prjName}`; 
+}
+
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading', 'wiApi'];
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading, wiApi) {
@@ -1144,7 +1149,13 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 					//node.wells = wells;
 					if (!node.wells || !node.wells.length) {
 						node.wells = [];
-						for (const w of wells) node.wells.push(w);
+						for (const w of wells) {
+							if (node.owner) {
+								w.owner = node.owner;
+								w.prjName = node.name;
+							}
+							node.wells.push(w);
+						}
 					}
 				});
 			}
@@ -1212,7 +1223,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	}
 
 	function getProjects(treeConfig, cb) {
-		wiApi.getListProjects().then(resp => {
+		wiApi.client(getClientId()).getListProjects().then(resp => {
 			$timeout(()=>{
 				cb(null, resp, treeConfig);
 			})
@@ -1235,10 +1246,11 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		// });
 	}
 
-	function getWells(projectId, projectNodeChildren, cb) {
-		wiApi.getListWells(projectId).then(wells => {
+	async function getWells(projectId, projectNode, cb) {
+		await wiApi.addShareSession(getClientId(projectNode.owner, projectNode.name), projectNode.owner, projectNode.name);
+		wiApi.client(getClientId(projectNode.owner, projectNode.name)).getListWells(projectId).then(wells => {
 			$timeout(()=>{
-				cb(null, wells, projectNodeChildren);
+				cb(null, wells, projectNode);
 			})
 		}).catch(err => {
 			console.log(err);
@@ -1260,10 +1272,10 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		// });
 	}
 
-	function getDatasets(wellId, wellNodeChildren, cb) {
-		wiApi.getListDatasets(wellId).then(well => {
+	function getDatasets(wellId, wellNode, cb) {
+		wiApi.client(getClientId(wellNode.owner, wellNode.prjName)).getListDatasets(wellId).then(well => {
 			$timeout(()=>{
-				cb(null, well.datasets, wellNodeChildren);
+				cb(null, well.datasets, wellNode);
 			})
 		}).catch(err => {
 			cb(err);
