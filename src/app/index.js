@@ -1247,7 +1247,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	}
 
 	async function getWells(projectId, projectNode, cb) {
-		await wiApi.addShareSession(getClientId(projectNode.owner, projectNode.name), projectNode.owner, projectNode.name);
+		if (projectNode.shared) {
+			await wiApi.addShareSession(getClientId(projectNode.owner, projectNode.name), projectNode.owner, projectNode.name);
+		}
 		wiApi.client(getClientId(projectNode.owner, projectNode.name)).getListWells(projectId).then(wells => {
 			$timeout(()=>{
 				cb(null, wells, projectNode);
