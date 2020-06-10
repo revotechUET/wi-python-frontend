@@ -1,8 +1,13 @@
+
 import template from './template.html'
 import './style.scss'
+import Vue from 'vue';
+import { ngVue, WiTree, WiDroppable } from '@revotechuet/misc-component-vue';
 
 const queryString = require('query-string')
 const name = 'app';
+const limitToastDisplayed = 3;
+
 
 function getClientId(owner, prjName) {
 	if (!owner || !owner.length) return "WI_PYTHON_CLIENT";
@@ -12,6 +17,10 @@ function getClientId(owner, prjName) {
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading', 'wiApi'];
 
 function controller($scope, $http, $element, wiToken, projectApi, alertMessage, funcGen, browserCodeRunner, mime, $timeout, ngDialog, $location, config, wiLoading, wiApi) {
+	Object.assign($scope, {
+        WiTree,
+        WiDroppable,
+    })
 	let self = this;
 	const BASE_URL = "https://users.i2g.cloud";
 	let stackNode = [];
@@ -28,6 +37,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 	self.$onInit = function () {
 		// self.autoSave = true;
+		self.toastArray = [];
+        self.toastHistory = [];
 		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
 		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
 		self.queryString = queryString.parse(location.search);
@@ -56,7 +67,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			} else if (!self.autoSave && !self.askSave && preNode) {
 				ngDialog.open({
 					template: 'templateWarningSave',
-					className: 'ngdialog-theme-default',
+					className: 'i2g-ngdialog',
 					scope: $scope,
 				});
 				self.acceptDontSave = function(){
@@ -77,7 +88,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.curPrj = wiToken.getCurrentProjectName()
 			ngDialog.open({
 				template: 'templateRestore',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			self.acceptRestore = function () {
@@ -86,15 +97,16 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						self.currentProject = item;
 						self.selectedNode = self.currentProject;
 						ngDialog.close();
+						// eslint-disable-next-line no-undef
 						$("#root-app").removeClass("blur");
 						getCurveTree();
 					})
 					.catch(error => {
-						ngDialog.open({
-							template: 'templateConnectionError',
-							className: 'ngdialog-theme-default',
-							scope: $scope,
-						});
+						// ngDialog.open({
+						// 	template: 'templateConnectionError',
+						// 	className: 'i2g-ngdialog',
+						// 	scope: $scope,
+						// });
 						self.cancelReload = function (){
 							ngDialog.close();
 							$timeout(()=>{
@@ -107,7 +119,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		} else if (wiToken.getToken()) {
 			ngDialog.open({
 				template: 'templateOpenProject',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			projectApi.listProjects()
@@ -137,7 +149,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.findAllProjects = function () {
 		ngDialog.open({
 			template: 'templateOpenProject',
-			className: 'ngdialog-theme-default',
+			className: 'i2g-ngdialog',
 			scope: $scope,
 		});
 		projectApi.listProjects()
@@ -150,11 +162,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}
 			})
 			.catch(error => {
-				ngDialog.open({
-					template: 'templateConnectionError',
-					className: 'ngdialog-theme-default',
-					scope: $scope,
-				});
+				// ngDialog.open({
+				// 	template: 'templateConnectionError',
+				// 	className: 'i2g-ngdialog',
+				// 	scope: $scope,
+				// });
 				self.cancelReload = function (){
 					ngDialog.close();
 					$timeout(()=>{
@@ -171,6 +183,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				self.selectedNode = self.currentProject;
 				wiToken.setCurrentProjectName(self.currentProject.rootName)
 				ngDialog.close();
+				// eslint-disable-next-line no-undef
 				$("#root-app").removeClass("blur");
 				getCurveTree();
 			})
@@ -187,7 +200,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		return node.rootName;
 	};
 	this.getIcon4Python = function (node) {
-		return node.rootIsFile ? 'file-wi-python-16x16' : 'folder-wi-python-16x16';
+		return node.rootIsFile ? 'file-wi-python-16x16' : 'i2g-project-16x16';
 	};
 
 	this.runMatch4Python = function (node, criteria) {
@@ -208,26 +221,17 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					if (!(item.files.length + item.folders.length)) {
 						return alertMessage.error('There is nothing in this folder')
 					}
-					// node.files = item.files;
-					// node.folders = item.folders;
-				  if(!((node.files && node.files.length) || (node.folders && node.folders.length))){
-            		//node.files.length = 0;
-					  //node.folders.length = 0;
-					  for(const f of item.files) {
-						  node.files.push(f)
-					  }
-
-					  for(const f of item.folders) {
-						  node.folders.push(f)
-					  } 
-          }
+					if (!((node.files && node.files.length) || (node.folders && node.folders.length))) {
+						for (const f of item.files) { node.files.push(f) }
+						for (const f of item.folders) { node.folders.push(f) }
+					}
 
 				})
 				.catch(error => {
 					alertMessage.error(error)
 				})
 		}
-		
+
 	};
 	self.renameFn = function () {
 		let projectName = self.currentProject.rootName;
@@ -257,7 +261,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.delFolder = false;
 			ngDialog.open({
 				template: 'templateRename',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 		} else if(isProject !== -1){
@@ -266,11 +270,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.curFolder = getRelPath(projectName, self.selectedNode.path)
 			ngDialog.open({
 				template: 'templateRename',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 		} else {
-			alertMessage.error('Please select file or folder!');
+			$timeout(() => {
+				self.showNotiFn('noti', 'Notification','Please select file or folder!' , 4000);
+			})
+			// alertMessage.error('Please select file or folder!');
 		}
 		self.acceptRename = function () {
 			const isExistItem = checkExistItem()
@@ -340,7 +347,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.delFolder = false;
 			ngDialog.open({
 				template: 'templateWarning',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			self.acceptDelete = function () {
@@ -366,7 +373,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.curFolder = getRelPath(projectName, self.selectedNode.path)
 			ngDialog.open({
 				template: 'templateWarning',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			self.acceptDelete = function () {
@@ -434,7 +441,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (!projectName) {
 			ngDialog.open({
 				template: 'templateNewPrj',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			self.acceptNewPrj = function () {
@@ -453,7 +460,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 		// let dialog = ngDialog.open({
 		// 	template: 'templateDeleteProject',
-		// 	className: 'ngdialog-theme-default',
+		// 	className: 'i2g-ngdialog',
 		// 	scope: $scope,
 		// });
 		// dialog.closePromise.then((data) => {
@@ -473,7 +480,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		// // }
 		ngDialog.open({
 			template: 'templateDeleteProject',
-			className: 'ngdialog-theme-default',
+			className: 'i2g-ngdialog',
 			scope: $scope,
 		});
 		self.acceptDeletePrj = function () {
@@ -482,12 +489,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					alertMessage.success('Success remove project ' + project);
 					initState();
 					ngDialog.close();
+					// eslint-disable-next-line no-undef
 					$("#root-app").removeClass("blur");
 				})
 				.catch(error => alertMessage.error(error))
 		}
 		self.cancelDeletePrj = function () {
 			ngDialog.close();
+			// eslint-disable-next-line no-undef
 			$("#root-app").removeClass("blur");
 
 		}
@@ -498,7 +507,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		if (self.currentProject) {
 			ngDialog.open({
 				template: 'templateDeleteProject',
-				className: 'ngdialog-theme-default',
+				className: 'i2g-ngdialog',
 				scope: $scope,
 			});
 			self.acceptDeletePrj = function () {
@@ -522,15 +531,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.aboutWiPython = function () {
 		ngDialog.open({
 			template: 'templateAbout',
-			className: 'ngdialog-theme-default',
+			className: 'i2g-ngdialog',
 			scope: $scope,
 		});
 	};
 	self.changeTheme = function () {
 		var element = document.getElementById("tools");
-		  element.classList.toggle("dark-theme");
+		element.classList.toggle("dark-theme");
 		var element2 = document.getElementById("app");
-		  element2.classList.toggle("dark-theme");
+		element2.classList.toggle("dark-theme");
 		var element3 = document.getElementById("custom-login-css");
 			element3.classList.toggle("dark-theme");
 	};
@@ -597,7 +606,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.createNewFile = function () {
 		ngDialog.open({
 			template: 'templateNewFile',
-			className: 'ngdialog-theme-default',
+			className: 'i2g-ngdialog',
 			scope: $scope,
 		});
 	};
@@ -605,7 +614,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.createNewFolder = function () {
 		ngDialog.open({
 			template: 'templateNewFolder',
-			className: 'ngdialog-theme-default',
+			className: 'i2g-ngdialog',
 			scope: $scope,
 		});
 	};
@@ -656,9 +665,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// self.currentProject = {...self.currentProject};
 				}
                 
-                //remove selected in vTree
-			    self.selectedNode._selected = false
-    			self.currentProject = {...self.currentProject};
+				//remove selected in vTree	
+				self.selectedNode._selected = false
+				self.currentProject = {...self.currentProject};
 				ngDialog.close();
 				this.nameFileNew = '';
 			})
@@ -919,12 +928,13 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 	this.getIcon = function (node) {
 		if(node){
-			if (node.idCurve) return "curve-16x16";
-			else if (node.idDataset) return "curve-data-16x16";
-			else if (node.idWell) return "well-16x16";
-			else if (node.idProject) return "project-normal-16x16";
+			if (node.idCurve) return "i2g-curve-16x16";
+			else if (node.idDataset) return "i2g-curve-data-16x16";
+			else if (node.idWell) return "i2g-well-16x16";
+			else if (node.idProject) return "i2g-project-16x16";
 		}
 	};
+	
 	this.getChildren = function (node) {
 		if (!node) {
 			return [];
@@ -1004,11 +1014,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						break;
 					case 'well':
 						self.code += generateCode4Well(mode, info);
-						;
 						break;
 					case 'project':
 						self.code += generateCode4Project(mode, info);
-						;
 						break;
 				}
 			});
@@ -1138,7 +1146,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				if (err) {
 					return console.log(err);
 				}
-				node.datasets = datasets;
+				Vue.set(node, 'datasets', datasets);
+				self.showLoading = false;
 			});
 		} else if (node.idProject) {
 			if (!node.timestamp || (Date.now() - node.timestamp > 3 * 1000)) {
@@ -1148,13 +1157,14 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 					}
 					//node.wells = wells;
 					if (!node.wells || !node.wells.length) {
-						node.wells = [];
+						Vue.set(node, 'wells', []);
 						for (const w of wells) {
 							if (node.owner) {
 								w.owner = node.owner;
 								w.prjName = node.name;
 							}
 							node.wells.push(w);
+							self.showLoading = false;
 						}
 					}
 				});
@@ -1168,11 +1178,11 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		$scope.treeConfig = [];
 		getProjects($scope.treeConfig, function (err, projects) {
 			if (err) {
-				ngDialog.open({
-					template: 'templateConnectionError',
-					className: 'ngdialog-theme-default',
-					scope: $scope,
-				});
+				// ngDialog.open({
+				// 	template: 'templateConnectionError',
+				// 	className: 'i2g-ngdialog',
+				// 	scope: $scope,
+				// });
 				self.cancelReload = function () {
 					ngDialog.close();
 					$timeout(() => {
@@ -1247,6 +1257,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	}
 
 	async function getWells(projectId, projectNode, cb) {
+		self.showLoading = true;
 		if (projectNode.shared) {
 			await wiApi.addShareSession(getClientId(projectNode.owner, projectNode.name), projectNode.owner, projectNode.name);
 		}
@@ -1258,23 +1269,10 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			console.log(err);
 			cb(err);
 		});
-		// $http({
-		// 	method: 'POST',
-		// 	url: self.baseUrl + '/project/well/list',
-		// 	data: {
-		// 		idProject: projectId
-		// 	},
-		// 	headers: {
-		// 		"Authorization": wiToken.getToken(),
-		// 	}
-		// }).then(function (response) {
-		// 	cb(null, response.data.content, projectNodeChildren);
-		// }, function (err) {
-		// 	cb(err);
-		// });
 	}
 
 	function getDatasets(wellId, wellNode, cb) {
+		self.showLoading = true;
 		wiApi.client(getClientId(wellNode.owner, wellNode.prjName)).getListDatasets(wellId).then(well => {
 			$timeout(()=>{
 				cb(null, well.datasets, wellNode);
@@ -1294,6 +1292,60 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	function removeSelectedIndicator() {
 		self.selectedNode._selected = false
 	}
+
+
+    //HUNGNK
+    this.showNotiFn = function (type, title, message, timeLife) {
+        let id;
+        let item;
+        let currentTime;
+        let date = new Date();
+        //SET OVERLAY LOADING NOTI
+        if (type === 'loading-noti') {
+          // eslint-disable-next-line no-undef
+          $(".i2g-toast-container").addClass("cursor-not-allowed");
+          setTimeout(function () {
+            // eslint-disable-next-line no-undef
+            $(".i2g-toast-container").removeClass("cursor-not-allowed");
+          }, timeLife);
+        }
+        //LIMIT ARRAY ITEM
+        if (self.toastArray.length > limitToastDisplayed) {
+          self.toastArray.pop();
+        }
+        //SET ID
+        id = type + '-' + String(Math.floor(Math.random() * 1000));
+        currentTime = String(date.getHours() + ':' + date.getMinutes() + ':' + date.getMilliseconds());
+        item = {
+          id: id,
+          type: type,
+          classTypeToast: type,
+          title: title,
+          message: message,
+          timeLife: timeLife,
+          currentTime: currentTime,
+        };
+        //PUSH ARRAY NOTI
+        self.toastArray.unshift(item)
+        //PLAY SOUND
+    
+        //PUSH ARRAY HISTORY
+        self.toastHistory.unshift(item)
+        //REMOVE ITEM IN ARRAY, REMOVE DOM HTML
+        setTimeout(function () {
+          document.getElementById(id).classList.add('i2g-close-notification')
+        }, (timeLife - 300));
+        setTimeout(function () {
+          self.toastArray = self.toastArray.filter(function (obj) {
+            return obj.id !== id;
+          });
+          document.getElementById(id).remove();
+        }, timeLife);
+      }
+    this.changeTheme = function () {
+        // eslint-disable-next-line no-undef
+        $('body').toggleClass('i2g-darkmode');
+    }
 }
 
 export default {

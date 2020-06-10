@@ -1,139 +1,180 @@
-<div style="display:flex;flex-direction:column;height:100%;">
-    <!--<wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python" login-url="https://users.i2g.cloud/login"></wi-login>-->
-    <wi-login id="custom-login-css" register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python Editor"
-              login-url="{{self.loginUrl}}" query-string="self.queryString"></wi-login>
-
-    <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects"
-           open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject"
-           delete-project="self.deleteProject" create-new-file="self.createNewFile"
-           create-new-folder="self.createNewFolder"
-           delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode"
-           code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig"
-           get-curve-tree="self.getCurveTree"
-           remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked"
-           save-checked="self.saveChecked"
-           refresh-checked="self.refreshChecked" new-checked="self.newChecked"
-           generate-login-by-token="self.generateLoginByToken" generate-login-by-account="self.generateLoginByAccount"
-           generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" change-theme="self.changeTheme">
-    </tools>
-
-    <div id="app" class="app" style="z-index: 0;">
-        <div class="side-bar-right" style="border-right: 1px solid #c7c7c7;">
-            <side-bar my-default-width="235" orientation="e" collapsed="false">
-                <wi-tree-view-virtual tree-root="self.currentProject" get-label="self.getLabel4Python"
-                              get-icon="self.getIcon4Python"
-                              get-children="self.getChildren4Python"
-                              hide-unmatched="true" selected-ids="self.selectedIdsHash"
-                              run-match="self.runMatch4Python"
-                              uncollapsible="false"
-                              click-fn='self.clickFunction4Python'>
-                    <div style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;" class="label-list-view ng-scope"><span>PROJECTS</span>
-                        <span class="fn-button" 
-                        ng-click="self.deleteFn()"> DELETE</span>
-                        <span class="fn-button" 
-                        ng-click="self.renameFn()">RENAME</span>
-                    </div>
-                </wi-tree-view-virtual>
-            </side-bar>
+<div class="i2g-toast-container">
+    <div ng-repeat="item in self.toastArray" class="i2g-toast-item {{item.classTypeToast}}" id={{item.id}}>
+        <div>
         </div>
-        <div class="main-center" style="width:100%; display: flex; flex-direction: column; border-right: 1px solid #c7c7c7;background: #fff;">
-            <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4; justify-content: space-between;">
-                <div style="display: flex;align-items: center;">
-                    <span>EDITOR - </span><span 
-                        style="max-width: 205px;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        text-overflow: ellipsis;
-                        direction: rtl;" 
-                        ng-show="self.selectedNode && self.selectedNode.path">
-                         ({{self.selectedNode.path}})
-                    </span>
-                    <span class="fn-button" 
-                        ng-click="self.runCode()">
-                        <i class="fa fa-play" style="margin-right: 8px; color: #37a0ff;"></i>RUN CODE</span>
-                    <span class="fn-button"  
-                        ng-click="self.saveCode()">SAVE CODE</span>
-                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.autoSave}"
-                        ng-click="self.autoSave = !self.autoSave;">
-                        <i class="fa fa-check" style="margin-right: 8px;"></i>AUTO SAVE</span>
-                </div>
-                <div class="askSaveHover" style="margin-top: -3px;">
-                    <span class="askTooltip">Warning when don't save file</span>
-                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: !self.askSave}"
-                        ng-click="self.askSave = !self.askSave;">
-                        <i class="fa fa-check" style="margin-right: 8px;"></i>SAVE REMIDER</span>
-                </div>
+        <div>
+            <div>
+                {{item.title}}
             </div>
-            <div style="display:flex; flex:3;margin-bottom: 15px;">
-                <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;"
-                              on-drop="self.onDrop"
-                              container-style="{display:'flex',flex: 1}">
-                    <div style="display:flex;flex:3;">
-                        <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
-                                  cur-file="self.curFile">
-                        </explorer>
+            <span>
+                {{item.message}}
+            </span>
+        </div>
+    </div>
+</div>
+<div style="width: 100vw; height: 100vh; min-width: 100vw; min-height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden;">
+    
+
+    <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode" code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree" remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked" refresh-checked="self.refreshChecked" new-checked="self.newChecked" generate-login-by-token="self.generateLoginByToken" generate-login-by-account="self.generateLoginByAccount" generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" change-theme="self.changeTheme"
+    auto-save="self.autoSave" save-warning="self.askSave" toast-history="self.toastHistory" show-project="self.showProject" show-project-python="self.showProjectPython" show-console="self.showConsole"></tools>
+
+    <div id="app" class="i2g-main-layout" style="z-index: 0;">
+        <div style="flex: 1; display: flex;">
+            <div class="block" style="flex-basis: 300px; overflow: visible" resizable r-directions="['right']"
+                r-flex="true" ng-class="{'hide-block': self.showProjectPython}">
+                <div class="i2g-title-with-btn">
+                    <span>Projects</span>
+                    <div>
+                        <div class="space-20px"></div>
+                        <div class="i2g-button-with-icon" ng-click="self.deleteFn()">
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                <path d="M4,5 C4.55228475,5 5,5.44771525 5,6 L5,14 C5,14.5522847 4.55228475,15 4,15 C3.44771525,15 3,14.5522847 3,14 L3,6 C3,5.44771525 3.44771525,5 4,5 Z" id="Path" fill-rule="nonzero"/> <path d="M8,5 C8.55228475,5 9,5.44771525 9,6 L9,14 C9,14.5522847 8.55228475,15 8,15 C7.44771525,15 7,14.5522847 7,14 L7,6 C7,5.44771525 7.44771525,5 8,5 Z" id="Path" fill-rule="nonzero"/> <path d="M4,13 L12,13 C12.5522847,13 13,13.4477153 13,14 C13,14.5522847 12.5522847,15 12,15 L4,15 C3.44771525,15 3,14.5522847 3,14 C3,13.4477153 3.44771525,13 4,13 Z" id="Path" fill-rule="nonzero"/> <path d="M5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 C12,2.55228475 11.5522847,3 11,3 L5,3 C4.44771525,3 4,2.55228475 4,2 C4,1.44771525 4.44771525,1 5,1 Z" id="Path" fill-rule="nonzero"/> <path d="M2,4 L14,4 C14.5522847,4 15,4.44771525 15,5 C15,5.55228475 14.5522847,6 14,6 L2,6 C1.44771525,6 1,5.55228475 1,5 C1,4.44771525 1.44771525,4 2,4 Z" id="Path" fill-rule="nonzero"/> <path d="M12,5 C12.5522847,5 13,5.44771525 13,6 L13,14 C13,14.5522847 12.5522847,15 12,15 C11.4477153,15 11,14.5522847 11,14 L11,6 C11,5.44771525 11.4477153,5 12,5 Z" id="Path" fill-rule="nonzero"/>
+                            </svg>
+                        </div>
+                        <div class="space-20px"></div>
+                        <div class="i2g-button-with-icon" ng-click="self.renameFn()">
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"> <path d="M5,0 L11,0 C11.5522847,-1.01453063e-16 12,0.44771525 12,1 L12,15 C12,15.5522847 11.5522847,16 11,16 L5,16 C4.44771525,16 4,15.5522847 4,15 L4,1 C4,0.44771525 4.44771525,1.01453063e-16 5,0 Z" id="Path"  fill-rule="nonzero" opacity="0.499186198" transform="translate(8.000000, 8.000000) rotate(-90.000000) translate(-8.000000, -8.000000) "/> <path d="M4,7 L16,7 C16.5522847,7 17,7.44771525 17,8 C17,8.55228475 16.5522847,9 16,9 L4,9 C3.44771525,9 3,8.55228475 3,8 C3,7.44771525 3.44771525,7 4,7 Z" id="Path"  fill-rule="nonzero" transform="translate(10.000000, 8.000000) rotate(-90.000000) translate(-10.000000, -8.000000) "/> <path d="M10,-2 C10.5522847,-2 11,-1.55228475 11,-1 L11,3 C11,3.55228475 10.5522847,4 10,4 C9.44771525,4 9,3.55228475 9,3 L9,-1 C9,-1.55228475 9.44771525,-2 10,-2 Z" id="Path"  fill-rule="nonzero" transform="translate(10.000000, 1.000000) rotate(-90.000000) translate(-10.000000, -1.000000) "/> <path d="M10,12 C10.5522847,12 11,12.4477153 11,13 L11,17 C11,17.5522847 10.5522847,18 10,18 C9.44771525,18 9,17.5522847 9,17 L9,13 C9,12.4477153 9.44771525,12 10,12 Z" id="Path" fill-rule="nonzero" transform="translate(10.000000, 15.000000) rotate(-90.000000) translate(-10.000000, -15.000000) "/>
+                            </svg>
+                        </div>
+                        <div class="space-20px"></div>
+                        <div class="i2g-button-with-icon" ng-click="self.showProjectPython = !self.showProjectPython">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-135.000000) translate(-8.000000, -8.000000) "></path>
+                                <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-45.000000) translate(-8.000000, -8.000000) "></path>
+                            </svg>
+                        </div>
                     </div>
-                </wi-droppable>
-            </div>
-            <div style="position: relative; flex-basis: 300px; display: flex; flex-direction: column;" resizable r-directions="['top']" r-flex="true">
-                <div class="label-list-view" style="padding: 12px 13px; border-bottom: 1px solid #e4e4e4; border-top: 1px solid #e4e4e4;">
-                    <span>CONSOLE</span>
                 </div>
-                <terminal style="display: flex;flex-direction: column;flex: 1;"
-                          result-html="self.resultHtml" iframe-html-link="self.iframeHtmlLink"
-                          is-result-a-iframe="self.isResultAIframe">
-                </terminal>
+                <div class="space-height-20px"></div>
+                <!-- <wi-tree-view-virtual tree-root="self.currentProject" get-label="self.getLabel4Python"
+                    get-icon="self.getIcon4Python" get-children="self.getChildren4Python" hide-unmatched="true"
+                    selected-ids="self.selectedIdsHash" run-match="self.runMatch4Python" uncollapsible="false"
+                    click-fn='self.clickFunction4Python' style="height: 100%; flex: 1; margin: -10px;">
+                </wi-tree-view-virtual> -->
+                <input type="text" placeholder="Enter file name" ng-model="filterProjects">
+                <div class="space-height-20px"></div>
+                <div style="height: 100%; overflow: hidden;">
+                    <vue-component root="WiTree" props="{ treeRoot: self.currentProject, filter: filterProjects, getChildren: self.getChildren4Python, clickFn: self.clickFunction4Python, getLabel: self.getLabel4Python, getIcon: self.getIcon4Python, runMatch: self.runMatch4Python, getDraggable: self.getDraggable, nodeHeight: '40px', levelPadding: '20px' }" ></vue-component>
+                </div>
+            </div>
+            <div class="space-20px" ng-show="!self.showProjectPython"></div>
+            <div class="block-scroll" style="flex-basis: 300px;display: flex; flex-direction: column;" ng-style="self.showConsole && {'overflow':'hidden'}">
+                <div class="block" style="overflow: visible" resizable r-directions="['bottom']" r-flex="true" 
+                ng-style="{ 'flex-basis' : self.showConsole ? '100%' : '70%' }">
+                    <div class="i2g-title-with-btn">
+                        <span>Editor
+                            <span ng-show="self.selectedNode && self.selectedNode.path">:
+                                {{self.selectedNode.path}}</span>
+                        </span>
+                        <div>
+                            <div class="space-20px"></div>
+                            <div class="i2g-button-with-icon" ng-click="self.runCode()">
+                                <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                    <path
+                                        d="M7.63175686,4.00386106 C8.015651,3.33204631 8.984349,3.33204631 9.36824314,4.00386106 L13.3682431,11.0038611 C13.7491899,11.6705178 13.2678227,12.5 12.5,12.5 L4.5,12.5 C3.73217733,12.5 3.25081013,11.6705178 3.63175686,11.0038611 L7.63175686,4.00386106 Z"
+                                        id="Path" fill-rule="nonzero"
+                                        transform="translate(8.500000, 8.000000) rotate(-270.000000) translate(-8.500000, -8.000000) ">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="space-20px"></div>
+                            <div class="i2g-button-with-icon" ng-click="self.saveCode()">
+                                <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                    <path d="M2,0 L14,0 C15.1045695,-2.02906125e-16 16,0.8954305 16,2 L16,14 C16,15.1045695 15.1045695,16 14,16 L2,16 C0.8954305,16 1.3527075e-16,15.1045695 0,14 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z" id="Path"  fill-rule="nonzero" opacity="0.437593006"/>
+                                    <path d="M12,-2.22044605e-16 L12,4 C12,4.55228475 11.5522847,5 11,5 L5,5 C4.44771525,5 4,4.55228475 4,4 L4,-2.22044605e-16 L12,-2.22044605e-16 Z" id="Path" fill-rule="nonzero"/>
+                                    <path d="M5,9 L11,9 C11.5522847,9 12,9.44771525 12,10 C12,10.5522847 11.5522847,11 11,11 L5,11 C4.44771525,11 4,10.5522847 4,10 C4,9.44771525 4.44771525,9 5,9 Z" id="Path"  fill-rule="nonzero"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-height-20px"></div>
+                    <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;" on-drop="self.onDrop"
+                        container-style="{display:'flex',flex: 1}">
+                        <div style="display:flex;flex:3;">
+                            <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
+                                cur-file="self.curFile">
+                            </explorer>
+                        </div>
+                    </wi-droppable>
+                </div>
+                <div class="space-height-20px" ng-show="!self.showConsole"></div>
+                <div class="block" style="flex: 1;" ng-class="{'hide-block': self.showConsole}">
+                    <div class="i2g-title-with-btn">
+                        <span>Console </span>
+                        
+                    </div>
+                    <div class="space-height-20px"></div>
+                    <terminal style="height: 100%; overflow: auto;" result-html="self.resultHtml"
+                        iframe-html-link="self.iframeHtmlLink" is-result-a-iframe="self.isResultAIframe" show-console="self.showConsole">
+                    </terminal>
+                </div>
+            </div>
+            <div class="space-20px" ng-show="!self.showProject"></div>
+            <div class="block" style="flex-basis: 300px; overflow: visible" resizable r-directions="['left']"
+                r-flex="true" ng-class="{'hide-block': self.showProject}">
+                <div class="i2g-title-with-btn">
+                    <span>Projects</span>
+                    <div>
+                        <div class="space-20px"></div>
+                        <div class="loading-icon-animate" ng-show="self.showLoading">
+                        </div>
+                        <div class="i2g-button-with-icon" title="Refresh Tree" ng-click="self.refreshTree()" ng-show="!self.showLoading">
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                <path
+                                    d="M12.6233804,6.08608223 C12.8678466,6.67561497 13.0027741,7.32205048 13.0027741,8 L15.0027741,8 C15.0027741,7.05087067 14.8138756,6.14586096 14.4716229,5.32051512 C15.521423,7.85780063 15.0150559,10.8872132 12.9525216,12.9497475 C10.2188516,15.6834175 5.78669671,15.6834175 3.05302667,12.9497475 L4.46724023,11.5355339 C6.41986169,13.4881554 9.58568658,13.4881554 11.538308,11.5355339 C13.0027741,10.0710678 13.3688907,7.92417477 12.6366576,6.1184952 C11.850808,4.25919913 10.0738419,3 8.00277414,3 C5.24135039,3 3.00277414,5.23857625 3.00277414,8 L1.00277414,8 C1.00277414,4.13400675 4.13678089,1 8.00277414,1 C9.93577074,1 11.6857707,1.78350167 12.9525216,3.05025249 L11.538308,4.46446609 C12.0176907,4.9438488 12.3793815,5.49635589 12.6233804,6.08608223 Z"
+                                    id="Combined-Shape" fill-rule="nonzero" />
+                                <path
+                                    d="M12.4142136,4 L13.7071068,2.70710678 C14.0976311,2.31658249 14.0976311,1.68341751 13.7071068,1.29289322 C13.3165825,0.902368927 12.6834175,0.902368927 12.2928932,1.29289322 L10.2928932,3.29289322 C9.90236893,3.68341751 9.90236893,4.31658249 10.2928932,4.70710678 L12.2928932,6.70710678 C12.6834175,7.09763107 13.3165825,7.09763107 13.7071068,6.70710678 C14.0976311,6.31658249 14.0976311,5.68341751 13.7071068,5.29289322 L12.4142136,4 Z"
+                                    id="Line-2" fill-rule="nonzero"
+                                    transform="translate(12.000000, 4.000000) rotate(-135.000000) translate(-12.000000, -4.000000) " />
+                                <path
+                                    d="M5.20710678,10.7071068 C5.59763107,10.3165825 5.59763107,9.68341751 5.20710678,9.29289322 C4.81658249,8.90236893 4.18341751,8.90236893 3.79289322,9.29289322 L1.79289322,11.2928932 C1.40236893,11.6834175 1.40236893,12.3165825 1.79289322,12.7071068 L3.79289322,14.7071068 C4.18341751,15.0976311 4.81658249,15.0976311 5.20710678,14.7071068 C5.59763107,14.3165825 5.59763107,13.6834175 5.20710678,13.2928932 L3.91421356,12 L5.20710678,10.7071068 Z"
+                                    id="Line-2" fill-rule="nonzero"
+                                    transform="translate(3.500000, 12.000000) rotate(-315.000000) translate(-3.500000, -12.000000) " />
+                            </svg>
+                        </div>
+                        <div class="space-20px"></div>
+                        <div class="i2g-button-with-icon" title="Sort by name" ng-class="{active: self.sortByName}"
+                            ng-click="self.refreshTree(); self.sortByName = !self.sortByName;">
+                            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                <path d="M3.41421356,14 L4.70710678,12.7071068 C5.09763107,12.3165825 5.09763107,11.6834175 4.70710678,11.2928932 C4.31658249,10.9023689 3.68341751,10.9023689 3.29289322,11.2928932 L1.29289322,13.2928932 C0.902368927,13.6834175 0.902368927,14.3165825 1.29289322,14.7071068 L3.29289322,16.7071068 C3.68341751,17.0976311 4.31658249,17.0976311 4.70710678,16.7071068 C5.09763107,16.3165825 5.09763107,15.6834175 4.70710678,15.2928932 L3.41421356,14 Z" id="Path"  fill-rule="nonzero" transform="translate(3.000000, 14.000000) rotate(-90.000000) translate(-3.000000, -14.000000) "/> <path d="M-3,6 C-3.55228475,6 -4,6.44771525 -4,7 C-4,7.55228475 -3.55228475,8 -3,8 L9,8 C9.55228475,8 10,7.55228475 10,7 C10,6.44771525 9.55228475,6 9,6 L-3,6 Z" id="Path"  fill-rule="nonzero" transform="translate(3.000000, 7.000000) rotate(-270.000000) translate(-3.000000, -7.000000) "/> <path d="M8,0 L15,0 C15.5522847,-1.01453063e-16 16,0.44771525 16,1 C16,1.55228475 15.5522847,2 15,2 L8,2 C7.44771525,2 7,1.55228475 7,1 C7,0.44771525 7.44771525,1.01453063e-16 8,0 Z" id="Path"  fill-rule="nonzero"/> <path d="M8,4 L13,4 C13.5522847,4 14,4.44771525 14,5 C14,5.55228475 13.5522847,6 13,6 L8,6 C7.44771525,6 7,5.55228475 7,5 C7,4.44771525 7.44771525,4 8,4 Z" id="Path" fill-rule="nonzero"/> <path d="M8,8 L11,8 C11.5522847,8 12,8.44771525 12,9 C12,9.55228475 11.5522847,10 11,10 L8,10 C7.44771525,10 7,9.55228475 7,9 C7,8.44771525 7.44771525,8 8,8 Z" id="Path"  fill-rule="nonzero"/> <path d="M8,12 L9,12 C9.55228475,12 10,12.4477153 10,13 C10,13.5522847 9.55228475,14 9,14 L8,14 C7.44771525,14 7,13.5522847 7,13 C7,12.4477153 7.44771525,12 8,12 Z" id="Path" fill-rule="nonzero"/>
+                            </svg>
+                        </div>
+                        <div class="space-20px"></div>
+                        <div class="i2g-button-with-icon" ng-click="self.showProject = !self.showProject">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                                <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-135.000000) translate(-8.000000, -8.000000) "></path>
+                                <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-45.000000) translate(-8.000000, -8.000000) "></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-height-20px"></div>
+                <input type="text" placeholder="Search project" ng-model="filterWiProjects">
+                <div class="space-height-20px"></div>
+                <div style="height: 100%; overflow: hidden;">
+                    <vue-component root="WiTree" props="{ treeRoot: treeConfig, filter: filterWiProjects, getChildren: self.getChildren, clickFn: self.clickFunction, getLabel: self.getLabel, getIcon: self.getIcon, runMatch: self.runMatch, getDraggable: self.getDraggable, nodeHeight: '40px', levelPadding: '20px' }" ></vue-component>
+                </div>
             </div>
         </div>
-        <side-bar my-default-width="220" orientation="w" collapsed="false">
-            <wi-tree-view-virtual tree-root="treeConfig" get-label="self.getLabel" get-icon="self.getIcon" single-node='true'
-                          get-children="self.getChildren" run-match="self.runMatch" hide-unmatched="true" selected-ids="self.selectedIdsHash" click-fn='self.clickFunction' 
-                          get-siblings="self.getSiblings">
-                <div class="label-list-view" style="padding: 10px 13px; border-bottom: 1px solid #e4e4e4;">
-                    <!-- <span>I2G</span> -->
-                    <span class="fn-button" ng-click="self.refreshTree()">RELOAD</span>
-                    <span class="fn-button" style=" color: #ccc;" ng-class="{autoSaveClass: self.sortByName}"
-                        ng-click="self.refreshTree(); self.sortByName = !self.sortByName;">
-                        <i class="fa fa-check" style="margin-right: 8px;"></i>SORT BY NAME</span>
-                </div>
-                <div ng-show="self.showLoading" class="loading">
-                    <div class="loading-bar">
-                    <span class="bar-animation"></span>
-                    </div>
-                </div>
-            </wi-tree-view-virtual>
-        </side-bar>
     </div>
 </div>
 <script type="text/ng-template" id="templateDeleteProject">
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="del-project-wi-python-32x32" style="margin-right: 20px; color: #ff0000;font-size: 25px;">
-                </i>Delete
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Are you sure want delete this project</b></div>
-            <div class="newDialogContent">
-                <form style="justify-content: flex-end;">
-                        <a style="background: #fff;
-                        color: #0077be;
-                        border: 1px solid;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        margin: 0;
-                        text-overflow: ellipsis;
-                        letter-spacing: 0;
-                        text-transform: none;" 
-                        class="ngdialog-button ngdialog-button-primary" ng-click="self.cancelDeletePrj()"> CANCEL </a>
-                    <div>
-                        <input type="submit" style="max-width: fit-content;" value="DELETE" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDeletePrj()">
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="i2g-title-with-btn">
+        <span>Delete project</span>
     </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+        Are you sure want delete this project
+    <div class="space-height-20px"></div>
+    <form style="display: flex;">
+        <div class="i2g-button-text-with-icon-space-between" ng-click="self.cancelDeletePrj()">
+            <span>Cancel</span>
+        </div>
+        <div class="space-20px"></div>
+        <input type="submit" value="Delete" ng-click="self.acceptDeletePrj()">
+    </form>
 </script>
 <script type="text/ng-template" id="templateNewPrj">
     <style>
@@ -141,42 +182,30 @@
             pointer-events: auto;
         }
     </style>
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="new-project-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
-                </i>New Project
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Please enter the project name:</div>
-            <div class="newDialogContent">
-                <form>
-                    <input style="flex: 1;" type="text" placeholder="Enter project name" ng-model="self.nameProject">
-                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewPrj()">
-                </form>
-            </div>
-        </div>
+    <div class="i2g-title-with-btn">
+        <span>New Project</span>
     </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+    <form>
+        <input type="text" placeholder="Enter project name" ng-model="self.nameProject">
+        <div class="space-height-20px"></div>
+        <input type="submit" value="New" ng-click="self.acceptNewPrj()">
+    </form>
 </script>
 <script type="text/ng-template" id="templateNewFile">
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="new-file-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
-                </i>New File
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                New file in path <b>{{self.curPath}}/...</b></div>
-            <div class="newDialogContent">
-                <form>
-                    <input style="flex: 1;"type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
-                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFile()">
-                </form>
-            </div>
-        </div>
+    <div class="i2g-title-with-btn">
+        <span>New File</span>
     </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+    <form>
+        <input type="text" placeholder="Enter file name" ng-model="self.nameFileNew">
+        <div class="space-height-20px"></div>
+        <input type="submit" value="New" ng-click="self.acceptNewFile()">
+    </form>
 </script>
 <script type="text/ng-template" id="templateWarningSave">
     <div class="ngdialog-buttons">
@@ -219,23 +248,17 @@
     </div>
 </script>
 <script type="text/ng-template" id="templateNewFolder">
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="new-folder-wi-python-32x32" style="margin-right: 20px; color: #00c571;font-size: 25px;">
-                </i>New Folder
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                New folder in path <b>{{self.curPath}}</b>/...</div>
-            <div class="newDialogContent">
-                <form>
-                    <input style="flex: 1;" type="text" placeholder="Enter folder name" ng-model="self.nameFolderNew">
-                    <input style="max-width: fit-content;" type="submit" value="New" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptNewFolder()">
-                </form>
-            </div>
-        </div>
+    <div class="i2g-title-with-btn">
+        <span>New Folder</span>
     </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+    <form>
+        <input type="text" placeholder="New folder in path {{self.curPath}}/..." ng-model="self.nameFolderNew">
+        <div class="space-height-20px"></div>
+        <input type="submit" value="New" ng-click="self.acceptNewFolder()">
+    </form>
 </script>
 <script type="text/ng-template" id="templateAbout">
     <style>
@@ -282,37 +305,25 @@
         </div>
 </script>
 <script type="text/ng-template" id="templateWarning">
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i ng-show="self.delFile" class="del-file-wi-python-32x32" style="margin-right: 20px; color: #ff825b;font-size: 25px;"></i>
-                <i ng-show="self.delFolder" class="del-folder-wi-python-32x32" style="margin-right: 20px; color: #ff825b;font-size: 25px;"></i>
-                Delete
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div ng-show="self.delFile" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Are you sure want delete file: <b>{{self.curFile}}</b></div>
-            <div ng-show="self.delFolder" style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Are you sure want delete folder: <b>{{self.curFolder}}</b></div>
-            <div class="newDialogContent">
-                <form style="justify-content: flex-end;">
-                        <a style="background: #fff;
-                        color: #0077be;
-                        border: 1px solid;
-                        overflow: hidden;
-                        white-space: nowrap;
-                        margin: 0;
-                        text-overflow: ellipsis;
-                        letter-spacing: 0;
-                        text-transform: none;" 
-                        class="ngdialog-button ngdialog-button-primary" ng-click="self.cancelDelete()"> CANCEL </a>
-                    <div>
-                        <input type="submit" style="max-width: fit-content;" value="DELETE" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptDelete()">
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="i2g-title-with-btn">
+        <span>Delete</span>
     </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+        <div ng-show="self.delFile" >
+            Are you sure want delete file: <b>{{self.curFile}}</b></div>
+        <div ng-show="self.delFolder">
+            Are you sure want delete folder: <b>{{self.curFolder}}</b></div>
+    <div class="space-height-20px"></div>
+    <form style="display: flex;">
+        <div class="i2g-button-text-with-icon-space-between" ng-click="self.cancelDelete()">
+            <span>Cancel</span>
+        </div>
+        <div class="space-20px"></div>
+        <input type="submit" value="Delete" ng-click="self.acceptDelete()">
+    </form>
+    
 </script>
 <script type="text/ng-template" id="templateRename">
     <div class="ngdialog-buttons">
@@ -341,87 +352,88 @@
             pointer-events: none;
         }
     </style>
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="restore-project-wi-python-32x32" style="margin-right: 20px;">
-                </i>Restore opened project
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 30px;"></div>
-            <div class="newDialogContent" style="display:flex; justify-content: space-between;">
-                <a style="background: #fff;
-                color: #0077be;
-                border: 1px solid;
-                overflow: hidden;
-                white-space: nowrap;
-                width: 226px;
-                margin: 0;
-                text-overflow: ellipsis;
-                letter-spacing: 0;
-                text-transform: none;" 
-                class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
-                <i style="margin-right:10px;"class="ti-arrow-left" aria-hidden="true"></i>
-                <b>{{self.curPrj}}</b> </a>
-                <a style="border: 1px solid #0077be;" class="ngdialog-button ngdialog-button-primary" ng-click="self.findAllProjects()">Other<i style="margin-left:10px;"class="ti-arrow-right" aria-hidden="true"></i></a>
-            </div>
-        </div>
+     <div class="i2g-title-with-btn">
+        <span>Reopen last project</span>
+    </div>
+    <div class="space-height-20px"></div>
+    <div class="border-bottom-2px"></div>
+    <div class="space-height-20px"></div>
+    <form>
+        <input type="submit" value="Reopen: {{self.curPrj}}" class="ngdialog-button ngdialog-button-primary" ng-click="self.acceptRestore()">
+    </form>
+    <div class="space-height-20px"></div>
+    <div class="i2g-button-text-with-icon-center" ng-click="self.findAllProjects()">
+        <span>Open other project</span>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+            <path d="M4,7 L11,7 C11.5522847,7 12,7.44771525 12,8 C12,8.55228475 11.5522847,9 11,9 L4,9 C3.44771525,9 3,8.55228475 3,8 C3,7.44771525 3.44771525,7 4,7 Z M7.5,8 L11,8 L7.5,8 Z" id="Rectangle"  fill-rule="nonzero" transform="translate(7.500000, 8.000000) rotate(-180.000000) translate(-7.500000, -8.000000) "/>
+            <path d="M10.4142136,8 L13.7071068,4.70710678 C14.0976311,4.31658249 14.0976311,3.68341751 13.7071068,3.29289322 C13.3165825,2.90236893 12.6834175,2.90236893 12.2928932,3.29289322 L8.29289322,7.29289322 C7.90236893,7.68341751 7.90236893,8.31658249 8.29289322,8.70710678 L12.2928932,12.7071068 C12.6834175,13.0976311 13.3165825,13.0976311 13.7071068,12.7071068 C14.0976311,12.3165825 14.0976311,11.6834175 13.7071068,11.2928932 L10.4142136,8 Z" id="Line-2" fill-rule="nonzero" transform="translate(11.000000, 8.000000) rotate(-180.000000) translate(-11.000000, -8.000000) "/>
+        </svg>
     </div>
 </script>
 <script type="text/ng-template" id="templateOpenProject">
-    <style>
-    </style>
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div>Open Projects</div>
-                <input class="searchInput" type="text" placeholder="Search project" ng-model="searchProject">
-                <a class="new-circle" ng-click="self.createNewProject()"><i class="fa fa-plus"></i></a>
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-
-            <div class="newDialogContent" style="overflow-y: auto; max-height: 203px;">
-                <ul class="list-project">
-                    <li ng-repeat="project in self.allProjects | filter:searchProject track by $index"
-                        ng-click="self.selectedProject = project;"
-                        ng-class="{selectedProject: self.selectedProject == project}">
-                        <span ng-bind="project"></span>
-                        <span class="fa fa-times-circle del"
-                              ng-click="event.stopPropagation(); self.delProject(project);"></span>
-                    </li>
-                </ul>
-            </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                    Projects has been arranged alphabetically.
-                </div>
-                <div>
-                    <a class="ngdialog-button ngdialog-button-primary"
-                       ng-click="self.openProject(self.selectedProject);">OPEN</a>
-                </div>
-            </div>
-
+    <div class="i2g-title-with-btn">
+        <span>Open projects</span>
+        <div>
+           <div class="space-20px"></div>
+           <div class="i2g-button-with-icon" ng-click="self.createNewProject();">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+                 <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle"  fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-90.000000) translate(-8.000000, -8.000000) "/>
+                 <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle"  fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-360.000000) translate(-8.000000, -8.000000) "/>
+              </svg>
+           </div>
+           <div class="space-20px"></div>
+           <div class="i2g-search-box-with-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+                 <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M10.6002 12.0498C9.49758 12.8568 8.13777 13.3333 6.66667 13.3333C2.98477 13.3333 0 10.3486 0 6.66667C0 2.98477 2.98477 0 6.66667 0C10.3486 0 13.3333 2.98477 13.3333 6.66667C13.3333 8.15637 12.8447 9.53194 12.019 10.6419C12.0265 10.6489 12.0338 10.656 12.0411 10.6633L15.2935 13.9157C15.6841 14.3063 15.6841 14.9394 15.2935 15.33C14.903 15.7205 14.2699 15.7205 13.8793 15.33L10.6269 12.0775C10.6178 12.0684 10.6089 12.0592 10.6002 12.0498ZM11.3333 6.66667C11.3333 9.244 9.244 11.3333 6.66667 11.3333C4.08934 11.3333 2 9.244 2 6.66667C2 4.08934 4.08934 2 6.66667 2C9.244 2 11.3333 4.08934 11.3333 6.66667Z">
+                 </path>
+              </svg>
+              <input type="search" placeholder="Search project" ng-model="searchProject" autocomplete="off" value="">
+           </div>
         </div>
-
-    </div>
-</script>
-<script type="text/ng-template" id="templateConnectionError">
-    <div class="ngdialog-buttons">
-        <div class="newDialog">
-            <div style="display: flex;align-items: center;">
-                <i class="connection-error-wi-python-32x32" style="margin-right: 20px; color: #0074c5;font-size: 25px;">
-                </i>Connection has problems
+     </div>
+     <div class="space-height-20px"></div>
+     <div style="display: flex; flex-direction: column; overflow: auto; max-height: 40vh; margin: -20px; padding: 20px;">
+        <div ng-repeat="project in self.allProjects | filter:searchProject track by $index"
+            ng-click="self.selectedProject = project;">
+            <div class="i2g-item-icon-title-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67" height="52.799" viewBox="0 0 67 52.799">
+                    <defs>
+                        <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="0.245" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#679eff"/>
+                        <stop offset="1" stop-color="#9dc0ff"/>
+                        </linearGradient>
+                        <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                        <stop offset="0" stop-color="#508fff"/>
+                        <stop offset="1" stop-color="#3d7cef"/>
+                        </linearGradient>
+                    </defs>
+                    <g id="Group_171" data-name="Group 171" transform="translate(-2666 -2409.201)">
+                        <path id="Path_31" data-name="Path 31" d="M4,1.2s14.13.043,16.6.043,2.759.346,3.852,1.821.657.872,1.894,2.536,2.162,1.606,3.963,1.586S63,7.18,63,7.18a3.785,3.785,0,0,1,4,4.036V50a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4C0,1.791,1.791,1.2,4,1.2Z" transform="translate(2666 2408)" fill="url(#linear-gradient)"/>
+                        <path id="Path_32" data-name="Path 32" d="M4,0H63a4,4,0,0,1,4,4V39a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0Z" transform="translate(2733 2462) rotate(180)" fill="url(#linear-gradient-2)"/>
+                    </g>
+                </svg>
+                <div class="info-i2g-item-icon-title-detail">
+                    <div style="margin-bottom: 0;">{{project}}</div>
+                    <div style="height: 0;"></div>
+                </div>
+                <div class="space-20px"></div>
+                <div class="i2g-button-text-with-icon-center" ng-click=" self.openProject(self.selectedProject);">
+                    <span>Open</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                        <path d="M4,7 L11,7 C11.5522847,7 12,7.44771525 12,8 C12,8.55228475 11.5522847,9 11,9 L4,9 C3.44771525,9 3,8.55228475 3,8 C3,7.44771525 3.44771525,7 4,7 Z M7.5,8 L11,8 L7.5,8 Z" id="Rectangle"  fill-rule="nonzero" transform="translate(7.500000, 8.000000) rotate(-180.000000) translate(-7.500000, -8.000000) "/>
+                        <path d="M10.4142136,8 L13.7071068,4.70710678 C14.0976311,4.31658249 14.0976311,3.68341751 13.7071068,3.29289322 C13.3165825,2.90236893 12.6834175,2.90236893 12.2928932,3.29289322 L8.29289322,7.29289322 C7.90236893,7.68341751 7.90236893,8.31658249 8.29289322,8.70710678 L12.2928932,12.7071068 C12.6834175,13.0976311 13.3165825,13.0976311 13.7071068,12.7071068 C14.0976311,12.3165825 14.0976311,11.6834175 13.7071068,11.2928932 L10.4142136,8 Z" id="Line-2" fill-rule="nonzero" transform="translate(11.000000, 8.000000) rotate(-180.000000) translate(-11.000000, -8.000000) "/>
+                    </svg>
+                </div>
+                <div class="space-20px"></div>
+                <div class="i2g-button-with-icon" ng-click="event.stopPropagation(); self.delProject(project);" title="Delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                            <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-135.000000) translate(-8.000000, -8.000000) "></path>
+                            <path d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-45.000000) translate(-8.000000, -8.000000) "></path>
+                    </svg>
+                </div>
             </div>
-            <div style="border-bottom: 1px solid #f1f0f0; margin-bottom: 15px;"></div>
-            <div style="font-weight: 300; color: #666; font-size: 13px; font-style: italic;">
-                Try reconnecting the Wifi or LAN network</div>
-            <div class="newDialogContent">
-                <form style="justify-content: flex-end;">
-                    <div>
-                        <input type="submit" style="max-width: fit-content;" value="RELOAD PAGE" class="ngdialog-button ngdialog-button-primary" ng-click="self.cancelReload()">
-                    </div>
-                </form>
-            </div>
+            <div class="space-height-20px"></div>
         </div>
-    </div>
+     </div>
 </script>

@@ -1,4 +1,4 @@
-import template from './template.html'
+import template from './template-new.html'
 import './style.scss'
 
 /////////////////////////////////////
@@ -54,7 +54,13 @@ export default {
       generateLoginByAccount:'<',
       generateSaveCurveData:'<',
       aboutWiPython: '<',
-      changeTheme: '<'
+      changeTheme: '<',
+      autoSave: '=',
+      saveWarning: '=',
+      toastHistory: '=',
+      showProject: '=',
+      showProjectPython: '=',
+      showConsole: '='
     },
     template,
     controller,

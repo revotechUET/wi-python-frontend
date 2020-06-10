@@ -1,0 +1,498 @@
+<div class="i2g-toolbar">
+    <div class="i2g-tab">
+      <div class="tab-item always-on">
+        <div class="tab-name">Project
+          <div class="caret-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
+              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
+                fill="none" stroke-linecap="round" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop" ng-click="self.findAllProjects();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="24.756" viewBox="0 0 32 24.756">
+              <g id="Component_2_94" data-name="Component 2 – 94" transform="translate(1 1)">
+                <path id="Path_2" data-name="Path 2" d="M-554.94,390.155v22.756h30V395.425h-13.073l-2.6-5.269Z"
+                  transform="translate(554.94 -390.155)" fill="none" stroke="#0d0b24" stroke-linejoin="round"
+                  stroke-width="2" />
+              </g>
+            </svg>
+            <div>Open Project</div>
+          </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
+          <div class="item-drop" ng-click="self.closeProject();">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1"> <g id="01-copy-15" stroke="none" stroke-width="1" fill-rule="evenodd"> <path d="M8,14.5 C11.5898509,14.5 14.5,11.5898509 14.5,8 C14.5,4.41014913 11.5898509,1.5 8,1.5 C4.41014913,1.5 1.5,4.41014913 1.5,8 C1.5,8.27614237 1.72385763,8.5 2,8.5 C2.27614237,8.5 2.5,8.27614237 2.5,8 C2.5,4.96243388 4.96243388,2.5 8,2.5 C11.0375661,2.5 13.5,4.96243388 13.5,8 C13.5,11.0375661 11.0375661,13.5 8,13.5 C7.72385763,13.5 7.5,13.7238576 7.5,14 C7.5,14.2761424 7.72385763,14.5 8,14.5 Z" id="Oval" fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-225.000000) translate(-8.000000, -8.000000) "></path> <path d="M4.5,4 L11.5,4 C11.7761424,4 12,4.22385763 12,4.5 C12,4.77614237 11.7761424,5 11.5,5 L4.5,5 C4.22385763,5 4,4.77614237 4,4.5 C4,4.22385763 4.22385763,4 4.5,4 Z M4.5,5 C4.77614237,5 5,4.77614237 5,4.5 C5,4.22385763 4.77614237,4 4.5,4 L11.5,4 C11.2238576,4 11,4.22385763 11,4.5 C11,4.77614237 11.2238576,5 11.5,5 L4.5,5 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 4.500000) rotate(-270.000000) translate(-8.000000, -4.500000) "></path> </g> </svg>
+            <div>Close Project</div>
+          </div>
+          <div class="item-drop" ng-click="self.deleteProject();">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-35" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <rect id="Rectangle-Copy-2" stroke="#0D0B24" x="3.5" y="3.5" width="9" height="11" rx="1"/>
+                  <rect id="Rectangle" fill="#0D0B24" x="6" y="6" width="1" height="6" rx="0.5"/>
+                  <rect id="Rectangle-Copy" fill="#0D0B24" x="9" y="6" width="1" height="6" rx="0.5"/>
+                  <rect id="Rectangle-Copy-3" fill="#0D0B24" x="2" y="1" width="12" height="1" rx="0.5"/>
+              </g>
+          </svg>
+            <div>Delete Project</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-item always-on">
+        <div class="tab-name">New
+          <div class="caret-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
+              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
+                fill="none" stroke-linecap="round" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop" ng-click="self.createNewFile();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+              <g id="Group_145" data-name="Group 145" transform="translate(1526 -1563)">
+                <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(-1526 1563)" fill="transparent"
+                  stroke="#0d0b24" stroke-width="2">
+                  <circle cx="15" cy="15" r="15" stroke="none" />
+                  <circle cx="15" cy="15" r="14" fill="none" />
+                </g>
+                <path id="Path_27" data-name="Path 27" d="M-1512.833,1579.5h11.389" transform="translate(-4.036 -1.5)"
+                  fill="none" stroke="#0d0b24" stroke-linecap="round" stroke-width="2" />
+                <path id="Path_28" data-name="Path 28" d="M0,0H11.389"
+                  transform="translate(-1511.185 1572.306) rotate(90)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                  stroke-width="2" />
+              </g>
+            </svg>
+            <div>New File</div>
+          </div>
+          <div class="item-drop" ng-click="self.createNewFolder();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+              <g id="Group_145" data-name="Group 145" transform="translate(1526 -1563)">
+                <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(-1526 1563)" fill="transparent"
+                  stroke="#0d0b24" stroke-width="2">
+                  <circle cx="15" cy="15" r="15" stroke="none" />
+                  <circle cx="15" cy="15" r="14" fill="none" />
+                </g>
+                <path id="Path_27" data-name="Path 27" d="M-1512.833,1579.5h11.389" transform="translate(-4.036 -1.5)"
+                  fill="none" stroke="#0d0b24" stroke-linecap="round" stroke-width="2" />
+                <path id="Path_28" data-name="Path 28" d="M0,0H11.389"
+                  transform="translate(-1511.185 1572.306) rotate(90)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                  stroke-width="2" />
+              </g>
+            </svg>
+            <div>New Folder</div>
+          </div>
+          <div class="item-drop" ng-click="self.renameProject();" ng-if="self.project">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32.007" height="25.211" viewBox="0 0 32.007 25.211">
+              <g id="Group_146" data-name="Group 146" transform="translate(1524.544 -1645.806)">
+                <path id="Path_29" data-name="Path 29" d="M0,0H23.211"
+                  transform="translate(-1505.934 1646.806) rotate(90)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                  stroke-width="2" />
+                <path id="Path_34" data-name="Path 34"
+                  d="M-1502.541,1653.331h6.2a1.7,1.7,0,0,1,1.839,1.839v7.278a1.685,1.685,0,0,1-1.839,1.839h-6.2"
+                  transform="translate(0.964 -1)" fill="none" stroke="#0d0b24" stroke-linecap="round" stroke-width="2" />
+                <path id="Path_35" data-name="Path 35"
+                  d="M0,0H11.312A1.7,1.7,0,0,1,13.151,1.84V9.119a1.685,1.685,0,0,1-1.839,1.839H0"
+                  transform="translate(-1510.388 1663.287) rotate(180)" fill="none" stroke="#0d0b24"
+                  stroke-linecap="round" stroke-width="2" />
+              </g>
+            </svg>
+            <div>Rename Project</div>
+          </div>
+          <div class="item-drop" ng-click="self.createNewProject();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+              <g id="Group_145" data-name="Group 145" transform="translate(1526 -1563)">
+                <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(-1526 1563)" fill="transparent"
+                  stroke="#0d0b24" stroke-width="2">
+                  <circle cx="15" cy="15" r="15" stroke="none" />
+                  <circle cx="15" cy="15" r="14" fill="none" />
+                </g>
+                <path id="Path_27" data-name="Path 27" d="M-1512.833,1579.5h11.389" transform="translate(-4.036 -1.5)"
+                  fill="none" stroke="#0d0b24" stroke-linecap="round" stroke-width="2" />
+                <path id="Path_28" data-name="Path 28" d="M0,0H11.389"
+                  transform="translate(-1511.185 1572.306) rotate(90)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                  stroke-width="2" />
+              </g>
+            </svg>
+            <div>New Project</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-item always-on">
+        <div class="tab-name">Action
+          <div class="caret-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
+              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
+                fill="none" stroke-linecap="round" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop" ng-click="self.runCode();">
+            <svg width="30px" height="30px" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-23" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M7.4598937,3.11583019 C7.92043057,2.29472327 9.08252473,2.29472327 9.5430616,3.11583019 L14.3416435,11.6713857 C14.7986445,12.4861885 14.2211745,13.5 13.3000595,13.5 L3.70289577,13.5 C2.78178079,13.5 2.20431081,12.4861885 2.66131182,11.6713857 L7.4598937,3.11583019 Z" id="Path-Copy" stroke="#0D0B24" fill-rule="nonzero" transform="translate(8.501478, 8.000000) rotate(-270.000000) translate(-8.501478, -8.000000) "/>
+              </g>
+            </svg>
+            <div>Save And Run Code</div>
+          </div>
+          <div class="item-drop" ng-click="self.saveCode();">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 16 16" version="1.1">
+              <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+              <title>01 copy 24</title>
+              <desc>Created with Sketch.</desc>
+              <g id="01-copy-24" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M4.5,10 L11.5,10 C11.7761424,10 12,10.2238576 12,10.5 C12,10.7761424 11.7761424,11 11.5,11 L4.5,11 C4.22385763,11 4,10.7761424 4,10.5 C4,10.2238576 4.22385763,10 4.5,10 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <rect id="Rectangle-Copy-2" stroke="#0D0B24" x="1.5" y="1.5" width="13" height="13" rx="1"/>
+                  <path d="M5.5,1 C5.77614237,1 6,1.22385763 6,1.5 L6,6.5 C6,6.77614237 5.77614237,7 5.5,7 C5.22385763,7 5,6.77614237 5,6.5 L5,1.5 C5,1.22385763 5.22385763,1 5.5,1 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <path d="M10.5,1 C10.7761424,1 11,1.22385763 11,1.5 L11,6.5 C11,6.77614237 10.7761424,7 10.5,7 C10.2238576,7 10,6.77614237 10,6.5 L10,1.5 C10,1.22385763 10.2238576,1 10.5,1 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <path d="M8,3.5 C8.27614237,3.5 8.5,3.72385763 8.5,4 L8.5,9 C8.5,9.27614237 8.27614237,9.5 8,9.5 C7.72385763,9.5 7.5,9.27614237 7.5,9 L7.5,4 C7.5,3.72385763 7.72385763,3.5 8,3.5 Z" id="Path" fill="#0D0B24" fill-rule="nonzero" transform="translate(8.000000, 6.500000) rotate(-270.000000) translate(-8.000000, -6.500000) "/>
+              </g>
+            </svg>
+            <div>Save Code</div>
+          </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
+          <div class="item-drop">
+            <label class="i2g-checkbox">
+              <input type="checkbox" ng-checked="self.autoSave" ng-click="self.autoSave = !self.autoSave;">
+              <span>Auto Save File</span>
+            </label>
+          </div>
+          <div class="item-drop" ng-if="!self.autoSave">
+            <label class="i2g-checkbox">
+              <input type="checkbox" ng-checked="self.askSave" ng-click="self.askSave = !self.askSave;">
+              <span>Warning File Not Save</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="tab-item always-on">
+        <div class="tab-name">Tools
+          <div class="caret-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
+              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
+                fill="none" stroke-linecap="round" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop">
+            <div style="font-weight: bold;">Select Mode</div>
+          </div>
+          <div class="item-drop" ng-click="self.deleteChecked();">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-25" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <circle id="Oval" stroke="#0D0B24" cx="8" cy="8" r="6.5"/>
+                  <g id="Group" transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) translate(4.000000, 3.500000)" fill="#0D0B24" fill-rule="nonzero">
+                      <path d="M0.5,4 L7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 L0.5,5 C0.223857625,5 0,4.77614237 0,4.5 C0,4.22385763 0.223857625,4 0.5,4 Z" id="Path"/>
+                      <path d="M0.5,4 L7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 L0.5,5 C0.223857625,5 0,4.77614237 0,4.5 C0,4.22385763 0.223857625,4 0.5,4 Z" id="Path" transform="translate(4.000000, 4.500000) rotate(-270.000000) translate(-4.000000, -4.500000) "/>
+                  </g>
+              </g>
+          </svg>
+            <div>Delete Mode</div>
+          </div>
+          <div class="item-drop" ng-click="self.saveChecked();">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-24" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M4.5,10 L11.5,10 C11.7761424,10 12,10.2238576 12,10.5 C12,10.7761424 11.7761424,11 11.5,11 L4.5,11 C4.22385763,11 4,10.7761424 4,10.5 C4,10.2238576 4.22385763,10 4.5,10 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <rect id="Rectangle-Copy-2" stroke="#0D0B24" x="1.5" y="1.5" width="13" height="13" rx="1"/>
+                  <path d="M5.5,1 C5.77614237,1 6,1.22385763 6,1.5 L6,6.5 C6,6.77614237 5.77614237,7 5.5,7 C5.22385763,7 5,6.77614237 5,6.5 L5,1.5 C5,1.22385763 5.22385763,1 5.5,1 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <path d="M10.5,1 C10.7761424,1 11,1.22385763 11,1.5 L11,6.5 C11,6.77614237 10.7761424,7 10.5,7 C10.2238576,7 10,6.77614237 10,6.5 L10,1.5 C10,1.22385763 10.2238576,1 10.5,1 Z" id="Path" fill="#0D0B24" fill-rule="nonzero"/>
+                  <path d="M8,3.5 C8.27614237,3.5 8.5,3.72385763 8.5,4 L8.5,9 C8.5,9.27614237 8.27614237,9.5 8,9.5 C7.72385763,9.5 7.5,9.27614237 7.5,9 L7.5,4 C7.5,3.72385763 7.72385763,3.5 8,3.5 Z" id="Path" fill="#0D0B24" fill-rule="nonzero" transform="translate(8.000000, 6.500000) rotate(-270.000000) translate(-8.000000, -6.500000) "/>
+              </g>
+            </svg>
+            <div>Save Mode</div>
+          </div>
+          <div class="item-drop" ng-click="self.refreshChecked();">
+            <svg width="30" height="30" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-26" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <circle id="Oval" stroke="#0D0B24" cx="8" cy="8" r="5.5"/>
+                  <g id="Group" transform="translate(4.500000, 12.000000) rotate(90.000000) translate(-4.500000, -12.000000) translate(2.500000, 10.000000)" fill="#0D0B24">
+                      <rect id="Rectangle" x="0" y="0" width="1" height="4" rx="0.5"/>
+                      <rect id="Rectangle" x="0" y="3" width="4" height="1" rx="0.5"/>
+                  </g>
+                  <g id="Group" transform="translate(11.500000, 4.000000) rotate(-90.000000) translate(-11.500000, -4.000000) translate(9.500000, 2.000000)" fill="#0D0B24">
+                      <rect id="Rectangle" x="0" y="0" width="1" height="4" rx="0.5"/>
+                      <rect id="Rectangle" x="0" y="3" width="4" height="1" rx="0.5"/>
+                  </g>
+              </g>
+            </svg>
+            <div>Refresh Mode</div>
+          </div>
+          <div class="item-drop" ng-click="self.newChecked();" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-25" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <circle id="Oval" stroke="#0D0B24" cx="8" cy="8" r="6.5"/>
+                  <g id="Group" transform="translate(8.000000, 8.000000) rotate(-360.000000) translate(-8.000000, -8.000000) translate(4.000000, 3.500000)" fill="#0D0B24" fill-rule="nonzero">
+                      <path d="M0.5,4 L7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 L0.5,5 C0.223857625,5 0,4.77614237 0,4.5 C0,4.22385763 0.223857625,4 0.5,4 Z" id="Path"/>
+                      <path d="M0.5,4 L7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 L0.5,5 C0.223857625,5 0,4.77614237 0,4.5 C0,4.22385763 0.223857625,4 0.5,4 Z" id="Path" transform="translate(4.000000, 4.500000) rotate(-270.000000) translate(-4.000000, -4.500000) "/>
+                  </g>
+              </g>
+          </svg>
+            <div>New Mode</div>
+          </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
+          <div class="item-drop" ng-click="self.generateLoginByToken();" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-28" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <g id="Group" transform="translate(8.000000, 7.500000) rotate(-45.000000) translate(-8.000000, -7.500000) translate(0.000000, 3.500000)">
+                      <path d="M3.5,7 C5.15685425,7 6.5,5.65685425 6.5,4 C6.5,2.34314575 5.15685425,1 3.5,1 C1.84314575,1 0.5,2.34314575 0.5,4 C0.5,5.65685425 1.84314575,7 3.5,7 Z" id="Oval-Copy" stroke="#0D0B24" fill-rule="nonzero"/>
+                      <rect id="Rectangle" fill="#0D0B24" transform="translate(11.000000, 4.000000) rotate(-270.000000) translate(-11.000000, -4.000000) " x="10.5" y="-1" width="1" height="10" rx="0.5"/>
+                      <rect id="Rectangle" fill="#0D0B24" transform="translate(15.500000, 5.000000) rotate(-360.000000) translate(-15.500000, -5.000000) " x="15" y="3.5" width="1" height="3" rx="0.5"/>
+                      <rect id="Rectangle" fill="#0D0B24" transform="translate(12.500000, 5.000000) rotate(-360.000000) translate(-12.500000, -5.000000) " x="12" y="3.5" width="1" height="3" rx="0.5"/>
+                      <rect id="Rectangle-Copy" fill="#0D0B24" transform="translate(9.500000, 5.000000) rotate(-360.000000) translate(-9.500000, -5.000000) " x="9" y="3.5" width="1" height="3" rx="0.5"/>
+                  </g>
+              </g>
+          </svg>
+            <div>Login by Token</div>
+          </div>
+          <div class="item-drop" ng-click="self.generateLoginByAccount();" >
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16" version="1.1">
+    
+    
+    
+              <g id="01-copy-27" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M8,6.5 C9.38071187,6.5 10.5,5.38071187 10.5,4 C10.5,2.61928813 9.38071187,1.5 8,1.5 C6.61928813,1.5 5.5,2.61928813 5.5,4 C5.5,5.38071187 6.61928813,6.5 8,6.5 Z" id="Oval-Copy" stroke="#0D0B24" fill-rule="nonzero"/>
+                  <path d="M2,12.0005145 C2,12.2022174 2.00056923,12.4522959 2.00205468,12.9782586 C2.00210307,12.9953899 2.00210307,12.9953899 2.0021515,13.012518 C2.00379933,13.5952595 2.004307,13.8096994 2.004307,14.0018598 C2.004307,14.2060402 2.27249327,14.5 2.43205964,14.5 C2.90829643,14.5 2.90829643,14.5 4.30110567,14.5 C5.99943904,14.5 5.99943904,14.5 8.00329656,14.5 C10.0053827,14.5 10.0053827,14.5 11.7027542,14.5 C13.0954111,14.5 13.0954111,14.5 13.5739241,14.5 C13.7607092,14.5 14,14.2455759 14,14.0018598 C14,13.7892621 13.9998726,13.5803462 13.9994901,13.0714657 C13.9992696,12.7675644 13.9992696,12.7675644 13.9990979,12.4558549 C13.9990028,12.226669 13.9990028,12.226669 13.9989799,12.0005145 C13.9989799,11.6965768 13.4678151,10.8061397 12.6756021,10.1112358 C11.5262537,9.10306432 9.963561,8.5 7.99948996,8.5 C6.05250099,8.5 4.49695962,9.13127299 3.32867243,10.185729 C2.5593567,10.880087 2,11.7950395 2,12.0005145 Z" id="Path-2" stroke="#0D0B24" fill-rule="nonzero"/>
+              </g>
+            </svg>
+            <div>Login by Account</div>
+          </div>
+          <div class="item-drop" ng-click="self.generateSaveCurveData();">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+              <g id="Group_149" data-name="Group 149" transform="translate(1524 -1847)">
+                <g id="Rectangle_75" data-name="Rectangle 75" transform="translate(-1524 1856)" fill="transparent"
+                  stroke="#0d0b24" stroke-width="2">
+                  <rect width="21" height="21" rx="7" stroke="none" />
+                  <rect x="1" y="1" width="19" height="19" rx="6" fill="none" />
+                </g>
+                <g id="Group_148" data-name="Group 148" transform="translate(-3.841 2)">
+                  <g id="Rectangle_76" data-name="Rectangle 76" transform="translate(-1514.159 1845)" fill="#fff"
+                    stroke="#0d0b24" stroke-width="2">
+                    <rect width="24" height="24" rx="7" stroke="none" />
+                    <rect x="1" y="1" width="22" height="22" rx="6" fill="none" />
+                  </g>
+                  <g id="Group_147" data-name="Group 147" transform="translate(-1506.495 1851.863)">
+                    <path id="Path_32" data-name="Path 32" d="M-1507.5,1774.175v8.757"
+                      transform="translate(1511.915 -1774.175)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                      stroke-width="2" />
+                    <path id="Path_33" data-name="Path 33" d="M-1512.5,1782.846l4.429,4.429,4.429-4.429"
+                      transform="translate(1512.505 -1777.6)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                      stroke-linejoin="round" stroke-width="2" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+            <div>Save Curve Data</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-item always-on">
+        <div class="tab-name">Help
+          <div class="caret-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
+              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
+                fill="none" stroke-linecap="round" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop" onclick="window.open('https://python.i2g.cloud/documents/','_blank');">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-29" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <path d="M0.5,2.81341528 L0.5,13.7222081 C1.66200505,13.2415431 2.829551,13 4,13 C5.33868512,13 6.67943204,13.3159633 8.01853021,13.944188 C9.33918095,13.3159568 10.6676651,13 12,13 C13.1659679,13 14.3334708,13.2419715 15.5,13.7233931 L15.5,2.81404362 C14.3272529,2.27021034 13.1618152,2 12,2 C10.7474719,2 9.4976047,2.31404559 8.24548748,2.94632334 L8.02180199,3.05927711 L7.79743674,2.94767967 C6.52441769,2.31449036 5.26013219,2 4,2 C2.83228662,2 1.66691095,2.27004596 0.5,2.81341528 Z" id="Rectangle" stroke="#0D0B24"/>
+                  <path d="M7.5,2.5 L8.5,2.5 L8.5,13.5 L7.5,13.5 L7.5,2.5 Z M8,3 L8.5,3.5 L7.5,3.5 L8,3 Z" id="Rectangle" fill="#0D0B24" fill-rule="nonzero"/>
+              </g>
+          </svg>
+            <div>Read API Documents</div>
+          </div>
+          <div class="item-drop" onclick="window.open('https://python.i2g.cloud/family.html','_blank');">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16" version="1.1">
+              <g id="01-copy-30" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                  <rect id="Rectangle" stroke="#0D0B24" x="0.5" y="1.5" width="15" height="13" rx="1"/>
+                  <rect id="Rectangle" stroke="#0D0B24" x="0.5" y="1.5" width="15" height="5" rx="1"/>
+                  <rect id="Rectangle" stroke="#0D0B24" x="0.5" y="1.5" width="5" height="13" rx="1"/>
+              </g>
+          </svg>
+            <div>I2G Base Family</div>
+          </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
+          <div class="item-drop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+              <g id="Group_145" data-name="Group 145" transform="translate(1526 -1563)">
+                <g id="Ellipse_15" data-name="Ellipse 15" transform="translate(-1526 1563)" fill="transparent"
+                  stroke="#0d0b24" stroke-width="2">
+                  <circle cx="15" cy="15" r="15" stroke="none" />
+                  <circle cx="15" cy="15" r="14" fill="none" />
+                </g>
+                <path id="Path_27" data-name="Path 27" d="M-1512.833,1579.5h11.389" transform="translate(-4.036 -1.5)"
+                  fill="none" stroke="#0d0b24" stroke-linecap="round" stroke-width="2" />
+                <path id="Path_28" data-name="Path 28" d="M0,0H11.389"
+                  transform="translate(-1511.185 1572.306) rotate(90)" fill="none" stroke="#0d0b24" stroke-linecap="round"
+                  stroke-width="2" />
+              </g>
+            </svg>
+            <div>About Wi Python</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; height: 100%;">
+      <div class="i2g-tab">
+        <div class="tab-item always-on" ng-show="self.showProject || self.showProjectPython || self.showConsole">
+          <div class="i2g-button-with-icon active" title="Layout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+                <path d="M1,1 L10,1 C10.5522847,1 11,1.44771525 11,2 L11,14 C11,14.5522847 10.5522847,15 10,15 L1,15 C0.44771525,15 6.76353751e-17,14.5522847 0,14 L0,2 C-6.76353751e-17,1.44771525 0.44771525,1 1,1 Z" id="Path" fill-rule="nonzero" opacity="0.395275298"/>
+                <path d="M6,1 L15,1 C15.5522847,1 16,1.44771525 16,2 L16,14 C16,14.5522847 15.5522847,15 15,15 L6,15 C5.44771525,15 5,14.5522847 5,14 L5,2 C5,1.44771525 5.44771525,1 6,1 Z" id="Path" fill-rule="nonzero"/>
+            </svg>
+          </div>
+          <div class="i2g-drop-menu-tab" style="left: unset; right: 0;">
+            <div class="item-drop">
+              <div style="font-weight: bold;">Change layout</div>
+            </div>
+            <div class="space-height-10px"></div>
+            <div class="border-bottom-2px"></div>
+            <div class="space-height-10px"></div>
+            <div class="item-drop">
+              <label class="i2g-checkbox" style="width: 100%;" >
+                <input type="checkbox" ng-checked="!self.showProjectPython" ng-click="self.showProjectPython = !self.showProjectPython">
+                <span>Project Python</span>
+              </label>
+            </div>
+            <div class="item-drop">
+              <label class="i2g-checkbox" style="width: 100%;">
+                <input type="checkbox" ng-checked="!self.showProject" ng-click="self.showProject = !self.showProject">
+                <span>Project i2G</span>
+              </label>
+            </div>
+            <div class="item-drop">
+              <label class="i2g-checkbox" style="width: 100%;">
+                <input type="checkbox" ng-checked="!self.showConsole" ng-click="self.showConsole = !self.showConsole">
+                <span>Console Window</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="space-20px"></div>
+      <div class="i2g-button-with-icon" ng-class="{active: self.showNotiHistory}"title="Notification" ng-click="self.showNotiHistory = !self.showNotiHistory">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+          <path
+            d="M3.15021517,14.2608312 C2.48765492,14.4365329 1.7640994,13.9984655 1.58439575,13.3345514 C1.42315784,12.7388023 1.72720073,12.1383855 2.2915405,11.8947988 C2.41175485,11.78802 2.78457771,11.4312301 2.85809277,11.0523545 C2.91675301,10.7497066 2.86219068,10.4144842 2.8193817,10.2252912 L2.00455514,7.21491896 C1.39062598,4.94608033 2.46719767,2.55748492 4.54874881,1.48786692 C4.42538994,0.925620667 4.76305146,0.368553615 5.31769157,0.221493402 C5.8748064,0.0737716592 6.45518757,0.378771641 6.6297083,0.930275508 C8.96181132,0.841607274 11.0215553,2.40417829 11.6328156,4.661707 L12.4476248,7.67201518 C12.5062055,7.85702568 12.628182,8.17440515 12.8318586,8.40751937 C13.0810362,8.69257556 13.5669854,8.81795478 13.7365794,8.85433959 C14.3609823,8.76369896 14.9420193,9.1003629 15.1073497,9.71108676 C15.2870534,10.3750009 14.8770105,11.1204766 14.2144502,11.2961783 L3.15021517,14.2608312 Z"
+            id="Union_27-2" fill-rule="nonzero" />
+          <path
+            d="M9,11 C10.1045695,11 11,11.8954305 11,13 C11,14.1045695 10.1045695,15 9,15 C7.8954305,15 7,14.1045695 7,13 C7,11.8954305 7.8954305,11 9,11 Z M9,12 C8.44771525,12 8,12.4477153 8,13 C8,13.5522847 8.44771525,14 9,14 C9.55228475,14 10,13.5522847 10,13 C10,12.4477153 9.55228475,12 9,12 Z"
+            id="Rectangle-Copy" fill-rule="nonzero" /></svg>
+      </div>
+      <div class="space-20px"></div>
+      <div class="i2g-tab">
+        <div class="tab-item always-on">
+          <div class="i2g-button-with-icon" title="Login/Logout">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+              <path
+                d="M8,9 C10.209139,9 12,7.209139 12,5 C12,2.790861 10.209139,1 8,1 C5.790861,1 4,2.790861 4,5 C4,7.209139 5.790861,9 8,9 Z"
+                id="Oval-Copy" fill-rule="nonzero" />
+              <path
+                d="M1,12 C1,12.4951401 1.00463867,13.5399292 1.00463867,14.0010879 C1.00463867,14.4622465 1.51376182,14.9990997 2.0038353,14.9990997 C2.49390878,14.9990997 13.5043345,14.9990997 14.0037079,14.9990997 C14.5030813,14.9990997 15.0010986,14.5210063 15.0010986,14.0010879 C15.0010986,13.4811694 15,12.7063242 15,12 C15,11.2936758 13.0434994,8 8,8 C2.95650058,8 1,11.5048599 1,12 Z M5.00241651,13.0391492 C5.00237852,13.0266433 5.00233995,13.0139627 5.00230078,13.0011036 L5.00219654,12.9668619 C5.00060954,12.4451851 5,12.196578 5,12 C5,12.4113632 4.94378855,12.7197365 4.86044186,13.0029078 C4.85913212,13.0073577 4.85782261,13.0117723 4.85651336,13.0161522 C4.870484,13.0603229 4.88351135,13.105019 4.89557613,13.1502195 C4.92839845,13.1139873 4.9640712,13.0768074 5.00241651,13.0391492 Z"
+                id="Path-2" fill-rule="nonzero" />
+            </svg>
+          </div>
+          <div class="i2g-drop-menu-tab" style="left: unset; right: 0;">
+            <div class="item-drop">
+              <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python Editor"
+              login-url="{{self.loginUrl}}" query-string="self.queryString"></wi-login>
+            </div>
+            <div class="space-height-10px"></div>
+            <div class="border-bottom-2px"></div>
+            <div class="space-height-10px"></div>
+            <div class="item-drop" ng-click="">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                    <path d="M8,14.5 C11.5898509,14.5 14.5,11.5898509 14.5,8 C14.5,4.41014913 11.5898509,1.5 8,1.5 C4.41014913,1.5 1.5,4.41014913 1.5,8 C1.5,8.27614237 1.72385763,8.5 2,8.5 C2.27614237,8.5 2.5,8.27614237 2.5,8 C2.5,4.96243388 4.96243388,2.5 8,2.5 C11.0375661,2.5 13.5,4.96243388 13.5,8 C13.5,11.0375661 11.0375661,13.5 8,13.5 C7.72385763,13.5 7.5,13.7238576 7.5,14 C7.5,14.2761424 7.72385763,14.5 8,14.5 Z" id="Oval"  fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-315.000000) translate(-8.000000, -8.000000) "/>
+                    <path d="M1.5,7.5 L8.5,7.5 C8.77614237,7.5 9,7.72385763 9,8 C9,8.27614237 8.77614237,8.5 8.5,8.5 L1.5,8.5 C1.22385763,8.5 1,8.27614237 1,8 C1,7.72385763 1.22385763,7.5 1.5,7.5 Z M1.5,8.5 C1.77614237,8.5 2,8.27614237 2,8 C2,7.72385763 1.77614237,7.5 1.5,7.5 L8.5,7.5 C8.22385763,7.5 8,7.72385763 8,8 C8,8.27614237 8.22385763,8.5 8.5,8.5 L1.5,8.5 Z" id="Rectangle"  fill-rule="nonzero" transform="translate(5.000000, 8.000000) rotate(-360.000000) translate(-5.000000, -8.000000) "/>
+                    <path d="M6.52708192,6.5 C6.52708192,6.22385763 6.3032243,6 6.02708192,6 C5.75093955,6 5.52708192,6.22385763 5.52708192,6.5 L5.52708192,10 L9.00299098,10 C9.27913336,10 9.50299098,9.77614237 9.50299098,9.5 C9.50299098,9.22385763 9.27913336,9 9.00299098,9 L6.52708192,9 L6.52708192,6.5 Z" id="Path-3"  fill-rule="nonzero" transform="translate(7.515036, 8.000000) rotate(-135.000000) translate(-7.515036, -8.000000) "/>
+            </svg>
+              <div>Login</div>
+            </div>
+            <div class="item-drop" ng-click="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+                <path
+                  d="M5.5,15.5 C7.15685425,15.5 8.5,14.1568542 8.5,12.5 C8.5,10.8431458 7.15685425,9.5 5.5,9.5 C3.84314575,9.5 2.5,10.8431458 2.5,12.5 C2.5,14.1568542 3.84314575,15.5 5.5,15.5 Z M5.5,14.5 C4.3954305,14.5 3.5,13.6045695 3.5,12.5 C3.5,11.3954305 4.3954305,10.5 5.5,10.5 C6.6045695,10.5 7.5,11.3954305 7.5,12.5 C7.5,13.6045695 6.6045695,14.5 5.5,14.5 Z"
+                  id="Oval" fill-rule="nonzero" />
+                <path
+                  d="M10.5,7.5 C12.1568542,7.5 13.5,6.15685425 13.5,4.5 C13.5,2.84314575 12.1568542,1.5 10.5,1.5 C8.84314575,1.5 7.5,2.84314575 7.5,4.5 C7.5,6.15685425 8.84314575,7.5 10.5,7.5 Z M10.5,6.5 C9.3954305,6.5 8.5,5.6045695 8.5,4.5 C8.5,3.3954305 9.3954305,2.5 10.5,2.5 C11.6045695,2.5 12.5,3.3954305 12.5,4.5 C12.5,5.6045695 11.6045695,6.5 10.5,6.5 Z"
+                  id="Oval-Copy" fill-rule="nonzero" />
+                <path
+                  d="M0.5,4 L7.5,4 C7.77614237,4 8,4.22385763 8,4.5 C8,4.77614237 7.77614237,5 7.5,5 L0.5,5 C0.223857625,5 3.38176876e-17,4.77614237 0,4.5 C-3.38176876e-17,4.22385763 0.223857625,4 0.5,4 Z M0.5,5 C0.776142375,5 1,4.77614237 1,4.5 C1,4.22385763 0.776142375,4 0.5,4 L7.5,4 C7.22385763,4 7,4.22385763 7,4.5 C7,4.77614237 7.22385763,5 7.5,5 L0.5,5 Z"
+                  id="Rectangle" fill-rule="nonzero" />
+                <path
+                  d="M8.5,12 L15.5,12 C15.7761424,12 16,12.2238576 16,12.5 C16,12.7761424 15.7761424,13 15.5,13 L8.5,13 C8.22385763,13 8,12.7761424 8,12.5 C8,12.2238576 8.22385763,12 8.5,12 Z M8.5,13 C8.77614237,13 9,12.7761424 9,12.5 C9,12.2238576 8.77614237,12 8.5,12 L15.5,12 C15.2238576,12 15,12.2238576 15,12.5 C15,12.7761424 15.2238576,13 15.5,13 L8.5,13 Z"
+                  id="Rectangle-Copy-2" fill-rule="nonzero" />
+                <path
+                  d="M13.5,4 L15.5,4 C15.7761424,4 16,4.22385763 16,4.5 C16,4.77614237 15.7761424,5 15.5,5 L13.5,5 C13.2238576,5 13,4.77614237 13,4.5 C13,4.22385763 13.2238576,4 13.5,4 Z M13.5,5 C13.7761424,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L15.5,4 C15.2238576,4 15,4.22385763 15,4.5 C15,4.77614237 15.2238576,5 15.5,5 L13.5,5 Z"
+                  id="Rectangle-Copy" fill-rule="nonzero" />
+                <path
+                  d="M0.5,12 L2.5,12 C2.77614237,12 3,12.2238576 3,12.5 C3,12.7761424 2.77614237,13 2.5,13 L0.5,13 C0.223857625,13 3.38176876e-17,12.7761424 0,12.5 C-3.38176876e-17,12.2238576 0.223857625,12 0.5,12 Z M0.5,13 C0.776142375,13 1,12.7761424 1,12.5 C1,12.2238576 0.776142375,12 0.5,12 L2.5,12 C2.22385763,12 2,12.2238576 2,12.5 C2,12.7761424 2.22385763,13 2.5,13 L0.5,13 Z"
+                  id="Rectangle-Copy-3" fill-rule="nonzero" /></svg>
+              <div>Settings</div>
+            </div>
+            <div class="item-drop">
+              <label class="i2g-checkbox" style="width: 100%;">
+                <input type="checkbox" ng-click="self.changeTheme()">
+                <span>Dark mode</span>
+              </label>
+            </div>
+            <div class="space-height-10px"></div>
+            <div class="border-bottom-2px"></div>
+            <div class="space-height-10px"></div>
+            <div class="item-drop" ng-click="">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                <g id="01-copy-15" stroke="none" stroke-width="1"  fill-rule="evenodd">
+                    <path d="M8,14.5 C11.5898509,14.5 14.5,11.5898509 14.5,8 C14.5,4.41014913 11.5898509,1.5 8,1.5 C4.41014913,1.5 1.5,4.41014913 1.5,8 C1.5,8.27614237 1.72385763,8.5 2,8.5 C2.27614237,8.5 2.5,8.27614237 2.5,8 C2.5,4.96243388 4.96243388,2.5 8,2.5 C11.0375661,2.5 13.5,4.96243388 13.5,8 C13.5,11.0375661 11.0375661,13.5 8,13.5 C7.72385763,13.5 7.5,13.7238576 7.5,14 C7.5,14.2761424 7.72385763,14.5 8,14.5 Z" id="Oval"  fill-rule="nonzero" transform="translate(8.000000, 8.000000) rotate(-225.000000) translate(-8.000000, -8.000000) "/>
+                    <path d="M4.5,4 L11.5,4 C11.7761424,4 12,4.22385763 12,4.5 C12,4.77614237 11.7761424,5 11.5,5 L4.5,5 C4.22385763,5 4,4.77614237 4,4.5 C4,4.22385763 4.22385763,4 4.5,4 Z M4.5,5 C4.77614237,5 5,4.77614237 5,4.5 C5,4.22385763 4.77614237,4 4.5,4 L11.5,4 C11.2238576,4 11,4.22385763 11,4.5 C11,4.77614237 11.2238576,5 11.5,5 L4.5,5 Z" id="Rectangle" fill-rule="nonzero" transform="translate(8.000000, 4.500000) rotate(-270.000000) translate(-8.000000, -4.500000) "/>
+                </g>
+            </svg>
+              <div>Logout</div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="block-float" ng-show="self.showNotiHistory">
+  <div class="i2g-title-with-btn">
+      <span>Notification</span>
+  </div>
+  <div class="space-height-20px"></div>
+  <div class="border-bottom-2px"></div>
+  <div class="space-height-20px"></div>
+  <div style="overflow: auto;">
+      <div ng-repeat="item in self.toastHistory" class="item-icon-title-discription {{item.classTypeToast}}">
+          <div>
+          </div>
+          <div>
+              <div>
+                  <div>
+                      {{item.title}}
+                  </div>
+              </div>
+              <span>
+                  {{item.message}}
+              </span>
+              <span>
+                  {{item.currentTime}}
+              </span>
+              
+          </div>
+      </div>
+  </div>
+
+</div>

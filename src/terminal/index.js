@@ -92,7 +92,8 @@ export default {
 		bindings: {
 			resultHtml: '<',
 			iframeHtmlLink: '<',
-			isResultAIframe: '<'
+			isResultAIframe: '<',
+			showConsole: '='
 		},
 		template,
 		controller,
