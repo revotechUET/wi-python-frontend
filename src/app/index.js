@@ -1260,6 +1260,8 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		self.showLoading = true;
 		if (projectNode.shared) {
 			await wiApi.addShareSession(getClientId(projectNode.owner, projectNode.name), projectNode.owner, projectNode.name);
+		} else {
+			await wiApi.client(getClientId(projectNode.owner, projectNode.name)).removeShareSession();
 		}
 		wiApi.client(getClientId(projectNode.owner, projectNode.name)).getListWells(projectId).then(wells => {
 			$timeout(()=>{
