@@ -13,7 +13,8 @@
     </div>
 </div>
 <div style="width: 100vw; height: 100vh; min-width: 100vw; min-height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden;">
-    
+    <wi-login register-url="https://www.i2g.cloud/register-information/" app-name="Wi Python Editor"
+              login-url="{{self.loginUrl}}" query-string="self.queryString"></wi-login>
 
     <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode" code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree" remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked" refresh-checked="self.refreshChecked" new-checked="self.newChecked" generate-login-by-token="self.generateLoginByToken" generate-login-by-account="self.generateLoginByAccount" generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" change-theme="self.changeTheme"
     auto-save="self.autoSave" save-warning="self.askSave" toast-history="self.toastHistory" show-project="self.showProject" show-project-python="self.showProjectPython" show-console="self.showConsole"></tools>
