@@ -6,14 +6,20 @@ import './style.scss'
 // A List of action icon
 
 /////////////////////////////////////
+const queryString = require('query-string')
 
 
 const name = 'tools'
 
-controller.$inject = ['$scope', '$timeout', 'auth']
-function controller($scope, $timeout, auth) {
+controller.$inject = ['$scope', '$timeout', 'auth', '$location', 'config']
+function controller($scope, $timeout, auth, $location, config) {
   const self = this
-
+	const BASE_URL = "https://users.i2g.cloud";
+  self.$onInit = function() {
+    self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
+		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
+		self.queryString = queryString.parse(location.search);
+  }
   self.logout = function () {
     auth.logout()
   }

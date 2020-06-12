@@ -22,7 +22,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         WiDroppable,
     })
 	let self = this;
-	const BASE_URL = "https://users.i2g.cloud";
+	// const BASE_URL = "https://users.i2g.cloud";
 	let stackNode = [];
 	$scope.safeApply = function (fn) {
     const phase = this.$root.$$phase;
@@ -39,9 +39,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		// self.autoSave = true;
 		self.toastArray = [];
         self.toastHistory = [];
-		self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
-		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
-		self.queryString = queryString.parse(location.search);
+		// self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
+		// self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
+		// self.queryString = queryString.parse(location.search);
 		initState();
 		$scope.$watch(function () {
 			return localStorage.getItem('token');
