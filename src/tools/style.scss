@@ -1,0 +1,12 @@
+wi-login > div {
+    position: relative;
+    z-index: unset;
+    right: unset;
+    top: unset;
+}
+wi-login > div > div.online {
+    color: var(--text-primary-color);
+}
+wi-login > div > span {
+    color: var(--primary-color);
+}
