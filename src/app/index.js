@@ -38,7 +38,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.$onInit = function () {
 		// self.autoSave = true;
 		self.toastArray = [];
-        self.toastHistory = [];
+		self.toastHistory = [];
+		self.mute = false;
 		// self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
 		// self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
 		// self.queryString = queryString.parse(location.search);
@@ -51,7 +52,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				// getCurveTree();
 				setTimeout(function () {
 					wellcome();
-				}, 1400);
+				}, 1000);
 			}
 		});
 		$scope.$watch(function () {
@@ -64,7 +65,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
 						.catch(error => console.log(error));
 				}
-			} else if (!self.autoSave && !self.askSave && preNode) {
+			} else if (!self.autoSave && self.askSave && preNode) {
 				ngDialog.open({
 					template: 'templateWarningSave',
 					className: 'i2g-ngdialog',
@@ -89,17 +90,23 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			ngDialog.open({
 				template: 'templateRestore',
 				className: 'i2g-ngdialog',
+				showClose: true,
 				scope: $scope,
 			});
 			self.acceptRestore = function () {
+				
+				self.showPreLoading = true;
 				projectApi.openProject(wiToken.getCurrentProjectName())
 					.then(item => {
 						self.currentProject = item;
 						self.selectedNode = self.currentProject;
 						ngDialog.close();
-						// eslint-disable-next-line no-undef
-						$("#root-app").removeClass("blur");
 						getCurveTree();
+						$timeout(() => {
+							self.showPreLoading = false;
+						},3000)
+
+
 					})
 					.catch(error => {
 						// ngDialog.open({
@@ -107,19 +114,20 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						// 	className: 'i2g-ngdialog',
 						// 	scope: $scope,
 						// });
-						self.cancelReload = function (){
-							ngDialog.close();
-							$timeout(()=>{
-								location.reload();
-							},500)
-						}
-						// alertMessage.error(error)
+						// self.cancelReload = function (){
+						// 	ngDialog.close();
+						// 	$timeout(()=>{
+						// 		location.reload();
+						// 	},500)
+						// }
+						alertMessage.error(error)
 					})
 			}
 		} else if (wiToken.getToken()) {
 			ngDialog.open({
 				template: 'templateOpenProject',
 				className: 'i2g-ngdialog',
+				showClose: true,
 				scope: $scope,
 			});
 			projectApi.listProjects()
@@ -132,21 +140,34 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					}
 				})
 				.catch(error => {
-					alertMessage.error(error)
+					$timeout(() => {
+						self.showNotiFn('error', 'Error',error , 4000);
+					})
+					// alertMessage.error(error)
 				});
 		}
 	}
 
 	self.saveCode = function () {
 		projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, self.selectedNode.path), self.code)
-			.then(() => alertMessage.success('save success'))
-			.catch(error => alertMessage.error(error));
+			.then(() => {
+				$timeout(() => {
+					self.showNotiFn('success', 'Successfully','Save success' , 4000);
+				})
+			})
+			.catch(error => {
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
+				// alertMessage.error(error)
+			});
 	};
 
 	self.removeTreeConfig = function () {
 		$scope.treeConfig.length = 0;
 	};
 	self.findAllProjects = function () {
+		self.selectedProject = null;
 		ngDialog.open({
 			template: 'templateOpenProject',
 			className: 'i2g-ngdialog',
@@ -184,12 +205,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				wiToken.setCurrentProjectName(self.currentProject.rootName)
 				ngDialog.close();
 				// eslint-disable-next-line no-undef
-				$("#root-app").removeClass("blur");
 				getCurveTree();
 			})
 			.catch(error => {
-				alertMessage.error(error)
-			})
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
+				// alertMessage.error(error)
+			});
 	};
 	this.getChildren4Python = function (node) {
 		let children = node.files.concat(node.folders);
@@ -219,7 +242,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			projectApi.openFolder(node.path)
 				.then(item => {
 					if (!(item.files.length + item.folders.length)) {
-						return alertMessage.error('There is nothing in this folder')
+						return $timeout(() => {
+							self.showNotiFn('error', 'Error', 'There is nothing in this folder' , 4000);
+						})
 					}
 					if (!((node.files && node.files.length) || (node.folders && node.folders.length))) {
 						for (const f of item.files) { node.files.push(f) }
@@ -228,8 +253,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 				})
 				.catch(error => {
-					alertMessage.error(error)
-				})
+					$timeout(() => {
+						self.showNotiFn('error', 'Error',error , 4000);
+					})
+					// alertMessage.error(error)
+				});
 		}
 
 	};
@@ -281,11 +309,16 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}
 		self.acceptRename = function () {
 			const isExistItem = checkExistItem()
-			if(isExistItem) return alertMessage.error('File name is existed')
+			if(isExistItem) return $timeout(() => {
+				self.showNotiFn('error', 'Error','File name is existed' , 4000);
+			})
 
 			if (self.selectedNode.rootIsFile) {
 				if (!self.newFileName || !self.newFileName.length) {
-					alertMessage.error('Fill your fileName or folderName');
+					$timeout(() => {
+						self.showNotiFn('error', 'Error','Fill your filename or foldername' , 4000);
+					})
+					// alertMessage.error('Fill your fileName or folderName');
 				}
 				else {
 					if (!self.newFileName.includes('.')) {
@@ -298,6 +331,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					).then((data) => {
 						updateUI()
 						ngDialog.close();
+						$timeout(() => {
+							self.showNotiFn('success', 'Successfully','Filename has been change' , 4000);
+						})
 						self.newFileName = '';
 					}).catch((e) => {
 						console.error(e);
@@ -359,6 +395,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// reloadPrj(projectName);
 					updateUI()
 					ngDialog.close();
+					$timeout(() => {
+						self.showNotiFn('success', 'Successfully','File has been delete' , 4000);
+					})
 				}).catch(e => {
 					console.error(e);
 				});
@@ -385,6 +424,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// reloadPrj(projectName);
 					updateUI()
 					ngDialog.close();
+					$timeout(() => {
+						self.showNotiFn('success', 'Successfully','Project has been delete' , 4000);
+					})
 				}).catch(e => console.error(e));
 			}
 			self.cancelDelete = function () {
@@ -428,7 +470,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				self.selectedNode = self.currentProject;
 			});
 		}).catch(error => {
-			alertMessage.error(error)
+			$timeout(() => {
+				self.showNotiFn('error', 'Error',error , 4000);
+			})
+			// alertMessage.error(error)
 		});
 	}
 
@@ -451,8 +496,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						self.openProject(this.nameProject);
 						this.nameProject = '';
 						ngDialog.close();
+						$timeout(() => {
+							self.showNotiFn('success', 'Successfully','Success create project' , 4000);
+						})
 					})
-					.catch(error => alertMessage.error(error))
+					.catch(error => {
+						$timeout(() => {
+							self.showNotiFn('error', 'Error',error , 4000);
+						})
+					})
 			}
 		}
 	};
@@ -486,18 +538,21 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		self.acceptDeletePrj = function () {
 			projectApi.deleteProject(project)
 				.then(() => {
-					alertMessage.success('Success remove project ' + project);
+					$timeout(() => {
+						self.showNotiFn('success', 'Successfully','Success remove project' + project , 4000);
+					})
+					// alertMessage.success('Success remove project ' + project);
 					initState();
 					ngDialog.close();
-					// eslint-disable-next-line no-undef
-					$("#root-app").removeClass("blur");
 				})
-				.catch(error => alertMessage.error(error))
+				.catch(error => {
+					$timeout(() => {
+						self.showNotiFn('error', 'Error',error , 4000);
+					})
+				})
 		}
 		self.cancelDeletePrj = function () {
 			ngDialog.close();
-			// eslint-disable-next-line no-undef
-			$("#root-app").removeClass("blur");
 
 		}
 
@@ -513,18 +568,27 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.acceptDeletePrj = function () {
 				projectApi.deleteProject(self.currentProject.rootName)
 					.then(() => {
-						alertMessage.success('Success remove project ' + self.currentProject.rootName);
+						$timeout(() => {
+							self.showNotiFn('success', 'Successfully','Success remove project ' + self.currentProject.rootName , 4000);
+						})
+						// alertMessage.success('Success remove project ' + self.currentProject.rootName);
 						initState();
 						ngDialog.close();
 					})
-					.catch(error => alertMessage.error(error))
+					.catch(error => {
+						$timeout(() => {
+							self.showNotiFn('error', 'Error',error , 4000);
+						})
+					})
 			}
 			self.cancelDeletePrj = function () {
 				ngDialog.close();
 			}
 
 		} else {
-			return alertMessage.error('No project is opened');
+			return $timeout(() => {
+				self.showNotiFn('error', 'Error','No project is opened' , 4000);
+			})
 		}
 
 	};
@@ -535,14 +599,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			scope: $scope,
 		});
 	};
-	self.changeTheme = function () {
-		var element = document.getElementById("tools");
-		element.classList.toggle("dark-theme");
-		var element2 = document.getElementById("app");
-		element2.classList.toggle("dark-theme");
-		var element3 = document.getElementById("custom-login-css");
-			element3.classList.toggle("dark-theme");
-	};
+	
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////
@@ -569,7 +626,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				} else self.code = code
 			})
 			.catch(error => {
-				alertMessage.error(error)
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
 			})
 	};
 
@@ -579,7 +638,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 		self.selectedNode = folderNode;
 
-		if (!folderNode) return alertMessage.error('There are some error, refresh?');
+		if (!folderNode) return $timeout(() => {
+			self.showNotiFn('error', 'Error', 'There are some error, refresh?' , 4000);
+		})
 		if (folderNode.files.length + folderNode.folders.length)
 			return; // already fetch inside item, do not have to fetch any more
 
@@ -587,7 +648,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		projectApi.openFolder(dir)
 			.then(item => {
 				if (!(item.files.length + item.folders.length)) {
-					return alertMessage.error('There is nothing in this folder')
+					return $timeout(() => {
+						self.showNotiFn('error', 'Error', 'There is nothing in this folder' , 4000);
+					})
 				}
 
 				for (const f of item.files) {
@@ -599,7 +662,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				}
 			})
 			.catch(error => {
-				alertMessage.error(error)
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
 			})
 	};
 
@@ -664,7 +729,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					});
 					// self.currentProject = {...self.currentProject};
 				}
-                
+                $timeout(() => {
+					self.showNotiFn('success', 'Successfully','Success create file' , 4000);
+				})
 				//remove selected in vTree	
 				self.selectedNode._selected = false
 				self.currentProject = {...self.currentProject};
@@ -672,7 +739,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				this.nameFileNew = '';
 			})
 			.catch(error => {
-				alertMessage.error(error)
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
 			})
 	}
 	
@@ -700,7 +769,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 
 				const parrentFolder = findNodeInTree(self.currentProject, node => node.path === containerFolderPath);
 
-				if (!parrentFolder) return alertMessage.error('Cannot create folder');
+				if (!parrentFolder) return $timeout(() => {
+					self.showNotiFn('error', 'Error','Cannot create folder' , 4000);
+				})
 
 				parrentFolder.folders.push({
 					rootName: folderName,
@@ -712,7 +783,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				});
 				self.currentProject = {...self.currentProject};
 			}
-			alertMessage.success('success create folder');
+			$timeout(() => {
+				self.showNotiFn('success', 'Successfully','Success create folder' , 4000);
+			})
+			// alertMessage.success('success create folder');
 			console.log({
 				tree: self.currentProject
 			});
@@ -730,12 +804,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			console.log({
 				tree: self.currentProject
 			});
-		}).catch(error => alertMessage.error(error))
+		}).catch(error => {
+			$timeout(() => {
+				self.showNotiFn('error', 'Error',error , 4000);
+			})
+		})
 	};
 
 	self.deleteItem = function () {
 
-		if (!self.selectedNode) return alertMessage.error('Not choose an item yet');
+		if (!self.selectedNode) return $timeout(() => {
+			self.showNotiFn('error', 'Error','Not choose an item yet' , 4000);
+		})
 
 		projectApi
 			.removeItem(self.currentProject.rootName, self.selectedNode.rootName)
@@ -758,7 +838,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				alertMessage.success('remove success ' + self.selectedNode.rootName);
 				self.selectedNode = null
 			})
-			.catch(error => alertMessage.error('Cannot remove item'));
+			.catch(error => {
+				$timeout(() => {
+					self.showNotiFn('error', 'Error','Cannot remove item' , 4000);
+				})
+			})
 	};
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -771,7 +855,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	self.addFunction = function (type) {
 		const fileType = mime.getFileType(self.selectedNode.rootName);
 		if (fileType !== mime.types.python)
-			return alertMessage.error(`Doesn't support gen function for file ${fileType}`);
+			return $timeout(() => {
+				self.showNotiFn('error', 'Error',`Doesn't support gen function for file ${fileType}` , 4000);
+			})
 		const generatedFuncCode = funcGen.generateForPy(type);
 		self.code = generatedFuncCode + self.code
 	};
@@ -795,6 +881,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						}
 						if (render) {
 							self.resultHtml = render;
+							$timeout(() => {
+								self.showNotiFn('success', 'Successfully','Run Finished' , 4000);
+							})
 							// alertMessage.success('Run Finished')
 						}
 						// Spinner.hide();
@@ -803,7 +892,11 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						self.isResultAIframe = type === mime.types.html
 					})
 			})
-			.catch(error => alertMessage.error(error))
+			.catch(error => {
+				$timeout(() => {
+					self.showNotiFn('error', 'Error',error , 4000);
+				})
+			})
 	};
 
 	self.coding = function (code) {
@@ -897,10 +990,6 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		console.log("refeshChecked");
 		self.codeGenMode = "load";
 		return true;
-	};
-
-	this.createProject = function () {
-
 	};
 
 	this.getLabel = function (node) {
@@ -1153,7 +1242,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			if (!node.timestamp || (Date.now() - node.timestamp > 3 * 1000)) {
 				getWells(node.idProject, node, function (err, wells) {
 					if (err) {
-						return alertMessage.error(err.data.content);
+						return $timeout(() => {
+							self.showNotiFn('error', 'Error',err.data.content , 4000);
+						})
 					}
 					//node.wells = wells;
 					if (!node.wells || !node.wells.length) {
@@ -1295,59 +1386,73 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		self.selectedNode._selected = false
 	}
 
-
+	$(".my_audio").trigger('load');
+	function play_audio(task) {
+		if(self.mute) return;
+		if(task == 'play'){
+			 $(".my_audio").trigger('play');
+		}
+		if(task == 'stop'){
+			 $(".my_audio").trigger('pause');
+			 $(".my_audio").prop("currentTime",0);
+		}
+   }
+  
     //HUNGNK
-    this.showNotiFn = function (type, title, message, timeLife) {
-        let id;
-        let item;
-        let currentTime;
-        let date = new Date();
-        //SET OVERLAY LOADING NOTI
-        if (type === 'loading-noti') {
-          // eslint-disable-next-line no-undef
-          $(".i2g-toast-container").addClass("cursor-not-allowed");
-          setTimeout(function () {
-            // eslint-disable-next-line no-undef
-            $(".i2g-toast-container").removeClass("cursor-not-allowed");
-          }, timeLife);
-        }
-        //LIMIT ARRAY ITEM
-        if (self.toastArray.length > limitToastDisplayed) {
-          self.toastArray.pop();
-        }
-        //SET ID
-        id = type + '-' + String(Math.floor(Math.random() * 1000));
-        currentTime = String(date.getHours() + ':' + date.getMinutes() + ':' + date.getMilliseconds());
-        item = {
-          id: id,
-          type: type,
-          classTypeToast: type,
-          title: title,
-          message: message,
-          timeLife: timeLife,
-          currentTime: currentTime,
-        };
-        //PUSH ARRAY NOTI
-        self.toastArray.unshift(item)
-        //PLAY SOUND
-    
-        //PUSH ARRAY HISTORY
-        self.toastHistory.unshift(item)
-        //REMOVE ITEM IN ARRAY, REMOVE DOM HTML
-        setTimeout(function () {
-          document.getElementById(id).classList.add('i2g-close-notification')
-        }, (timeLife - 300));
-        setTimeout(function () {
-          self.toastArray = self.toastArray.filter(function (obj) {
-            return obj.id !== id;
-          });
-          document.getElementById(id).remove();
-        }, timeLife);
-      }
-    this.changeTheme = function () {
-        // eslint-disable-next-line no-undef
-        $('body').toggleClass('i2g-darkmode');
-    }
+	this.showNotiFn = function (type, title, message, timeLife) {
+		let id;
+		let item;
+		let currentTime;
+		let date = new Date();
+		//SET OVERLAY LOADING NOTI
+		if (type === 'loading-noti') {
+			$(".i2g-toast-container").addClass("cursor-not-allowed");
+			setTimeout(function () {
+				$(".i2g-toast-container").removeClass("cursor-not-allowed");
+			}, timeLife);
+		}
+		//LIMIT ARRAY ITEM
+		if (self.toastArray.length > limitToastDisplayed) {
+			self.toastArray.pop();
+		}
+		//STOP SOUND
+		play_audio('stop');
+		//SET ID
+		id = type + '-' + String(Math.floor(Math.random() * 1000));
+		currentTime = String(date.getHours() + 'h' + date.getMinutes() + '"');
+		item = {
+			id: id,
+			type: type,
+			classTypeToast: type,
+			title: title,
+			message: message,
+			timeLife: timeLife,
+			currentTime: currentTime,
+		};
+		//PUSH ARRAY NOTI
+		self.toastArray.unshift(item)
+		//PLAY SOUND
+		play_audio('play');
+		//PUSH ARRAY HISTORY
+		self.toastHistory.unshift(item)
+		//REMOVE ITEM IN ARRAY, REMOVE DOM HTML
+		setTimeout(function () {
+			document.getElementById(id).classList.add('i2g-close-notification')
+		}, (timeLife - 300));
+		setTimeout(function () {
+			self.toastArray = self.toastArray.filter(function (obj) {
+				return obj.id !== id;
+			});
+			document.getElementById(id).remove();
+
+		}, timeLife);
+	}
+
+	this.turn_Off_On_Sound = function() {
+		console.log('mute')
+		document.getElementsByClassName(".my_audio").muted = true;
+	}
+	
 }
 
 export default {

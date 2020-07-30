@@ -64,6 +64,7 @@ export default {
       autoSave: '=',
       saveWarning: '=',
       toastHistory: '=',
+      mute: '=',
       showProject: '=',
       showProjectPython: '=',
       showConsole: '='

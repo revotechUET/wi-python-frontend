@@ -1,13 +1,28 @@
-<div class="i2g-toolbar">
+<div class="i2g-toolbar border-bottom-2px">
     <div class="i2g-tab">
       <div class="tab-item always-on">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 43 43" ng-click="self.showAllApp = !self.showAllApp" style="margin: 0px 20px 0px 10px; cursor: pointer;">
+          <g xmlns="http://www.w3.org/2000/svg" id="Group_835" data-name="Group 835" transform="translate(2657 -2232.734)">
+            <rect id="Rectangle_136" data-name="Rectangle 136" width="11" height="11" transform="translate(-2657 2264.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_137" data-name="Rectangle 137" width="11" height="11" transform="translate(-2657 2248.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_138" data-name="Rectangle 138" width="11" height="11" transform="translate(-2657 2232.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_139" data-name="Rectangle 139" width="11" height="11" transform="translate(-2625 2232.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_140" data-name="Rectangle 140" width="11" height="11" transform="translate(-2625 2248.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_141" data-name="Rectangle 141" width="11" height="11" transform="translate(-2641 2264.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_142" data-name="Rectangle 142" width="11" height="11" transform="translate(-2641 2248.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_143" data-name="Rectangle 143" width="11" height="11" transform="translate(-2641 2232.734)" fill="#3f84ff"/>
+            <rect id="Rectangle_144" data-name="Rectangle 144" width="11" height="11" transform="translate(-2625 2264.734)" fill="#3f84ff"/>
+          </g>
+        </svg>
+      </div>
+      <div class="tab-item always-on">
         <div class="tab-name">Project
-          <div class="caret-drop">
+          <!-- <div class="caret-drop">
             <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
               <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
                 fill="none" stroke-linecap="round" stroke-width="2" />
             </svg>
-          </div>
+          </div> -->
         </div>
         <div class="i2g-drop-menu-tab">
           <div class="item-drop" ng-click="self.findAllProjects();">
@@ -42,12 +57,6 @@
       </div>
       <div class="tab-item always-on">
         <div class="tab-name">New
-          <div class="caret-drop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
-              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
-                fill="none" stroke-linecap="round" stroke-width="2" />
-            </svg>
-          </div>
         </div>
         <div class="i2g-drop-menu-tab">
           <div class="item-drop" ng-click="self.createNewFile();">
@@ -122,12 +131,6 @@
       </div>
       <div class="tab-item always-on">
         <div class="tab-name">Action
-          <div class="caret-drop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
-              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
-                fill="none" stroke-linecap="round" stroke-width="2" />
-            </svg>
-          </div>
         </div>
         <div class="i2g-drop-menu-tab">
           <div class="item-drop" ng-click="self.runCode();">
@@ -162,7 +165,7 @@
               <span>Auto Save File</span>
             </label>
           </div>
-          <div class="item-drop" ng-if="!self.autoSave">
+          <div class="item-drop" ng-show="!self.autoSave">
             <label class="i2g-checkbox">
               <input type="checkbox" ng-checked="self.askSave" ng-click="self.askSave = !self.askSave;">
               <span>Warning File Not Save</span>
@@ -172,17 +175,14 @@
       </div>
       <div class="tab-item always-on">
         <div class="tab-name">Tools
-          <div class="caret-drop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
-              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
-                fill="none" stroke-linecap="round" stroke-width="2" />
-            </svg>
-          </div>
         </div>
         <div class="i2g-drop-menu-tab">
           <div class="item-drop">
             <div style="font-weight: bold;">Select Mode</div>
           </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
           <div class="item-drop" ng-click="self.deleteChecked();">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 16 16" version="1.1">
               <g id="01-copy-25" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -294,13 +294,37 @@
         </div>
       </div>
       <div class="tab-item always-on">
-        <div class="tab-name">Help
-          <div class="caret-drop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12.828" height="7.828" viewBox="0 0 12.828 7.828">
-              <path id="Path_15" data-name="Path 15" d="M1014.566,219.5l5,5,5-5" transform="translate(-1013.152 -218.086)"
-                fill="none" stroke-linecap="round" stroke-width="2" />
-            </svg>
+        <div class="tab-name">View
+        </div>
+        <div class="i2g-drop-menu-tab">
+          <div class="item-drop">
+            <div style="font-weight: bold;">Change layout</div>
           </div>
+          <div class="space-height-10px"></div>
+          <div class="border-bottom-2px"></div>
+          <div class="space-height-10px"></div>
+          <div class="item-drop">
+            <label class="i2g-checkbox" style="width: 100%;" >
+              <input type="checkbox" ng-checked="!self.showProjectPython" ng-click="self.showProjectPython = !self.showProjectPython">
+              <span>File Explorer</span>
+            </label>
+          </div>
+          <div class="item-drop">
+            <label class="i2g-checkbox" style="width: 100%;">
+              <input type="checkbox" ng-checked="!self.showProject" ng-click="self.showProject = !self.showProject">
+              <span>Project List</span>
+            </label>
+          </div>
+          <div class="item-drop">
+            <label class="i2g-checkbox" style="width: 100%;">
+              <input type="checkbox" ng-checked="!self.showConsole" ng-click="self.showConsole = !self.showConsole">
+              <span>Console Window</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="tab-item always-on">
+        <div class="tab-name">Help
         </div>
         <div class="i2g-drop-menu-tab">
           <div class="item-drop" onclick="window.open('https://python.i2g.cloud/documents/','_blank');">
@@ -322,7 +346,7 @@
           </svg>
             <div>I2G Base Family</div>
           </div>
-          <div class="space-height-10px"></div>
+          <!-- <div class="space-height-10px"></div>
           <div class="border-bottom-2px"></div>
           <div class="space-height-10px"></div>
           <div class="item-drop">
@@ -341,69 +365,32 @@
               </g>
             </svg>
             <div>About Wi Python</div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
     <div style="display: flex; align-items: center; height: 100%;">
-      <div class="i2g-tab">
-        <div class="tab-item always-on" ng-show="self.showProject || self.showProjectPython || self.showConsole">
-          <div class="i2g-button-with-icon active" title="Layout">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
-                <path d="M1,1 L10,1 C10.5522847,1 11,1.44771525 11,2 L11,14 C11,14.5522847 10.5522847,15 10,15 L1,15 C0.44771525,15 6.76353751e-17,14.5522847 0,14 L0,2 C-6.76353751e-17,1.44771525 0.44771525,1 1,1 Z" id="Path" fill-rule="nonzero" opacity="0.395275298"/>
-                <path d="M6,1 L15,1 C15.5522847,1 16,1.44771525 16,2 L16,14 C16,14.5522847 15.5522847,15 15,15 L6,15 C5.44771525,15 5,14.5522847 5,14 L5,2 C5,1.44771525 5.44771525,1 6,1 Z" id="Path" fill-rule="nonzero"/>
-            </svg>
-          </div>
-          <div class="i2g-drop-menu-tab" style="left: unset; right: 0;">
-            <div class="item-drop">
-              <div style="font-weight: bold;">Change layout</div>
-            </div>
-            <div class="space-height-10px"></div>
-            <div class="border-bottom-2px"></div>
-            <div class="space-height-10px"></div>
-            <div class="item-drop">
-              <label class="i2g-checkbox" style="width: 100%;" >
-                <input type="checkbox" ng-checked="!self.showProjectPython" ng-click="self.showProjectPython = !self.showProjectPython">
-                <span>Project Python</span>
-              </label>
-            </div>
-            <div class="item-drop">
-              <label class="i2g-checkbox" style="width: 100%;">
-                <input type="checkbox" ng-checked="!self.showProject" ng-click="self.showProject = !self.showProject">
-                <span>Project i2G</span>
-              </label>
-            </div>
-            <div class="item-drop">
-              <label class="i2g-checkbox" style="width: 100%;">
-                <input type="checkbox" ng-checked="!self.showConsole" ng-click="self.showConsole = !self.showConsole">
-                <span>Console Window</span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="space-20px"></div>
-      <!-- <div class="i2g-button-with-icon" ng-class="{active: self.showNotiHistory}"title="Notification" ng-click="self.showNotiHistory = !self.showNotiHistory">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
-          <path
-            d="M3.15021517,14.2608312 C2.48765492,14.4365329 1.7640994,13.9984655 1.58439575,13.3345514 C1.42315784,12.7388023 1.72720073,12.1383855 2.2915405,11.8947988 C2.41175485,11.78802 2.78457771,11.4312301 2.85809277,11.0523545 C2.91675301,10.7497066 2.86219068,10.4144842 2.8193817,10.2252912 L2.00455514,7.21491896 C1.39062598,4.94608033 2.46719767,2.55748492 4.54874881,1.48786692 C4.42538994,0.925620667 4.76305146,0.368553615 5.31769157,0.221493402 C5.8748064,0.0737716592 6.45518757,0.378771641 6.6297083,0.930275508 C8.96181132,0.841607274 11.0215553,2.40417829 11.6328156,4.661707 L12.4476248,7.67201518 C12.5062055,7.85702568 12.628182,8.17440515 12.8318586,8.40751937 C13.0810362,8.69257556 13.5669854,8.81795478 13.7365794,8.85433959 C14.3609823,8.76369896 14.9420193,9.1003629 15.1073497,9.71108676 C15.2870534,10.3750009 14.8770105,11.1204766 14.2144502,11.2961783 L3.15021517,14.2608312 Z"
-            id="Union_27-2" fill-rule="nonzero" />
-          <path
-            d="M9,11 C10.1045695,11 11,11.8954305 11,13 C11,14.1045695 10.1045695,15 9,15 C7.8954305,15 7,14.1045695 7,13 C7,11.8954305 7.8954305,11 9,11 Z M9,12 C8.44771525,12 8,12.4477153 8,13 C8,13.5522847 8.44771525,14 9,14 C9.55228475,14 10,13.5522847 10,13 C10,12.4477153 9.55228475,12 9,12 Z"
-            id="Rectangle-Copy" fill-rule="nonzero" /></svg>
-      </div> -->
+      <svg class="i2g-icon-noti" width="24" height="24" viewBox="0 0 16 16" fill="none" role="img" ng-click="self.showNotiHistory = !self.showNotiHistory">
+        <g xmlns="http://www.w3.org/2000/svg" id="01-copy-40" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g xmlns="http://www.w3.org/2000/svg" id="01-copy-40" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Group" transform="translate(8.000000, 8.000000) rotate(-15.000000) translate(-8.000000, -8.000000) ">
+              <circle id="Oval-Copy" fill="#9E9EA7" cx="8" cy="13.5" r="2"></circle>
+              <circle id="Oval" stroke="#9E9EA7" cx="8" cy="1.5" r="1"></circle>
+              <path d="M8,1.5 C5.57697417,1.5 3.61038628,3.45982996 3.60203732,5.88284401 C3.59829554,6.97050651 3.56331685,7.69684228 3.49193496,8.08944272 C3.39507809,8.6221555 3.00028248,9.30080683 2.30886805,10.1721196 C2.17588777,10.3397055 2.08111352,10.5343129 2.03117032,10.742338 C1.84175782,11.5312855 2.32777694,12.324403 3.11672441,12.5138155 C4.26890077,12.7904329 4.83744501,12.8246371 8,12.8246371 C11.1318979,12.8246371 11.6560344,12.7927059 12.8891857,12.5124344 C13.101377,12.4642074 13.2999726,12.3687831 13.4702148,12.2332524 C14.095958,11.7350952 14.1993823,10.8240004 13.7012112,10.1982675 C13.0061544,9.32519562 12.6075733,8.63673799 12.508065,8.08944272 C12.4349803,7.68747672 12.3988865,6.95891677 12.3947919,5.87813714 C12.385601,3.45747446 10.4206801,1.5 8,1.5 Z" id="Rectangle" stroke="#9E9EA7" fill="#FFFFFF" transform="translate(8.000000, 7.162319) scale(-1, 1) rotate(-360.000000) translate(-8.000000, -7.162319) "></path>
+          </g>
+      </g> <rect id="Rectangle-Copy-2" fill="#3F84FF" x="9" y="0" width="6" height="6" rx="3"></rect> </g>
+      </svg>
       <div class="space-20px"></div>
       <div class="i2g-tab">
         <div class="tab-item always-on">
-          <div class="i2g-button-with-icon" title="Login/Logout">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
+          <div class="i2g-user-icon" title="Login/Logout">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img">
               <path
                 d="M8,9 C10.209139,9 12,7.209139 12,5 C12,2.790861 10.209139,1 8,1 C5.790861,1 4,2.790861 4,5 C4,7.209139 5.790861,9 8,9 Z"
                 id="Oval-Copy" fill-rule="nonzero" />
               <path
                 d="M1,12 C1,12.4951401 1.00463867,13.5399292 1.00463867,14.0010879 C1.00463867,14.4622465 1.51376182,14.9990997 2.0038353,14.9990997 C2.49390878,14.9990997 13.5043345,14.9990997 14.0037079,14.9990997 C14.5030813,14.9990997 15.0010986,14.5210063 15.0010986,14.0010879 C15.0010986,13.4811694 15,12.7063242 15,12 C15,11.2936758 13.0434994,8 8,8 C2.95650058,8 1,11.5048599 1,12 Z M5.00241651,13.0391492 C5.00237852,13.0266433 5.00233995,13.0139627 5.00230078,13.0011036 L5.00219654,12.9668619 C5.00060954,12.4451851 5,12.196578 5,12 C5,12.4113632 4.94378855,12.7197365 4.86044186,13.0029078 C4.85913212,13.0073577 4.85782261,13.0117723 4.85651336,13.0161522 C4.870484,13.0603229 4.88351135,13.105019 4.89557613,13.1502195 C4.92839845,13.1139873 4.9640712,13.0768074 5.00241651,13.0391492 Z"
                 id="Path-2" fill-rule="nonzero" />
-            </svg>
+            </svg> -->
           </div>
           <div class="i2g-drop-menu-tab" style="left: unset; right: 0;">
             <div class="item-drop">
@@ -467,14 +454,35 @@
       </div>
     </div>
 </div>
-<div class="block-float" ng-show="self.showNotiHistory">
+<div id="noti" class="block-float dropdown-caret" style="overflow: visible;" ng-if="self.showNotiHistory">
   <div class="i2g-title-with-btn">
       <span>Notification</span>
+      <div>
+        Sound&nbsp;
+        <div ng-show="!self.mute">On</div>
+        <div ng-show="self.mute">Off</div>
+        <div class="space-20px"></div>
+        <div class="i2g-button-with-icon active" title="Notification sound" ng-click="self.mute = !self.mute" ng-show="!self.mute"> 
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+              <path d="M2.03576181,4.22860929 C2.76611674,4.24167087 3.42086281,4.16546777 4,4 C5.61029894,3.53991459 6,2.99317483 7,2 C8,1.00682517 10,1.00682517 10,4 C10,6.99317483 10,9.00636442 10,12 C10,14.9936356 8,14.9936356 7,14 C6,13.0063644 5.88970106,12.5399146 4,12 C3.35642652,11.8161219 2.69366314,11.7261785 2.01170986,11.7301699 C0.907156957,11.736639 0.00649909973,10.8464627 3.42556968e-05,9.7419098 C1.14186145e-05,9.73800796 -2.66405741e-15,9.73410606 -2.66453526e-15,9.73020416 L1.26275435e-05,6.22827691 C1.26275435e-05,5.12371438 0.895437474,4.22828953 2,4.22828953 C2.01192132,4.22828953 2.0238424,4.22839612 2.03576181,4.22860929 Z" id="Rectangle" fill-rule="nonzero"/>
+              <path d="M11.5537682,4.22555971 C12.1859456,5.47621587 12.5,6.72826689 12.5,7.9867325 C12.5,9.22982859 12.1941224,10.3044586 11.583561,11.2232717 C11.4307282,11.4532646 11.4932788,11.7636062 11.7232717,11.916439 C11.9532646,12.0692718 12.2636062,12.0067212 12.416439,11.7767283 C13.139211,10.6890532 13.5,9.4215049 13.5,7.9867325 C13.5,6.56732962 13.1473878,5.16155898 12.4462318,3.77444029 C12.3216586,3.52799327 12.0208873,3.42919501 11.7744403,3.5537682 C11.5279933,3.67834139 11.429195,3.97911269 11.5537682,4.22555971 Z" id="Line-3"  fill-rule="nonzero"/>
+              <path d="M12.9080855,1.2797509 C14.3044718,3.34831548 15,5.57998943 15,7.9867325 C15,10.370352 14.3195787,12.2493672 12.9630343,13.6524596 C12.771093,13.8509871 12.7764322,14.1675245 12.9749597,14.3594658 C13.1734872,14.5514071 13.4900246,14.5460679 13.6819659,14.3475404 C15.2287547,12.7476756 16,10.6178458 16,7.9867325 C16,5.37874278 15.2438616,2.95259506 13.7369147,0.720249103 C13.5824125,0.491374256 13.271624,0.431083276 13.0427492,0.585585431 C12.8138743,0.740087585 12.7535834,1.05087605 12.9080855,1.2797509 Z" id="Line-3"  fill-rule="nonzero"/>
+        </svg>
+        </div>
+        <div class="i2g-button-with-icon disable" title="Notification sound"  ng-click="self.mute = !self.mute" ng-show="self.mute"> 
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+              <path d="M2.03576181,4.22860929 C2.76611674,4.24167087 3.42086281,4.16546777 4,4 C5.61029894,3.53991459 6,2.99317483 7,2 C8,1.00682517 10,1.00682517 10,4 C10,6.99317483 10,9.00636442 10,12 C10,14.9936356 8,14.9936356 7,14 C6,13.0063644 5.88970106,12.5399146 4,12 C3.35642652,11.8161219 2.69366314,11.7261785 2.01170986,11.7301699 C0.907156957,11.736639 0.00649909973,10.8464627 3.42556969e-05,9.7419098 C1.14186145e-05,9.73800796 3.55319152e-15,9.73410606 3.55271368e-15,9.73020416 L1.26275435e-05,6.22827691 C1.26275435e-05,5.12371438 0.895437474,4.22828953 2,4.22828953 C2.01192132,4.22828953 2.0238424,4.22839612 2.03576181,4.22860929 Z" id="Rectangle"  fill-rule="nonzero"/>
+              <path d="M11.5537682,4.22555971 C12.1859456,5.47621587 12.5,6.72826689 12.5,7.9867325 C12.5,9.22982859 12.1941224,10.3044586 11.583561,11.2232717 C11.4307282,11.4532646 11.4932788,11.7636062 11.7232717,11.916439 C11.9532646,12.0692718 12.2636062,12.0067212 12.416439,11.7767283 C13.139211,10.6890532 13.5,9.4215049 13.5,7.9867325 C13.5,6.56732962 13.1473878,5.16155898 12.4462318,3.77444029 C12.3216586,3.52799327 12.0208873,3.42919501 11.7744403,3.5537682 C11.5279933,3.67834139 11.429195,3.97911269 11.5537682,4.22555971 Z" id="Line-3"  fill-rule="nonzero"/>
+              <path d="M12.9080855,1.2797509 C14.3044718,3.34831548 15,5.57998943 15,7.9867325 C15,10.370352 14.3195787,12.2493672 12.9630343,13.6524596 C12.771093,13.8509871 12.7764322,14.1675245 12.9749597,14.3594658 C13.1734872,14.5514071 13.4900246,14.5460679 13.6819659,14.3475404 C15.2287547,12.7476756 16,10.6178458 16,7.9867325 C16,5.37874278 15.2438616,2.95259506 13.7369147,0.720249103 C13.5824125,0.491374256 13.271624,0.431083276 13.0427492,0.585585431 C12.8138743,0.740087585 12.7535834,1.05087605 12.9080855,1.2797509 Z" id="Line-3"  fill-rule="nonzero"/>
+              <path d="M8,-2.5 C8.82842712,-2.5 9.5,-1.82842712 9.5,-1 L9.5,16 C9.5,16.8284271 8.82842712,17.5 8,17.5 C7.17157288,17.5 6.5,16.8284271 6.5,16 L6.5,-1 C6.5,-1.82842712 7.17157288,-2.5 8,-2.5 Z" id="Path"  fill="#FFFFFF" fill-rule="nonzero" transform="translate(8.000000, 7.500000) rotate(-315.000000) translate(-8.000000, -7.500000) "/>
+              <path d="M8,-1.5 C7.72385763,-1.5 7.5,-1.27614237 7.5,-1 L7.5,16 C7.5,16.2761424 7.72385763,16.5 8,16.5 C8.27614237,16.5 8.5,16.2761424 8.5,16 L8.5,-1 C8.5,-1.27614237 8.27614237,-1.5 8,-1.5 Z" id="Path"  fill-rule="nonzero" transform="translate(8.000000, 7.500000) rotate(-315.000000) translate(-8.000000, -7.500000) "/>
+        </svg>
+        </div>
+      </div>
   </div>
   <div class="space-height-20px"></div>
-  <div class="border-bottom-2px"></div>
-  <div class="space-height-20px"></div>
-  <div style="overflow: auto;">
+  <div ng-if="!self.toastHistory.length" style="padding: 20px; background: var(--body-bg-color); border-radius: 10px;">No notification</div>
+  <div style="overflow: overlay; margin-right: -20px; padding-right: 20px;">
       <div ng-repeat="item in self.toastHistory" class="item-icon-title-discription {{item.classTypeToast}}">
           <div>
           </div>
@@ -483,16 +491,251 @@
                   <div>
                       {{item.title}}
                   </div>
+                  <span>
+                    {{item.currentTime}}
+                </span>
               </div>
               <span>
                   {{item.message}}
               </span>
-              <span>
-                  {{item.currentTime}}
-              </span>
+              
               
           </div>
       </div>
   </div>
+</div>
+<div ng-if="self.showAllApp" class="all-app">
+  <div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" viewBox="0 0 90 75">
+        <g id="Group_843" data-name="Group 843" transform="translate(-5651 -13114)">
+          <g id="Group_842" data-name="Group 842">
+            <g id="Rectangle_219" data-name="Rectangle 219" transform="translate(5651 13114)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <rect width="90" height="75" rx="12" stroke="none"/>
+              <rect x="2" y="2" width="86" height="71" rx="10" fill="none"/>
+            </g>
+            <circle id="Ellipse_84" data-name="Ellipse 84" cx="3" cy="3" r="3" transform="translate(5723 13125)" fill="#3f84ff"/>
+            <circle id="Ellipse_85" data-name="Ellipse 85" cx="3" cy="3" r="3" transform="translate(5709 13125)" fill="#3f84ff"/>
+            <circle id="Ellipse_86" data-name="Ellipse 86" cx="3" cy="3" r="3" transform="translate(5695 13125)" fill="#3f84ff"/>
+            <g id="Rectangle_220" data-name="Rectangle 220" transform="translate(5651 13139)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <path d="M0,0H31a0,0,0,0,1,0,0V50a0,0,0,0,1,0,0H12A12,12,0,0,1,0,38V0A0,0,0,0,1,0,0Z" stroke="none"/>
+              <path d="M4,2H27a2,2,0,0,1,2,2V46a2,2,0,0,1-2,2H12A10,10,0,0,1,2,38V4A2,2,0,0,1,4,2Z" fill="none"/>
+            </g>
+            <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(5678 13139)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <path d="M0,0H63a0,0,0,0,1,0,0V38A12,12,0,0,1,51,50H0a0,0,0,0,1,0,0V0A0,0,0,0,1,0,0Z" stroke="none"/>
+              <path d="M4,2H59a2,2,0,0,1,2,2V38A10,10,0,0,1,51,48H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2Z" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="">Well Insight</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://wi.i2g.cloud/', '_blank')">Open</div>
 
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 96.958 89.891">
+        <g id="Group_840" data-name="Group 840" transform="translate(-6170 -13105.109)">
+          <g id="Group_838" data-name="Group 838" transform="translate(-849 -484)">
+            <g id="Ellipse_71" data-name="Ellipse 71" transform="translate(7019 13609)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <circle cx="35" cy="35" r="35" stroke="none"/>
+              <circle cx="35" cy="35" r="33" fill="none"/>
+            </g>
+            <g id="Ellipse_81" data-name="Ellipse 81" transform="translate(7041 13609)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <ellipse cx="13.5" cy="35" rx="13.5" ry="35" stroke="none"/>
+              <ellipse cx="13.5" cy="35" rx="11.5" ry="33" fill="none"/>
+            </g>
+            <g id="Ellipse_82" data-name="Ellipse 82" transform="translate(7089 13631) rotate(90)" fill="none" stroke="#3f84ff" stroke-width="4">
+              <ellipse cx="13.5" cy="35" rx="13.5" ry="35" stroke="none"/>
+              <ellipse cx="13.5" cy="35" rx="11.5" ry="33" fill="none"/>
+            </g>
+          </g>
+          <g id="Group_839" data-name="Group 839" transform="translate(10 -43)">
+            <path id="Path_354" data-name="Path 354" d="M6264.433,13142.326c19.8-.381,24.673,19.779,21.014,33.436s-21.014,37.449-21.014,37.449-17.129-23.352-20.907-37.449S6244.634,13142.705,6264.433,13142.326Z" transform="translate(-31.745 7.789)" fill="#fff" stroke="#fff" stroke-width="4"/>
+            <path id="Path_355" data-name="Path 355" d="M6257.877,13142.325c13.921-.268,17.35,13.908,14.776,23.511s-14.776,26.333-14.776,26.333-12.045-16.419-14.7-26.333S6243.956,13142.592,6257.877,13142.325Z" transform="translate(-25.183 16.31)" fill="#fff" stroke="#3f84ff" stroke-width="4"/>
+            <circle id="Ellipse_83" data-name="Ellipse 83" cx="5" cy="5" r="5" transform="translate(6228 13170)" fill="#3f84ff"/>
+          </g>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="text-align: center;">Basemap</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://basemap.i2g.cloud/', '_blank')">Open</div>
+
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 97 96">
+        <g id="Group_841" data-name="Group 841" transform="translate(-6848.5 -13617.5)">
+          <g id="Rectangle_216" data-name="Rectangle 216" transform="translate(6859 13627)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <rect width="75" height="75" rx="12" stroke="none"/>
+            <rect x="2" y="2" width="71" height="71" rx="10" fill="none"/>
+          </g>
+          <line id="Line_44" data-name="Line 44" y2="9" transform="translate(6871.5 13619.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_51" data-name="Line 51" y2="9" transform="translate(6871.5 13702.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_45" data-name="Line 45" y2="9" transform="translate(6888.5 13619.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_49" data-name="Line 49" y2="9" transform="translate(6888.5 13702.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_46" data-name="Line 46" y2="9" transform="translate(6905.5 13619.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_48" data-name="Line 48" y2="9" transform="translate(6905.5 13702.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_47" data-name="Line 47" y2="9" transform="translate(6922.5 13619.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_50" data-name="Line 50" y2="9" transform="translate(6922.5 13702.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_52" data-name="Line 52" y2="9" transform="translate(6859.5 13639.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_56" data-name="Line 56" y2="9" transform="translate(6943.5 13639.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_53" data-name="Line 53" y2="9" transform="translate(6859.5 13656.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_57" data-name="Line 57" y2="9" transform="translate(6943.5 13656.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_54" data-name="Line 54" y2="9" transform="translate(6859.5 13673.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_58" data-name="Line 58" y2="9" transform="translate(6943.5 13673.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_55" data-name="Line 55" y2="9" transform="translate(6859.5 13690.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_59" data-name="Line 59" y2="9" transform="translate(6943.5 13690.5) rotate(90)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <g id="Rectangle_217" data-name="Rectangle 217" transform="translate(6859 13627)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <rect width="75" height="75" rx="12" stroke="none"/>
+            <rect x="2" y="2" width="71" height="71" rx="10" fill="none"/>
+          </g>
+          <g id="Rectangle_218" data-name="Rectangle 218" transform="translate(6878 13646)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <rect width="37" height="37" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="33" height="33" rx="6" fill="none"/>
+          </g>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="text-align: center;">Machine Learning Tool</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://ml.i2g.cloud/', '_blank')">Open</div>
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 89.158 87.813">
+        <g id="Group_837" data-name="Group 837" transform="translate(-7196.23 -13082.238)">
+          <path id="Path_348" data-name="Path 348" d="M.016,10.617S-.867,0,10.632,0H30.453s9.342.341,9.342,10.617v20.7s.674,10.623-9.515,10.623H10.329c-9.664,0-9.646,8.668-9.646,8.668V73.844s-.63,9.949,9.949,9.95H30.453s9.95.635,9.95-9.95" transform="translate(7261.084 13168.052) rotate(180)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <path id="Path_352" data-name="Path 352" d="M40.123.022H10.1S.015-.91.015,9.394V30.588S-.818,39.96,10.1,39.96H22.169" transform="translate(7283.371 13146.462) rotate(180)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <path id="Path_353" data-name="Path 353" d="M40.123.022H10.1S.015-.91.015,9.394V30.588S-.818,39.96,10.1,39.96H22.169" transform="translate(7198.247 13106.501)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="text-align: center;">Python Editor</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://python.i2g.cloud/', '_blank')">Open</div>
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 83 95">
+        <g id="Group_836" data-name="Group 836" transform="translate(-7026 -13616)">
+          <g id="Rectangle_103" data-name="Rectangle 103" transform="translate(7026 13660)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="23" height="51" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="19" height="47" rx="6" fill="none"/>
+          </g>
+          <g id="Rectangle_204" data-name="Rectangle 204" transform="translate(7056 13616)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="23" height="95" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="19" height="91" rx="6" fill="none"/>
+          </g>
+          <g id="Rectangle_205" data-name="Rectangle 205" transform="translate(7086 13641)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="23" height="70" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="19" height="66" rx="6" fill="none"/>
+          </g>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="text-align: center;">Dashboard Managerment</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://dashboard.i2g.cloud/', '_blank')">Open</div>
+
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 101 105">
+        <g id="Group_842" data-name="Group 842" transform="translate(-6165 -13603)">
+          <g id="Ellipse_87" data-name="Ellipse 87" transform="translate(6196 13644)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <circle cx="13" cy="13" r="13" stroke="none"/>
+            <circle cx="13" cy="13" r="11" fill="none"/>
+          </g>
+          <g id="Intersection_2" data-name="Intersection 2" transform="translate(6165 13620)" fill="#fff">
+            <path d="M 44.00010299682617 86.00020599365234 C 35.78764724731445 86.00020599365234 27.87022018432617 83.64365386962891 21.04256629943848 79.17658233642578 C 21.01420211791992 78.78540802001953 20.99990272521973 78.39209747314453 20.99990272521973 78.00030517578125 L 20.99990272521973 71.00009918212891 C 20.99990272521973 66.72621154785156 22.66415214538574 62.70822143554688 25.68609237670898 59.6862907409668 C 28.70802307128906 56.66435241699219 32.72601318359375 55.00010299682617 36.99990463256836 55.00010299682617 L 51.00030136108398 55.00010299682617 C 55.27387237548828 55.00010299682617 59.29174423217773 56.66436386108398 62.31380462646484 59.68631362915039 C 65.33592987060547 62.70835113525391 67.00030517578125 66.72633361816406 67.00030517578125 71.00009918212891 L 67.00030517578125 78.00030517578125 C 67.00030517578125 78.39201354980469 66.98600769042969 78.78523254394531 66.95765686035156 79.17630767822266 C 60.12972640991211 83.64354705810547 52.2122802734375 86.00020599365234 44.00010299682617 86.00020599365234 Z" stroke="none"/>
+            <path d="M 44.00010299682617 84.00020599365234 C 51.47818374633789 84.00020599365234 58.69815063476562 81.94937133789062 65.00021362304688 78.05139923095703 C 65.00027465820312 78.03437805175781 65.00030517578125 78.01731872558594 65.00030517578125 78.00030517578125 L 65.00030517578125 71.00009918212891 C 65.00030517578125 67.26055908203125 63.54398345947266 63.74483108520508 60.89961242675781 61.10055160522461 C 58.25530242919922 58.45633316040039 54.73966217041016 57.00010299682617 51.00030136108398 57.00010299682617 L 36.99990463256836 57.00010299682617 C 33.26023483276367 57.00010299682617 29.74449348449707 58.45632171630859 27.10030364990234 61.10050201416016 C 24.45612335205078 63.74469375610352 22.99990272521973 67.26042938232422 22.99990272521973 71.00009918212891 L 22.99990272521973 78.00030517578125 C 22.99990272521973 78.01743316650391 22.99993515014648 78.0345458984375 22.99999618530273 78.05168151855469 C 29.30182266235352 81.94948577880859 36.52175521850586 84.00020599365234 44.00010299682617 84.00020599365234 M 44.00010299682617 88.00020599365234 C 34.77750396728516 88.00020599365234 26.21902275085449 85.16358947753906 19.14729309082031 80.31407928466797 C 19.05010223388672 79.55663299560547 18.99990272521973 78.78419494628906 18.99990272521973 78.00030517578125 L 18.99990272521973 71.00009918212891 C 18.99990272521973 61.0587043762207 27.05850219726562 53.00010299682617 36.99990463256836 53.00010299682617 L 51.00030136108398 53.00010299682617 C 60.94080352783203 53.00010299682617 69.00030517578125 61.0587043762207 69.00030517578125 71.00009918212891 L 69.00030517578125 78.00030517578125 C 69.00030517578125 78.78419494628906 68.95012664794922 79.55634307861328 68.85292053222656 80.31380462646484 C 61.78116226196289 85.16331481933594 53.22235488891602 88.00020599365234 44.00010299682617 88.00020599365234 Z" stroke="none" fill="#3f84ff"/>
+          </g>
+          <g id="Ellipse_89" data-name="Ellipse 89" transform="translate(6165 13620)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <circle cx="44" cy="44" r="44" stroke="none"/>
+            <circle cx="44" cy="44" r="42" fill="none"/>
+          </g>
+          <g id="Rectangle_223" data-name="Rectangle 223" transform="translate(6229 13619)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <rect width="37" height="34" rx="5" stroke="none"/>
+            <rect x="2" y="2" width="33" height="30" rx="3" fill="none"/>
+          </g>
+          <g id="Rectangle_224" data-name="Rectangle 224" transform="translate(6237 13603)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+            <path d="M10,0h1A10,10,0,0,1,21,10V20a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V10A10,10,0,0,1,10,0Z" stroke="none"/>
+            <path d="M10,2h1a8,8,0,0,1,8,8v6a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V10A8,8,0,0,1,10,2Z" fill="none"/>
+          </g>
+          <line id="Line_60" data-name="Line 60" y2="9" transform="translate(6247.5 13631.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="">Administration Tool</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://admin.i2g.cloud/', '_blank')">Open</div>
+
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 91 88">
+        <g id="Group_793" data-name="Group 793" transform="translate(-8585 -9604)">
+          <g id="Rectangle_108" data-name="Rectangle 108" transform="translate(8585 9669)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="91" height="23" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="87" height="19" rx="6" fill="none"/>
+          </g>
+          <g id="Rectangle_133" data-name="Rectangle 133" transform="translate(8585 9637)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="91" height="23" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="87" height="19" rx="6" fill="none"/>
+          </g>
+          <g id="Rectangle_134" data-name="Rectangle 134" transform="translate(8585 9604)" fill="none" stroke="#3f84ff" stroke-width="4">
+            <rect width="91" height="23" rx="8" stroke="none"/>
+            <rect x="2" y="2" width="87" height="19" rx="6" fill="none"/>
+          </g>
+          <circle id="Ellipse_72" data-name="Ellipse 72" cx="2.5" cy="2.5" r="2.5" transform="translate(8661 9678)" fill="#3f84ff"/>
+          <circle id="Ellipse_75" data-name="Ellipse 75" cx="2.5" cy="2.5" r="2.5" transform="translate(8661 9646)" fill="#3f84ff"/>
+          <circle id="Ellipse_78" data-name="Ellipse 78" cx="2.5" cy="2.5" r="2.5" transform="translate(8661 9613)" fill="#3f84ff"/>
+          <circle id="Ellipse_73" data-name="Ellipse 73" cx="2.5" cy="2.5" r="2.5" transform="translate(8650 9678)" fill="#3f84ff"/>
+          <circle id="Ellipse_76" data-name="Ellipse 76" cx="2.5" cy="2.5" r="2.5" transform="translate(8650 9646)" fill="#3f84ff"/>
+          <circle id="Ellipse_79" data-name="Ellipse 79" cx="2.5" cy="2.5" r="2.5" transform="translate(8650 9613)" fill="#3f84ff"/>
+          <circle id="Ellipse_74" data-name="Ellipse 74" cx="2.5" cy="2.5" r="2.5" transform="translate(8639 9678)" fill="#3f84ff"/>
+          <circle id="Ellipse_77" data-name="Ellipse 77" cx="2.5" cy="2.5" r="2.5" transform="translate(8639 9646)" fill="#3f84ff"/>
+          <circle id="Ellipse_80" data-name="Ellipse 80" cx="2.5" cy="2.5" r="2.5" transform="translate(8639 9613)" fill="#3f84ff"/>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="text-align: center;">Corporate Database</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://codb.i2g.cloud/', '_blank')">Open</div>
+
+    </div>
+    <div>
+      <div class="space-height-20px"></div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 97.876 109.193">
+        <g id="Group_797" data-name="Group 797" transform="translate(-9102 -9594.807)">
+          <g id="Group_796" data-name="Group 796" transform="translate(1285.726 -1018.996) rotate(7)">
+            <g id="Rectangle_135" data-name="Rectangle 135" transform="translate(9074.77 9579.269)" fill="none" stroke="#3f84ff" stroke-width="4">
+              <rect width="75" height="93.701" rx="8" stroke="none"/>
+              <rect x="2" y="2" width="71" height="89.701" rx="6" fill="none"/>
+            </g>
+          </g>
+          <g id="Group_795" data-name="Group 795" transform="translate(16 12)">
+            <g id="Rectangle_135-2" data-name="Rectangle 135" transform="translate(9086 9598)" fill="#fff" stroke="#3f84ff" stroke-width="4">
+              <rect width="75" height="94" rx="8" stroke="none"/>
+              <rect x="2" y="2" width="71" height="90" rx="6" fill="none"/>
+            </g>
+          </g>
+          <line id="Line_17" data-name="Line 17" x2="19" transform="translate(9124.5 9631.5)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_18" data-name="Line 18" x2="30.266" transform="translate(9124.5 9647.892)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_19" data-name="Line 19" x2="30.266" transform="translate(9124.5 9664.284)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+          <line id="Line_20" data-name="Line 20" x2="30.266" transform="translate(9124.5 9680.676)" fill="none" stroke="#3f84ff" stroke-linecap="round" stroke-width="4"/>
+        </g>
+      </svg>
+      <div class="space-height-20px"></div>
+      <div style="">User Manual</div>
+      <div class="space-height-20px"></div>
+      <div class="i2g-button-text-with-icon-space-between" onclick="window.open('https://i2g.cloud/user_manual/', '_blank')">Open</div>
+
+    </div>
+  </div>
 </div>
