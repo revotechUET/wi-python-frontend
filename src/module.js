@@ -30,7 +30,7 @@ import * as keyBind from './_key-bind'
 
 
 export default function assignAppModule(angular, moduleName) {
-	const dependencies = ['sideBar' , 'wiTreeView','wiTreeViewVirtual' , 'wiApi', 'wiLogin', 'wiDroppable', 'wiLoading', 'logStream','angularResizable', 'ngVue']
+	const dependencies = ['sideBar' , 'wiTreeView','wiTreeViewVirtual' , 'wiApi', 'wiDroppable', 'wiLoading', 'logStream','angularResizable', 'ngVue', 'ngDialog']
 
 	angular.module(moduleName, dependencies)
 		.component(app.name, app.options)
@@ -62,6 +62,8 @@ export default function assignAppModule(angular, moduleName) {
 			// ONLINE_EDITOR_URL: window.__WI_PAAS_URL__ || 'https://python.i2g.cloud' || 'http://localhost:3000',
 			ONLINE_EDITOR_URL: 'https://python.i2g.cloud',
 			USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
-			PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud'
+			PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud',
+			WHOAMI: 'wi-python',
+			AUTHENTICATION_HOME: 'https://login.i2g.cloud'
 		})
 }

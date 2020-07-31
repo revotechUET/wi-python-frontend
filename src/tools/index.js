@@ -7,7 +7,7 @@ import './style.scss'
 
 /////////////////////////////////////
 const queryString = require('query-string')
-
+import { wiLogin } from '@revotechuet/misc-component-vue'
 
 const name = 'tools'
 
@@ -16,16 +16,20 @@ function controller($scope, $timeout, auth, $location, config) {
   const self = this
 	const BASE_URL = "https://users.i2g.cloud";
   self.$onInit = function() {
-    self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
-		self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
-		self.queryString = queryString.parse(location.search);
+    // self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
+		// self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
+    // self.queryString = queryString.parse(location.search);
+    wiLogin.doLogin({ redirectUrl: window.location.origin, whoami: config.WHOAMI, loginPage: config.AUTHENTICATION_HOME });
   }
-  self.logout = function () {
-    auth.logout()
-  }
+  // self.logout = function () {
+  //   auth.logout()
+  // }
 
   self.setShowOP = function(val) {
     $timeout(() => {$scope.showOP = val;});
+  }
+  self.logout = function() {
+    wiLogin.logout({ redirectUrl: window.location.origin, whoami: config.WHOAMI, loginPage: config.AUTHENTICATION_HOME });
   }
 }
 
