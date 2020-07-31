@@ -400,3 +400,19 @@
         <input type="submit" value="Open" ng-click="self.openProject(self.selectedProject);" ng-class="{'input-disable': !self.selectedProject}">
     </form>
 </script>
+<script type="text/ng-template" id="templateLogout">
+    <div class="i2g-title-with-btn">
+        <span>Logout</span>
+    </div>
+    <div class="space-height-20px"></div>
+    Are you sure you want to log out?
+    <div class="space-height-20px"></div>
+    <form style="display: flex;">
+        <div style=" display: grid; grid-column-gap: 20px; grid-template-columns: auto auto; width: 100%; ">
+            <div class="i2g-button-text-with-icon-center" ng-click="self.cancelLogout();">
+                <span>Cancel</span>
+            </div>
+            <input type="submit" value="Logout" ng-click="self.acceptLogout()">
+        </div>
+    </form>
+</script>

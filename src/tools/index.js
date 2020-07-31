@@ -11,8 +11,8 @@ import { wiLogin } from '@revotechuet/misc-component-vue'
 
 const name = 'tools'
 
-controller.$inject = ['$scope', '$timeout', 'auth', '$location', 'config']
-function controller($scope, $timeout, auth, $location, config) {
+controller.$inject = ['$scope', '$timeout', 'auth', '$location', 'config', 'ngDialog']
+function controller($scope, $timeout, auth, $location, config, ngDialog) {
   const self = this
 	const BASE_URL = "https://users.i2g.cloud";
   self.$onInit = function() {
@@ -29,7 +29,18 @@ function controller($scope, $timeout, auth, $location, config) {
     $timeout(() => {$scope.showOP = val;});
   }
   self.logout = function() {
-    wiLogin.logout({ redirectUrl: window.location.origin, whoami: config.WHOAMI, loginPage: config.AUTHENTICATION_HOME });
+    let logoutDialog = ngDialog.open({
+      template: 'templateLogout',
+      className: 'i2g-ngdialog',
+      showClose: true,
+      scope: $scope,
+    });
+    self.acceptLogout = function () {
+      wiLogin.logout({ redirectUrl: window.location.origin, whoami: config.WHOAMI, loginPage: config.AUTHENTICATION_HOME });
+    }
+    self.cancelLogout = function () {
+      ngDialog.close(logoutDialog.id)
+    }
   }
   self.getUser = function() {
     return localStorage.username || 'Guest';
