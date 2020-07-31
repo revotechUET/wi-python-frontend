@@ -1,7 +1,7 @@
 <div class="i2g-toolbar border-bottom-2px">
     <div class="i2g-tab">
       <div class="tab-item always-on">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 43 43" ng-click="self.showAllApp = !self.showAllApp" style="margin: 0px 20px 0px 10px; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 43 43" ng-click="" style="margin: 0px 20px 0px 10px; cursor: pointer;">
           <g xmlns="http://www.w3.org/2000/svg" id="Group_835" data-name="Group 835" transform="translate(2657 -2232.734)">
             <rect id="Rectangle_136" data-name="Rectangle 136" width="11" height="11" transform="translate(-2657 2264.734)" fill="#3f84ff"/>
             <rect id="Rectangle_137" data-name="Rectangle 137" width="11" height="11" transform="translate(-2657 2248.734)" fill="#3f84ff"/>
@@ -385,11 +385,15 @@
           <div class="i2g-user-icon" title="Login/Logout">
           </div>
           <div class="i2g-drop-menu-tab" style="left: unset; right: 0;">    
-            <div class="item-drop"> 
-              <div style="font-weight:700">
-               {{self.getUser()}}</div> 
+            <div class="item-drop" ng-click="">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
+                <g id="01-copy-27" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <path d="M8,6.5 C9.38071187,6.5 10.5,5.38071187 10.5,4 C10.5,2.61928813 9.38071187,1.5 8,1.5 C6.61928813,1.5 5.5,2.61928813 5.5,4 C5.5,5.38071187 6.61928813,6.5 8,6.5 Z" id="Oval-Copy" stroke="#0D0B24" fill-rule="nonzero"/>
+                    <path d="M2,12.0005145 C2,12.2022174 2.00056923,12.4522959 2.00205468,12.9782586 C2.00210307,12.9953899 2.00210307,12.9953899 2.0021515,13.012518 C2.00379933,13.5952595 2.004307,13.8096994 2.004307,14.0018598 C2.004307,14.2060402 2.27249327,14.5 2.43205964,14.5 C2.90829643,14.5 2.90829643,14.5 4.30110567,14.5 C5.99943904,14.5 5.99943904,14.5 8.00329656,14.5 C10.0053827,14.5 10.0053827,14.5 11.7027542,14.5 C13.0954111,14.5 13.0954111,14.5 13.5739241,14.5 C13.7607092,14.5 14,14.2455759 14,14.0018598 C14,13.7892621 13.9998726,13.5803462 13.9994901,13.0714657 C13.9992696,12.7675644 13.9992696,12.7675644 13.9990979,12.4558549 C13.9990028,12.226669 13.9990028,12.226669 13.9989799,12.0005145 C13.9989799,11.6965768 13.4678151,10.8061397 12.6756021,10.1112358 C11.5262537,9.10306432 9.963561,8.5 7.99948996,8.5 C6.05250099,8.5 4.49695962,9.13127299 3.32867243,10.185729 C2.5593567,10.880087 2,11.7950395 2,12.0005145 Z" id="Path-2" stroke="#0D0B24" fill-rule="nonzero"/>
+                </g>
+            </svg>
+              <div>{{self.getUser()}}</div>
             </div>       
-              
             <div class="space-height-10px"></div>
             <div class="border-bottom-2px"></div>
             <div class="space-height-10px"></div>
