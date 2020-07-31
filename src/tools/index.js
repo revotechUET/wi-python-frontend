@@ -31,6 +31,9 @@ function controller($scope, $timeout, auth, $location, config) {
   self.logout = function() {
     wiLogin.logout({ redirectUrl: window.location.origin, whoami: config.WHOAMI, loginPage: config.AUTHENTICATION_HOME });
   }
+  self.getUser = function() {
+    return localStorage.username || 'Guest';
+  }
 }
 
 export default {
