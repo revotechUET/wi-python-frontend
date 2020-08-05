@@ -512,27 +512,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	};
 	self.delProject = function (project) {
 
-		// let dialog = ngDialog.open({
-		// 	template: 'templateDeleteProject',
-		// 	className: 'i2g-ngdialog',
-		// 	scope: $scope,
-		// });
-		// dialog.closePromise.then((data) => {
-		// 	console.log(data);
-		// 	if (data.value === 'accept') {
-		// 		projectApi.deleteProject(project)
-		// 			.then(() => {
-		// 				alertMessage.success('Success remove project ' + project);
-		// 				self.allProjects = self.allProjects.filter(p => p !== project)
-		// 				// initState()
-		// 			})
-		// 			.catch(error => alertMessage.error(error))
-		// 	}
-		// })
-		// // self.acceptDelete = function () {
-
-		// // }
-		ngDialog.open({
+		let delDialog = ngDialog.open({
 			template: 'templateDeleteProject',
 			className: 'i2g-ngdialog',
 			scope: $scope,
@@ -554,15 +534,15 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				})
 		}
 		self.cancelDeletePrj = function () {
-			ngDialog.close();
-
+			console.log(delDialog.id)
+			ngDialog.close(delDialog.id);
 		}
 
 	};
 
 	self.deleteProject = function () {
 		if (self.currentProject) {
-			ngDialog.open({
+			let delDialog = ngDialog.open({
 				template: 'templateDeleteProject',
 				className: 'i2g-ngdialog',
 				scope: $scope,
@@ -584,7 +564,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					})
 			}
 			self.cancelDeletePrj = function () {
-				ngDialog.close();
+				console.log(delDialog.id)
+				ngDialog.close(delDialog.id);
 			}
 
 		} else {
