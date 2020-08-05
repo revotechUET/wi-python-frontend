@@ -39,7 +39,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		// self.autoSave = true;
 		self.toastArray = [];
 		self.toastHistory = [];
-		self.mute = false;
+		self.mute = true;
 		// self.baseUrl = $location.search().baseUrl || self.baseUrl || config.PROJECT_RELATED_ROOT_URL || BASE_URL;
 		// self.loginUrl = $location.search().loginUrl || self.loginUrl || config.USER_RELATED_ROOT_URL;
 		// self.queryString = queryString.parse(location.search);
