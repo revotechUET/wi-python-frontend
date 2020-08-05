@@ -86,14 +86,29 @@
                         </div>
                     </div>
                     <div class="space-height-20px"></div>
-                    <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;" on-drop="self.onDrop"
+                    <vue-component
+                        ng-if="self.selectedNode"
+                        root="WiDroppable"
+                        props="{
+                            onDrop: self.onDrop,
+                            dataType: 'tree-nodes'
+                        }"
+                        style="display: flex;flex: 1;"
+                    >
+                        <div style="display:flex;flex:3;">
+                            <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
+                                cur-file="self.curFile">
+                            </explorer>
+                        </div>
+                    </vue-component>
+                    <!-- <wi-droppable ng-if="self.selectedNode" style="display:flex;flex:1;" on-drop="self.onDrop"
                         container-style="{display:'flex',flex: 1}">
                         <div style="display:flex;flex:3;">
                             <explorer style="flex:3; position: relative;" update-code="self.coding" code="self.code"
                                 cur-file="self.curFile">
                             </explorer>
                         </div>
-                    </wi-droppable>
+                    </wi-droppable> -->
                 </div>
                 <div class="block" style="flex: 1;" ng-class="{'hide-block': self.showConsole}">
                     <div class="i2g-title-with-btn">
@@ -148,7 +163,7 @@
                 </div>
                 <div class="space-height-20px"></div>
                 <div style="height: 100%; overflow: hidden; margin-right: -20px;">
-                    <vue-component root="WiTree" props="{ treeRoot: treeConfig, filter: filterWiProjects, getChildren: self.getChildren, clickFn: self.clickFunction, getLabel: self.getLabel, getIcon: self.getIcon, runMatch: self.runMatch, getDraggable: self.getDraggable, nodeHeight: '40px', levelPadding: '20px' }" ></vue-component>
+                    <vue-component root="WiTree" props="{ treeRoot: treeConfig, filter: filterWiProjects, getChildren: self.getChildren, clickFn: self.clickFunction, getLabel: self.getLabel, getIcon: self.getIcon, runMatch: self.runMatch, getDraggable: self.getDraggableProjectList, nodeHeight: '40px', levelPadding: '20px' }" ></vue-component>
                 </div>
             </div>
         </div>

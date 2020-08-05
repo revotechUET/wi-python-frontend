@@ -1058,7 +1058,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
         let searchArray = node.alias.toLowerCase();
         return searchArray.includes(keySearch);
 	};
-	self.onDrop = function (event, ui, nodeArray) {
+	self.onDrop = function (event, nodeArray) {
 		for (let node of nodeArray) {
 			if (node.idCurve) {
 				generateCode('curve', self.codeGenMode, nodeArray[0].idCurve);
@@ -1453,6 +1453,11 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	this.turn_Off_On_Sound = function() {
 		console.log('mute')
 		document.getElementsByClassName(".my_audio").muted = true;
+	}
+	
+	//NAMNT
+	this.getDraggableProjectList = function(node) {
+		return true
 	}
 	
 }
