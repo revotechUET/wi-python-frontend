@@ -1,13 +1,13 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    //entry: path.join(__dirname, 'src', 'index.js'),
     entry: path.join(__dirname, 'src'),
     output: {
         filename: 'app.js',
-        //path: path.resolve(__dirname, 'public')
-        path: path.join(__dirname, 'public', 'js'),
-        // publicPath: './public/assets'
+        path: path.join(__dirname, 'dist'),
     },
     module: {
         rules: [
@@ -37,7 +37,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../assets/' //define the output of the file (relative path to the workdir)
+                        outputPath: './assets/' //define the output of the file (relative path to the workdir)
                     }
                     // options: {
                     //     name: '[name].[ext]',
@@ -54,7 +54,21 @@ module.exports = {
     resolve: {
         extensions: ['.json', '.js', '.jsx', '.css']
     },
-    plugins: [],
+    plugins: [
+		new CleanWebpackPlugin(),
+		new CopyPlugin({
+			patterns: [
+				{
+					from: 'public',
+					cacheTransform: true,
+					force: true,
+				},
+			],
+		}),
+		new HtmlWebpackPlugin({
+			template: './public/index.html',
+        }),
+    ],
     devtool: 'source-map',
     mode: 'development'
 };
