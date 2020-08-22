@@ -16,7 +16,7 @@
     <div></div>
 </div>
 <div style="width: 100vw; height: 100vh; min-width: 100vw; min-height: 100vh; position: relative; display: flex; flex-direction: column; overflow: hidden;">
-    <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode" code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree" remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked" refresh-checked="self.refreshChecked" new-checked="self.newChecked" generate-login-by-token="self.generateLoginByToken" generate-login-by-account="self.generateLoginByAccount" generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" change-theme="self.changeTheme"
+    <tools style="z-index: 1;" find-all-projects="self.findAllProjects" all-projects="self.allProjects" open-project="self.openProject" close-project="self.closeProject" create-new-project="self.createNewProject" delete-project="self.deleteProject" create-new-file="self.createNewFile" create-new-folder="self.createNewFolder" delete-item="self.deleteItem" add-func="self.addFunction" save-code="self.saveCode" run-code="self.runCode" code-palette="self.getCurveTree" remove-code-palette="self.removeTreeConfig" get-curve-tree="self.getCurveTree" remove-tree-config="self.removeTreeConfig" delete-checked="self.deleteChecked" save-checked="self.saveChecked" refresh-checked="self.refreshChecked" new-checked="self.newChecked" generate-login-by-token="self.generateLoginByToken" generate-login-by-account="self.generateLoginByAccount" generate-save-curve-data="self.generateSaveCurveData" about-wi-python="self.aboutWiPython" 
     auto-save="self.autoSave" save-warning="self.askSave" toast-history="self.toastHistory" mute="self.mute" show-project="self.showProject" show-project-python="self.showProjectPython" show-console="self.showConsole"></tools>
 
     <div id="app" class="i2g-main-layout" style="z-index: 0;">
@@ -170,7 +170,7 @@
     </div>
 </div>
 <script type="text/ng-template" id="templateDeleteProject">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>Delete project</span>
     </div>
     <div class="space-height-20px"></div>
@@ -191,7 +191,7 @@
             pointer-events: auto;
         }
     </style>
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>New Project</span>
     </div>
     <div class="space-height-20px"></div>
@@ -202,7 +202,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="templateNewFile">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>New File</span>
     </div>
     <div class="space-height-20px"></div>
@@ -213,7 +213,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="templateWarningSave">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>Save Remider</span>
     </div>
     <div class="space-height-20px"></div>
@@ -229,7 +229,7 @@
    
 </script>
 <script type="text/ng-template" id="templateNewFolder">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>New Folder</span>
     </div>
     <div class="space-height-20px"></div>
@@ -240,7 +240,7 @@
     </form>
 </script>
 <script type="text/ng-template" id="templateWarning">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>Delete</span>
     </div>
     <div class="space-height-20px"></div>
@@ -260,7 +260,7 @@
     
 </script>
 <script type="text/ng-template" id="templateRename">
-    <div class="i2g-title-with-btn">
+    <div class="i2g-title-large">
         <span>Rename</span>
     </div>
     <div class="space-height-20px"></div>
@@ -277,8 +277,41 @@
             pointer-events: none;
         }
     </style>
-     <div class="i2g-title-with-btn">
-        <span>Open: {{self.curPrj}}</span>
+     <div class="i2g-title-large">
+        <span>Reopen </span>
+    </div>
+    <div class="space-height-20px"></div>
+    <div class="i2g-item-icon-title-detail" style="margin: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67"
+            height="52.799" viewBox="0 0 67 52.799">
+            <defs>
+                <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="0.245" gradientUnits="objectBoundingBox">
+                    <stop offset="0" stop-color="#679eff" />
+                    <stop offset="1" stop-color="#9dc0ff" />
+                </linearGradient>
+                <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+                    <stop offset="0" stop-color="#508fff" />
+                    <stop offset="1" stop-color="#3d7cef" />
+                </linearGradient>
+            </defs>
+            <g id="Group_171" data-name="Group 171" transform="translate(-2666 -2409.201)">
+                <path id="Path_31" data-name="Path 31"
+                    d="M4,1.2s14.13.043,16.6.043,2.759.346,3.852,1.821.657.872,1.894,2.536,2.162,1.606,3.963,1.586S63,7.18,63,7.18a3.785,3.785,0,0,1,4,4.036V50a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4C0,1.791,1.791,1.2,4,1.2Z"
+                    transform="translate(2666 2408)" fill="url(#linear-gradient)" />
+                <path id="Path_32" data-name="Path 32"
+                    d="M4,0H63a4,4,0,0,1,4,4V39a4,4,0,0,1-4,4H4a4,4,0,0,1-4-4V4A4,4,0,0,1,4,0Z"
+                    transform="translate(2733 2462) rotate(180)" fill="url(#linear-gradient-2)" />
+            </g>
+        </svg>
+        <div class="info-i2g-item-icon-title-detail">
+            <div style="margin-bottom: 0;">{{self.curPrj}}</div>
+            <div style="height: 0;"></div>
+        </div>
+        <div class="space-20px"></div>
+        <div class="i2g-button-with-icon" ng-class="{'active': self.selectedProject == project }" ng-click="event.stopPropagation(); self.delProject(project);"
+            title="Delete">
+            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1"> <path d="M4,5 C4.55228475,5 5,5.44771525 5,6 L5,14 C5,14.5522847 4.55228475,15 4,15 C3.44771525,15 3,14.5522847 3,14 L3,6 C3,5.44771525 3.44771525,5 4,5 Z" id="Path" fill-rule="nonzero"></path> <path d="M8,5 C8.55228475,5 9,5.44771525 9,6 L9,14 C9,14.5522847 8.55228475,15 8,15 C7.44771525,15 7,14.5522847 7,14 L7,6 C7,5.44771525 7.44771525,5 8,5 Z" id="Path" fill-rule="nonzero"></path> <path d="M4,13 L12,13 C12.5522847,13 13,13.4477153 13,14 C13,14.5522847 12.5522847,15 12,15 L4,15 C3.44771525,15 3,14.5522847 3,14 C3,13.4477153 3.44771525,13 4,13 Z" id="Path" fill-rule="nonzero"></path> <path d="M5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 C12,2.55228475 11.5522847,3 11,3 L5,3 C4.44771525,3 4,2.55228475 4,2 C4,1.44771525 4.44771525,1 5,1 Z" id="Path" fill-rule="nonzero"></path> <path d="M2,4 L14,4 C14.5522847,4 15,4.44771525 15,5 C15,5.55228475 14.5522847,6 14,6 L2,6 C1.44771525,6 1,5.55228475 1,5 C1,4.44771525 1.44771525,4 2,4 Z" id="Path" fill-rule="nonzero"></path> <path d="M12,5 C12.5522847,5 13,5.44771525 13,6 L13,14 C13,14.5522847 12.5522847,15 12,15 C11.4477153,15 11,14.5522847 11,14 L11,6 C11,5.44771525 11.4477153,5 12,5 Z" id="Path" fill-rule="nonzero"></path> </svg>
+        </div>
     </div>
     <div class="space-height-20px"></div>
     <form style="display: flex;">
@@ -340,7 +373,7 @@
         </div>
     </div>
     <div ng-if="!self.gridView" style="display: flex; flex-direction: column; overflow: auto; max-height: 250px; margin: 20px -20px; padding: 0 20px;">
-        <div ng-repeat="project in self.allProjects | filter:searchProject track by $index" ng-click="self.selectedProject = project;" >
+        <div ng-repeat="project in self.allProjects | filter:searchProject track by $index" ng-click="self.selectedProject = project;" style="margin:0 -5px;">
             <div class="i2g-item-icon-title-detail" ng-class="{active: self.selectedProject == project}">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67"
                     height="52.799" viewBox="0 0 67 52.799">
@@ -375,7 +408,8 @@
             </div>
         </div>
     </div>
-    <div ng-if="self.gridView" style="display: grid; grid-template-columns: auto auto auto; overflow: auto; max-height: 250px; max-width: 400px; margin: 20px -20px; padding: 0 20px;">
+    <div ng-if="self.gridView" style="display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); overflow: auto; max-height: 250px; max-width: 400px; margin: 20px -20px; padding: 0 20px;">
         <div ng-repeat="project in self.allProjects | filter:searchProject track by $index" ng-click="self.selectedProject = project;" style="overflow:hidden">
             <div class="i2g-item-icon-title-detail grid" ng-class="{active: self.selectedProject == project}">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="67"

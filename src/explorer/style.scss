@@ -9,6 +9,7 @@
   border-radius: 0;
   background-color: transparent !important;
   width: calc(100% - 40px) !important;
+  color: transparent !important;
 }
 .codeflask__pre {
   width: auto !important;
@@ -19,5 +20,9 @@
 }
 .codeflask__lines {
   z-index: 3 !important;
-  background: #fff;
+  background: transparent;
+}
+.codeflask {
+  background: transparent !important;
+  color: #4f559c;
 }
