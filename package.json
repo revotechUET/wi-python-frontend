@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@revotechuet/misc-component-vue": "^1.1.26",
+    "@revotechuet/misc-component-vue": "^1.1.28",
     "angular": "^1.7.5",
     "codeflask": "^1.4.0",
     "material-icons": "^0.3.0",
