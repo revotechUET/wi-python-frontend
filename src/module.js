@@ -63,7 +63,7 @@ export default function assignAppModule(angular, moduleName) {
 			ONLINE_EDITOR_URL: 'https://python.i2g.cloud',
 			USER_RELATED_ROOT_URL: 'https://users.i2g.cloud/login',
 			PROJECT_RELATED_ROOT_URL: 'https://api-1.i2g.cloud',
-			WHOAMI: 'wi-python',
-			AUTHENTICATION_HOME: 'https://login.i2g.cloud'
+			WHOAMI: 'wi-python',	
+			AUTHENTICATION_HOME: 'https://login.i2g.cloud',
 		})
 }

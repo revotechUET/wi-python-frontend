@@ -7,7 +7,9 @@ import './style.scss'
 
 /////////////////////////////////////
 const queryString = require('query-string')
-import { wiLogin } from '@revotechuet/misc-component-vue'
+// import { wiLogin } from '@revotechuet/misc-component-vue'
+import { wiLoginClient } from '@revotechuet/misc-component-vue'
+const wiLogin = new wiLoginClient('WI_PYTHON_CLIENT')
 
 const name = 'tools'
 
