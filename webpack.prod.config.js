@@ -7,7 +7,7 @@ module.exports = {
   entry: path.join(__dirname, 'src'),
   output: {
     filename: 'app.[contenthash].js',
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'dist'),
   },
   module: {
     rules: [
