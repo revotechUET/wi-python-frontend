@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'development') { // eslint-disable-line no-undef
 } else {
     //const angular = window.angular
     assignAppModule(angular, moduleName)
+    document.getElementById('root-app').innerHTML = renderComponent
 }
 
 
