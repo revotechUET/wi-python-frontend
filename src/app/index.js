@@ -67,7 +67,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
 						.catch(error => console.log(error));
 				}
-			} else if (!self.autoSave && self.askSave && preNode) {
+			} 
+			else if (!self.autoSave && self.askSave && preNode && self.isChanged) {
 				ngDialog.open({
 					template: 'templateWarningSave',
 					className: 'i2g-ngdialog',
@@ -82,6 +83,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					ngDialog.close();
 				}
 			}
+			self.isChanged = false
 		}, true);
 	};
 
@@ -234,6 +236,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	this.clickFunction4Python = function ($event, node) {
 		self.selectedNode = node;
 		if (node.rootIsFile) {
+			self.firstUpdate = true
+
 			self.openFile(node.path);
 			self.previousNode = self.selectedNode;
 			stackNode.unshift(self.previousNode);
@@ -589,7 +593,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 	//  fils system function
 	//
 	///
-
+	this.cacheCode;
 	self.openFile = function (dir) {
 
 		const fileName = dir
@@ -606,7 +610,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				// console.log(code);
 				if (typeof code === "object") {
 					self.code = "";
-				} else self.code = code
+					self.cacheCode = "";
+				} else {self.code = code; self.cacheCode = code}
 			})
 			.catch(error => {
 				$timeout(() => {
@@ -881,8 +886,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				})
 			})
 	};
-
+	this.firstUpdate = false;
+	this.isChanged = false
 	self.coding = function (code) {
+		if(!self.firstUpdate) {
+			code != self.cacheCode ? self.isChanged = true : self.isChanged = false
+		}else {
+			self.firstUpdate = false
+		}
 		self.code = code
 	};
 
