@@ -13,6 +13,7 @@
     "@revotechuet/misc-component-vue": "^1.1.28",
     "angular": "^1.7.5",
     "codeflask": "^1.4.0",
+    "lodash": "^4.17.20",
     "material-icons": "^0.3.0",
     "query-string": "^6.7.0",
     "resize-sensor": "0.0.6",

@@ -3,7 +3,7 @@ import template from './template.html'
 import './style.scss'
 import Vue from 'vue';
 import { ngVue, WiTree, WiDroppable } from '@revotechuet/misc-component-vue';
-
+import _ from 'lodash'
 const queryString = require('query-string')
 const name = 'app';
 const limitToastDisplayed = 3;
@@ -86,7 +86,17 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.isChanged = false
 		}, true);
 	};
-
+	let _debounceSaveCode = function() {
+		let preCode = self.code;
+		let preNode = stackNode[0];
+		if (self.autoSave && preNode) {
+			if(self.selectedNode){
+				projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
+					.catch(error => console.log(error));
+			}
+		} 
+	} 
+	let debounceSaveCode = _.debounce(_debounceSaveCode, 1000)
 	function wellcome() {
 		
 		if (wiToken.getCurrentProjectName()) {
@@ -895,6 +905,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.firstUpdate = false
 		}
 		self.code = code
+		debounceSaveCode()
 	};
 
 	self.getCurrentCode = function (cb) {
