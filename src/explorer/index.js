@@ -21,7 +21,7 @@ function controller(mime) {
     if (curFile && curFile.currentValue) {
       self.curFile = curFile.currentValue
     }
-    
+
     initCodeEditor()
 
     // if (.explorer .codeflask pre) try again until success
@@ -34,7 +34,7 @@ function controller(mime) {
 
   function initCodeEditor() {
     let codeEditorElement = document.getElementById('codeArea');
-    if (!codeEditorElement) return; 
+    if (!codeEditorElement) return;
     const fileType = mime.getFileType(self.curFile)
     const codeArea = new CodeFlask('#codeArea', {
       lineNumbers: true,
@@ -42,11 +42,11 @@ function controller(mime) {
         mime.types.javascript :
         fileType
     })
-  
+
 
     addPythonSupport(codeArea)
 
-
+    /*
     codeArea.setLineNumber = function () {
       const LINE_HEIGHT = 20
       const codeHeight = document.querySelector('.explorer code').offsetHeight
@@ -55,7 +55,7 @@ function controller(mime) {
       this.lineNumber = lineNumber
       this.updateLineNumbersCount()
     }
-
+    */
     codeArea.updateCode(self.code)
     codeArea.onUpdate(code => self.updateCode(code))
   }
