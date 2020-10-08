@@ -538,8 +538,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 						self.showNotiFn('success', 'Successfully','Success remove project' + project , 4000);
 					})
 					// alertMessage.success('Success remove project ' + project);
-					initState();
-					ngDialog.close();
+					$timeout(() => {
+						if(self.currentProject.rootName == project) {
+							initState();
+						}else {
+							self.allProjects = self.allProjects.filter(p => p != project)
+						}
+						ngDialog.close(delDialog.id);
+					})
 				})
 				.catch(error => {
 					$timeout(() => {
