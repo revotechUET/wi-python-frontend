@@ -904,8 +904,10 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}else {
 			self.firstUpdate = false
 		}
-		self.code = code
 		debounceSaveCode()
+		// $timeout(() => {
+		self.code = code
+		// })
 	};
 
 	self.getCurrentCode = function (cb) {
