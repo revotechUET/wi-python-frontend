@@ -55,7 +55,7 @@
                 
                 <div class="space-height-20px"></div>
                 <div style="height: 100%; overflow: hidden; margin-right: -20px;">
-                    <vue-component root="WiTree" props="{ treeRoot: self.currentProject, filter: filterProjects, getChildren: self.getChildren4Python, clickFn: self.clickFunction4Python, getLabel: self.getLabel4Python, getIcon: self.getIcon4Python, runMatch: self.runMatch4Python, getDraggable: self.getDraggable, nodeHeight: '40px', levelPadding: '20px' }" ></vue-component>
+                    <vue-component root="WiTree" props="{ treeRoot: self.currentProject, filter: filterProjects, getChildren: self.getChildren4Python, clickFn: self.clickFunction4Python, getLabel: self.getLabel4Python, getIcon: self.getIcon4Python, runMatch: self.runMatch4Python, getDraggable: self.getDraggable, nodeHeight: '40px', levelPadding: '20px', getNodeId: self.getNodeId }" ></vue-component>
                 </div>
             </div>
             <div class="block-scroll" style="flex-basis: 300px;display: flex; flex-direction: column;" ng-style="self.showConsole && {'overflow':'hidden'}">

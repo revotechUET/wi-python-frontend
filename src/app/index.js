@@ -1465,6 +1465,9 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		return true
 	}
 	
+	this.getNodeId = function(node) {
+		return node.rootName
+	}
 }
 
 export default {
