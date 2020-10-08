@@ -5,31 +5,28 @@ import './style.scss'
 
 const name = 'explorer'
 
-controller.$inject = ['mime']
-function controller(mime) {
+controller.$inject = ['mime', '$timeout']
+function controller(mime, $timeout) {
   const self = this
+  this.codeArea;
   self.$onInit = function () {
     initCodeEditor()
     fixDefaultStyle()
   }
 
   self.$onChanges = function (values) {
-    let { code, curFile, isSave} = values
-    if(isSave && isSave.currentValue) {
-      return
-    }
+    let { code, curFile} = values
+
     if (code) {
-      if(self.isSave) {
-        self.setIsSave(false)
-        return
-      }
       self.code = code.currentValue
+      self.codeArea ? self.codeArea.updateCode(self.code) : null
+      return
     }
 
     if (curFile && curFile.currentValue) {
       self.curFile = curFile.currentValue
     }
-
+    
     initCodeEditor()
 
     // if (.explorer .codeflask pre) try again until success
@@ -44,7 +41,7 @@ function controller(mime) {
     let codeEditorElement = document.getElementById('codeArea');
     if (!codeEditorElement) return;
     const fileType = mime.getFileType(self.curFile)
-    const codeArea = new CodeFlask('#codeArea', {
+    self.codeArea = new CodeFlask('#codeArea', {
       lineNumbers: true,
       language: fileType === mime.types.html ?  // html display is very ugly, display js instead
         mime.types.javascript :
@@ -52,10 +49,10 @@ function controller(mime) {
     })
 
 
-    addPythonSupport(codeArea)
+    addPythonSupport(self.codeArea)
 
     /*
-    codeArea.setLineNumber = function () {
+    self.codeArea.setLineNumber = function () {
       const LINE_HEIGHT = 20
       const codeHeight = document.querySelector('.explorer code').offsetHeight
       const lineNumber = parseInt(codeHeight / LINE_HEIGHT)
@@ -64,8 +61,8 @@ function controller(mime) {
       this.updateLineNumbersCount()
     }
     */
-    codeArea.updateCode(self.code)
-    codeArea.onUpdate(code => self.updateCode(code))
+   self.codeArea.updateCode(self.code)
+   self.codeArea.onUpdate(code => self.updateCode(code))
   }
 
   function fixDefaultStyle() {
@@ -108,9 +105,6 @@ export default {
       updateCode: '<',
       code: '<',
       curFile: '<',
-
-      isSave: '<',
-      setIsSave: '<'
     },
     template,
     controller,
