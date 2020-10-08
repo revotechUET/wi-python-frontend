@@ -86,11 +86,18 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.isChanged = false
 		}, true);
 	};
+	this.isSave = false;
+	this.setIsSave = function(value) {
+		this.isSave = value
+	}
 	let _debounceSaveCode = function() {
 		let preCode = self.code;
 		let preNode = stackNode[0];
 		if (self.autoSave && preNode) {
 			if(self.selectedNode){
+				$timeout(() => {
+					self.isSave = true
+				})
 				projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
 					.catch(error => console.log(error));
 			}
@@ -910,10 +917,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		}else {
 			self.firstUpdate = false
 		}
-		debounceSaveCode()
-		// $timeout(() => {
 		self.code = code
-		// })
+		debounceSaveCode()
 	};
 
 	self.getCurrentCode = function (cb) {

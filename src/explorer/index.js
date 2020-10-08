@@ -13,8 +13,16 @@ function controller(mime) {
     fixDefaultStyle()
   }
 
-  self.$onChanges = function ({ code, curFile }) {
+  self.$onChanges = function (values) {
+    let { code, curFile, isSave} = values
+    if(isSave && isSave.currentValue) {
+      return
+    }
     if (code) {
+      if(self.isSave) {
+        self.setIsSave(false)
+        return
+      }
       self.code = code.currentValue
     }
 
@@ -100,7 +108,9 @@ export default {
       updateCode: '<',
       code: '<',
       curFile: '<',
-      // codeChange: '<'
+
+      isSave: '<',
+      setIsSave: '<'
     },
     template,
     controller,
