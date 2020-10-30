@@ -121,7 +121,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					className: 'i2g-ngdialog',
 					showClose: false,
 					scope: $scope,
-					closeByEscape: false
+					closeByEscape: false,
+					closeByDocument: false
 				})
 				self.acceptRefresh = function() {
 					localStorage.setItem('VER', newVersion)
