@@ -1148,7 +1148,7 @@ curveObj.deleteCurve()
 			switch (mode) {
 				case "load":
 					return `
-datasetObj = client.getdatasetById(${info})
+datasetObj = client.getDatasetById(${info})
 datasetInfo = datasetObj.getDatasetInfo()
 `;
 				case "save":
