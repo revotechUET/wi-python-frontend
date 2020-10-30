@@ -98,8 +98,45 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 		} 
 	} 
 	let debounceSaveCode = _.debounce(_debounceSaveCode, 1000)
-	function wellcome() {
-		
+	async function updateVersion() {
+		let oldVersion = localStorage.getItem('VER') || localStorage.getItem('VERSION')
+		let newVersion = await new Promise((resolve) => {
+			$http({
+				method: 'GET',
+				url: window.location + 'i2g.version',
+				cache: false
+			}) 
+			.then(res => {
+				res ? resolve(res.data) : resolve(null)
+			})
+			.catch(err => {
+				resolve(null)
+			})
+		}) 
+		if(!newVersion) return
+		if(newVersion != oldVersion) {
+			await new Promise((resolve) => {
+				let dialog = ngDialog.open({
+					template: 'templateVersion',
+					className: 'i2g-ngdialog',
+					showClose: false,
+					scope: $scope
+				})
+				self.acceptRefresh = function() {
+					localStorage.setItem('VER', newVersion)
+					location.reload(true)
+					resolve()
+				}
+				self.cancelRefresh = function() {
+					dialog.close()
+					resolve()
+				}
+			})
+			
+		}
+	}	
+	async function wellcome() {
+		await updateVersion()
 		if (wiToken.getCurrentProjectName()) {
 			self.curPrj = wiToken.getCurrentProjectName()
 			ngDialog.open({
