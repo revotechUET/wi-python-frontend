@@ -125,7 +125,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				self.acceptRefresh = function() {
 					localStorage.setItem('VER', newVersion)
 					location.reload(true)
-					resolve()
+					// resolve()
 				}
 				self.cancelRefresh = function() {
 					dialog.close()
