@@ -1,7 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackDeployPlugin = require('html-webpack-deploy-plugin');
 
 module.exports = {
   entry: path.join(__dirname, 'src'),
@@ -24,7 +24,8 @@ module.exports = {
         use: [{
           loader: 'html-loader',
           options: {
-            minimize: true
+            minimize: true,
+            sources: false,
           }
         }],
       },
@@ -52,26 +53,33 @@ module.exports = {
     minimize: true
   },
   //fix bug cannot resolve  'fs'
-  node: {
-    fs: "empty"
-  },
+  // node: {
+  //   fs: "empty"
+  // },
   resolve: {
     extensions: ['.json', '.js', '.jsx', '.css']
   },
   plugins: [
-  new CleanWebpackPlugin(),
-  new CopyPlugin({
-    patterns: [
-      {
-        from: 'public',
-        cacheTransform: true,
-        force: true,
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+    new HtmlWebpackDeployPlugin({
+      append: false,
+      assets: {
+        copy: [
+          { from: './public/assets', to: '../assets' },
+          { from: './public/bower_components', to: '../bower_components' },
+          { from: './public/sound', to: '../sound' },
+        ],
       },
-    ],
-  }),
-  new HtmlWebpackPlugin({
-    template: './public/index.html',
-      }),
+      packages: {
+        '@revotechuet/misc-component': {
+          copy: [{ from: 'dist/misc-components.js', to: 'misc-components.js' }],
+          scripts: 'misc-components.js'
+        },
+      }
+    })
   ],
   mode: 'production'
 };

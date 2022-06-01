@@ -2,16 +2,15 @@
 import template from './template.html'
 import './style.scss'
 import Vue from 'vue';
-import { ngVue, WiTree, WiDroppable } from '@revotechuet/misc-component-vue';
+import { WiTree, WiDroppable } from '@revotechuet/misc-component-vue';
 import _ from 'lodash'
-const queryString = require('query-string')
 const name = 'app';
 const limitToastDisplayed = 3;
 
 
 function getClientId(owner, prjName) {
 	if (!owner || !owner.length) return "WI_PYTHON_CLIENT";
-	return `WI_PYTHON_CLIENT-${owner}-${prjName}`; 
+	return `WI_PYTHON_CLIENT-${owner}-${prjName}`;
 }
 
 controller.$inject = ['$scope', '$http', '$element', 'wiToken', 'projectApi', 'alertMessage', 'funcGen', 'browserCodeRunner', 'mime', '$timeout', 'ngDialog', '$location', 'config', 'wiLoading', 'wiApi'];
@@ -67,7 +66,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
 						.catch(error => console.log(error));
 				}
-			} 
+			}
 			else if (!self.autoSave && self.askSave && preNode && self.isChanged) {
 				ngDialog.open({
 					template: 'templateWarningSave',
@@ -86,7 +85,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			self.isChanged = false
 		}, true);
 	};
-	
+
 	let _debounceSaveCode = function() {
 		let preCode = self.code;
 		let preNode = stackNode[0];
@@ -95,8 +94,8 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				projectApi.saveCode(self.currentProject.rootName, getRelPath(self.currentProject.rootName, preNode.path), preCode)
 					.catch(error => console.log(error));
 			}
-		} 
-	} 
+		}
+	}
 	let debounceSaveCode = _.debounce(_debounceSaveCode, 1000)
 	async function updateVersion() {
 		let oldVersion = localStorage.getItem('VER') || localStorage.getItem('VERSION')
@@ -105,14 +104,14 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				method: 'GET',
 				url: window.location + 'i2g.version',
 				cache: false
-			}) 
+			})
 			.then(res => {
 				res ? resolve(res.data) : resolve(null)
 			})
 			.catch(err => {
 				resolve(null)
 			})
-		}) 
+		})
 		if(!newVersion) return
 		if(newVersion != oldVersion) {
 			await new Promise((resolve) => {
@@ -134,9 +133,9 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					resolve()
 				}
 			})
-			
+
 		}
-	}	
+	}
 	async function wellcome() {
 		await updateVersion()
 		if (wiToken.getCurrentProjectName()) {
@@ -148,7 +147,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				scope: $scope,
 			});
 			self.acceptRestore = function () {
-				
+
 				self.showPreLoading = true;
 				projectApi.openProject(wiToken.getCurrentProjectName())
 					.then(item => {
@@ -642,7 +641,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			scope: $scope,
 		});
 	};
-	
+
 	///////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////
@@ -759,7 +758,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 					// 		folders: []
 					// 	}]
 					// }
-					
+
 					// self.currentProject = {...self.currentProject};
 				} else {
 					const parentFolder = findNodeInTree(self.currentProject, node => node.path === parentFolderPath);
@@ -776,7 +775,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
                 $timeout(() => {
 					self.showNotiFn('success', 'Successfully','Success create file' , 4000);
 				})
-				//remove selected in vTree	
+				//remove selected in vTree
 				self.selectedNode._selected = false
 				self.currentProject = {...self.currentProject};
 				ngDialog.close();
@@ -788,7 +787,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				})
 			})
 	}
-	
+
 	self.acceptNewFolder = function () {
 		const folderName = this.nameFolderNew;
 		let parentPath = self.selectedNode.rootIsFile ? self.selectedNode.path.substring(0, self.selectedNode.path.lastIndexOf('/')) : self.selectedNode.path;
@@ -1064,7 +1063,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 				return getDisplayName(node)
 			}
 		}
-		
+
 	};
 	this.getIcon = function (node) {
 		if(node){
@@ -1074,7 +1073,7 @@ function controller($scope, $http, $element, wiToken, projectApi, alertMessage, 
 			else if (node.idProject) return "i2g-project-16x16";
 		}
 	};
-	
+
 	this.getChildren = function (node) {
 		if (!node) {
 			return [];
@@ -1260,7 +1259,7 @@ projectObj.createWell(name = "someName")
 	};
 	this.generateSaveCurveData = function () {
 		self.code += `
-curveObject.updateCurveData(someData)    
+curveObject.updateCurveData(someData)
 `;
 	};
 	this.generateLoginByToken = function () {
@@ -1357,12 +1356,12 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 	}
 	function dynamicSort(property) {
 		var sortOrder = 1;
-	
+
 		if(property[0] === "-") {
 			sortOrder = -1;
 			property = property.substr(1);
 		}
-	
+
 		return function (a,b) {
 			const compareValOfA = a[property] || ''
 			const compareValOfB = b[property] || ''
@@ -1370,7 +1369,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 				return compareValOfB.localeCompare(compareValOfA);
 			}else{
 				return compareValOfA.localeCompare(compareValOfB);
-			}        
+			}
 		}
 	}
 
@@ -1448,7 +1447,7 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 			 $(".my_audio").prop("currentTime",0);
 		}
    }
-  
+
     //HUNGNK
 	this.showNotiFn = function (type, title, message, timeLife) {
 		let id;
@@ -1503,12 +1502,12 @@ client = wilib.login("${wiToken.getUserName()}", "${wiToken.getPassword()}")
 		console.log('mute')
 		document.getElementsByClassName(".my_audio").muted = true;
 	}
-	
+
 	//NAMNT
 	this.getDraggableProjectList = function(node) {
 		return true
 	}
-	
+
 	this.getNodeId = function(node) {
 		return node.rootName
 	}
